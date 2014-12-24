@@ -97,5 +97,23 @@ public:
             }
         }
     }
+
+    vector<vec3> GetAABBVertices()
+    {
+        vec3 min = this->Min;
+        vec3 max = this->Max;
+
+        vector<vec3> vertices(8);
+        //top and bottom
+        vertices[0] = vec3(min.x, max.y, max.z);
+        vertices[1] = vec3(min.x, min.y, max.z);
+        vertices[2] = vec3(max.x, min.y, max.z);
+        vertices[3] = vec3(max.x, max.y, max.z);
+        vertices[4] = vec3(min.x, max.y, min.z);
+        vertices[5] = vec3(min.x, min.y, min.z);
+        vertices[6] = vec3(max.x, min.y, min.z);
+        vertices[7] = vec3(max.x, max.y, min.z);
+        return move(vertices);
+    }
  
 };

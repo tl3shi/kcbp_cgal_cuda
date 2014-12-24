@@ -1,5 +1,6 @@
 #pragma once
-
+#pragma warning(disable:4800)
+#pragma warning(disable:4244)
 #include "CP_PointVector.h"
 
 /* Triangle/triangle intersection test routine,

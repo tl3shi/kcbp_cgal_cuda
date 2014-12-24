@@ -336,6 +336,105 @@ public:
         return false;
     }
 
+    template <typename T>
+    bool static readObjPointsAndFacetsFast(vector<T> &vecs, vector<int> &faces, string file_name, T &box_min, T &box_max)
+    {
+        ifstream is(file_name.c_str(), std::ifstream::binary);
+        box_min = T(DBL_MAX, DBL_MAX, DBL_MAX);
+        box_max = T(-DBL_MAX, -DBL_MAX, -DBL_MAX);
+        if(is)
+        {
+            is.seekg (0, is.end);
+            int length = is.tellg();
+            is.seekg (0, is.beg);
+            char* buffer = new char[length];
+            is.read(buffer, length);
+
+            char* p = buffer;
+            const char* buffer_start = p;
+            int vertex_count = 0;
+            int normal_count = 0;
+            int face_count = 0;
+            bool parse_end = false;
+            while(!parse_end)
+            {
+                ObjLineType line_type = ObjReadHelper::NextLine(p);
+                switch (line_type)
+                {
+                case  ObjLineType::Vertex:
+                    ++vertex_count;
+                    break;
+                case ObjLineType::VertexNormal:
+                    ++normal_count;
+                    break;
+                case ObjLineType::Facet:
+                    ++face_count;
+                    break;
+                case ObjLineType::EndOfFile: // the last one (performance enhancement)
+                    parse_end = true;
+                    break; 
+                default:
+                    break;
+                }
+                TextHelper::GotoNextLine(p);
+            }
+            //cout << "\nveftex count: " << vertex_count << endl;
+            vecs.resize(vertex_count);
+            faces.resize(face_count * 3);
+            parse_end = false;
+            int index = 0;
+            int face_v_index = 0;
+            p = buffer;//from the start to parse
+            while (!parse_end)
+            {
+                ObjLineType line_type = ObjReadHelper::NextLine(p);
+                if(line_type == ObjLineType::Vertex )
+                {
+                    T point;
+                    TextHelper::Parse(p, point.x);
+                    TextHelper::ParseBlank(p);
+                    TextHelper::Parse(p, point.y);
+                    TextHelper::ParseBlank(p);
+                    TextHelper::Parse(p, point.z);
+                    TextHelper::ParseBlank(p);
+                    vecs[index++] = point;
+                    box_min.x = min(point.x, box_min.x);
+                    box_min.y = min(point.y, box_min.y);
+                    box_min.z = min(point.z, box_min.z);
+                    box_max.x = max(point.x, box_max.x);
+                    box_max.y = max(point.y, box_max.y);
+                    box_max.z = max(point.z, box_max.z);
+                }else if(line_type == ObjLineType::Facet)
+                {
+                    while (true)
+                    {
+                        int indices[3] = { 0, 0, 0 };
+                        ObjReadHelper::ParseIndices(p, indices);//only want the face index
+                        if(face_v_index == faces.size()) //wrong, for some obj, like apple3.obj
+                            faces.push_back(indices[0]-1);
+                        else
+                            faces[face_v_index++] = indices[0]-1;
+                        TextHelper::ParseBlank(p);
+                        if (*p == '\\')
+                        {
+                            TextHelper::GotoNextLine(p);
+                            TextHelper::ParseBlank(p);
+                        }
+                        if ((*p == '\r') || (*p == '\n') || (*p == 0))
+                            break;
+                    }
+                   
+                }
+                else if(line_type == ObjLineType::EndOfFile)
+                {
+                    parse_end = true;
+                }
+            }
+            delete[] buffer;
+            return true;
+        }
+        return false;
+    }
 
     template <typename T>
     bool static readObjPointsAndFacetsFast(vector<T> &vecs, vector<int> &faces, string file_name, double &draw_scale)
