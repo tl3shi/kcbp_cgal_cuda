@@ -38,6 +38,7 @@ void display();
 void grab(GLint width, GLint height);
 void gl2ps();
 void genModels(int modelnum, string configfile);
+void initOpenGLList();
 void collisionDetectionEvaluate(int);
 void writetofile(bool obj);
 
@@ -54,6 +55,10 @@ BoundingBox SingleModelBoundingBox;
 
 vector<pair<int, int>> collision_pair;
 
+vector<int> MeshPointsDataList; //display listid in OpenGL
+vector<int> MeshPolyhedronDataList; // for KCBP
+vector<int> MeshBoundingBoxList;
+
 int scale_convexhull =  1;
 const double tranlate_unit = 0.05;
 CCamera m_camera;
@@ -64,6 +69,8 @@ bool m_isRightButtonDown = false;
 CP_Vector3D translatePos(.0, .0, .0);//real translate = translatePos * translate_unit, for the origin/first model
 CP_Vector3D rotateAxis(1.0, .0, .0);
 int rotateDeg = 0;//-40;//0; //mouse + UP/DOWN --> changes this value
+
+const int movingModelIndex = 0; //just the first model is transformed
 
 void CollisionDetection(vector<vector<CP_Vector3D> > & MeshPointsData, vector<int> & trianges_index, 
                         vector<vector<CP_Vector3D> > & MeshpolyhedraData, vector<int> & MeshPolyhedronIndex, 
@@ -218,20 +225,18 @@ int main(int argc, char** argv)
         CGALConvexHull::getConvexHullFacets(points3d, convexhull, benchtest);
         cout << "Facet number in convex hull: " << convexhull.size() /3  <<  endl;
     }
-   
-    //clock_t s, e;
-    s = clock();
+ 
     genModels(modelnum, readconfig);
-    e = clock();
-    cout << "gen model:" <<  e - s << endl;
+    
     //return 0;
-    collisionDetectionEvaluate(benchtest);
+    //collisionDetectionEvaluate(benchtest);
     //writetofile(true);
     //writetofile(false);
 
     if(NO_DISPLAY) return 0;
      
     draw(argc, argv);
+   
     return 0;
 }
 
@@ -429,8 +434,63 @@ void genModels(int modelnum, string config)
             break;
         }
     }
+
+    ModelBoundingBoxes.resize(MeshpolyhedraData.size());
+    for(int i = 0; i < ModelBoundingBoxes.size(); i++)
+    {
+        BoundingBox box = BoundingBox::GetNull();
+        vector<CP_Vector3D> &model_points = MeshPointsData[i];
+        for(int j = 0; j < model_points.size();j++)
+        {
+            CP_Vector3D &p = model_points[j];
+            if(box.Min.x > p.x)
+                box.Min.x = p.x;
+            if(box.Min.y > p.y)
+                box.Min.y = p.y;
+            if(box.Min.z > p.z)
+                box.Min.z = p.z;
+            if(box.Max.x < p.x)
+                box.Max.x = p.x;
+            if(box.Max.y < p.y)
+                box.Max.y = p.y;
+            if(box.Max.z < p.z)
+                box.Max.z = p.z;
+        }
+        ModelBoundingBoxes[i] = box;
+    }
 }
 
+void initOpenGLList()
+{
+    int displayListId = 1;
+    //initOpenGL display List for MeshPoint
+    for(int i = 0; i < MeshPointsData.size(); i++)
+    {
+        MeshPointsDataList.push_back(displayListId);
+        glNewList(displayListId, GL_COMPILE);
+        UIHelper::drawFacets(MeshPointsData[i], trianges_index);
+        glEndList();
+        displayListId++;
+    }
+    //initOpenGL display List for KCBP
+    for(int i = 0; i < MeshpolyhedraData.size(); i++)
+    {
+        MeshPolyhedronDataList.push_back(displayListId);
+        glNewList(displayListId, GL_COMPILE);
+        UIHelper::drawFacets(MeshpolyhedraData[i], MeshPolyhedronIndex);
+        glEndList();
+        displayListId++;
+    }
+    //initOpenGL display list for bounding box;
+    for(int i = 0; i < ModelBoundingBoxes.size(); i++)
+    {
+        MeshBoundingBoxList.push_back(displayListId);
+        glNewList(displayListId, GL_COMPILE);
+        UIHelper::drawBoundingBox(ModelBoundingBoxes[i]);
+        glEndList();
+        displayListId++;
+    }
+}
 void collisionDetectionEvaluate(int benchtest = 10)
 {
     ModelBoundingBoxes.resize(MeshPointsData.size());
@@ -498,6 +558,7 @@ void collisionDetectionEvaluate(int benchtest = 10)
      printf("mesh_detection_time afterbox : %.4f, real collision %d\n", mesh_detection_time * 1.0, real_co.size());
     
     
+    /*
     //transform to cgalpoint
     vector<vector<Point_3_K2>> cgal_polyhedron(MeshpolyhedraData.size());
     for(int i = 0; i < MeshpolyhedraData.size(); i++)
@@ -505,7 +566,7 @@ void collisionDetectionEvaluate(int benchtest = 10)
         vector<Point_3_K2> cgal_points(MeshpolyhedraData[i].size());
         std::transform(MeshpolyhedraData[i].begin(), MeshpolyhedraData[i].end(), cgal_points.begin(), CPVector_to_CgalPoint_3_K2());
         cgal_polyhedron[i] = move(cgal_points);
-    }
+    }*/
 
     
     vector<pair<int, int>> collisions_result;
@@ -660,23 +721,24 @@ void  display(void)
         GLfloat oldColor[4];
         glGetFloatv(GL_CURRENT_COLOR, oldColor);
 
-        for(int i = 1; i < MeshPointsData.size(); i++)
+        for(int i = 1; i < MeshPointsDataList.size(); i++)
         {
             if(collision_index[i])
                 glColor3fv(collsion_color);
             else
                 glColor4fv(oldColor);
-            UIHelper::drawFacets(MeshPointsData[i], trianges_index);
+            //UIHelper::drawFacets(MeshPointsData[i], trianges_index);
+            glCallList(MeshPointsDataList[i]);
         }
         if(true)
         {
             glColor3f(0, 0, 1);
-            for(int i = 1; i < MeshpolyhedraData.size(); i++)
-                UIHelper::drawFacets(MeshpolyhedraData[i], MeshPolyhedronIndex);
+            for(int i = 1; i < MeshPolyhedronDataList.size(); i++)
+                glCallList(MeshPolyhedronDataList[i]);
             
             glColor3f(0, 0, 0);
-            for(int i = 1; i < ModelBoundingBoxes.size(); i++)
-                UIHelper::drawBoundingBox(ModelBoundingBoxes[i]);
+            for(int i = 1; i < MeshBoundingBoxList.size(); i++)
+                glCallList(MeshBoundingBoxList[i]);
             glColor4fv(oldColor);
         }
         
@@ -688,11 +750,14 @@ void  display(void)
             glColor3fv(collsion_color);
         else
             glColor4fv(oldColor);
-        UIHelper::drawFacets(MeshPointsData[0], trianges_index);
+        //UIHelper::drawFacets(MeshPointsData[movingModelIndex], trianges_index);
+        glCallList(MeshPointsDataList[movingModelIndex]);
         glColor3f(0, 0, 1);
-        UIHelper::drawFacets(MeshpolyhedraData[0], MeshPolyhedronIndex);
+        //UIHelper::drawFacets(MeshpolyhedraData[movingModelIndex], MeshPolyhedronIndex);
+        glCallList(MeshPolyhedronDataList[movingModelIndex]);
         glColor3f(0, 0, 0);
-        UIHelper::drawBoundingBox(ModelBoundingBoxes[0]);
+        //UIHelper::drawBoundingBox(ModelBoundingBoxes[movingModelIndex]);
+        glCallList(MeshBoundingBoxList[movingModelIndex]);
         glColor4fv(oldColor);
 
 
@@ -896,6 +961,8 @@ void draw(int argc, char** argv)
     glutSpecialFunc(onMotionControl);
     glutReshapeWindow(600, 600);//manually change the window size.
     glutPositionWindow(300,300);
+    
+    initOpenGLList();
     glutMainLoop();
 
 }
@@ -926,9 +993,7 @@ void CollisionDetection(vector<vector<CP_Vector3D> > & MeshPointsData, vector<in
                         vector<vector<CP_Vector3D> > & MeshpolyhedraData, vector<int> & MeshPolyhedronIndex, 
                         vector<BoundingBox> & ModelBoundingBoxes, const mat4 & transformMatrix, vector<pair<int, int>> & collision_pair)
 {
-    const int movingModelIndex = 0;
-    //just the first model is transformed
-
+    
     //bounding box
     BoundingBox movingModelBBoxBak = ModelBoundingBoxes[movingModelIndex];
     vector<CP_Vector3D> vertices = movingModelBBoxBak.GetAABBVertices();
