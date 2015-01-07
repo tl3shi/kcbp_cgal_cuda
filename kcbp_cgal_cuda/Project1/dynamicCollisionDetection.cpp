@@ -14,6 +14,7 @@
 #include "Matrix.h"
 #include "BoundingBox.hpp"
 #include "AABB.hpp"
+#include "CollsionQuery.hpp"
 
 #include <sstream>
 #include <fstream>
@@ -69,6 +70,9 @@ bool m_isRightButtonDown = false;
 CP_Vector3D translatePos(.0, .0, .0);//real translate = translatePos * translate_unit, for the origin/first model
 CP_Vector3D rotateAxis(1.0, .0, .0);
 int rotateDeg = 0;//-40;//0; //mouse + UP/DOWN --> changes this value
+
+CP_Vector3D lastTranslatePos(0,0,0);
+int lastRotateDeg = 0;
 
 const int movingModelIndex = 0; //just the first model is transformed
 
@@ -207,9 +211,9 @@ int main(int argc, char** argv)
 
     printf("normalsize = %d\n", normals.size());
 
-    //SSEProjection::projectCPUSSE(points3d, normals, planes, benchtest);
+   SSEProjection::projectCPUSSE(points3d, normals, planes, benchtest);
    //KDop3D::projectCPU(points3d, normals, planes, benchtest);
-    KCBP::evaluate(points3d, normals, KCBP::CUDA_MUL_NORMAL, planes, benchtest);
+     //KCBP::evaluate(points3d, normals, KCBP::CUDA_MUL_NORMAL, planes, benchtest);
 
     printf("duality mapping\n");
     KDop3D::getResultByDualMapping(planes, polyhedra);
@@ -266,6 +270,9 @@ void keyboard(unsigned char key, int x, int y)
 
 void onMotionControl(int key, int x, int y)
 {
+    lastRotateDeg = rotateDeg;
+    lastTranslatePos = translatePos;
+
     switch(key)
     {
     case GLUT_KEY_LEFT:
@@ -678,6 +685,13 @@ void writetofile(bool obj)
     cout.rdbuf(coutBuf);
 }
 
+bool collision_necessary()
+{
+    if(lastRotateDeg == rotateDeg && lastTranslatePos == translatePos)
+        return false;
+    return true;
+}
+
 void  display(void)
 {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
@@ -703,13 +717,16 @@ void  display(void)
         glPolygonMode(GL_FRONT_AND_BACK, polygon_mode);
         glColor3f(0.1, 0.8, 0);
         
-        mat4 rotateMatrix = rotateDeg == 0 ? mat4::Identity : mat4::GetRotate(rotateDeg, rotateAxis);
-        mat4 translateMatrix = mat4::GetTranslate(translatePos);
-        mat4 transformMatrix = translateMatrix * rotateMatrix;
-        collision_pair.clear();
-        CollisionDetection(MeshPointsData, trianges_index, MeshpolyhedraData, MeshPolyhedronIndex, 
-                           ModelBoundingBoxes, transformMatrix, collision_pair);
-
+        if(collision_necessary()) // doesnot change
+        {
+            mat4 rotateMatrix = rotateDeg == 0 ? mat4::Identity : mat4::GetRotate(rotateDeg, rotateAxis);
+            mat4 translateMatrix = mat4::GetTranslate(translatePos);
+            mat4 transformMatrix = translateMatrix * rotateMatrix;
+            collision_pair.clear();
+            CollisionDetection(MeshPointsData, trianges_index, MeshpolyhedraData, MeshPolyhedronIndex, 
+                ModelBoundingBoxes, transformMatrix, collision_pair);
+        }
+        
         vector<bool> collision_index(MeshPointsData.size(), false);
         for(auto it = collision_pair.begin(); it != collision_pair.end(); it++)
         {
@@ -798,6 +815,8 @@ void  display(void)
 
 void mouse(int button,int state,int x,int y)
 {
+    lastRotateDeg = rotateDeg;
+    lastTranslatePos = translatePos;
     if(state==GLUT_DOWN)
     {
         m_formerMousePos = CP_Vector2D(x, y);
@@ -849,6 +868,7 @@ void onMouseMove(int x,int y)
 
         m_formerMousePos = point;
     }
+
     glutPostRedisplay();
 }
 

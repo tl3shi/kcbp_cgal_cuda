@@ -146,6 +146,7 @@
     <ClInclude Include="Camera.h" />
     <ClInclude Include="CGALTool.hpp" />
     <ClInclude Include="ClassicalKmeans.hpp" />
+    <ClInclude Include="CollsionQuery.hpp" />
     <ClInclude Include="common\book.h" />
     <ClInclude Include="CP_PointVector.h" />
     <ClInclude Include="CudaProjection.hpp" />

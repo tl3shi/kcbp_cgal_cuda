@@ -6,6 +6,8 @@
 #include <algorithm>
 using namespace std;
 
+#define GREATER(x, y)	fabsf(x) > (y)
+
 typedef BoundingBox BBox;
 
 class Triangle3D
@@ -304,7 +306,7 @@ public:
         Clear();
     }
 
-    AABBTree(PrimitivePtr* data, int size, int maxDepth = -1)
+    AABBTree(PrimitivePtr* data, int size, int maxDepth = 8)
     {
         #if 0   //donot backup
         Primitivies = new PrimitivePtr[size];
