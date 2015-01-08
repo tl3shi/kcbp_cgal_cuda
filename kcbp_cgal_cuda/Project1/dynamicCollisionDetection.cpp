@@ -85,6 +85,8 @@ string objfilename;
 bool OUTPUT_POLYHEDRON = true;
 int k = 0;
 
+CollisionQuery * collision_query = 0;
+
 void outputpoly()
 {
     //if(!NO_DISPLAY) 
@@ -465,6 +467,8 @@ void genModels(int modelnum, string config)
         }
         ModelBoundingBoxes[i] = box;
     }
+
+    collision_query = new CollisionQuery(new Mesh(MeshPointsData[0], trianges_index), new Mesh(MeshPointsData[1], trianges_index));
 }
 
 void initOpenGLList()
@@ -723,8 +727,17 @@ void  display(void)
             mat4 translateMatrix = mat4::GetTranslate(translatePos);
             mat4 transformMatrix = translateMatrix * rotateMatrix;
             collision_pair.clear();
-            CollisionDetection(MeshPointsData, trianges_index, MeshpolyhedraData, MeshPolyhedronIndex, 
-                ModelBoundingBoxes, transformMatrix, collision_pair);
+            if(false)
+            {
+                CollisionDetection(MeshPointsData, trianges_index, MeshpolyhedraData, MeshPolyhedronIndex, 
+                    ModelBoundingBoxes, transformMatrix, collision_pair);
+            }
+            else
+            {
+                mat4 indentity = mat4::Identity;
+                if(collision_query->detection(transformMatrix, indentity))
+                    collision_pair.push_back(std::make_pair(0, 1));
+            }
         }
         
         vector<bool> collision_index(MeshPointsData.size(), false);

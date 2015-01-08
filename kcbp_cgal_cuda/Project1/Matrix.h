@@ -69,27 +69,19 @@ public:
     static CMatrix GetScale(const CVector3D &scale);
     static void GetScale(CMatrix &mat, const CVector3D &scale);
 
-    static void InvertPRMatrix(CMatrix& dest, const CMatrix& src)
+    bool IsIdentity()
     {
-        dest[0][0] = src[0][0];
-        dest[1][0] = src[0][1];
-        dest[2][0] = src[0][2];
-        dest[3][0] = -(src[3][0]*src[0][0] + src[3][1]*src[0][1] + src[3][2]*src[0][2]);
-
-        dest[0][1] = src[1][0];
-        dest[1][1] = src[1][1];
-        dest[2][1] = src[1][2];
-        dest[3][1] = -(src[3][0]*src[1][0] + src[3][1]*src[1][1] + src[3][2]*src[1][2]);
-
-        dest[0][2] = src[2][0];
-        dest[1][2] = src[2][1];
-        dest[2][2] = src[2][2];
-        dest[3][2] = -(src[3][0]*src[2][0] + src[3][1]*src[2][1] + src[3][2]*src[2][2]);
-
-        dest[0][3] = 0.0f;
-        dest[1][3] = 0.0f;
-        dest[2][3] = 0.0f;
-        dest[3][3] = 1.0f;
+        if(_11 != 1.0 && _22 != 1.0 && _33 != 1.0 && _44 != 1.0) 
+            return false;
+        if(_12 != 0 && _13 != 0 && _14 != 0)
+            return false;
+        if(_21 != 0 && _23 != 0 && _24 != 0)
+            return false;
+        if(_31 != 0 && _32 != 0 && _34 != 0)
+            return false;
+        if(_41 != 0 && _42 != 0 && _43 != 0)
+            return false;
+        return true;
     }
 
 public:

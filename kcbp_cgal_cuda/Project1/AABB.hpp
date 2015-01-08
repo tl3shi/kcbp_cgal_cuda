@@ -337,7 +337,8 @@ public:
                     {
                             bool t = TrianlgeTriangleIntersectionDetection::NoDivTriTriIsect(a[i]->v0, a[i]->v1, a[i]->v2,
                             b[j]->v0, b[j]->v1, b[j]->v2);
-                        if(t) return true;
+                        if(t) 
+                            return true;
                     }
                 }
                 return false;
