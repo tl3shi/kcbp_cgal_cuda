@@ -86,8 +86,10 @@ bool OUTPUT_POLYHEDRON = true;
 int k = 0;
 
 bool finish_without_update = false; //used to cal fps
+bool usekcbp = false;
 
 CollisionQuery * collision_query = 0;
+CollisionQuery * kcbp_query = 0;
 
 void outputpoly()
 {
@@ -284,6 +286,11 @@ void keyboard(unsigned char key, int x, int y)
     case 'q':
         printf("exit\n\n");
         exit(0);
+        break;
+    case 'k':
+    case 'K':
+        usekcbp = !usekcbp;
+        printf("use kcbp: %d", usekcbp);
         break;
     case 'F':
     case 'f':
@@ -494,6 +501,7 @@ void genModels(int modelnum, string config)
     }
 
     collision_query = new CollisionQuery(new Mesh(MeshPointsData[0], trianges_index), new Mesh(MeshPointsData[1], trianges_index));
+    kcbp_query = new CollisionQuery(new Mesh(MeshpolyhedraData[0]), new Mesh(MeshpolyhedraData[1]));
 }
 
 void initOpenGLList()
@@ -760,8 +768,18 @@ void  display(void)
             else
             {
                 mat4 indentity = mat4::Identity;
-                if(collision_query->detection(transformMatrix, indentity))
-                    collision_pair.push_back(std::make_pair(0, 1));
+                if(usekcbp)
+                {
+                    if(kcbp_query->detection(transformMatrix, indentity))
+                    {
+                        if(collision_query->detection(transformMatrix, indentity))
+                            collision_pair.push_back(std::make_pair(0, 1));
+                    }
+                }else  //directly 
+                {
+                    if(collision_query->detection(transformMatrix, indentity))
+                        collision_pair.push_back(std::make_pair(0, 1));
+                }
             }
         }
         

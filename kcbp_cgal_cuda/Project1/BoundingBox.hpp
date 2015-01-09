@@ -9,18 +9,18 @@ public:
      vec3 Max;
      BoundingBox(const vec3 &min, const vec3 max):Min(min),Max(max) 
      {
-        mCenter = (max + min)*0.5f; 
-        mExtents = (max - min)*0.5f;
+        //mCenter = (max + min)*0.5f; 
+        //mExtents = (max - min)*0.5f;
      }
      BoundingBox() 
      {
         Min = vec3(DBL_MAX, DBL_MAX, DBL_MAX);
         Max = vec3(-DBL_MAX, -DBL_MAX, -DBL_MAX);
-        mCenter = CP_Vector3D(0,0,0); mExtents = CP_Vector3D(0,0,0);
+        //mCenter = CP_Vector3D(0,0,0); mExtents = CP_Vector3D(0,0,0);
      }
 
-     CP_Vector3D  mCenter;				//!< Box center
-     CP_Vector3D  mExtents;				//!< Box extents
+     //CP_Vector3D  mCenter;				//!< Box center
+     //CP_Vector3D  mExtents;				//!< Box extents
 
     BoundingBox & Union(BoundingBox &box)
     {
@@ -50,8 +50,8 @@ public:
 
     vec3 GetCenter() 
     {
-        return mCenter;
-        //return (Min + Max) * 0.5f;
+        //return mCenter;
+        return (Min + Max) * 0.5f;
     }
 
     bool Contains(const BoundingBox &box) 

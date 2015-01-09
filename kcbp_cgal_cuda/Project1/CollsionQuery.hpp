@@ -1,7 +1,6 @@
 
 struct Mesh
 {
-    PrimitivePtr * data;
     AABBTree * tree;
 
 public:    
@@ -11,7 +10,7 @@ public:
  
         PrimitivePtr* modela = new PrimitivePtr[a_triangle_size];
         for(int i = 0; i < triangles.size(); i += 3)
-            data[i/3] = new Primitive(triangles[i], triangles[i+1], triangles[i+2]);
+            modela[i/3] = new Primitive(triangles[i], triangles[i+1], triangles[i+2]);
         tree = new AABBTree(modela, a_triangle_size, -1);
     }
     ~Mesh()
