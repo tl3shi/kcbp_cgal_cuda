@@ -85,6 +85,8 @@ string objfilename;
 bool OUTPUT_POLYHEDRON = true;
 int k = 0;
 
+bool finish_without_update = false; //used to cal fps
+
 CollisionQuery * collision_query = 0;
 
 void outputpoly()
@@ -150,6 +152,23 @@ void scalebunny(vector<CP_Vector3D> &input, double scale)
 }
 
 bool mesh_detective = true;
+
+
+float g_fps( void (*func)(void), int n_frame )
+{
+    clock_t start, finish;
+    int i;
+    float fps;
+
+    printf( "Performing benchmark, please wait" );
+    start = clock();
+    for( i=0; i<n_frame; i++ )
+        func();
+    printf( "done\n" );
+    finish = clock();
+    fps = float(n_frame)/(finish-start)*CLOCKS_PER_SEC;
+    return fps;
+}
 
 //collisiondetection.exe k models/bunny2.obj n(owindow)  10  rand.config
 int main(int argc, char** argv)
@@ -266,7 +285,12 @@ void keyboard(unsigned char key, int x, int y)
         printf("exit\n\n");
         exit(0);
         break;
-
+    case 'F':
+    case 'f':
+        finish_without_update = true;
+        printf( "%f fps\n", g_fps( display, 100));
+        finish_without_update = false;
+        break;
     }
 }
 
@@ -304,6 +328,7 @@ void onMotionControl(int key, int x, int y)
         }
         break;
     }
+    glutPostRedisplay();
 }
 
 void myReshape(int w, int h)
@@ -823,6 +848,11 @@ void  display(void)
 
     glPopMatrix();
     glFlush();
+
+    if( finish_without_update )
+        glFinish();
+    else
+        glutSwapBuffers();
 }
 
 
@@ -982,12 +1012,12 @@ void initlight()
 void draw(int argc, char** argv) 
 {
     glutInit(&argc, argv);
-    glutInitDisplayMode(GLUT_SINGLE | GLUT_RGBA);
+    glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA);
     glutCreateWindow("K-CBP");
     initlight(); 
     glutReshapeFunc(myReshape);	
     glutDisplayFunc(display);
-    glutIdleFunc(display);
+    //glutIdleFunc(display);// Removing the idle function to save CPU and GPU
     glutKeyboardFunc(keyboard);
     glutMouseFunc(mouse);
     glutMotionFunc(onMouseMove);
