@@ -75,6 +75,12 @@
     <ClInclude Include="CollsionQuery.hpp">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="ICollisionQuery.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="SolidCollisionQuery.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CudaCompile Include="test.cu">

@@ -110,6 +110,14 @@ public:
     DataType &operator()(unsigned int row, unsigned int column);
     RowVector &operator()(unsigned int row);
     RowVector &operator[](unsigned int row);
+
+    CMatrix transpose()
+    {
+        return CMatrix(_11, _21, _31, _41,
+                       _12, _22, _32, _42,
+                       _13, _23, _33, _43,
+                       _14, _24, _34, _44);
+    }
 };
 
 typedef CMatrix mat4;

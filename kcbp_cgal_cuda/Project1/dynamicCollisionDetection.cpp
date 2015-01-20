@@ -1,6 +1,7 @@
 #pragma  once
 #pragma warning(disable:4018)
 #pragma warning(disable:4224)
+
 #include "UIHelper.hpp"
 #include "FileManager.h"
 #include "KCBP.hpp"
@@ -15,11 +16,14 @@
 #include "BoundingBox.hpp"
 #include "AABB.hpp"
 #include "CollsionQuery.hpp"
+#include "SolidCollisionQuery.hpp"
 
 #include <sstream>
 #include <fstream>
 
 #define _DEBUG false
+#define USE_SOLID
+
 bool draw_facets = true;
 bool draw_convexhull = false;
 bool draw_ach = false;
@@ -88,8 +92,8 @@ int k = 0;
 bool finish_without_update = false; //used to cal fps
 bool usekcbp = false;
 
-CollisionQuery * collision_query = 0;
-CollisionQuery * kcbp_query = 0;
+ICollisionQuery * collision_query = 0;
+ICollisionQuery * kcbp_query = 0;
 
 void outputpoly()
 {
@@ -500,8 +504,15 @@ void genModels(int modelnum, string config)
         ModelBoundingBoxes[i] = box;
     }
 
-    collision_query = new CollisionQuery(new Mesh(MeshPointsData[0], trianges_index), new Mesh(MeshPointsData[1], trianges_index));
-    kcbp_query = new CollisionQuery(new Mesh(MeshpolyhedraData[0]), new Mesh(MeshpolyhedraData[1]));
+    #ifdef USE_SOLID
+        collision_query = new SolidCollisionQuery(MeshPointsData[0], trianges_index, MeshPointsData[1], trianges_index);
+        kcbp_query = new SolidCollisionQuery(MeshpolyhedraData[0], MeshPolyhedronIndex, MeshpolyhedraData[1], MeshPolyhedronIndex);
+    #else
+        collision_query = new CollisionQuery(MeshPointsData[0], trianges_index, MeshPointsData[1], trianges_index);
+        kcbp_query = new CollisionQuery(MeshpolyhedraData[0], MeshpolyhedraData[1]);
+    #endif // USE_SOLID
+
+
 }
 
 void initOpenGLList()

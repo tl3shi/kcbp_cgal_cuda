@@ -152,10 +152,12 @@
     <ClInclude Include="CudaProjection.hpp" />
     <ClInclude Include="FileManager.h" />
     <ClInclude Include="gl2ps.h" />
+    <ClInclude Include="ICollisionQuery.h" />
     <ClInclude Include="IntersectionTools.hpp" />
     <ClInclude Include="KCBP.hpp" />
     <ClInclude Include="KDop3D.hpp" />
     <ClInclude Include="Matrix.h" />
+    <ClInclude Include="SolidCollisionQuery.hpp" />
     <ClInclude Include="SwiftCollisionDetection.hpp" />
     <ClInclude Include="TextHelper.hpp" />
     <ClInclude Include="TriangleTriangleIntersectionDetection.hpp" />

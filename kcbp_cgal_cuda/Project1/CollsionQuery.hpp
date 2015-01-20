@@ -1,41 +1,47 @@
-
-struct Mesh
-{
-    AABBTree * tree;
-
-public:    
-    Mesh(vector<CP_Vector3D> &triangles)
-    {
-        int a_triangle_size = triangles.size() / 3;
+#include "ICollisionQuery.h"
  
-        PrimitivePtr* modela = new PrimitivePtr[a_triangle_size];
-        for(int i = 0; i < triangles.size(); i += 3)
-            modela[i/3] = new Primitive(triangles[i], triangles[i+1], triangles[i+2]);
-        tree = new AABBTree(modela, a_triangle_size, -1);
-    }
-    ~Mesh()
-    {
-        delete tree;
-        tree = NULL;
-    }
-
-    Mesh(vector<CP_Vector3D> &triangles, vector<int> &index)
-    {
-        int a_triangle_size = index.size() / 3;
-        PrimitivePtr* modela = new PrimitivePtr[a_triangle_size];
-        for(int i = 0; i < index.size(); i += 3)
-            modela[i/3] = new Primitive(triangles[index[i]], triangles[index[i+1]], triangles[index[i+2]]);
-        tree = new AABBTree(modela, a_triangle_size, -1);
-    }
-};
-
- 
-struct CollisionQuery
+struct CollisionQuery : public ICollisionQuery 
 {
-    Mesh * mesh0;
-    Mesh * mesh1;
+    AABBTree * tree0;
+    AABBTree * tree1;
 
-    CollisionQuery(Mesh * m0, Mesh * m1): mesh0(m0), mesh1(m1){}
+    CollisionQuery(vector<CP_Vector3D> &points0, vector<int> &index0, 
+                   vector<CP_Vector3D> &points1, vector<int> &index1)
+    {
+        int a_triangle_size = index0.size() / 3;
+        PrimitivePtr* modela = new PrimitivePtr[a_triangle_size];
+        for(int i = 0; i < index0.size(); i += 3)
+            modela[i/3] = new Primitive(points0[index0[i]], points0[index0[i+1]], points0[index0[i+2]]);
+        tree0 = new AABBTree(modela, a_triangle_size, -1);
+
+        int b_triangle_size = index0.size() / 3;
+        PrimitivePtr* modelb = new PrimitivePtr[b_triangle_size];
+        for(int i = 0; i < index1.size(); i += 3)
+            modelb[i/3] = new Primitive(points1[index1[i]], points1[index1[i+1]], points1[index1[i+2]]);
+        tree1 = new AABBTree(modelb, b_triangle_size, -1);
+    }
+
+    CollisionQuery(vector<CP_Vector3D> &triangles0, vector<CP_Vector3D> &triangles1)
+    {
+        int a_triangle_size = triangles0.size() / 3;
+        PrimitivePtr* modela = new PrimitivePtr[a_triangle_size];
+        for(int i = 0; i < triangles0.size(); i += 3)
+            modela[i/3] = new Primitive(triangles0[i], triangles0[i+1], triangles0[i+2]);
+        tree0 = new AABBTree(modela, a_triangle_size, -1);
+    
+        int b_triangle_size = triangles1.size() / 3;
+        PrimitivePtr* modelb = new PrimitivePtr[b_triangle_size];
+        for(int i = 0; i < triangles1.size(); i += 3)
+            modelb[i/3] = new Primitive(triangles1[i], triangles1[i+1], triangles1[i+2]);
+        tree1 = new AABBTree(modelb, b_triangle_size, -1);
+    }
+    
+    
+    ~CollisionQuery()
+    {
+        delete tree0; tree0 = NULL;
+        delete tree1; tree1 = NULL;
+    }
 
     int AABBTests;
     int PrimitiveTests;
@@ -47,7 +53,7 @@ struct CollisionQuery
        initQuery(world0, world1);
        assert(world1.IsIdentity());
        //(CheckTemporalCoherence(cache))
-        return _Collide(mesh0->tree->Root, mesh1->tree->Root);
+        return _Collide(tree0->Root, tree1->Root);
     }
 
     private:
