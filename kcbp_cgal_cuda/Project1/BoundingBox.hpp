@@ -113,6 +113,16 @@ public:
 
         vector<vec3> vertices(8);
         //top and bottom
+        /*
+        0 ---- 3
+        /      /
+        1 ---- 2
+        |      |
+        |      |
+        4 ---- 7
+        /      /
+        5 -----6
+        */
         vertices[0] = vec3(min.x, max.y, max.z);
         vertices[1] = vec3(min.x, min.y, max.z);
         vertices[2] = vec3(max.x, min.y, max.z);
@@ -122,6 +132,17 @@ public:
         vertices[6] = vec3(max.x, min.y, min.z);
         vertices[7] = vec3(max.x, max.y, min.z);
         return move(vertices);
+    }
+
+    vector<int> GetAABBIndices()
+    {
+        int index[] = {1,2,3, 1,3,0,
+                           6,7,3, 6,3,2,
+                           5,6,2, 5,2,1,
+                           4,5,1, 4,1,0,
+                           3,7,4, 3,4,0,
+                           7,6,5, 4,7,5};
+        return vector<int>(index, index + sizeof(index)/sizeof(int));
     }
  
 };

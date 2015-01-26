@@ -65,7 +65,7 @@ vector<int> MeshPolyhedronDataList; // for KCBP
 vector<int> MeshBoundingBoxList;
 
 int scale_convexhull =  1;
-const double tranlate_unit = 0.05;
+const double tranlate_unit = 0.01;
 CCamera m_camera;
 CP_Vector2D m_formerMousePos;
 bool m_isLeftButtonDown = false;
@@ -503,10 +503,11 @@ void genModels(int modelnum, string config)
         }
         ModelBoundingBoxes[i] = box;
     }
-
-    #ifdef USE_SOLID
-        collision_query = new SolidCollisionQuery(MeshPointsData[0], trianges_index, MeshPointsData[1], trianges_index);
-        kcbp_query = new SolidCollisionQuery(MeshpolyhedraData[0], MeshPolyhedronIndex, MeshpolyhedraData[1], MeshPolyhedronIndex);
+    
+    #ifdef USE_SOLID //bug remains, is not very precise
+        //collision_query = new SolidCollisionQuery(MeshPointsData[0], trianges_index, MeshPointsData[1], trianges_index);
+        collision_query = new SolidCollisionQuery(ModelBoundingBoxes[0].GetAABBVertices(), ModelBoundingBoxes[0].GetAABBIndices(), ModelBoundingBoxes[1].GetAABBVertices(), ModelBoundingBoxes[1].GetAABBIndices());
+        //kcbp_query = new SolidCollisionQuery(MeshpolyhedraData[0], MeshPolyhedronIndex, MeshpolyhedraData[1], MeshPolyhedronIndex);
     #else
         collision_query = new CollisionQuery(MeshPointsData[0], trianges_index, MeshPointsData[1], trianges_index);
         kcbp_query = new CollisionQuery(MeshpolyhedraData[0], MeshpolyhedraData[1]);
