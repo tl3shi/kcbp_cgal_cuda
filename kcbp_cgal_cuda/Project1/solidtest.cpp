@@ -12,7 +12,7 @@
 
 
 #define SPACE_SIZE 5
-#define NUM_ITER 10000
+#define NUM_ITER 1
 
 typedef vector<Point> PointList;
 
@@ -41,7 +41,8 @@ int main(int argc, char *argv[]) {
 
    
     //Point point;
-    string objfilename("test-k-16-0.obj");
+    //string objfilename("test-k-16-0.obj");
+    string objfilename("models/bunny2.obj");
     
     BoundingBox SingleModelBoundingBox;
     vector<int> trianges_index;
@@ -60,7 +61,15 @@ int main(int argc, char *argv[]) {
     
     DtShapeRef shape = dtNewComplexShape();
     dtVertexBase(&points[0]);
-    dtVertexIndices(DT_POLYHEDRON, trianges_index.size(), &indices[0]);
+    //dtVertexIndices(DT_POLYHEDRON, trianges_index.size(), &indices[0]);
+    for(int i = 0; i < indices.size()/3; i++)
+    {
+        dtBegin(DT_SIMPLEX);
+        dtVertexIndex(indices[i*3+0]);
+        dtVertexIndex(indices[i*3+1]);
+        dtVertexIndex(indices[i*3+2]);
+        dtEnd();
+    }
     dtEndComplexShape();
 
     //DtShapeRef shape = dtNewConvexPolyhedron(&points[0], trianges_index.size(), &indices[0]);
@@ -77,20 +86,34 @@ int main(int argc, char *argv[]) {
 
     printf("Running %d tests at random placements\n", NUM_ITER);
     printf("in a space of size %d...\n", SPACE_SIZE);  
+    Point translatePos = Point(.82, 0.84, .0);
     for (int i = 0; i != NUM_ITER; ++i) {
         dtSelectObject(&object1);
         dtLoadIdentity();
-        dtTranslate(rnd() * SPACE_SIZE, rnd() * SPACE_SIZE, rnd() * SPACE_SIZE);
-        q = Quaternion::random();
-        dtRotate(q[X], q[Y], q[Z], q[W]);
+        //dtTranslate(rnd() * SPACE_SIZE, rnd() * SPACE_SIZE, rnd() * SPACE_SIZE);
+        dtTranslate(translatePos[0], translatePos[1], translatePos[2]);
+        /*double tx = translatePos[0], ty = translatePos[1], tz = translatePos[2];
+        double m [16] = {
+            1.0, 0, 0, 0,
+            0.0, 1.0, 0, 0,
+            0.0, 0, 1.0, 0,
+            tx, ty, tz, 1.0
+        };
+        dtLoadMatrixd(m);
+        */
 
+        //q = Quaternion::random();
+        //dtRotate(q[X], q[Y], q[Z], q[W]);
+
+        /*
         dtSelectObject(&object2);
         dtLoadIdentity();
         dtTranslate(rnd() * SPACE_SIZE, rnd() * SPACE_SIZE, rnd() * SPACE_SIZE);
         q = Quaternion::random();
         dtRotate(q[X], q[Y], q[Z], q[W]);
-
-        if (dtTest()) ++col_count;
+        */
+        //if (dtTest()) ++col_count;
+        if(dtTestPair(&object1, &object2))  ++col_count;
     }
     printf("done\n");
 

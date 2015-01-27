@@ -65,21 +65,18 @@ vector<int> MeshPointsDataList; //display listid in OpenGL
 vector<int> MeshPolyhedronDataList; // for KCBP
 vector<int> MeshBoundingBoxList;
 
-
-double Scale_Bunny = 100.0;
 int scale_convexhull =  1;
-const double tranlate_unit = 0.01 * Scale_Bunny;
+const double tranlate_unit = 0.01;
 CCamera m_camera;
 CP_Vector2D m_formerMousePos;
 bool m_isLeftButtonDown = false;
 bool m_isRightButtonDown = false;
 bool necessary = true;
 
-
 //CP_Vector3D translatePos(.0, 1.120, .0);//real translate = translatePos * translate_unit, for the origin/first model
 //CP_Vector3D translatePos(.0, -1.370, .0);// intersection  solid as non-intersection
 //CP_Vector3D translatePos(.82, 1.45, .0);// non-intersection solid as intersecetion
-CP_Vector3D translatePos(.82*Scale_Bunny, 0.84*Scale_Bunny, .0*Scale_Bunny);// intersection solid as non-intersecetion
+CP_Vector3D translatePos(.82, 0.84, .0);// intersection solid as non-intersecetion
 //CP_Vector3D translatePos(0, 0.76, .0);
 CP_Vector3D rotateAxis(1.0, .0, .0);
 int rotateDeg = 0;//-40;//0; //mouse + UP/DOWN --> changes this value
@@ -89,9 +86,6 @@ int lastRotateDeg = 0;
 
 const int movingModelIndex = 0; //just the first model is transformed
 
-void CollisionDetection(vector<vector<CP_Vector3D> > & MeshPointsData, vector<int> & trianges_index, 
-                        vector<vector<CP_Vector3D> > & MeshpolyhedraData, vector<int> & MeshPolyhedronIndex, 
-                        vector<BoundingBox> & ModelBoundingBoxes, const mat4 & transformMatrix, vector<pair<int, int>> & collision_pair);
 
 string objfilename;
 
@@ -100,7 +94,6 @@ int k = 0;
 
 bool finish_without_update = false; //used to cal fps
 bool usekcbp = false;
-
 ICollisionQuery * collision_query = 0;
 ICollisionQuery * kcbp_query = 0;
 
@@ -185,7 +178,21 @@ float g_fps( void (*func)(void), int n_frame )
     return fps;
 }
 
-//collisiondetection.exe k models/bunny2.obj n(owindow)  10  rand.config
+//#define SPACE_SIZE 5
+//#define NUM_ITER 10000
+//
+//typedef struct MyObject {
+//    int id;
+//} MyObject; 
+//
+///* ARGSUSED */
+//void collide1(void * client_data, DtObjectRef obj1, DtObjectRef obj2,
+//              const DtCollData *coll_data) {
+//}
+
+MyObject object0, object1;
+DtShapeRef shape0, shape1;
+
 int main(int argc, char** argv)
 {
     vector<Plane3D> planes;
@@ -198,7 +205,6 @@ int main(int argc, char** argv)
         NO_DISPLAY = argv[3][0] == 'w' ? false : true;  
 
     bool loaded = FileManager::readObjPointsAndFacetsFast(points3d, trianges_index, objfilename, SingleModelBoundingBox.Min, SingleModelBoundingBox.Max);
-    scalebunny(points3d, Scale_Bunny); //Attention
     if(! loaded) {cout << "load failed:" << objfilename << endl;return 0;}
     cout << objfilename << " \tpoints number: " << points3d.size() <<endl;
 
@@ -525,15 +531,56 @@ void genModels(int modelnum, string config)
     }
     
     #ifdef USE_SOLID //bug remains, is not very precise
-        collision_query = new SolidCollisionQuery(MeshPointsData[0], trianges_index);
-        //collision_query = new SolidCollisionQuery(ModelBoundingBoxes[0].GetAABBVertices(), ModelBoundingBoxes[0].GetAABBIndices(), ModelBoundingBoxes[1].GetAABBVertices(), ModelBoundingBoxes[1].GetAABBIndices());
-        //kcbp_query = new SolidCollisionQuery(MeshpolyhedraData[0], MeshPolyhedronIndex, MeshpolyhedraData[1], MeshPolyhedronIndex);
-    #else
-        collision_query = new CollisionQuery(MeshPointsData[0], trianges_index, MeshPointsData[1], trianges_index);
-        kcbp_query = new CollisionQuery(MeshpolyhedraData[0], MeshpolyhedraData[1]);
+    //SolidCollisionQuery(const vector<CP_Vector3D> points0, const vector<int> index0,
+    //    const vector<CP_Vector3D> points1, const vector<int> index1)
+    //new SolidCollisionQuery(MeshPointsData[0], trianges_index, MeshPointsData[1], trianges_index);
+    const vector<CP_Vector3D> &points0 = MeshPointsData[0];
+    const vector<CP_Vector3D> &points1 = MeshPointsData[1];
+    const vector<int> &index0 = trianges_index;
+    const vector<int> &index1 = trianges_index;
+    static int OBJID = 1;
+    object0.id = OBJID++;
+    object1.id = OBJID++;
+
+    PointList solid_points0;   
+    for(int i = 0; i < points0.size(); i++)
+        solid_points0.push_back(Point(points0[i].x, points0[i].y, points0[i].z));
+    vector<DtIndex> solid_indices0(index0.begin(), index0.end());
+    shape0 = dtNewComplexShape();
+    dtVertexBase(&solid_points0[0]);
+    for(int i = 0; i < solid_indices0.size()/3; i++)
+    {
+        dtBegin(DT_SIMPLEX);
+        dtVertexIndex(solid_indices0[i*3+0]);
+        dtVertexIndex(solid_indices0[i*3+1]);
+        dtVertexIndex(solid_indices0[i*3+2]);
+        dtEnd();
+    }
+    dtEndComplexShape();
+    /*
+    PointList solid_points1;   
+    for(int i = 0; i < points1.size(); i++)
+        solid_points1.push_back(Point(points1[i].x, points1[i].y, points1[i].z));
+    vector<DtIndex> solid_indices1(index1.begin(), index1.end());
+    shape1 = dtNewComplexShape();
+    dtVertexBase(&solid_points1[0]);
+    for(int i = 0; i < solid_indices1.size()/3; i++)
+    {
+        dtBegin(DT_SIMPLEX);
+        dtVertexIndex(solid_indices1[i*3+0]);
+        dtVertexIndex(solid_indices1[i*3+1]);
+        dtVertexIndex(solid_indices1[i*3+2]);
+        dtEnd();
+    }
+    dtEndComplexShape();
+    */
+    dtCreateObject(&object0, shape0); 
+    dtCreateObject(&object1, shape0); 
+
+    dtDisableCaching();
+    dtSetDefaultResponse(collide1, DT_SIMPLE_RESPONSE, stdout);
     #endif // USE_SOLID
-
-
+ 
 }
 
 void initOpenGLList()
@@ -794,14 +841,14 @@ void  display(void)
             collision_pair.clear();
             if(false)
             {
-                CollisionDetection(MeshPointsData, trianges_index, MeshpolyhedraData, MeshPolyhedronIndex, 
-                    ModelBoundingBoxes, transformMatrix, collision_pair);
+ 
             }
             else
             {
                 mat4 indentity = mat4::Identity;
                 if(usekcbp)
                 {
+                    assert(false);//kcbp is null
                     if(kcbp_query->detection(transformMatrix, indentity))
                     {
                         if(collision_query->detection(transformMatrix, indentity))
@@ -809,7 +856,19 @@ void  display(void)
                     }
                 }else  //directly 
                 {
-                    if(collision_query->detection(transformMatrix, indentity))
+                    //if(collision_query->detection(transformMatrix, indentity))
+                    dtSelectObject(&object0);
+                    //solid matrix is DIFFERENT from myself
+                    
+                    #ifdef SolidMatrix_
+                    dtLoadMatrixd(transformMatrix.transpose().m);
+                    #else
+                    dtLoadIdentity();
+                    dtTranslate(translatePos.x, translatePos.y, translatePos.z);
+                    #endif
+                    //return dtTest();//all pairs added to the GLOBAL objlist
+                    bool c = dtTestPair(&object0, &object1);
+                    if(c)
                     {
                         collision_pair.push_back(std::make_pair(0, 1));
                         printf("%.3f, %.3f, %.3f\n", translatePos.x, translatePos.y, translatePos.z);
@@ -1104,61 +1163,3 @@ void gl2ps()
     fclose(fp);
     printf("Done!\n");
 }
- 
-void CollisionDetection(vector<vector<CP_Vector3D> > & MeshPointsData, vector<int> & trianges_index, 
-                        vector<vector<CP_Vector3D> > & MeshpolyhedraData, vector<int> & MeshPolyhedronIndex, 
-                        vector<BoundingBox> & ModelBoundingBoxes, const mat4 & transformMatrix, vector<pair<int, int>> & collision_pair)
-{
-    
-    //bounding box
-    BoundingBox movingModelBBoxBak = ModelBoundingBoxes[movingModelIndex];
-    vector<CP_Vector3D> vertices = movingModelBBoxBak.GetAABBVertices();
-    BoundingBox transformedBBox(CP_Vector3D(DBL_MAX, DBL_MAX, DBL_MAX), -CP_Vector3D(DBL_MAX, DBL_MAX, DBL_MAX));
-    for(int i = 0; i < 8; i++)
-    {
-        CP_Vector3D v = transformMatrix * vertices[i];
-        transformedBBox.Min.x = min(transformedBBox.Min.x, v.x);
-        transformedBBox.Min.y = min(transformedBBox.Min.y, v.y);
-        transformedBBox.Min.z = min(transformedBBox.Min.z, v.z);
-        transformedBBox.Max.x = max(transformedBBox.Max.x, v.x);
-        transformedBBox.Max.y = max(transformedBBox.Max.y, v.y);
-        transformedBBox.Max.z = max(transformedBBox.Max.z, v.z);
-    }
-    ModelBoundingBoxes[movingModelIndex] = transformedBBox;
-    vector<std::pair<int, int> > box_collisions;
-    BoundingBox::CollsionDetection(ModelBoundingBoxes, box_collisions);
-    ModelBoundingBoxes[movingModelIndex] = movingModelBBoxBak;
-
-    //kcbp 
-    vector<CP_Vector3D > movingModelPolyhedronBak = MeshpolyhedraData[movingModelIndex];
-    for(int i = 0; i < movingModelPolyhedronBak.size(); i++)
-        MeshpolyhedraData[movingModelIndex][i] = transformMatrix * movingModelPolyhedronBak[i];
-    vector<std::pair<int, int> > dop_collisions;
-    for(int i = 0; i < box_collisions.size(); i++)
-    {
-        pair<int, int> &index = box_collisions[i];
-        if (AABBTree::MeshMeshDetection(MeshpolyhedraData[index.first], MeshpolyhedraData[index.second]))
-            dop_collisions.push_back(index);
-    }
-    MeshpolyhedraData[movingModelIndex] = movingModelPolyhedronBak;
-
-    if(!mesh_detective)
-    {
-        collision_pair = dop_collisions;
-    }else
-    {
-        //triangle triangle detection
-        vector<CP_Vector3D> movingModelPointsDataBak = MeshPointsData[movingModelIndex];
-        for(int i = 0; i < movingModelPointsDataBak.size(); i++)
-            MeshPointsData[movingModelIndex][i] = transformMatrix * movingModelPointsDataBak[i];
-        for(int i = 0; i < dop_collisions.size(); i++)
-        {
-            pair<int,int> &p = dop_collisions[i];
-            if(AABBTree::MeshMeshDetection(MeshPointsData[p.first], trianges_index, MeshPointsData[p.second], trianges_index))
-                collision_pair.push_back(p);
-        }
-        MeshPointsData[movingModelIndex] = movingModelPointsDataBak;
-    }
-}
-
- 

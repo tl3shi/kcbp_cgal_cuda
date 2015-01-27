@@ -82,7 +82,7 @@ CP_Vector2D m_formerMousePos;
 bool m_isLeftButtonDown = false;
 bool m_isRightButtonDown = false;
 
-CP_Vector3D translatePos(.0, .0, .0);//real translate = translatePos * translate_unit, for the origin/first model
+CP_Vector3D translatePos(.55, .53, .0);//real translate = translatePos * translate_unit, for the origin/first model
 CP_Vector3D rotateAxis(1.0, .0, .0);
 int rotateDeg = 0;//-40;//0; //mouse + UP/DOWN --> changes this value
 
@@ -198,8 +198,8 @@ void collide1(void * client_data, DtObjectRef obj1, DtObjectRef obj2,
 MyObject object1, object2;
 
 BoundingBox boxobj1, boxobj2;
-//collisiondetection.exe k models/bunny2.obj n(owindow)  10  rand.config
-int main(int argc, char** argv)
+ 
+int mainbak(int argc, char** argv)
 {
 
     object1.id = 1;
@@ -226,6 +226,85 @@ int main(int argc, char** argv)
      
     draw(argc, argv);
    
+    return 0;
+}
+
+
+int main(int argc, char** argv)
+{
+
+    object1.id = 1;
+    object2.id = 2;
+
+    /*vec3 boxMax1 = vec3(2, 2, 2);
+    vec3 boxMax2 = vec3(1, 1, 1);
+    
+    boxobj1 = BoundingBox(-boxMax1, boxMax1);
+    boxobj2 = BoundingBox(-boxMax2, boxMax2);
+    */
+    boxobj1 = BoundingBox(vec3(-0.9438, -0.4669, -0.61679), vec3(0.607788, 1.06996, 0.587146));
+    boxobj2 = BoundingBox(vec3(1.056195, -0.46690, -0.6167920), vec3(2.6077880000000002, 1.0699599999999998, 0.58714600000000006));
+
+    /*
+    DtShapeRef shape1 = dtBox(boxMax1.x * 2, boxMax1.y * 2, boxMax1.z * 2);
+    DtShapeRef shape2 = dtBox(boxMax2.x * 2, boxMax2.y * 2, boxMax2.z * 2);
+    */
+
+    vector<Point>  solid_points0;   
+    vector<CP_Vector3D> points0 = boxobj1.GetAABBVertices();
+    for(int i = 0; i < points0.size(); i++)
+        solid_points0.push_back(Point(points0[i].x, points0[i].y, points0[i].z));
+
+    vector<DtIndex> solid_indices0;
+    auto indices = boxobj1.GetAABBIndices(); 
+    for(auto it = indices.begin(); it != indices.end(); it++)
+        solid_indices0.push_back(*it);
+    DtShapeRef shape1 = dtNewComplexShape();
+    dtVertexBase(&solid_points0[0]);
+    for(int i = 0; i < solid_indices0.size()/3; i++)
+    {
+        dtBegin(DT_SIMPLEX);
+        dtVertexIndex(solid_indices0[i*3+0]);
+        dtVertexIndex(solid_indices0[i*3+1]);
+        dtVertexIndex(solid_indices0[i*3+2]);
+        dtEnd();
+    }
+    //dtVertexIndices(DT_POLYHEDRON, solid_indices0.size(), &solid_indices0[0]);
+    dtEndComplexShape();
+
+    vector<Point> solid_points1;
+    vector<CP_Vector3D> points1 = boxobj2.GetAABBVertices();
+    for(int i = 0; i < points1.size(); i++)
+        solid_points1.push_back(Point(points1[i].x, points1[i].y, points1[i].z));
+    
+    auto indices1 = boxobj2.GetAABBIndices();
+    vector<DtIndex> solid_indices1(indices1.begin(), indices1.end());
+ 
+    DtShapeRef shape2 = dtNewComplexShape();
+    dtVertexBase(&solid_points1[0]);
+    for(int i = 0; i < solid_indices1.size()/3; i++)
+    {
+        dtBegin(DT_SIMPLEX);
+        dtVertexIndex(solid_indices1[i*3+0]);
+        dtVertexIndex(solid_indices1[i*3+1]);
+        dtVertexIndex(solid_indices1[i*3+2]);
+        dtEnd();
+    } 
+    //dtVertexIndices(DT_POLYHEDRON, solid_indices1.size(), &solid_indices1[0]);
+    dtEndComplexShape();
+
+    dtCreateObject(&object1, shape1); 
+    dtCreateObject(&object2, shape2); 
+
+    dtDisableCaching();
+
+    dtSetDefaultResponse(collide1, DT_SIMPLE_RESPONSE, stdout);
+
+
+    if(NO_DISPLAY) return 0;
+
+    draw(argc, argv);
+
     return 0;
 }
 
@@ -473,11 +552,11 @@ void  display(void)
                 };
                 {
                     dtSelectObject(&object1);
-                    //dtLoadMatrixd(m);
-                    dtLoadIdentity();
-                    dtTranslate(tx, ty, tz);
-                    //if(dtTestPair(&object1, &object2)) 
-                    if(dtTest() > 0)
+                    dtLoadMatrixd(m);
+                    //dtLoadIdentity();
+                    //dtTranslate(tx, ty, tz);
+                    if(dtTestPair(&object1, &object2)) 
+                    //if(dtTest() > 0)
                         glColor3f(1.0, 0, 0);
                     else
                         glColor3f(0.1, 0.8, 0);
