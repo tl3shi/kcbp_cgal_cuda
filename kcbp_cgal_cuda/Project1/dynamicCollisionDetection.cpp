@@ -17,13 +17,16 @@
 #include "AABB.hpp"
 #include "CollsionQuery.hpp"
 #include "SolidCollisionQuery.hpp"
+#include "LibCCDQuery.hpp"
 
 #include <sstream>
 #include <fstream>
 
 #define _DEBUG false
-#define USE_SOLID
+//#define USE_SOLID
 #define SAME_BUNNY
+
+//#define  ROTATE_ENABLE
 
 bool draw_facets = true;
 bool draw_convexhull = false;
@@ -99,7 +102,7 @@ bool OUTPUT_POLYHEDRON = true;
 int k = 0;
 
 bool finish_without_update = false; //used to cal fps
-bool usekcbp = false;
+bool usekcbp = true;
 
 ICollisionQuery * collision_query = 0;
 ICollisionQuery * kcbp_query = 0;
@@ -336,8 +339,11 @@ void onMotionControl(int key, int x, int y)
     case GLUT_KEY_UP:
         if(m_isRightButtonDown | m_isLeftButtonDown)
         {
+            #ifdef ROTATE_ENABLE
             rotateDeg += 10;
             rotateDeg %= 360;
+            #endif
+
         }else
         {
             translatePos.y += tranlate_unit;
@@ -346,8 +352,10 @@ void onMotionControl(int key, int x, int y)
     case GLUT_KEY_DOWN:
         if(m_isRightButtonDown | m_isLeftButtonDown)
         {
+            #ifdef ROTATE_ENABLE
             rotateDeg -= 10;
             rotateDeg %= 360;
+            #endif
         }else
         {
             translatePos.y -= tranlate_unit;
@@ -529,8 +537,10 @@ void genModels(int modelnum, string config)
         //collision_query = new SolidCollisionQuery(ModelBoundingBoxes[0].GetAABBVertices(), ModelBoundingBoxes[0].GetAABBIndices(), ModelBoundingBoxes[1].GetAABBVertices(), ModelBoundingBoxes[1].GetAABBIndices());
         //kcbp_query = new SolidCollisionQuery(MeshpolyhedraData[0], MeshPolyhedronIndex, MeshpolyhedraData[1], MeshPolyhedronIndex);
     #else
+        //collision_query = new CollisionQuery(MeshPointsData[0], trianges_index, MeshPointsData[1], trianges_index);
+        //kcbp_query = new CollisionQuery(MeshpolyhedraData[0], MeshpolyhedraData[1]);
         collision_query = new CollisionQuery(MeshPointsData[0], trianges_index, MeshPointsData[1], trianges_index);
-        kcbp_query = new CollisionQuery(MeshpolyhedraData[0], MeshpolyhedraData[1]);
+        kcbp_query = new LibCCDQuery(MeshpolyhedraData[0], MeshpolyhedraData[1]);
     #endif // USE_SOLID
 
 
@@ -836,7 +846,10 @@ void  display(void)
             else
                 glColor4fv(oldColor);
             //UIHelper::drawFacets(MeshPointsData[i], trianges_index);
+            #ifdef DRAW_MODEL
             glCallList(MeshPointsDataList[i]);
+            #endif
+
         }
         if(true)
         {
@@ -859,7 +872,10 @@ void  display(void)
         else
             glColor4fv(oldColor);
         //UIHelper::drawFacets(MeshPointsData[movingModelIndex], trianges_index);
+        #ifdef DRAW_MODEL
         glCallList(MeshPointsDataList[movingModelIndex]);
+        #endif
+
         glColor3f(0, 0, 1);
         //UIHelper::drawFacets(MeshpolyhedraData[movingModelIndex], MeshPolyhedronIndex);
         glCallList(MeshPolyhedronDataList[movingModelIndex]);

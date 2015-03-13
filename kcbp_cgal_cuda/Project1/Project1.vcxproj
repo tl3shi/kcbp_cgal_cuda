@@ -156,6 +156,7 @@
     <ClInclude Include="IntersectionTools.hpp" />
     <ClInclude Include="KCBP.hpp" />
     <ClInclude Include="KDop3D.hpp" />
+    <ClInclude Include="LibCCDQuery.hpp" />
     <ClInclude Include="Matrix.h" />
     <ClInclude Include="SolidCollisionQuery.hpp" />
     <ClInclude Include="SwiftCollisionDetection.hpp" />
@@ -169,9 +170,9 @@
     </CudaCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="bvh-example.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="CP_PointVector.cpp" />
-    <ClCompile Include="dynamicCollisionDetection.cpp" />
     <ClCompile Include="gl2ps.c" />
     <ClCompile Include="Matrix.cpp" />
     <ClCompile Include="SSEProjection.hpp" />

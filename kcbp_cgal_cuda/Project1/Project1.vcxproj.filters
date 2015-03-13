@@ -81,6 +81,9 @@
     <ClInclude Include="SolidCollisionQuery.hpp">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="LibCCDQuery.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CudaCompile Include="test.cu">
@@ -106,7 +109,7 @@
     <ClCompile Include="SSEProjection.hpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="dynamicCollisionDetection.cpp">
+    <ClCompile Include="bvh-example.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

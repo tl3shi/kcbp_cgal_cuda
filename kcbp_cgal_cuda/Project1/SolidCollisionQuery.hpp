@@ -114,6 +114,7 @@ struct SolidCollisionQuery: public ICollisionQuery
 
         dtDisableCaching();
         dtSetDefaultResponse(collide1, DT_SIMPLE_RESPONSE, stdout);
+        //dtSetDefaultResponse(collide1, DT_WITNESSED_RESPONSE, stdout);
     }
 
     bool detection(mat4 &world0, mat4 &world1)
