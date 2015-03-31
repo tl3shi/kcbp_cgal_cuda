@@ -27,14 +27,17 @@ class UIHelper
         glColor4fv(color);
     }
 
-
     static void drawPolygons3D(vector<Polygon3D*> &polygons, int start, int end, int Polygon_Mode, double draw_scale)
+    {
+        drawPolygons3D(polygons, start, end, Polygon_Mode, draw_scale, 1.0);
+    }
+    static void drawPolygons3D(vector<Polygon3D*> &polygons, int start, int end, int Polygon_Mode, double draw_scale, double width)
     {
         ////draw 
         GLfloat color[4];
         glGetFloatv(GL_CURRENT_COLOR, color);
         glColor3f(0, 0, 1);
-        glLineWidth(2.0);
+        glLineWidth(width);
         bool flag = true;
         if(flag)
         {
@@ -229,6 +232,16 @@ class UIHelper
             glVertex3d(p.x * scala, p.y * scala, p.z * scala);    
         }
         glEnd();
+    }
+
+    static void drawFacets(vector<CP_Vector3D> & points)
+    {
+        vector<int> index;
+        assert(points.size() % 3 == 0);
+        index.resize(points.size());
+        for(int i = 0; i < points.size(); i++)
+            index[i] = i;
+        drawFacets(points, index, 1.0);
     }
 
     static void drawFacets(vector<CP_Vector3D> & points, vector<int> &index, double scala = 1.0)

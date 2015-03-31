@@ -187,7 +187,7 @@ int main(int argc, char** argv)
     PrimitivePtr* modela = new PrimitivePtr[a_triangle_size];
     for(int i = 0; i < trianges_index.size(); i += 3)
         modela[i/3] = new Primitive(points3d[trianges_index[i]], points3d[trianges_index[i+1]], points3d[trianges_index[i+2]]);
-    AABBTree* tree_a = new AABBTree(modela, a_triangle_size, 8);
+    AABBTree* tree_a = new AABBTree(modela, a_triangle_size, 10);
     
     //level traverse
     queue<AABBNode*> q;
@@ -242,6 +242,7 @@ void keyboard(unsigned char key, int x, int y)
     case 'a':
         bvh_layer++;
         bvh_layer %= bvh.size();
+        glutPostRedisplay();
         break;
     }
 }
@@ -280,11 +281,11 @@ void  display(void)
             UIHelper::drawXYZ();
         
         glPolygonMode(GL_FRONT_AND_BACK, polygon_mode);
-        glColor3f(0.1, 0.8, 0);
+        glColor3f(1.0, 0.0, 0);
 
         UIHelper::drawFacets(points3d, trianges_index);
 
-        glColor3f(1.0, 0.2, 0);
+        glColor3f(0.0, 0.0, 1.0);
         for (int i = 0; bvh_layer < bvh.size() && i < bvh[bvh_layer].size(); i++)
         {
             UIHelper::drawBoundingBox(bvh[bvh_layer][i]);
@@ -484,16 +485,12 @@ void gl2ps()
 {
     FILE *fp;
     int state = GL2PS_OVERFLOW, buffsize = 0;
-    string epsfilename = objfilename + "-" + to_string(k) +".eps";
-    {
-        epsfilename = objfilename + "-" + to_string(k) + "-w-"+ to_string(weighted) + "-d-"+ to_string(deletenocenter) +  ".eps";
-    }
-
+    string epsfilename = objfilename + "-aabb-bvh" + to_string(bvh_layer) +".pdf";
     fp = fopen(epsfilename.c_str(), "wb");
     printf("Writing  %s ...\n", epsfilename.c_str());
     while(state == GL2PS_OVERFLOW){
         buffsize += 1024*1024;
-        gl2psBeginPage("test", "gl2psTestSimple", NULL,   GL2PS_EPS , GL2PS_SIMPLE_SORT,
+        gl2psBeginPage("test", "gl2psTestSimple", NULL,   /*GL2PS_EPS*/GL2PS_PDF , GL2PS_SIMPLE_SORT,
             GL2PS_DRAW_BACKGROUND | GL2PS_USE_CURRENT_VIEWPORT | GL2PS_TIGHT_BOUNDING_BOX,
             GL_RGBA, 0, NULL, 0, 0, 0, buffsize, fp, epsfilename.c_str());
         display();

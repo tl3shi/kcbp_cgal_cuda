@@ -271,12 +271,7 @@ int main(int argc, char** argv)
     }
  
     genModels(modelnum, readconfig);
-    
-    //return 0;
-    //collisionDetectionEvaluate(benchtest);
-    //writetofile(true);
-    //writetofile(false);
-
+ 
     if(NO_DISPLAY) return 0;
      
     draw(argc, argv);

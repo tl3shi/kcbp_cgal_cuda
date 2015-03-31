@@ -109,7 +109,7 @@
     <ClCompile Include="SSEProjection.hpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="bvh-example.cpp">
+    <ClCompile Include="KCBP-bvh.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
