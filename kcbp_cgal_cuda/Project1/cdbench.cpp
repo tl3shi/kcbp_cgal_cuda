@@ -22,7 +22,7 @@
 #include <sstream>
 #include <fstream>
 
-#define _DEBUG false
+//#define _DEBUG false
 //#define USE_SOLID
 //#define SAME_BUNNY
 #define DRAW_MODEL
@@ -34,7 +34,7 @@ bool draw_convexhull = false;
 bool draw_ach = false;
 int polygon_mode = GL_LINE;
 bool noxyz = false;
-bool NO_DISPLAY = false;
+bool NO_DISPLAY = true;
 
 vector<CP_Vector3D> points3d;
 vector<int> trianges_index;
@@ -247,9 +247,8 @@ int main(int argc, char** argv)
     for(int i = 0; i < benchtest; i++)
         normals = KCBP::getClusterNormals(ach, k, true, false);
     e = clock();
-    printf("cluster time (%d times): %.4f", benchtest, (e - s) * 1.0f / benchtest);
+    printf("cluster time (%d times): %.4f\n", benchtest, (e - s) * 1.0f / benchtest);
 
-    //normals = KCBP::getCollDetNormals(26);
 
     printf("normalsize = %d\n", normals.size());
 
@@ -258,13 +257,10 @@ int main(int argc, char** argv)
      //KCBP::evaluate(points3d, normals, KCBP::CUDA_MUL_NORMAL, planes, benchtest);
 
     printf("duality mapping\n");
-    KDop3D::getResultByDualMapping(planes, polyhedra);
-    KDop3D::getResultByDualMappingMesh(planes, MeshPolyhedronPoints);
+    KDop3D::getResultByDualMapping(planes, polyhedra);//mapping get points / then sort points ccw construct kcbp
+    KDop3D::getResultByDualMappingMesh(planes, MeshPolyhedronPoints);//mapping get points/ then call convexhull get kcbp mesh
     printf("Polytopes: %d\n", polyhedra.size());
     
-    //double volume = KCBP::getVolume(polyhedra);
-    //printf("Volume: %.12f\n", volume);
-
     if (draw_convexhull)
     {
         // the convex hull use int to coordinate
@@ -553,39 +549,80 @@ void genModels(int modelnum, string config)
     #endif // USE_SOLID
     */
 
-    //the first one is fixed, the others check with the first one
+
     int model_num = MeshpolyhedraData.size();
     clock_t time_start = clock();
     vector<AABBTree*> aabbtrees(model_num, NULL);
     for(int i = 0; i < model_num; i++)
         aabbtrees[i] = constructAABBTree(MeshPointsData[i], trianges_index);
     float time_during = clock() - time_start;
-    printf("build time = %.2f\n", time_during);
-
-    collision_index.resize(model_num);
-    collision_index[0] = true;
-    std::vector<std::pair<int, int> > cpairs;
-
-    for(int i = 0; i < model_num-1; i++)
+    printf("build AABB time = %.2f\n", time_during);
     {
-        for(int j = i+1; j < model_num; j++)
+        printf("The Following result uses AABB directly\n");
+        collision_index.resize(model_num);
+        std::vector<std::pair<int, int> > cpairs;
+        clock_t c_time = clock();
+        for(int i = 0; i < model_num-1; i++)
         {
-            time_start = clock();
-            bool c = AABBTree::TraverseDetective(aabbtrees[i]->Root, aabbtrees[j]->Root);
-            if(c)
+            for(int j = i+1; j < model_num; j++)
             {
-                printf("collision!");
-                collision_index[i] = true;
-                collision_index[j] = true;
-                cpairs.push_back(std::make_pair(i, j));
+                time_start = clock();
+                bool c = AABBTree::TraverseDetective(aabbtrees[i]->Root, aabbtrees[j]->Root);
+                if(c)
+                {
+                    //#if _DEBUG
+                    //printf("collision!");
+                    //#endif
+                    cpairs.push_back(std::make_pair(i, j));
+                }
+                time_during = clock() - time_start;
+                //#if _DEBUG
+                //printf("collision time = %.2f\n", time_during);
+                //#endif
             }
-            time_during = clock() - time_start;
-            printf("collision time = %.2f\n", time_during);
         }
+        c_time = clock() - c_time;
+        printf("total collision time(AABB directly) = %.2f\n", c_time * 1.0);
+        for(int i = 0; i < cpairs.size(); i++)
+        {
+            printf("(%d, %d)", cpairs[i].first, cpairs[i].second);
+            collision_index[cpairs[i].first] = true;
+            collision_index[cpairs[i].second] = true;
+        }
+        printf("\ncollision pairs is %d\n", cpairs.size());
     }
-    for(int i = 0; i < cpairs.size(); i++)
-        printf("(%d, %d)\n", cpairs[i].first, cpairs[i].second);
-    //exit(0);
+    { //use kcbp filter first
+        printf("The Following result uses KCBP filter first\n");
+        time_start = clock();
+        vector<AABBTree*> aabbtrees4kcbp(model_num, NULL);
+        for(int i = 0; i < model_num; i++)
+            aabbtrees4kcbp[i] = constructAABBTree(MeshpolyhedraData[i], MeshPolyhedronIndex);
+        time_during = clock() - time_start;
+        printf("build AABB time 4 KCBP = %.2f\n", time_during);
+        std::vector<std::pair<int, int> > kcbppairs;
+        std::vector<std::pair<int, int> > cpairs;
+        clock_t c_time = clock();
+        for(int i = 0; i < model_num-1; i++)
+        {
+            for(int j = i+1; j < model_num; j++)
+            {
+                bool c = AABBTree::TraverseDetective(aabbtrees4kcbp[i]->Root, aabbtrees4kcbp[j]->Root);
+                if(c)
+                    kcbppairs.push_back(std::make_pair(i, j));
+            }
+        }
+        for(auto it = kcbppairs.begin(); it != kcbppairs.end(); it++)
+        {
+            bool c = AABBTree::TraverseDetective(aabbtrees[it->first]->Root, aabbtrees[it->second]->Root);
+            if(c)
+                cpairs.push_back(std::make_pair(it->first, it->second));
+        }
+        c_time = clock() - c_time;
+        printf("kcbp collision size = %d\n", kcbppairs.size());
+        printf("total collision time(KCBP AABB filter) = %.2f\n", c_time * 1.0);
+        printf("collision pairs is %d\n", cpairs.size());
+    }
+
     return;
 }
 

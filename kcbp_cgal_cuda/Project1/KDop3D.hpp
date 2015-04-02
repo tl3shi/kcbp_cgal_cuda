@@ -157,7 +157,7 @@ public:
         start_time = clock();
         CGALConvexHull::getIntersecionPoints2(planes, intersection_points2); //including transform dual and transfrom to cgal point
         end_time = clock();
-        cout << "Intersection Time2:" << end_time - start_time << endl;
+        cout << "Intersection Time2(Mesh):" << end_time - start_time << endl;
 
         /*
         vector<CP_Vector3D> intersection_points;

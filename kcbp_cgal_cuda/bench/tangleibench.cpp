@@ -394,6 +394,7 @@ void createGeom( GeometryTypeE type, unsigned int complexity,
 
 	(*geom)->setMaterial( mat );
 
+
 	// set name
 	osg::NamePtr name_attachm = osg::Name::create();
 	name_attachm->getFieldPtr()->getValue().assign( name );
@@ -1041,6 +1042,12 @@ int main( int argc, char *argv[] )
 	all_nodes.push_back(fixed_node);
 	all_geoms.push_back(fixed_geom);
 
+	osg::SimpleMaterialPtr  mat1 = osg::SimpleMaterial::create();
+    mat1->setDiffuse( osg::Color3f( 0.1, 0.8, 0.0 ) );
+	fixed_geom->setMaterial(mat1);
+	
+	printf("reading %d model configs(plus fixed one,total = %d)\n", model_num-1, model_num);
+
 	for(int i = 0; i < model_num-1; i++) //act as kcbp_cgal_cuda
 	{
 		osg::NodePtr moving_node_t = fixed_node->clone();
@@ -1058,13 +1065,14 @@ int main( int argc, char *argv[] )
 		trf_node->setCore( moving_trf );
 		trf_node->addChild( moving_node_t );
 		endEditCP(trf_node);
-		light_node->addChild( trf_node);
+		light_node->addChild( trf_node); 
 	}
-	
+
 	// finish scene graph
 	endEditCP(root);
 	endEditCP( light_node );
 
+	//if(false)
 	try
 	{
 		// Collision detection init
@@ -1086,34 +1094,47 @@ int main( int argc, char *argv[] )
 									  false, false, false, Algorithm, false ));
 		}
 		build_time = clock() - build_time;
-		printf("build time = %.2f\n", build_time*1.0);
+		printf("build time(kDOP) = %.2f\n", build_time*1.0);
 		std::vector<std::pair<int, int> > cpairs;
-
+		clock_t c_time = clock();
+		vector<col::MatrixCell *> cells;
+		vector<BenchCallback *> callbacks;
 		for(int i = 0; i < model_num-1; i++)
 		{
 			for(int j = i+1; j < model_num; j++)
 			{
-				cell = new col::MatrixCell( cobjs[i], cobjs[j] );
-				callback = new BenchCallback( all_nodes[i], all_nodes[j], col::LEVEL_EXACT );
+				col::MatrixCell * cell = new col::MatrixCell( cobjs[i], cobjs[j] );
+				BenchCallback * callback = new BenchCallback( all_nodes[i], all_nodes[j], col::LEVEL_EXACT );
 				cell->addCallback( callback );
-				
-				clock_t collision_time = clock();//col::time();
+				cells.push_back(cell);
+				callbacks.push_back(callback);
+//				clock_t collision_time = clock();//col::time();
 				 
 				// perform coll. det., without convex hull pre-check
 				bool c = cell->check( false );
 				if ( c )
 				{
 					cpairs.push_back(std::pair<int, int> (i, j));
-					printf("collision!");
+//#if _DEBUG
+//					printf("collision!");
+//#endif
 				}
-				collision_time = clock() - collision_time;
-				printf("collision time = %.2f\n", collision_time*1.0);
-				delete cell; cell = NULL;
-				delete callback; callback = NULL;
+//#if _DEBUG
+//				collision_time = clock() - collision_time;
+//				printf("collision time = %.2f\n", collision_time*1.0);
+//#endif
+				
 			}
 		}
+		c_time = clock() - c_time;
+		printf("total collision time(kDOP) = %.2f\n", c_time*1.0);
 		for(int i = 0; i < cpairs.size(); i++)
-			printf("(%d, %d)\n", cpairs[i].first, cpairs[i].second);
+			printf("(%d, %d)", cpairs[i].first, cpairs[i].second);
+		printf("\ncollision pairs is %d\n", cpairs.size());
+		for(int i = 0; i < cells.size(); i++)
+			delete cells[i];
+		for(int i = 0; i < callbacks.size(); i++)
+			delete callbacks[i];
 
 		//return 0;
 	}
