@@ -163,12 +163,14 @@ void outputConvexhull()
 
 int modelnum = 1;
 
-void scalebunny(vector<CP_Vector3D> &input, double scale)
+void scalebunny(vector<CP_Vector3D> &input, const CP_Vector3D &low, const CP_Vector3D &high)
 {
-    for(int i = 0; i < input.size(); i++)
-    {
-        input[i] = input[i] * scale;
-    }
+    //scale same as CollDet\visual_studio\TestSolution\Bench
+    CP_Vector3D c = 0.5 * low + 0.5 * high;
+    CP_Vector3D d = 0.5 * high - 0.5 * low; 
+    double s = max(d.x, max(d.y, d.z));
+    for (int i = 0; i < input.size(); i ++ )
+        input[i] = (input[i] - c) / s;
 }
 
 bool mesh_detective = true;
@@ -190,7 +192,8 @@ float g_fps( void (*func)(void), int n_frame )
     return fps;
 }
 
-//collisiondetection.exe k models/bunny2.obj n(owindow)  10  rand.config
+//collisiondetection.exe k models/bunny2.obj n(owindow)  10  rand.config p(rint_pairs)
+bool print_pairs = false;
 int main(int argc, char** argv)
 {
     vector<Plane3D> planes;
@@ -203,7 +206,7 @@ int main(int argc, char** argv)
         NO_DISPLAY = argv[3][0] == 'w' ? false : true;  
 
     bool loaded = FileManager::readObjPointsAndFacetsFast(points3d, trianges_index, objfilename, SingleModelBoundingBox.Min, SingleModelBoundingBox.Max);
-    scalebunny(points3d, Scale_Bunny); //Attention
+    scalebunny(points3d, SingleModelBoundingBox.Min, SingleModelBoundingBox.Max); //Attention
     if(! loaded) {cout << "load failed:" << objfilename << endl;return 0;}
     cout << objfilename << " \tpoints number: " << points3d.size() <<endl;
 
@@ -225,6 +228,13 @@ int main(int argc, char** argv)
     if(argc >= 6)
     {
        readconfig = argv[5];
+       if(readconfig == "gen") //gen
+        readconfig = "";
+    }
+    if(argc >= 7){
+        string pp = argv[6];
+       if( pp == "p" || pp == "print_pairs")
+            print_pairs = true;
     }
     
     if(benchtest > 1)
@@ -445,7 +455,9 @@ void genModels(int modelnum, string config)
 
             rotate_angles.push_back(rotate_angle);
             translations.push_back(CP_Vector3D(trans_x, trans_y, trans_z));
-            rotations.push_back(CP_Vector3D(rot_x, rot_y, rot_z));
+            CP_Vector3D rot(rot_x, rot_y, rot_z);
+            rot.mf_normalize();
+            rotations.push_back(rot);
 
             cout << rotate_angle << " " << rot_x << " " << rot_y << " " << rot_z << endl;
             cout << trans_x << " " << trans_y << " " << trans_z << endl;
@@ -583,13 +595,16 @@ void genModels(int modelnum, string config)
         }
         c_time = clock() - c_time;
         printf("total collision time(AABB directly) = %.2f\n", c_time * 1.0);
+        
         for(int i = 0; i < cpairs.size(); i++)
         {
-            printf("(%d, %d)", cpairs[i].first, cpairs[i].second);
+            if(print_pairs)
+                printf("(%d, %d)", cpairs[i].first, cpairs[i].second);
             collision_index[cpairs[i].first] = true;
             collision_index[cpairs[i].second] = true;
         }
-        printf("\ncollision pairs is %d\n", cpairs.size());
+        if(print_pairs) printf("\n");
+        printf("collision pairs is %d\n", cpairs.size());
     }
     { //use kcbp filter first
         printf("The Following result uses KCBP filter first\n");
@@ -622,7 +637,6 @@ void genModels(int modelnum, string config)
         printf("total collision time(KCBP AABB filter) = %.2f\n", c_time * 1.0);
         printf("collision pairs is %d\n", cpairs.size());
     }
-
     return;
 }
 

@@ -166,6 +166,7 @@ osg::TransformPtr   moving_trf;					// of the moving obj.
  
 
 string configFile;
+bool print_pairs = false;
 
 osg::Trackball		trackball;
 int					mouseb = 0;
@@ -429,7 +430,7 @@ void loadGeom( const char *filename, osg::NodePtr *node )
 
 	// scale geom
 	nod->updateVolume();
-	/*
+	 
 	//tanglei comment this, act as kcbp_cgal_cuda
 	Pnt3f low, high;
 	nod->getVolume().getBounds( low, high );
@@ -444,7 +445,7 @@ void loadGeom( const char *filename, osg::NodePtr *node )
 			(*points)[i][j] = ((*points)[i][j] - c[j]) / s;
 	endEditCP( nod );
 	nod->updateVolume();
-	*/
+	 
 	*node = nod;
 }
 
@@ -678,9 +679,9 @@ void parsecommandline( int argc, char *argv[] )
 {
 	/* valid option characters; last char MUST be 0 ! */
 	char optionchar[] =   { 'h', 'g', 'x', 'v', 'n', 'a', 'w', 'd', 'A',
-							'T', 'f', 'W', 'c',  'r', 0 };
+							'T', 'f', 'W', 'c',  'r', 'p', 0 };
 	int musthaveparam[] = {  0 ,  1,   1,   1,   2,   1,   0,   2,   1,
-							 0,   1,   0,   0,   1, 0 };
+							 0,   1,   0,   0,   1, 0, 0 };
 	int nopts;
 	int mhp[256];
 	int isopt[256];
@@ -808,6 +809,9 @@ void parsecommandline( int argc, char *argv[] )
 						  break;
 				case 'r':
 						configFile = argv[1];
+						break;
+				case 'p':
+						print_pairs = true;
 						break;
 				default: fprintf(stderr, "\nBug in parsecommandline !\n");
 						 commandlineerror( argv[0], NULL );
@@ -1094,7 +1098,12 @@ int main( int argc, char *argv[] )
 									  false, false, false, Algorithm, false ));
 		}
 		build_time = clock() - build_time;
-		printf("build time(kDOP) = %.2f\n", build_time*1.0);
+		if (Algorithm == col::ALGO_BOXTREE)
+			printf("build time(boxtree) = %.2f\n", build_time*1.0);
+		else
+			printf("build time(kDOP) = %.2f\n", build_time*1.0);
+
+
 		std::vector<std::pair<int, int> > cpairs;
 		clock_t c_time = clock();
 		vector<col::MatrixCell *> cells;
@@ -1127,10 +1136,17 @@ int main( int argc, char *argv[] )
 			}
 		}
 		c_time = clock() - c_time;
-		printf("total collision time(kDOP) = %.2f\n", c_time*1.0);
-		for(int i = 0; i < cpairs.size(); i++)
-			printf("(%d, %d)", cpairs[i].first, cpairs[i].second);
-		printf("\ncollision pairs is %d\n", cpairs.size());
+		if (Algorithm == col::ALGO_BOXTREE)
+			printf("total collision time(boxtree) = %.2f\n", c_time*1.0);
+		else
+			printf("total collision time(kDOP) = %.2f\n", c_time*1.0);
+
+		if(print_pairs){
+			for(int i = 0; i < cpairs.size(); i++)
+				printf("(%d, %d)", cpairs[i].first, cpairs[i].second);
+			printf("\n");
+		}
+		printf("collision pairs is %d\n", cpairs.size());
 		for(int i = 0; i < cells.size(); i++)
 			delete cells[i];
 		for(int i = 0; i < callbacks.size(); i++)
