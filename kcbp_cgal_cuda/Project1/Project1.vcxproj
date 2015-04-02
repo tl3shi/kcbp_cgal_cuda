@@ -171,9 +171,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="cdbench.cpp" />
     <ClCompile Include="CP_PointVector.cpp" />
     <ClCompile Include="gl2ps.c" />
-    <ClCompile Include="KCBP-bvh.cpp" />
     <ClCompile Include="Matrix.cpp" />
     <ClCompile Include="SSEProjection.hpp" />
     <ClCompile Include="Vector.cpp" />

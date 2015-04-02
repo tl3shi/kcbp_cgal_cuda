@@ -1,0 +1,1 @@
+bench.exe -g file -f "d:\bunny2.obj" -A do -r "d:\08-25-12-10-50-rand.config"

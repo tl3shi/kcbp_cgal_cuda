@@ -538,7 +538,6 @@ void genModels(int modelnum, string config)
         kcbp_query = new LibCCDQuery(MeshpolyhedraData[0], MeshpolyhedraData[1]);
     #endif // USE_SOLID
 
-
 }
 
 void initOpenGLList()

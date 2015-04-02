@@ -10,6 +10,10 @@ Debug/*
 *.aps
 *.sdf
 *.opensdf
+*.pdb
+*.ilk
+*.idb
+*.tlog
 
 *.bak
 
