@@ -62,7 +62,8 @@ void CMatrix::GetRotate(CMatrix &mat, DataType angle, const CVector3D &axis)
     // this method assumes the axis pass the original point (0,0)
     //
     vec3 r(axis);
-    r.mf_normalize();
+    //r.mf_normalize();
+    assert(abs(r.mf_getLengthSquare() - 1.0) < 0.0001);
     mat = CMatrix::Identity;
 
     DataType cosine = cos(angle / DEGREE_PER_RADIAN);

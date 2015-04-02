@@ -165,12 +165,6 @@ osg::NodePtr        trf_node;					// the transformation
 osg::TransformPtr   moving_trf;					// of the moving obj.
  
 
-
-int model_num;
-vector<osg::NodePtr> moving_nodes;	// nodes ..
-vector<osg::GeometryPtr>	moving_geoms;	// and geometries.
-vector<osg::NodePtr>        trf_nodes;					// the transformation
-vector<osg::TransformPtr>   moving_trfs;					// of the moving obj.
 string configFile;
 
 osg::Trackball		trackball;
@@ -434,6 +428,8 @@ void loadGeom( const char *filename, osg::NodePtr *node )
 
 	// scale geom
 	nod->updateVolume();
+	/*
+	//tanglei comment this, act as kcbp_cgal_cuda
 	Pnt3f low, high;
 	nod->getVolume().getBounds( low, high );
 	Pnt3f c = col::lincomb( 0.5, low,   0.5, high );
@@ -447,7 +443,7 @@ void loadGeom( const char *filename, osg::NodePtr *node )
 			(*points)[i][j] = ((*points)[i][j] - c[j]) / s;
 	endEditCP( nod );
 	nod->updateVolume();
-
+	*/
 	*node = nod;
 }
 
@@ -469,7 +465,7 @@ void display(void)
 	m1.mult( m2 );
 		cam_trans->getSFMatrix()->setValue( m1 );
 
-	move_and_check();
+	//move_and_check();
 
 	win->draw( render_action );
 }
@@ -1034,43 +1030,35 @@ int main( int argc, char *argv[] )
         i++;
     }
     fin.close();
-
-	/*
-		translates.push_back(Vec3f(0.0, 0.0, 0));
-		translates.push_back(Vec3f(1.0, 1.0, -5));
-		translates.push_back(Vec3f(1.0, 4.0, -1));
-		translates.push_back(Vec3f(3.0, 1.0, -1));
-		translates.push_back(Vec3f(4.0, 1.0, -1));
-		translates.push_back(Vec3f(1.0, 5.0, -1));
-		translates.push_back(Vec3f(1.0, 2.0, -1));
-		
-		rotates.push_back(0.0/180.0 * pi);
-		rotates.push_back(20.0/180.0 * pi);
-		rotates.push_back(70.0/180.0 * pi);
-		rotates.push_back(20.0/180.0 * pi);
-		rotates.push_back(30.0/180.0 * pi);
-		rotates.push_back(40.0/180.0 * pi);
-		rotates.push_back(50.0/180.0 * pi);
-	*/
+	
+	int model_num;
+	vector<osg::NodePtr> all_nodes;	// nodes ..
+	vector<osg::GeometryPtr>	all_geoms;	// and geometries.
 	model_num = rotates.size();
+	
 	assert(rotates.size() == translates.size());
-	moving_nodes.resize(model_num);
-	moving_geoms.resize(model_num);
-	trf_nodes.resize(model_num);
-	moving_trfs.resize(model_num);
+	
+	all_nodes.push_back(fixed_node);
+	all_geoms.push_back(fixed_geom);
 
-	for(int i = 0; i < model_num; i++)
+	for(int i = 0; i < model_num-1; i++) //act as kcbp_cgal_cuda
 	{
-		moving_nodes[i] = fixed_node->clone();					  
-		moving_geoms[i] = col::getGeom( moving_nodes[i] );
+		osg::NodePtr moving_node_t = fixed_node->clone();
+		all_nodes.push_back( moving_node_t ) ;					  
+		all_geoms.push_back( col::getGeom(moving_node_t));
 		// transformation for moving node
-		trf_nodes[i] = osg::Node::create();
-		moving_trfs[i] = osg::Transform::create();
-		beginEditCP(trf_nodes[i]);
-		trf_nodes[i]->setCore( moving_trfs[i] );
-		trf_nodes[i]->addChild( moving_nodes[i] );
-		endEditCP(trf_nodes[i]);
-		light_node->addChild( trf_nodes[i] );
+		osg::NodePtr trf_node = osg::Node::create();
+		osg::TransformPtr moving_trf = osg::Transform::create();
+		
+		osg::Matrix m = col::axisToMat( rotation_xyzs[i], rotates[i]);	 
+		m.setTranslate(translates[i]);
+		moving_trf->getSFMatrix()->setValue( m );
+
+		beginEditCP(trf_node);
+		trf_node->setCore( moving_trf );
+		trf_node->addChild( moving_node_t );
+		endEditCP(trf_node);
+		light_node->addChild( trf_node);
 	}
 	
 	// finish scene graph
@@ -1088,48 +1076,46 @@ int main( int argc, char *argv[] )
 		vector<col::ColObj*> cobjs;
 
 		clock_t build_time = clock();//col::time();
-		cobj_f = new col::ColObj( fixed_geom,  fixed_node,
-								  false, false, false, Algorithm, false );
+		
+		assert(model_num == all_nodes.size());
+		assert(model_num == all_geoms.size());
 		for(int i = 0; i < model_num; i++)
 		{
 			// register objects with collision detection module
-			cobjs.push_back(new col::ColObj( moving_geoms[i],  moving_nodes[i],
+			cobjs.push_back(new col::ColObj( all_geoms[i],  all_nodes[i],
 									  false, false, false, Algorithm, false ));
 		}
 		build_time = clock() - build_time;
 		printf("build time = %.2f\n", build_time*1.0);
-		//fixed one, the others check
-		for(int i = 0; i < model_num; i++)
+		std::vector<std::pair<int, int> > cpairs;
+
+		for(int i = 0; i < model_num-1; i++)
 		{
-			// create cell for pair, just needed to set level-of-detection
-			cell = new col::MatrixCell( cobj_f, cobjs[i] );
-			callback = new BenchCallback( fixed_node, moving_nodes[i], col::LEVEL_EXACT );
-			cell->addCallback( callback );
-			
-			clock_t collision_time = clock();//col::time();
-			
-			osg::Matrix m = col::axisToMat( rotation_xyzs[i], rotates[i]);	
-			m.setTranslate(translates[i]);
-			moving_trfs[i]->getSFMatrix()->setValue( m );
-
-			// update toworld matrix stored inside ColObj's
-			static int cycle  = 0;
-			cycle++ ;
-			cobj_f->hasMoved( cycle );
-			cobjs[i]->hasMoved( cycle );
-			// perform coll. det., without convex hull pre-check
-			bool c = cell->check( false );
-			if ( c )
+			for(int j = i+1; j < model_num; j++)
 			{
-				printf("collision!");
+				cell = new col::MatrixCell( cobjs[i], cobjs[j] );
+				callback = new BenchCallback( all_nodes[i], all_nodes[j], col::LEVEL_EXACT );
+				cell->addCallback( callback );
+				
+				clock_t collision_time = clock();//col::time();
+				 
+				// perform coll. det., without convex hull pre-check
+				bool c = cell->check( false );
+				if ( c )
+				{
+					cpairs.push_back(std::pair<int, int> (i, j));
+					printf("collision!");
+				}
+				collision_time = clock() - collision_time;
+				printf("collision time = %.2f\n", collision_time*1.0);
+				delete cell; cell = NULL;
+				delete callback; callback = NULL;
 			}
-			collision_time = clock() - collision_time;
-			printf("collision time = %.2f\n", collision_time*1.0);
-			delete cell; cell = NULL;
-			delete callback; callback = NULL;
 		}
+		for(int i = 0; i < cpairs.size(); i++)
+			printf("(%d, %d)\n", cpairs[i].first, cpairs[i].second);
 
-		return 0;
+		//return 0;
 	}
 	catch ( col::XCollision &x )
 	{
@@ -1137,15 +1123,15 @@ int main( int argc, char *argv[] )
 		x.print();
 		exit(-1);				// in a real app, we would try to continue
 	}
-
+ 
 	// run...
 	if ( With_window )
 		glutMainLoop();
 	else
 	{
-		for ( unsigned int i = 0; i < Nrotations*Ndistances; i ++ )
-			move_and_check();
-		benchExit();
+		//for ( unsigned int i = 0; i < Nrotations*Ndistances; i ++ )
+		//	move_and_check();
+		//benchExit();
 	}
 
 	return 0;

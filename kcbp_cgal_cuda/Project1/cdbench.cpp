@@ -474,7 +474,9 @@ void genModels(int modelnum, string config)
             }else //angle rot
             {
                 ss >> angle >> x >> y >> z;
-                rotations.push_back(CP_Vector3D(x,y,z));
+                CP_Vector3D xis(x, y, z);
+                xis.mf_normalize();
+                rotations.push_back(xis);
                 rotate_angles.push_back(angle);
             }
             i++;
@@ -510,7 +512,7 @@ void genModels(int modelnum, string config)
         MeshpolyhedraData.push_back(kcbpdata);
         if(i == modelnum-2)
         {
-            printf("reading %d model configs\n", modelnum);
+            printf("reading %d model configs(plus fixed one,total = %d)\n", modelnum-1, modelnum);
             break;
         }
     }
@@ -562,18 +564,27 @@ void genModels(int modelnum, string config)
 
     collision_index.resize(model_num);
     collision_index[0] = true;
-    for(int i = 1; i < model_num; i++)
+    std::vector<std::pair<int, int> > cpairs;
+
+    for(int i = 0; i < model_num-1; i++)
     {
-        time_start = clock();
-        bool c = AABBTree::TraverseDetective(aabbtrees[0]->Root, aabbtrees[i]->Root);
-        if(c)
+        for(int j = i+1; j < model_num; j++)
         {
-            printf("collision!");
-            collision_index[i] = true;
+            time_start = clock();
+            bool c = AABBTree::TraverseDetective(aabbtrees[i]->Root, aabbtrees[j]->Root);
+            if(c)
+            {
+                printf("collision!");
+                collision_index[i] = true;
+                collision_index[j] = true;
+                cpairs.push_back(std::make_pair(i, j));
+            }
+            time_during = clock() - time_start;
+            printf("collision time = %.2f\n", time_during);
         }
-        time_during = clock() - time_start;
-        printf("collision time = %.2f\n", time_during);
     }
+    for(int i = 0; i < cpairs.size(); i++)
+        printf("(%d, %d)\n", cpairs[i].first, cpairs[i].second);
     //exit(0);
     return;
 }
@@ -711,7 +722,7 @@ void  display(void)
         GLfloat collsion_color[3] = {1.0, 0, 0};
         GLfloat oldColor[4];
         glGetFloatv(GL_CURRENT_COLOR, oldColor);
-
+         
         for(int i = 0; i < MeshPointsDataList.size(); i++)
         {
             if(collision_index[i])
@@ -722,8 +733,8 @@ void  display(void)
             #ifdef DRAW_MODEL
             glCallList(MeshPointsDataList[i]);
             #endif
-
         }
+
         if(true)
         {
             glColor3f(0, 0, 1);
@@ -734,7 +745,7 @@ void  display(void)
             for(int i = 1; i < MeshBoundingBoxList.size(); i++)
                 glCallList(MeshBoundingBoxList[i]);
             glColor4fv(oldColor);
-        }
+        } 
  
         #ifdef DRAW_MODEL
         glCallList(MeshPointsDataList[movingModelIndex]);
