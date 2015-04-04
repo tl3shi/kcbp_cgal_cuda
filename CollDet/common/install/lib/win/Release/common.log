@@ -1,0 +1,21 @@
+﻿  geom.cpp
+  geom2.cpp
+  global.cpp
+  mem.cpp
+  merge.cpp
+  poly.cpp
+  poly2.cpp
+  qhull.cpp
+  qhull_io.cpp
+..\..\common\qhull\qhull_io.cpp(117): warning C4146: 一元负运算符应用于无符号类型，结果仍为无符号类型
+..\..\common\qhull\qhull_io.cpp(119): warning C4146: 一元负运算符应用于无符号类型，结果仍为无符号类型
+..\..\common\qhull\qhull_io.cpp(488): warning C4146: 一元负运算符应用于无符号类型，结果仍为无符号类型
+..\..\common\qhull\qhull_io.cpp(2304): warning C4146: 一元负运算符应用于无符号类型，结果仍为无符号类型
+..\..\common\qhull\qhull_io.cpp(2308): warning C4146: 一元负运算符应用于无符号类型，结果仍为无符号类型
+  set.cpp
+  stat.cpp
+  user.cpp
+  version_def.cpp
+  正在生成代码...
+     正在创建库 ..\..\install\lib\win\Release\qhull.lib 和对象 ..\..\install\lib\win\Release\qhull.exp
+  common.vcxproj -> D:\github\kcbp_cgal_cuda\CollDet\visual_studio\common\..\..\install\lib\win\Release\qhull.dll

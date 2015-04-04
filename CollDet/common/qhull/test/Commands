@@ -1,0 +1,2 @@
+rbox D4 | ./unix Tv FA | grep -v "CPU seconds"
+

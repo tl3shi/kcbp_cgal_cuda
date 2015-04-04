@@ -1,0 +1,251 @@
+// !$*UTF8*$!
+{
+	0867D690FE84028FC02AAC07 /* Project object */ = {
+		activeBuildConfigurationName = Release;
+		activeExecutable = 9261898C0C67BD4F00FB80F9 /* rbox */;
+		activeTarget = D2AAC09C05546B4700DB518D /* qhull */;
+		addToTargets = (
+			92E45FB70C73963A00A3FF4B /* user_eg */,
+		);
+		codeSenseManager = 926188F50C66AB8300FB80F9 /* Code sense */;
+		executables = (
+			9261898C0C67BD4F00FB80F9 /* rbox */,
+			926189F00C67D3FE00FB80F9 /* unix */,
+			92E45FB90C73963A00A3FF4B /* user_eg */,
+		);
+		perUserDictionary = {
+			PBXConfiguration.PBXFileTableDataSource3.PBXErrorsWarningsDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXErrorsWarningsDataSource_LocationID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					474,
+					267,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXErrorsWarningsDataSource_TypeID,
+					PBXErrorsWarningsDataSource_MessageID,
+					PBXErrorsWarningsDataSource_LocationID,
+				);
+			};
+			PBXConfiguration.PBXFileTableDataSource3.PBXExecutablesDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXExecutablesDataSource_NameID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					22,
+					300,
+					400,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXExecutablesDataSource_ActiveFlagID,
+					PBXExecutablesDataSource_NameID,
+					PBXExecutablesDataSource_CommentsID,
+				);
+			};
+			PBXConfiguration.PBXFileTableDataSource3.PBXFileTableDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					906,
+					20,
+					48,
+					43,
+					43,
+					20,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+					PBXFileDataSource_Target_ColumnID,
+				);
+			};
+			PBXConfiguration.PBXFileTableDataSource3.XCSCMDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					20,
+					527,
+					20,
+					48.1626,
+					43,
+					43,
+					20,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_SCM_ColumnID,
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+					PBXFileDataSource_Target_ColumnID,
+				);
+			};
+			PBXConfiguration.PBXTargetDataSource.PBXTargetDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					200,
+					726,
+					20,
+					48,
+					43,
+					43,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXTargetDataSource_PrimaryAttribute,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+				);
+			};
+			PBXPerProjectTemplateStateSaveDate = 210779012;
+			PBXWorkspaceStateSaveDate = 210779012;
+		};
+		sourceControlManager = 926188F40C66AB8300FB80F9 /* Source Control */;
+		userBuildSettings = {
+		};
+	};
+	926188F40C66AB8300FB80F9 /* Source Control */ = {
+		isa = PBXSourceControlManager;
+		fallbackIsa = XCSourceControlManager;
+		isSCMEnabled = 0;
+		scmConfiguration = {
+		};
+		scmType = "";
+	};
+	926188F50C66AB8300FB80F9 /* Code sense */ = {
+		isa = PBXCodeSenseManager;
+		indexTemplatePath = "";
+	};
+	926188FE0C66AC6E00FB80F9 /* geom.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1082, 12992}}";
+			sepNavSelRange = "{28066, 94}";
+			sepNavVisRect = "{{0, 12041}, {1001, 433}}";
+			sepNavWindowFrame = "{{15, 4}, {1203, 828}}";
+		};
+	};
+	926189010C66AC6E00FB80F9 /* global.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1164, 21462}}";
+			sepNavSelRange = "{6432, 0}";
+			sepNavVisRect = "{{0, 2724}, {1164, 699}}";
+			sepNavWindowFrame = "{{15, 4}, {1203, 828}}";
+		};
+	};
+	9261890A0C66AC6E00FB80F9 /* qhull_a.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1164, 2212}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRect = "{{0, 0}, {1164, 699}}";
+			sepNavWindowFrame = "{{42, 4}, {1203, 828}}";
+		};
+	};
+	9261898A0C67BD4F00FB80F9 /* rbox */ = {
+		activeExec = 0;
+		executables = (
+			9261898C0C67BD4F00FB80F9 /* rbox */,
+		);
+	};
+	9261898C0C67BD4F00FB80F9 /* rbox */ = {
+		isa = PBXExecutable;
+		activeArgIndex = 2147483647;
+		activeArgIndices = (
+		);
+		argumentStrings = (
+		);
+		autoAttachOnCrash = 1;
+		comments = "Running the test programs from xcode is not quite trivial, because 'rbox' and 'unix' have tobe used in concert.\nLook at the file 'Commands' to see how they should be used.\n";
+		configStateDict = {
+		};
+		customDataFormattersEnabled = 1;
+		debuggerPlugin = GDBDebugging;
+		disassemblyDisplayState = 0;
+		dylibVariantSuffix = "";
+		enableDebugStr = 1;
+		environmentEntries = (
+		);
+		executableSystemSymbolLevel = 0;
+		executableUserSymbolLevel = 0;
+		libgmallocEnabled = 0;
+		name = rbox;
+		sourceDirectories = (
+		);
+	};
+	926189EE0C67D3FE00FB80F9 /* unix */ = {
+		activeExec = 0;
+		executables = (
+			926189F00C67D3FE00FB80F9 /* unix */,
+		);
+	};
+	926189F00C67D3FE00FB80F9 /* unix */ = {
+		isa = PBXExecutable;
+		activeArgIndex = 2147483647;
+		activeArgIndices = (
+		);
+		argumentStrings = (
+		);
+		autoAttachOnCrash = 1;
+		comments = "Running the test programs from xcode is not quite trivial, because 'rbox' and 'unix' have tobe used in concert.\nLook at the file 'Commands' to see how they should be used.\n";
+		configStateDict = {
+		};
+		customDataFormattersEnabled = 1;
+		debuggerPlugin = GDBDebugging;
+		disassemblyDisplayState = 0;
+		dylibVariantSuffix = "";
+		enableDebugStr = 1;
+		environmentEntries = (
+		);
+		executableSystemSymbolLevel = 0;
+		executableUserSymbolLevel = 0;
+		libgmallocEnabled = 0;
+		name = unix;
+		sourceDirectories = (
+		);
+	};
+	92E45FB70C73963A00A3FF4B /* user_eg */ = {
+		activeExec = 0;
+		executables = (
+			92E45FB90C73963A00A3FF4B /* user_eg */,
+		);
+	};
+	92E45FB90C73963A00A3FF4B /* user_eg */ = {
+		isa = PBXExecutable;
+		activeArgIndex = 2147483647;
+		activeArgIndices = (
+		);
+		argumentStrings = (
+		);
+		autoAttachOnCrash = 1;
+		configStateDict = {
+		};
+		customDataFormattersEnabled = 1;
+		debuggerPlugin = GDBDebugging;
+		disassemblyDisplayState = 0;
+		dylibVariantSuffix = "";
+		enableDebugStr = 1;
+		environmentEntries = (
+		);
+		executableSystemSymbolLevel = 0;
+		executableUserSymbolLevel = 0;
+		libgmallocEnabled = 0;
+		name = user_eg;
+		sourceDirectories = (
+		);
+	};
+	D2AAC09C05546B4700DB518D /* qhull */ = {
+		activeExec = 0;
+	};
+}

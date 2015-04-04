@@ -81,9 +81,12 @@ public:
             Max.z = box.Max.z;
         return *this;
     }
-
+    
     bool IntersectWith(const BoundingBox &box) const
     {
+        //static int IntersectionCount = 0;
+        //IntersectionCount++ ;
+        //printf("%d, ", IntersectionCount);
         for (int i = 0; i < 3; i++)
             if ((box.Max)[i] < (Min)[i] || (box.Min)[i] > (Max)[i])
                 return false;

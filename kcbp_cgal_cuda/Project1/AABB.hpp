@@ -324,7 +324,7 @@ public:
     static bool TraverseDetective(AABBNode* roota, AABBNode * rootb)
     {
         if(roota == NULL || rootb == NULL) return false;//no intersection
-        //#define  RECURSIVE
+        #define  RECURSIVE
         #ifdef RECURSIVE
         if (! roota->Box.IntersectWith(rootb->Box))
             return false;
@@ -352,24 +352,36 @@ public:
                 if(TraverseDetective(roota, rootb->Right))
                     return true;
             }
+        }else//nodeA has children
+        {
+            if(rootb->IsLeaf())
+            {   
+                if(TraverseDetective(roota->Left, rootb))
+                    return true;
+                if(TraverseDetective(roota->Right, rootb))
+                    return true;
+            }else // both have children
+            {
+                if(TraverseDetective(roota->Left, rootb->Left))
+                    return true;
+                if(TraverseDetective(roota->Left, rootb->Right))
+                    return true;
+                if(TraverseDetective(roota->Right, rootb->Left))
+                    return true;
+                if(TraverseDetective(roota->Right, rootb->Right))
+                    return true;
+            }
         }
-        if(TraverseDetective(roota->Left, rootb->Left))
-            return true;
-        if(TraverseDetective(roota->Left, rootb->Right))
-            return true;
-        if(TraverseDetective(roota->Right, rootb->Left))
-            return true;
-        if(TraverseDetective(roota->Right, rootb->Right))
-            return true;
         return false;
         #else
-        queue<std::pair<AABBNode*, AABBNode*> > q;
-        q.push(std::make_pair(roota, rootb));
-        while(! q.empty())
+        stack<AABBNode* > p;
+        stack<AABBNode* > q;
+        p.push(roota), q.push(rootb);
+        while(! q.empty() && !q.empty())
         {
-            AABBNode * nodeA = q.front().first;
-            AABBNode * nodeB = q.front().second;
-            q.pop();
+            AABBNode * nodeA = p.top();
+            AABBNode * nodeB = q.top();
+            p.pop(); q.pop();
             if ( nodeA == NULL || nodeB == NULL) continue;
             if (! nodeA->Box.IntersectWith(nodeB->Box))
                 continue;
@@ -389,21 +401,25 @@ public:
                                 return true;
                         }
                     }
-                    continue;
                 }else//nodeB has children
                 {
-                    if (nodeB->Left != NULL)
-                        q.push(std::make_pair(nodeA, nodeB->Left));
-                    if (nodeB->Right != NULL)
-                        q.push(std::make_pair(nodeA, nodeB->Right));
+                    p.push(nodeA), q.push(nodeB->Left);
+                    p.push(nodeA), q.push(nodeB->Right);
                 }
             }
             else// node A has children
             {
-                if (nodeA->Left != NULL)
-                    q.push(std::make_pair(nodeA->Left, nodeB));
-                if (nodeA->Right != NULL)
-                    q.push(std::make_pair(nodeA->Right, nodeB));
+                if(nodeB->IsLeaf())
+                {
+                    p.push(nodeA->Left), q.push(nodeB);
+                    p.push(nodeA->Right), q.push(nodeB);
+                }else // both have children
+                {
+                    p.push(nodeA->Left), q.push(nodeB->Left);
+                    p.push(nodeA->Left), q.push(nodeB->Right);
+                    p.push(nodeA->Right), q.push(nodeB->Left);
+                    p.push(nodeA->Right), q.push(nodeB->Right);
+                }
             }
         }//end while
         return false;

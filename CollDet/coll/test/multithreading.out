@@ -1,0 +1,21 @@
+DopTree:init: Dop::NumOri = 24
+Main Thread: transformation before sync:   0.000000  0.000000  0.000000
+Main Thread: transformation after sync:   0.000000  0.000000  0.000000
+Collision thread: transformation before sync:   0.000000    0.000000    0.000000
+Collision thread: transformation after sync:   0.005000   0.000000    0.000000
+process: Add object
+process: Add object
+process: Add callback
+Collision!
+Main Thread: transformation before sync:   0.005000  0.000000  0.000000
+Main Thread: transformation after sync: 1000.000000  0.000000  0.000000
+Collision thread: transformation before sync: 1000.000000    0.000000    0.000000
+Collision thread: transformation after sync:  -0.005000   0.000000    0.000000
+Collision!
+Main Thread: transformation before sync:  -0.005000  0.000000  0.000000
+Main Thread: transformation after sync: -1000.000000  0.000000  0.000000
+Collision thread: transformation before sync: -1000.000000    0.000000    0.000000
+Collision thread: transformation after sync:   0.005000   0.000000    0.000000
+Collision!
+Collision thread: transformation before sync: 1000.000000    0.000000    0.000000
+Collision thread: transformation after sync: 1000.000000   0.000000    0.000000

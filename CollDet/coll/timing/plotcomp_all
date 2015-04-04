@@ -1,0 +1,53 @@
+#!/bin/bash -p
+
+#    Call plotcomp for all objects and all algos
+#    found in the data directories dir1, dir2, ...
+#
+# This can be used to compare different algorithms and different versions.
+#
+# Caveats:
+# 1. Only data files can have the underscore in there name!
+#    (Log files, for instance, must not!)
+# 2. The same number of data files should be in both directories!
+#
+# Usage: plotcomp_all [options] <dir1> <dir2> ...
+# Options are passed through to plotcomp.
+#
+# In the plots, the prefix "results" (if any) will be removed from the directory
+#
+# GZ 2002
+
+
+while [[ ! -z "$1" ]]
+do
+	case "$1" in
+		-*) options="$options $1"; shift ;;
+		 *) break ;;
+	esac
+done
+
+datadirs=( $* )
+echo "data directories = ${datadirs[*]}"
+
+#determine the number and prefix for all algos
+numobjs1=`ls -1 ${datadirs[0]}/*_* | grep -v -e \.eps -e \.plt |
+		  cut -d/ -f2- | cut -d_ -f1 | sort -u | wc -l`
+numobjs2=`ls -1 ${datadirs[1]}/*_* | grep -v -e \.eps -e \.plt |
+		  cut -d/ -f2- | cut -d_ -f1 | sort -u | wc -l`
+if [[ $numobjs1 -ne $numobjs2 ]]
+then
+	echo "plotcomp_all: found different number of objs in the first two dirs!"
+fi
+
+# generate list of objects
+objs=`ls -1 ${datadirs[0]}/*_* | cut -d/ -f2- | sed 's/\(.*\)_.*/\1/' | sort -u`
+echo "list of objects = $objs"
+
+for obj in $objs
+do
+	# start all plotcomp's in background, because plotcomp runs ghostview
+	./plotcomp $options $obj ${datadirs[*]} &
+done
+
+#killall gnuplot
+

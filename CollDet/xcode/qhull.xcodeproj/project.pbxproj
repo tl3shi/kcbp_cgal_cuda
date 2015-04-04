@@ -1,0 +1,578 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 42;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		926189160C66AC6E00FB80F9 /* geom.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 926188FE0C66AC6E00FB80F9 /* geom.cpp */; };
+		926189180C66AC6E00FB80F9 /* geom2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 926189000C66AC6E00FB80F9 /* geom2.cpp */; };
+		926189190C66AC6E00FB80F9 /* global.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 926189010C66AC6E00FB80F9 /* global.cpp */; };
+		9261891A0C66AC6E00FB80F9 /* mem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 926189020C66AC6E00FB80F9 /* mem.cpp */; };
+		9261891C0C66AC6E00FB80F9 /* merge.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 926189040C66AC6E00FB80F9 /* merge.cpp */; };
+		9261891E0C66AC6E00FB80F9 /* poly.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 926189060C66AC6E00FB80F9 /* poly.cpp */; };
+		926189200C66AC6E00FB80F9 /* poly2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 926189080C66AC6E00FB80F9 /* poly2.cpp */; };
+		926189230C66AC6E00FB80F9 /* qhull_io.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9261890B0C66AC6E00FB80F9 /* qhull_io.cpp */; };
+		926189250C66AC6E00FB80F9 /* qhull.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9261890D0C66AC6E00FB80F9 /* qhull.cpp */; };
+		926189270C66AC6E00FB80F9 /* set.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9261890F0C66AC6E00FB80F9 /* set.cpp */; };
+		926189290C66AC6E00FB80F9 /* stat.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 926189110C66AC6E00FB80F9 /* stat.cpp */; };
+		9261892B0C66AC6E00FB80F9 /* user.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 926189130C66AC6E00FB80F9 /* user.cpp */; };
+		9261892D0C66AC6E00FB80F9 /* version_def.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 926189150C66AC6E00FB80F9 /* version_def.cpp */; };
+		926189930C67BE3200FB80F9 /* rbox.c in Sources */ = {isa = PBXBuildFile; fileRef = 926189920C67BE3200FB80F9 /* rbox.c */; };
+		926189F50C67D44200FB80F9 /* unix.c in Sources */ = {isa = PBXBuildFile; fileRef = 926189F40C67D44200FB80F9 /* unix.c */; };
+		92AD03700C883D4B000E7FBD /* rbox in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9261898B0C67BD4F00FB80F9 /* rbox */; };
+		92AD037F0C883DE0000E7FBD /* unix in CopyFiles */ = {isa = PBXBuildFile; fileRef = 926189EF0C67D3FE00FB80F9 /* unix */; };
+		92AD03830C883DFB000E7FBD /* user_eg in CopyFiles */ = {isa = PBXBuildFile; fileRef = 92E45FB80C73963A00A3FF4B /* user_eg */; };
+		92E45FC00C7396C600A3FF4B /* user_eg.c in Sources */ = {isa = PBXBuildFile; fileRef = 92E45FBF0C7396C600A3FF4B /* user_eg.c */; };
+		92E45FC10C73970E00A3FF4B /* libqhull.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D2AAC09D05546B4700DB518D /* libqhull.dylib */; };
+		92E460060C73A0EA00A3FF4B /* libqhull.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D2AAC09D05546B4700DB518D /* libqhull.dylib */; };
+		92E4600C0C73A27400A3FF4B /* libqhull.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = D2AAC09D05546B4700DB518D /* libqhull.dylib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		92E45FD70C739D8300A3FF4B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D2AAC09C05546B4700DB518D;
+			remoteInfo = qhull;
+		};
+		92E45FE30C739EBD00A3FF4B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D2AAC09C05546B4700DB518D;
+			remoteInfo = qhull;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		92AD036E0C883D33000E7FBD /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = ../../..;
+			dstSubfolderSpec = 16;
+			files = (
+				92AD03700C883D4B000E7FBD /* rbox in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		92AD037C0C883DC4000E7FBD /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = ../../..;
+			dstSubfolderSpec = 16;
+			files = (
+				92AD037F0C883DE0000E7FBD /* unix in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		92AD03810C883DF0000E7FBD /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = ../../..;
+			dstSubfolderSpec = 16;
+			files = (
+				92AD03830C883DFB000E7FBD /* user_eg in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		92E4600A0C73A23E00A3FF4B /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			comments = "We copy the lib, so that we need only one library path for linking the test programs, independently of the build configuration.\n(This could probably be achieved otherwise, too, but i don't know how.)";
+			dstPath = ../../../../../install/lib/macosx;
+			dstSubfolderSpec = 16;
+			files = (
+				92E4600C0C73A27400A3FF4B /* libqhull.dylib in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		32BAE0B70371A74B00C91783 /* qhull_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = qhull_Prefix.pch; sourceTree = "<group>"; };
+		5073E0C609E734A800EC74B6 /* qhullProj.xcconfig */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xcconfig; path = qhullProj.xcconfig; sourceTree = "<group>"; };
+		5073E0C709E734A800EC74B6 /* qhullTarget.xcconfig */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xcconfig; path = qhullTarget.xcconfig; sourceTree = "<group>"; };
+		50B2938909F016FC00694E55 /* qhullPriv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = qhullPriv.h; sourceTree = "<group>"; };
+		926188FE0C66AC6E00FB80F9 /* geom.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; name = geom.cpp; path = ../common/qhull/geom.cpp; sourceTree = SOURCE_ROOT; };
+		926188FF0C66AC6E00FB80F9 /* geom.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = geom.h; path = ../common/qhull/geom.h; sourceTree = SOURCE_ROOT; };
+		926189000C66AC6E00FB80F9 /* geom2.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; name = geom2.cpp; path = ../common/qhull/geom2.cpp; sourceTree = SOURCE_ROOT; };
+		926189010C66AC6E00FB80F9 /* global.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; name = global.cpp; path = ../common/qhull/global.cpp; sourceTree = SOURCE_ROOT; };
+		926189020C66AC6E00FB80F9 /* mem.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; name = mem.cpp; path = ../common/qhull/mem.cpp; sourceTree = SOURCE_ROOT; };
+		926189030C66AC6E00FB80F9 /* mem.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = mem.h; path = ../common/qhull/mem.h; sourceTree = SOURCE_ROOT; };
+		926189040C66AC6E00FB80F9 /* merge.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; name = merge.cpp; path = ../common/qhull/merge.cpp; sourceTree = SOURCE_ROOT; };
+		926189050C66AC6E00FB80F9 /* merge.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = merge.h; path = ../common/qhull/merge.h; sourceTree = SOURCE_ROOT; };
+		926189060C66AC6E00FB80F9 /* poly.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; name = poly.cpp; path = ../common/qhull/poly.cpp; sourceTree = SOURCE_ROOT; };
+		926189070C66AC6E00FB80F9 /* poly.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = poly.h; path = ../common/qhull/poly.h; sourceTree = SOURCE_ROOT; };
+		926189080C66AC6E00FB80F9 /* poly2.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; name = poly2.cpp; path = ../common/qhull/poly2.cpp; sourceTree = SOURCE_ROOT; };
+		926189090C66AC6E00FB80F9 /* qh_import_export.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = qh_import_export.h; path = ../common/qhull/qh_import_export.h; sourceTree = SOURCE_ROOT; };
+		9261890A0C66AC6E00FB80F9 /* qhull_a.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = qhull_a.h; path = ../common/qhull/qhull_a.h; sourceTree = SOURCE_ROOT; };
+		9261890B0C66AC6E00FB80F9 /* qhull_io.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; name = qhull_io.cpp; path = ../common/qhull/qhull_io.cpp; sourceTree = SOURCE_ROOT; };
+		9261890C0C66AC6E00FB80F9 /* qhull_io.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = qhull_io.h; path = ../common/qhull/qhull_io.h; sourceTree = SOURCE_ROOT; };
+		9261890D0C66AC6E00FB80F9 /* qhull.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; name = qhull.cpp; path = ../common/qhull/qhull.cpp; sourceTree = SOURCE_ROOT; };
+		9261890E0C66AC6E00FB80F9 /* qhull.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = qhull.h; path = ../common/qhull/qhull.h; sourceTree = SOURCE_ROOT; };
+		9261890F0C66AC6E00FB80F9 /* set.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; name = set.cpp; path = ../common/qhull/set.cpp; sourceTree = SOURCE_ROOT; };
+		926189100C66AC6E00FB80F9 /* set.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = set.h; path = ../common/qhull/set.h; sourceTree = SOURCE_ROOT; };
+		926189110C66AC6E00FB80F9 /* stat.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; name = stat.cpp; path = ../common/qhull/stat.cpp; sourceTree = SOURCE_ROOT; };
+		926189120C66AC6E00FB80F9 /* stat.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = stat.h; path = ../common/qhull/stat.h; sourceTree = SOURCE_ROOT; };
+		926189130C66AC6E00FB80F9 /* user.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; name = user.cpp; path = ../common/qhull/user.cpp; sourceTree = SOURCE_ROOT; };
+		926189140C66AC6E00FB80F9 /* user.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = user.h; path = ../common/qhull/user.h; sourceTree = SOURCE_ROOT; };
+		926189150C66AC6E00FB80F9 /* version_def.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; name = version_def.cpp; path = ../common/qhull/version_def.cpp; sourceTree = SOURCE_ROOT; };
+		9261898B0C67BD4F00FB80F9 /* rbox */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = rbox; sourceTree = BUILT_PRODUCTS_DIR; };
+		926189920C67BE3200FB80F9 /* rbox.c */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.c; name = rbox.c; path = ../common/qhull/test/rbox.c; sourceTree = SOURCE_ROOT; };
+		926189EF0C67D3FE00FB80F9 /* unix */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = unix; sourceTree = BUILT_PRODUCTS_DIR; };
+		926189F40C67D44200FB80F9 /* unix.c */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.c; name = unix.c; path = ../common/qhull/test/unix.c; sourceTree = SOURCE_ROOT; };
+		92E45FB80C73963A00A3FF4B /* user_eg */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = user_eg; sourceTree = BUILT_PRODUCTS_DIR; };
+		92E45FBF0C7396C600A3FF4B /* user_eg.c */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.c; name = user_eg.c; path = ../common/qhull/test/user_eg.c; sourceTree = SOURCE_ROOT; };
+		D2AAC09D05546B4700DB518D /* libqhull.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libqhull.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		926189ED0C67D3FE00FB80F9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				92E460060C73A0EA00A3FF4B /* libqhull.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		92E45FB60C73963A00A3FF4B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				92E45FC10C73970E00A3FF4B /* libqhull.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		034768DDFF38A45A11DB9C8B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D2AAC09D05546B4700DB518D /* libqhull.dylib */,
+				9261898B0C67BD4F00FB80F9 /* rbox */,
+				926189EF0C67D3FE00FB80F9 /* unix */,
+				92E45FB80C73963A00A3FF4B /* user_eg */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		0867D691FE84028FC02AAC07 /* qhull */ = {
+			isa = PBXGroup;
+			children = (
+				5073E0CA09E734BC00EC74B6 /* Configuration Files */,
+				08FB77ACFE841707C02AAC07 /* Source */,
+				0867D69AFE84028FC02AAC07 /* External Frameworks and Libraries */,
+				034768DDFF38A45A11DB9C8B /* Products */,
+			);
+			name = qhull;
+			sourceTree = "<group>";
+		};
+		0867D69AFE84028FC02AAC07 /* External Frameworks and Libraries */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "External Frameworks and Libraries";
+			sourceTree = "<group>";
+		};
+		08FB77ACFE841707C02AAC07 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				92E45FBF0C7396C600A3FF4B /* user_eg.c */,
+				926189F40C67D44200FB80F9 /* unix.c */,
+				926189920C67BE3200FB80F9 /* rbox.c */,
+				926188FE0C66AC6E00FB80F9 /* geom.cpp */,
+				926188FF0C66AC6E00FB80F9 /* geom.h */,
+				926189000C66AC6E00FB80F9 /* geom2.cpp */,
+				926189010C66AC6E00FB80F9 /* global.cpp */,
+				926189020C66AC6E00FB80F9 /* mem.cpp */,
+				926189030C66AC6E00FB80F9 /* mem.h */,
+				926189040C66AC6E00FB80F9 /* merge.cpp */,
+				926189050C66AC6E00FB80F9 /* merge.h */,
+				926189060C66AC6E00FB80F9 /* poly.cpp */,
+				926189070C66AC6E00FB80F9 /* poly.h */,
+				926189080C66AC6E00FB80F9 /* poly2.cpp */,
+				926189090C66AC6E00FB80F9 /* qh_import_export.h */,
+				9261890A0C66AC6E00FB80F9 /* qhull_a.h */,
+				9261890B0C66AC6E00FB80F9 /* qhull_io.cpp */,
+				9261890C0C66AC6E00FB80F9 /* qhull_io.h */,
+				9261890D0C66AC6E00FB80F9 /* qhull.cpp */,
+				9261890E0C66AC6E00FB80F9 /* qhull.h */,
+				9261890F0C66AC6E00FB80F9 /* set.cpp */,
+				926189100C66AC6E00FB80F9 /* set.h */,
+				926189110C66AC6E00FB80F9 /* stat.cpp */,
+				926189120C66AC6E00FB80F9 /* stat.h */,
+				926189130C66AC6E00FB80F9 /* user.cpp */,
+				926189140C66AC6E00FB80F9 /* user.h */,
+				926189150C66AC6E00FB80F9 /* version_def.cpp */,
+				32BAE0B70371A74B00C91783 /* qhull_Prefix.pch */,
+				50B2938909F016FC00694E55 /* qhullPriv.h */,
+			);
+			name = Source;
+			sourceTree = "<group>";
+		};
+		5073E0CA09E734BC00EC74B6 /* Configuration Files */ = {
+			isa = PBXGroup;
+			children = (
+				5073E0C609E734A800EC74B6 /* qhullProj.xcconfig */,
+				5073E0C709E734A800EC74B6 /* qhullTarget.xcconfig */,
+			);
+			name = "Configuration Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		9261898A0C67BD4F00FB80F9 /* rbox */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9261898D0C67BD6E00FB80F9 /* Build configuration list for PBXNativeTarget "rbox" */;
+			buildPhases = (
+				926189880C67BD4F00FB80F9 /* Sources */,
+				92AD036E0C883D33000E7FBD /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = rbox;
+			productName = rbox;
+			productReference = 9261898B0C67BD4F00FB80F9 /* rbox */;
+			productType = "com.apple.product-type.tool";
+		};
+		926189EE0C67D3FE00FB80F9 /* unix */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 926189F10C67D41D00FB80F9 /* Build configuration list for PBXNativeTarget "unix" */;
+			buildPhases = (
+				926189EC0C67D3FE00FB80F9 /* Sources */,
+				926189ED0C67D3FE00FB80F9 /* Frameworks */,
+				92AD037C0C883DC4000E7FBD /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				92E45FE40C739EBD00A3FF4B /* PBXTargetDependency */,
+			);
+			name = unix;
+			productName = unix;
+			productReference = 926189EF0C67D3FE00FB80F9 /* unix */;
+			productType = "com.apple.product-type.tool";
+		};
+		92E45FB70C73963A00A3FF4B /* user_eg */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 92E45FBA0C73965900A3FF4B /* Build configuration list for PBXNativeTarget "user_eg" */;
+			buildPhases = (
+				92E45FB50C73963A00A3FF4B /* Sources */,
+				92E45FB60C73963A00A3FF4B /* Frameworks */,
+				92AD03810C883DF0000E7FBD /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				92E45FD80C739D8300A3FF4B /* PBXTargetDependency */,
+			);
+			name = user_eg;
+			productName = user_eg;
+			productReference = 92E45FB80C73963A00A3FF4B /* user_eg */;
+			productType = "com.apple.product-type.tool";
+		};
+		D2AAC09C05546B4700DB518D /* qhull */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1DEB916008733D950010E9CD /* Build configuration list for PBXNativeTarget "qhull" */;
+			buildPhases = (
+				D2AAC09A05546B4700DB518D /* Sources */,
+				92E4600A0C73A23E00A3FF4B /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = qhull;
+			productName = libqhull;
+			productReference = D2AAC09D05546B4700DB518D /* libqhull.dylib */;
+			productType = "com.apple.product-type.library.dynamic";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		0867D690FE84028FC02AAC07 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 1DEB916408733D950010E9CD /* Build configuration list for PBXProject "qhull" */;
+			hasScannedForEncodings = 1;
+			mainGroup = 0867D691FE84028FC02AAC07 /* qhull */;
+			productRefGroup = 034768DDFF38A45A11DB9C8B /* Products */;
+			projectDirPath = "";
+			targets = (
+				D2AAC09C05546B4700DB518D /* qhull */,
+				9261898A0C67BD4F00FB80F9 /* rbox */,
+				926189EE0C67D3FE00FB80F9 /* unix */,
+				92E45FB70C73963A00A3FF4B /* user_eg */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		926189880C67BD4F00FB80F9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				926189930C67BE3200FB80F9 /* rbox.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		926189EC0C67D3FE00FB80F9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				926189F50C67D44200FB80F9 /* unix.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		92E45FB50C73963A00A3FF4B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				92E45FC00C7396C600A3FF4B /* user_eg.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D2AAC09A05546B4700DB518D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				926189160C66AC6E00FB80F9 /* geom.cpp in Sources */,
+				926189180C66AC6E00FB80F9 /* geom2.cpp in Sources */,
+				926189190C66AC6E00FB80F9 /* global.cpp in Sources */,
+				9261891A0C66AC6E00FB80F9 /* mem.cpp in Sources */,
+				9261891C0C66AC6E00FB80F9 /* merge.cpp in Sources */,
+				9261891E0C66AC6E00FB80F9 /* poly.cpp in Sources */,
+				926189200C66AC6E00FB80F9 /* poly2.cpp in Sources */,
+				926189230C66AC6E00FB80F9 /* qhull_io.cpp in Sources */,
+				926189250C66AC6E00FB80F9 /* qhull.cpp in Sources */,
+				926189270C66AC6E00FB80F9 /* set.cpp in Sources */,
+				926189290C66AC6E00FB80F9 /* stat.cpp in Sources */,
+				9261892B0C66AC6E00FB80F9 /* user.cpp in Sources */,
+				9261892D0C66AC6E00FB80F9 /* version_def.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		92E45FD80C739D8300A3FF4B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D2AAC09C05546B4700DB518D /* qhull */;
+			targetProxy = 92E45FD70C739D8300A3FF4B /* PBXContainerItemProxy */;
+		};
+		92E45FE40C739EBD00A3FF4B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D2AAC09C05546B4700DB518D /* qhull */;
+			targetProxy = 92E45FE30C739EBD00A3FF4B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		1DEB916108733D950010E9CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5073E0C709E734A800EC74B6 /* qhullTarget.xcconfig */;
+			buildSettings = {
+				GCC_PFE_FILE_C_DIALECTS = "";
+			};
+			name = Debug;
+		};
+		1DEB916208733D950010E9CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5073E0C709E734A800EC74B6 /* qhullTarget.xcconfig */;
+			buildSettings = {
+				GCC_PFE_FILE_C_DIALECTS = "";
+				STRIP_INSTALLED_PRODUCT = YES;
+				STRIP_STYLE = "non-global";
+			};
+			name = Release;
+		};
+		1DEB916508733D950010E9CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5073E0C609E734A800EC74B6 /* qhullProj.xcconfig */;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = "";
+				GCC_OPTIMIZATION_LEVEL = 0;
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				SDKROOT = "";
+				SYMROOT = ../common/qhull/obj/xcode;
+				USER_HEADER_SEARCH_PATHS = "../common/boost/include ../common/qhull $(inherited)";
+				ZERO_LINK = YES;
+			};
+			name = Debug;
+		};
+		1DEB916608733D950010E9CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5073E0C609E734A800EC74B6 /* qhullProj.xcconfig */;
+			buildSettings = {
+				DEAD_CODE_STRIPPING = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_MODEL_TUNING = "";
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				PRESERVE_DEAD_CODE_INITS_AND_TERMS = YES;
+				SDKROOT = "";
+				SEPARATE_STRIP = YES;
+				SYMROOT = ../common/qhull/obj/xcode;
+				USER_HEADER_SEARCH_PATHS = "../common/boost/include ../common/qhull $(inherited)";
+			};
+			name = Release;
+		};
+		9261898E0C67BD6E00FB80F9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				LIBRARY_SEARCH_PATHS = ../install/lib/macosx;
+				PREBINDING = NO;
+				PRODUCT_NAME = rbox;
+				SYMROOT = ../common/qhull/test/obj/xcode;
+				ZERO_LINK = YES;
+			};
+			name = Debug;
+		};
+		9261898F0C67BD6E00FB80F9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				LIBRARY_SEARCH_PATHS = ../install/lib/macosx;
+				PREBINDING = NO;
+				PRODUCT_NAME = rbox;
+				SYMROOT = ../common/qhull/test/obj/xcode;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		926189F20C67D41D00FB80F9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INPUT_FILETYPE = sourcecode.cpp.cpp;
+				GCC_MODEL_TUNING = "";
+				GCC_OPTIMIZATION_LEVEL = 0;
+				LIBRARY_SEARCH_PATHS = ../install/lib/macosx;
+				PREBINDING = NO;
+				PRODUCT_NAME = unix;
+				SYMROOT = ../common/qhull/test/obj/xcode;
+				ZERO_LINK = YES;
+			};
+			name = Debug;
+		};
+		926189F30C67D41D00FB80F9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_INPUT_FILETYPE = sourcecode.cpp.cpp;
+				GCC_MODEL_TUNING = "";
+				LIBRARY_SEARCH_PATHS = ../install/lib/macosx;
+				PREBINDING = NO;
+				PRODUCT_NAME = unix;
+				SYMROOT = ../common/qhull/test/obj/xcode;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		92E45FBB0C73965900A3FF4B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INPUT_FILETYPE = sourcecode.cpp.cpp;
+				GCC_MODEL_TUNING = "";
+				GCC_OPTIMIZATION_LEVEL = 0;
+				LIBRARY_SEARCH_PATHS = ../install/lib/macosx;
+				PREBINDING = NO;
+				PRODUCT_NAME = user_eg;
+				SYMROOT = ../common/qhull/test/obj/xcode;
+				ZERO_LINK = YES;
+			};
+			name = Debug;
+		};
+		92E45FBC0C73965900A3FF4B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_INPUT_FILETYPE = sourcecode.cpp.cpp;
+				GCC_MODEL_TUNING = "";
+				LIBRARY_SEARCH_PATHS = ../install/lib/macosx;
+				PREBINDING = NO;
+				PRODUCT_NAME = user_eg;
+				SYMROOT = ../common/qhull/test/obj/xcode;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1DEB916008733D950010E9CD /* Build configuration list for PBXNativeTarget "qhull" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1DEB916108733D950010E9CD /* Debug */,
+				1DEB916208733D950010E9CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1DEB916408733D950010E9CD /* Build configuration list for PBXProject "qhull" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1DEB916508733D950010E9CD /* Debug */,
+				1DEB916608733D950010E9CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9261898D0C67BD6E00FB80F9 /* Build configuration list for PBXNativeTarget "rbox" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9261898E0C67BD6E00FB80F9 /* Debug */,
+				9261898F0C67BD6E00FB80F9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		926189F10C67D41D00FB80F9 /* Build configuration list for PBXNativeTarget "unix" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				926189F20C67D41D00FB80F9 /* Debug */,
+				926189F30C67D41D00FB80F9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		92E45FBA0C73965900A3FF4B /* Build configuration list for PBXNativeTarget "user_eg" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				92E45FBB0C73965900A3FF4B /* Debug */,
+				92E45FBC0C73965900A3FF4B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 0867D690FE84028FC02AAC07 /* Project object */;
+}

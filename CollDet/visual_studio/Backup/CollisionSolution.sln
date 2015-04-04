@@ -1,0 +1,30 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "common", "common\common.vcproj", "{F76D107C-8A0D-4FF4-8E6A-D274C401E2AF}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CollDet", "CollDet\CollDet.vcproj", "{195BA38A-5771-4FA3-BA0C-9D4D5983C82A}"
+	ProjectSection(ProjectDependencies) = postProject
+		{F76D107C-8A0D-4FF4-8E6A-D274C401E2AF} = {F76D107C-8A0D-4FF4-8E6A-D274C401E2AF}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug = Debug
+		Release = Release
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{F76D107C-8A0D-4FF4-8E6A-D274C401E2AF}.Debug.ActiveCfg = Debug|Win32
+		{F76D107C-8A0D-4FF4-8E6A-D274C401E2AF}.Debug.Build.0 = Debug|Win32
+		{F76D107C-8A0D-4FF4-8E6A-D274C401E2AF}.Release.ActiveCfg = Release|Win32
+		{F76D107C-8A0D-4FF4-8E6A-D274C401E2AF}.Release.Build.0 = Release|Win32
+		{195BA38A-5771-4FA3-BA0C-9D4D5983C82A}.Debug.ActiveCfg = Debug|Win32
+		{195BA38A-5771-4FA3-BA0C-9D4D5983C82A}.Debug.Build.0 = Debug|Win32
+		{195BA38A-5771-4FA3-BA0C-9D4D5983C82A}.Release.ActiveCfg = Release|Win32
+		{195BA38A-5771-4FA3-BA0C-9D4D5983C82A}.Release.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

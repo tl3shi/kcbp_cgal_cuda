@@ -1,0 +1,134 @@
+#!/bin/bash -p
+
+#    Creates a multiplot file for one object comparing the different algos.
+#    Each algo is assumed to be associated with one directory.
+#    Many directories can be specified.
+#    At the end, gnuplot and ghostview are called.
+#
+#    Each plot in the multiplot shows the performance of each algo
+#    with one complexity of the given object.
+# 
+# Caveats:
+# -  Naming convention for the data files: <objname>_<compl>
+# -  If there is a data file obj_compl in one directory,
+#    then there must be a similar data file in all directories!
+# -  Only data files can have the underscore in there name!
+#    (Log files, for instance, must not!)
+#
+# Usage: plotcomp [-x] <objname> <dir1> <dir2> ...
+#
+# Option: -x  = plot maxima instead of averages
+#
+# GZ
+#
+
+max=""
+col="2"
+
+if [[ "$1" == "-x" ]]
+then
+    max="-max"
+	col="5"
+    shift
+fi
+
+if [[ "$1" == "-h" ]]
+then
+    echo 'Usage: plotcomp [-x] <objname> <dir1> <dir2> ...'
+	exit
+fi
+
+obj=$1
+shift
+
+datadirs=( $* )
+
+# offsets of each plot inside the multiplot
+	x=(0 0.5 0    0.5  0   0.5 0    0.5  0   0.5 0    0.5)
+# y offsets depending on number of plots
+declare -i n_rows
+n_rows=`ls -1 ${datadirs[0]}/${obj}_* | cut -d_ -f3 | wc -l`
+(( n_rows++ ))
+(( n_rows /= 2 ))
+if [[ $n_rows = 1 ]]
+then
+	y=(0 0);  ysize=0.5
+elif [[ $n_rows = 2 ]]
+then
+	y=(0 0   0.5  0.5);  ysize=0.5
+elif [[ $n_rows = 3 ]]
+then
+	y=(0 0   0.33 0.33 0.66 0.66);  ysize=0.33
+elif [[ $n_rows = 4 ]]
+then
+	y=(0 0   0.25 0.25 0.5  0.5  0.75 0.75);  ysize=0.25
+elif [[ $n_rows = 5 ]]
+then
+	y=(0 0   0.2  0.2  0.4  0.4  0.6  0.6  0.8  0.8);  ysize=0.2
+else
+	y=(0 0   0.16 0.16 0.33 0.33 0.50 0.50 0.66 0.66 0.83 0.83);  ysize=0.166
+fi
+
+pf=${obj}-compalgos${max}.plt
+rm -f $pf
+
+# header of plot file
+echo "
+set terminal postscript portrait color 'Helvetica' 8
+set output '${pf%plt}eps'
+set size 1, 1
+set origin 0, 0
+set ylabel 'time / millisec'
+set xlabel 'distance'
+set data style lines
+#set xrange [ 0.6 : ]
+set multiplot
+set size 0.5, $ysize
+" >> $pf
+
+# generate list of complexities
+complexities=`ls -1 ${datadirs[0]}/${obj}_* | sed 's/.*_\(.*\)/\1/' | sort -n`
+
+declare -i plot_nr=0
+
+for c in $complexities
+do
+	#determine real complexity
+	cx=`cat ${datadirs[0]}/${obj}_${c} | grep "num faces" | \
+		tr -s " \t" " " | cut -d' ' -f5`
+	if [[ -z "$cx" ]]
+	then
+		cx=$c
+	fi
+
+	echo "set origin ${x[plot_nr]} , ${y[plot_nr]}" >> $pf
+	echo "set title '$obj / $cx' 0,-1" >> $pf
+	echo "plot 0 notitle, \\" >> $pf						# dummy
+	for dir in ${datadirs[*]}
+	do
+		datafile=$dir/${obj}_${c}
+
+		# create dummy data if file has none yet
+		if [[ ! -s "$datafile" ]]
+		then
+			echo "0 0" > "$datafile"
+			echo "1 0.0000001" >> "$datafile"
+		elif [[ `grep -v \# $datafile | wc -l | tr -s " \t" | cut -d' ' -f2` \
+			    -lt 2 ]]
+		then
+			echo "0 0" > "$datafile"
+			echo "1 0.0000001" >> "$datafile"
+		fi
+
+		echo "     '$datafile' using 1:${col} title '${dir#results_}${max}', \\" >> $pf
+
+	done
+	echo "     0 notitle" >> $pf						# dummy
+
+	(( plot_nr++ ))
+done
+
+gnuplot $pf
+
+kghostview ${pf%plt}eps
+

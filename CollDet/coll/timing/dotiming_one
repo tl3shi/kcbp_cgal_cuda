@@ -1,0 +1,122 @@
+#!/bin/bash -p
+
+#  Do timing for one algo with all benchmark suite objects.
+#
+#  Usage: dotiming_one  [-d] <algo> [<prefix>]
+#  If prefix is not specified, then prefix := algo.
+#
+#  bench is called with option '-A <algo>'.
+#  Data files are named <obj>_<compl>.
+#  They are put in directory results_<prefix>.
+#  Options:
+#  -d   if the data file is already existing, then the test will not be
+#       performed!
+#
+#  GZ 2002
+#
+
+
+if [[ "$1" = "-d" ]]
+then
+	dont_remove=1
+	shift
+fi
+
+if [[ -z "$1" ]]
+then
+	echo "Usage: dotiming_one <algo> [<prefix>]"
+	exit 1
+fi
+
+algo="$1"
+
+if [[ -z "$2" ]]
+then
+	outprefix=$algo
+else
+	outprefix=$2
+fi
+
+outdir=results_$outprefix
+
+if [[ ! -d $outdir ]]
+then
+	mkdir $outdir
+fi
+
+options="-n 20 5000 -d 2 0.6 -A $algo -w"
+testobjdir="/home/zach/rene/daten"
+bench="../test/bench"
+logfile="$outdir/log"
+grep="grep -v -e DopTree:init -e unbalanced"
+
+rm -f $logfile
+
+#  print some infos about current timing tests into log file
+date >> $logfile
+ldd $bench >> $logfile
+echo "$bench -g file -f $testobjdir/file.wrl $options" >> $logfile
+echo "$bench -g to/sh -x complexity $options" >> $logfile
+echo "resulting data file names = $outdir/obj_compl" >> $logfile
+echo " " >> $logfile
+
+#  set limits to prevent swapping, rather have it aborted
+ulimit -d 360000
+ulimit -c 0
+
+for f in \
+    motorbunt
+       # sharan_2026 sharan_4093 sharan_8005 sharan_12736 \
+	#sharan_20026 sharan_28167 sharan_60755 \
+	#happy_buddha_10000 happy_buddha_20000 happy_buddha_50000 \
+	#happy_buddha_100000 happy_buddha_125000 happy_buddha_250000 \
+	#happy_buddha_500000 happy_buddha_1087716 \
+	#schloss_741 schloss_1008 schloss_1502 schloss_3004 \
+	#schloss_7010 schloss_12624 schloss_20898 schloss_26136 \
+	#schloss_43509 schloss_80989 schloss_207290 #\
+	#scheinwerfer_5947 scheinwerfer_8351 scheinwerfer_12015 \
+	#scheinwerfer_17159 scheinwerfer_30075 scheinwerfer_64026 \
+
+do
+	outfile=$outdir/$f
+	if [[ ! -z "$dont_remove" && -e $outfile ]]
+	then
+		continue
+	fi
+	echo "#$bench -g file -f $testobjdir/$f.wrl $options" > $outfile
+	echo " " >> $logfile
+	echo "$bench -g file -f $testobjdir/$f.wrl $options" >> $logfile
+	$bench -g file -f $testobjdir/$f.wrl $options 2>> $logfile | \
+		$grep >> $outfile
+done
+
+obj=to
+for cx in 10 20 30 100 200
+do
+	outfile=$outdir/${obj}_$cx
+	if [[ ! -z "$dont_remove" && -e $outfile ]]
+	then
+		continue
+	fi
+	echo "#$bench -w -g $obj -x $cx $options" > $outfile
+	echo " " >> $logfile
+	echo "$bench -g $obj -x $cx $options" >> $logfile
+	$bench -g $obj -x $cx $options 2>> $logfile | \
+		$grep >> $outfile
+done
+
+obj=sh
+for cx in 3 5 8 13 22
+do
+	outfile=$outdir/${obj}_$cx
+	if [[ ! -z "$dont_remove" && -e $outfile ]]
+	then
+		continue
+	fi
+	echo "#$bench -g $obj -x $cx $options" > $outfile
+	echo " " >> $logfile
+	echo "$bench -g $obj -x $cx $options" >> $logfile
+	$bench -g $obj -x $cx $options 2>> $logfile | \
+		$grep >> $outfile
+done
+

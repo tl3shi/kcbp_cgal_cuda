@@ -1,0 +1,90 @@
+#!/bin/bash -p
+
+#   Plot all files given on the command line in a multiplot.
+#   Example: plot_indv results_new/indv/abdeckung*
+#   This is meant for "visual" determination of the max coll.det. time.
+#   "dist 0" corresponds to the closest distance in the experiment.
+#   Benchmark program should have been called with options: -M <n> -S ...
+
+
+# determine offsets of individual plots
+# offsets of each plot inside the multiplot
+    x=(0 0.5 0    0.5  0   0.5 0    0.5  0   0.5 0    0.5)
+# y offsets depending on number of plots
+declare -i n_rows
+n_rows=$#
+(( n_rows++ ))
+(( n_rows /= 2 ))
+if [[ $n_rows == 1 ]]
+then
+    y=(0 0);  ysize=0.5
+elif [[ $n_rows == 2 ]]
+then
+    y=(0 0   0.5  0.5);  ysize=0.5
+elif [[ $n_rows == 3 ]]
+then
+    y=(0 0   0.33 0.33 0.66 0.66);  ysize=0.33
+elif [[ $n_rows == 4 ]]
+then
+    y=(0 0   0.25 0.25 0.5  0.5  0.75 0.75);  ysize=0.25
+elif [[ $n_rows == 5 ]]
+then
+    y=(0 0   0.2  0.2  0.4  0.4  0.6  0.6  0.8  0.8);  ysize=0.2
+else
+    y=(0 0   0.16 0.16 0.33 0.33 0.50 0.50 0.66 0.66 0.83 0.83);  ysize=0.166
+fi
+
+
+# header of plot file
+function echo_header()
+{
+rm -f $plf
+
+echo "
+#set terminal x11
+set terminal postscript portrait 'Helvetica' 8
+set output '$psf'
+
+set origin 0, 0
+set data style dots
+
+set multiplot
+set size 0.5, $ysize
+" >> $plf
+}
+
+declare -i plot_nr=0 sheet_nr=1 total_plot_nr=0
+
+plf=indv$sheet_nr.plt
+psf=indv$sheet_nr.ps
+echo_header
+
+for fn in $*
+do
+	echo "set origin ${x[plot_nr]} , ${y[plot_nr]}" >> $plf
+	#echo "set title '$fn'" >> $plf
+
+	ti=`grep distance $fn | cut -d' ' -f 4-`
+	echo "plot '$fn' title '$ti' " >> $plf
+
+	(( plot_nr++ ))
+	(( total_plot_nr++ ))
+
+	if [[ $plot_nr -ge 10 ]]
+	then
+		plot_nr=0
+		gnuplot $plf
+		echo $psf
+
+		if [[ $# -gt $total_plot_nr ]]
+		then
+			(( sheet_nr++ ))
+			plf=indv$sheet_nr.plt
+			psf=indv$sheet_nr.ps
+			echo_header
+		fi
+	fi
+
+done
+
+

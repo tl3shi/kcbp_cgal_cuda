@@ -1,0 +1,17 @@
+
+Convex hull of 50 points in 4-d:
+
+  Number of vertices: 50
+  Number of facets: 260
+
+Statistics for: ./rbox D4 |  Tv FA
+
+  Number of points processed: 50
+  Number of hyperplanes created: 664
+  Number of distance tests for qhull: 1378
+  Total facet area:   1.5336892
+  Total volume:       0.1458778
+
+
+Output completed.  Verifying that all points are below outer planes of
+all facets.  Will make 13000 distance computations.

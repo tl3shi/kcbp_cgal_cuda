@@ -1,0 +1,65 @@
+µÝ¹é
+D:\github\kcbp_cgal_cuda\kcbp_cgal_cuda\Release>kCBP_CGAL_CUDA.exe 24 models/ali
+ce.obj n 30 04-03-30-rand.config
+models/alice.obj        points number: 224291
+K = 24
+ModelNum = 30
+ach banchtest (30 times) totally: 279.00
+cluster time (30 times) totally: 2.00
+normalsize = 24
+Projection time banchtest(30 times) CPU(SSE) totaly:290
+duality mapping
+duality mapping time (30 times) totally: 3.00
+Polytopes: 24
+reading 29 model configs(plus fixed one,total = 30)
+build boundingbox time : 19.00
+collision detection box time: 0.00
+box collision size: 25
+build AABB time : 8577.00
+build AABB count: 20
+The Following result uses AABB directly
+total collision time(AABB directly) : 91.00
+collision pairs : 9
+The Following result uses KCBP(AABB) filter first
+build AABB time 4 KCBP : 1.00
+kcbp collision size(AABB filter) : 11
+total collision time(KCBP AABB filter) : 62.00
+collision pairs : 9
+The Following result uses KCBP(GJK) filter first
+init GJK time 4 KCBP : 0.00
+kcbp collision size(GJK filter) : 11
+total collision time(KCBP GJK filter) : 61.00
+collision pairs : 9
+
+µü´ú£º
+D:\github\kcbp_cgal_cuda\kcbp_cgal_cuda\Release>kCBP_CGAL_CUDA.exe 24 models/ali
+ce.obj n 30 04-03-30-rand.config
+models/alice.obj        points number: 224291
+K = 24
+ModelNum = 30
+ach banchtest (30 times) totally: 274.00
+cluster time (30 times) totally: 2.00
+normalsize = 24
+Projection time banchtest(30 times) CPU(SSE) totaly:291
+duality mapping
+duality mapping time (30 times) totally: 3.00
+Polytopes: 24
+reading 29 model configs(plus fixed one,total = 30)
+build boundingbox time : 19.00
+collision detection box time: 0.00
+box collision size: 25
+build AABB time : 8630.00
+build AABB count: 20
+The Following result uses AABB directly
+total collision time(AABB directly) : 5836.00
+collision pairs : 9
+The Following result uses KCBP(AABB) filter first
+build AABB time 4 KCBP : 1.00
+kcbp collision size(AABB filter) : 11
+total collision time(KCBP AABB filter) : 5627.00
+collision pairs : 9
+The Following result uses KCBP(GJK) filter first
+init GJK time 4 KCBP : 1.00
+kcbp collision size(GJK filter) : 11
+total collision time(KCBP GJK filter) : 5673.00
+collision pairs : 9

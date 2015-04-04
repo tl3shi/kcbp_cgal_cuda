@@ -1,0 +1,93 @@
+#!/bin/bash -p
+
+#
+# Synopsis:
+#   chpath old-string new-string [-r] file-pattern
+#
+# All occurences of "old-string" will be changed to "new-string"
+# in all files matching 'file-pattern'.
+# The command has two forms:
+# 1. with option -r: All files in the directory tree rooted at "." and
+#	 matching the file pattern will be considered.
+# 2. without option -r: The pattern must be provided. No recursive
+#    directory scanning is done.
+#
+# Remember to quote the file-pattern: most times you will want to
+# write chpath xx yy '*.suffix', or sth. similar.
+#
+# Bugs:
+# - "old-string" and "new-string" must not contain a '?'
+#
+# Author: GZ
+#
+
+
+if [[ $# != 3 && $# != 4 ]]
+then
+	echo
+	echo 'Usage:'
+	echo '  chpath old-string new-string [-r] file-pattern'
+	echo ' '
+	exit
+fi
+
+
+if [[ $# == 3 ]]
+then
+	fp="$3"
+else
+	fp="$4"
+	recursive=1
+fi
+
+fl=/tmp/chpath_filelist_`id -u`
+if [[ -e $fl ]]
+then
+	rm -f $fl
+fi
+if [[ -e $fl ]]
+then
+	echo "chpath: Unable to remove file $fl"
+	exit 1
+fi
+
+echo fp="$fp"
+echo fl="$fl"
+echo recursive=$recursive
+#exit
+
+if [ `uname -s` = SunOS ]
+then
+    grep=/usr/xpg4/bin/grep
+else
+	grep=grep
+fi
+
+if [[ $recursive == 1 ]]
+then
+	find . -name "$fp" -exec $grep -q -- "$1" {} \; -print > $fl
+else
+	ls -1 $fp > $fl 2>/dev/null
+fi
+
+nfl=`cat $fl | wc -l`
+echo Found $nfl files
+
+cat $fl | 
+while read f
+do
+	echo $f
+	sed "s?$1?$2?g" $f > $f.$$
+	case $OSTYPE in
+	darwin)
+		perms=`stat -f '%p' "$f" | cut -c4-`
+        ;;
+	*)
+		perms=`stat --format=%a "$f"`
+		;;
+	esac
+	chmod $perms $f.$$
+	mv -f $f.$$ $f
+done
+
+

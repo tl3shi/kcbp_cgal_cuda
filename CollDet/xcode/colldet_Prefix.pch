@@ -1,0 +1,6 @@
+//
+// Prefix header for all source files of the 'colldet' target in the 'colldet' project.
+//
+
+
+#include <iostream>

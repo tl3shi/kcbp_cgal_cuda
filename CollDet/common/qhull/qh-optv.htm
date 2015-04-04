@@ -1,0 +1,736 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 2.0">
+<title>Qhull Delaunay triangulation and Voronoi diagram options</title>
+</head>
+
+<body>
+<!-- Navigation links -->
+<p><b>Up:</b> <a href="http://www.geom.umn.edu/locate/qhull">Home
+page for Qhull</a> <br>
+<b>Up:</b> <a href="qh-man.htm#TOC">Qhull manual</a> <br>
+<b>Up:</b> <a href="qh-opt.htm">Qhull options</a></p>
+
+<p><b>To:</b> <a href="qh-man.htm#synopsis">Synopsis</a> &#149; <a
+href="qh-opt.htm#opt">Main</a> &#149; <a
+href="qh-opto.htm#output">Output</a> &#149; <a
+href="qh-optf.htm#format">Formats</a> &#149; <a
+href="qh-optg.htm#geomview">Geomview</a> &#149; <a
+href="qh-optp.htm#print">Print</a> &#149; <a
+href="qh-optq.htm#qhull">Qhull</a> &#149; <a
+href="qh-optc.htm#prec">Precision</a> &#149; <a
+href="qh-optt.htm#trace">Trace</a></p>
+
+<hr>
+<!-- Main text of document -->
+<h1><a
+href="http://www.geom.umn.edu/graphics/pix/Special_Topics/Computational_Geometry/delaunay.html"><img
+src="qh--dt.gif" alt="[delaunay]" align="middle" width="100"
+height="100"></a> Qhull Delaunay triangulation and Voronoi diagram options</h1>
+
+<p><b>Copyright © 1995, 1997 The Geometry Center, Minneapolis MN</b></p>
+
+<hr>
+
+<h2><a href="qh-opt.htm#opt">»</a><a name="d">Delaunay
+triangulation ('d')</a></h2>
+
+<p>The Delaunay triangulation is the triangulation with empty
+circumspheres. It has many useful properties and applications.
+See the survey article by Aurenhammer [<a
+href="qh-man.htm#aure91">'91</a>] and the detailed introduction
+by O'Rourke [<a href="qh-man.htm#orou94">'94</a>]. </p>
+
+<p>Qhull computes the Delaunay triangulation by computing a
+convex hull. It lifts the input sites to a paraboloid by adding
+the sum of the squares of the coordinates. It computes the convex
+hull of the lifted sites, and projects the lower convex hull to
+the input. The Delaunay triangulation is the projected ridges of
+the lower convex hull. See the examples, <a
+href="qh-eg.htm#delaunay">Delaunay and Voronoi diagrams</a>.</p>
+
+<p>As shown by these examples, the Delaunay triangulation is a
+convex hull in Qhull. Each triangle of the Delaunay triangulation
+corresponds to a facet of the lower half of the convex hull.
+Facets of the upper half of the convex hull correspond to the <a
+href="qh-optv.htm#dQu">furthest-site Delaunay triangulation</a>. </p>
+
+<h3><a href="qh-opt.htm#opt">»</a><a name="d-conventions"><font
+size="4">Delaunay conventions</font></a></h3>
+
+<p>The following terminology is used for Delaunay triangulations
+in Qhull. The underlying structure is a convex hull in one higher
+dimension. See <a href="qh-opt.htm#conventions">convex hull
+conventions</a>.</p>
+
+<ul>
+    <li><em>input site</em> - a point in the input (one dimension
+        lower than a point on the convex hull)</li>
+    <li><em>point</em> - the last coordinate is the sum of the
+        squares of the input site's coordinates</li>
+    <li><em>vertex</em> - an input site in the Delaunay
+        triangulation or a vertex of the paraboloid</li>
+    <li><em>coplanar point</em> - a <em>nearly incident</em>
+        point to a vertex</li>
+    <li><em>point-at-infinity</em> - a point added above the
+        paraboloid by option '<a href="qh-optq.htm#Qz">Qz</a>'</li>
+    <li><em>lower facet</em> - a facet with a negative last
+        coordinate for the hyperplane</li>
+    <li><em>upper facet</em> - a facet with a positive last
+        coordinate for the hyperplane</li>
+    <li><em>Delaunay facet</em> - a lower facet projected to the
+        input set</li>
+    <li><em>upper Delaunay facet</em> - an upper facet projected
+        to the input set</li>
+    <li><em>non-simplicial facet</em> - more than <em>d</em>
+        points are cocircular or cospherical</li>
+    <li><em>good facet</em> - a Delaunay facet with optional
+        restrictions by '<a href="qh-optq.htm#QVn">QVn</a>', etc.</li>
+</ul>
+
+<h3><a href="qh-opt.htm#opt">»</a><a name="d-outputs">Delaunay
+outputs</a></h3>
+
+<p>These options control the output of Delaunay triangulations:</p>
+
+<ul>
+    <li>'<a href="qh-opto.htm#s">s</a>' - print the number of
+        Delaunay facets</li>
+    <li>'<a href="qh-opto.htm#i">i</a>' - list the input sites
+        for each Delaunay facet</li>
+    <li>'<a href="qh-optf.htm#Ft">Ft</a>' - print a triangulation
+        of the Delaunay facets</li>
+</ul>
+
+<ul>
+    <li>'<a href="qh-optq.htm#Qc">Qc</a> <a href="qh-optf.htm#Fc">Fc</a>'
+        - list nearly incident points for each Delaunay facet
+        (one facet per point)</li>
+    <li>'<a href="qh-optq.htm#Qc">Qc</a> <a href="qh-optf.htm#FP">FP</a>'
+        - print nearly incident points with distance to nearest
+        input site</li>
+    <li>'<a href="qh-optf.htm#Fn">Fn</a>' - list neighboring
+        facets for each Delaunay facet</li>
+    <li>'<a href="qh-optf.htm#FN">FN</a>' - list neighboring
+        facets for each input site</li>
+    <li>'<a href="qh-optf.htm#Fa">Fa</a>' - print area for each
+        Delaunay facet</li>
+    <li>'<a href="qh-optf.htm#FA">FA</a>' - compute total area
+        for '<a href="qh-opto.htm#s">s</a>' and '<a
+        href="qh-optf.htm#FS">FS</a>'</li>
+</ul>
+
+<ul>
+    <li>'<a href="qh-opto.htm#o">o</a>' - print lower facets of
+        the corresponding convex hull</li>
+</ul>
+
+<h3><a href="qh-opt.htm#opt">»</a><a name="d-controls">Delaunay
+controls</a></h3>
+
+<p>These options provide additional control:</p>
+
+<ul>
+    <li>'<a href="qh-optt.htm#Tv">Tv</a>' - verify result</li>
+    <li>'<a href="qh-optq.htm#Qz">Qz</a>' - add a point above the
+        paraboloid to reduce precision errors. Use it for nearly
+        cocircular/cospherical input (e.g., 'rbox c | qhull d
+        Qz'). The point is printed for options '<a
+        href="qh-optf.htm#Ft">Ft</a>' and '<a
+        href="qh-opto.htm#o">o</a>'.</li>
+    <li>'<a href="qh-optq.htm#Qbb">Qbb</a>' - scale the last
+        coordinate to reduce precision errors. Use it for integer
+        coefficients and nearly cocircular/cospherical input.</li>
+    <li>'<a href="qh-optp.htm#PDk">PDk:1</a>' (where <i>k</i> is
+        the last dimension) - include all facets in the output</li>
+    <li>'<a href="qh-optq.htm#QVn">QVn</a> <a
+        href="qh-optp.htm#Pg">Pg</a>' - select facets adjacent to
+        input site <em>n</em> (marked 'good')</li>
+    <li>'<a href="qh-optq.htm#Q0">Q0</a>' - do not merge facets
+        for nearly cocircular/cospherical sites. This may
+        introduce precision errors.</li>
+    <li>'<a href="qh-opto.htm#f">f </a>' - print the data
+        structure for each facet</li>
+    <li>'<a href="qh-optt.htm#TFn">TFn</a>' - report summary
+        after constructing <em>n</em> facets</li>
+</ul>
+
+<h3><a href="qh-opt.htm#opt">»</a><a name="d-graphics">Delaunay
+graphics</a></h3>
+
+<p>For 2-d and 3-d Delaunay triangulations, Geomview ('qhull d <a
+href="qh-optg.htm#G">G</a>') displays the corresponding convex
+hull (a paraboloid). </p>
+
+<p>To get a 2-d Delaunay triangulation, use 'qhull d <a
+href="qh-optg.htm#GDn">GrD2</a>' to drop the last dimension. This
+is the same as viewing the hull without perspective (see
+Geomview's 'cameras' menu). </p>
+
+<p>To get a 3-d Delaunay triangulation, use 'qhull d <a
+href="qh-optg.htm#GDn">GrD3</a>' to drop the last dimension. You
+may see extra edges. These are interior edges that Geomview moves
+towards the viewer (see 'lines closer' in Geomview's camera
+options). Use option '<a href="qh-optg.htm#Gt">Gt</a>' to make
+the outer ridges transparent in 3-d. See <a
+href="qh-eg.htm#delaunay">Delaunay and Voronoi examples</a>.</p>
+
+<p>For 2-d Delaunay triangulations, Mathematica ('<a
+href="qh-opto.htm#m">m</a>') displays the corresponding convex
+hull (a paraboloid). </p>
+
+<h3><a href="qh-opt.htm#opt">»</a><a name="d-notes">Delaunay
+notes</a></h3>
+
+<p>A non-simplicial facet indicates nearly cocircular or
+cospherical input sites. Unfortunately, many uses of Delaunay
+triangulations assume simplicial (e.g., triangular) facets. You
+can use option '<a href="qh-optf.htm#Ft">Ft</a>' to print a
+triangulation. It adds points for non-simplicial facets. You can
+use an <a href="qh-impre.htm#exact">exact arithmetic code</a>, or
+use Qhull with options '<a href="qh-optq.htm#Q0">Q0</a> <a
+href="qh-optp.htm#Po">Po</a>' to force output despite precision
+errors. The later is likely to work, but it can not guarantee a
+correct output. </p>
+
+<p>To compute the Delaunay triangulation of points on a sphere,
+compute their convex hull. If the sphere is the unit sphere at
+the origin, the facet normals are the Voronoi vertices of the
+input. The points may be restricted to a hemisphere. [S. Fortune]
+</p>
+
+<p>With the <a href="qh-man.htm#library">Qhull library</a>, you
+can use qh_findbestfacet in <tt>poly2.c</tt> to locate the facet
+that contains a point. You should first lift the point to the
+paraboloid (i.e., the last coordinate is the sum of the squares
+of the point's coordinates -- qh_setdelaunay). Do not use options
+'<a href="qh-optq.htm#Qbb">Qbb</a>', '<a href="qh-optq.htm#QbB">QbB</a>',
+'<a href="qh-optq.htm#Qbk">Qbk:n</a>', or '<a
+href="qh-optq.htm#QBk">QBk:n</a>' since these scale the last
+coordinate. </p>
+
+<p>If a point is interior to the convex hull of the input set, it
+is interior to the adjacent vertices of the Delaunay
+triangulation. This is demonstrated by the following pipe for
+point 0: </p>
+
+<blockquote>
+    <p>qhull &lt;data d s FQ QV0 Pg p | qhull s Qb3:0B3:0 p </p>
+</blockquote>
+
+<p>The first call to Qhull returns the neighboring points of
+point 0 in the Delaunay triangulation. The second call to Qhull
+returns the vertices of the convex hull of these points (after
+dropping the lifted coordinate). If point 0 is interior to the
+original point set, it is interior to the reduced point set. </p>
+
+<h2><a href="qh-opt.htm#opt">»</a><a name="v">Voronoi vertices
+and regions ('v')</a></h2>
+
+<p>The Voronoi diagram is the nearest-neighbor map for a set of
+points. It has many useful properties and applications. See the
+survey article by Aurenhammer [<a href="qh-man.htm#aure91">'91</a>]
+and the detailed introduction by O'Rourke [<a
+href="qh-man.htm#orou94">'94</a>]. The Voronoi diagram is the
+dual of the Delaunay triangulation. </p>
+
+<p>Qhull computes the Voronoi diagram via the Delaunay
+triangulation ('<a href="qh-optv.htm#d">d</a>'). Each Voronoi
+vertex is the circumcenter of a facet of the Delaunay
+triangulation. Each Voronoi region corresponds to a vertex of the
+Delaunay triangulation (i.e., an input site). </p>
+
+<p>Qhull outputs the Voronoi vertices for each Voronoi region. In
+2-d, it generates the Voronoi diagram. In higher-dimensions, it
+does not output the ridges that connect neighboring Voronoi
+regions. With work, the user can derive this information from
+Qhull's data structures.</p>
+
+<h3><a href="qh-opt.htm#opt">»</a><a name="v-conventions"><font
+size="4">Voronoi conventions</font></a></h3>
+
+<p>The following terminology is used for Voronoi diagrams in
+Qhull. The underlying structure is a Delaunay triangulation from
+a convex hull in one higher dimension. Facets of the Delaunay
+triangulation correspond to vertices of the Voronoi diagram.
+Vertices of the Delaunay triangulation correspond to input sites
+and to regions of the Voronoi diagram. See <a
+href="qh-opt.htm#conventions">convex hull conventions</a> and <a
+href="#d-conventions">Delaunay conventions</a>.</p>
+
+<ul>
+    <li><em>input site</em> - a point in the input (one dimension
+        lower than a point on the convex hull)</li>
+    <li><em>point</em> - the last coordinate is the sum of the
+        squares of the input site's coordinates</li>
+    <li><em>vertex</em> - a vertex of the corresponding Delaunay
+        triangulation, and an input site</li>
+    <li><em>coplanar point</em> - a <em>nearly incident</em>
+        point to a input site (i.e., vertex)</li>
+    <li><em>Voronoi vertex</em> - the circumcenter of a Delaunay
+        facet</li>
+    <li><em>Voronoi region</em> - the region of Euclidean space
+        nearest to an input site. Qhull lists the Voronoi
+        vertices that define each Voronoi region.</li>
+    <li><em>Voronoi diagram</em> - the graph of the Voronoi
+        regions with the ridges (edges) between the regions.</li>
+    <li><em>infinity vertex</em> - the Voronoi vertex for
+        unbounded Voronoi regions in '<a href="qh-opto.htm#o">o</a>'
+        output format. Its coordinates are <em>-10.101</em>.</li>
+    <li><em>good facet</em> - a Delaunay facet with optional
+        restrictions by '<a href="qh-optq.htm#QVn">QVn</a>', etc.</li>
+</ul>
+
+<h3><a href="qh-opt.htm#opt">»</a> <a name="v-outputs">Voronoi
+outputs</a></h3>
+
+<p>These options control the output of Voronoi vertices and
+regions. Other output options return the corresponding Delaunay
+triangulation.</p>
+
+<ul>
+    <li>'<a href="qh-opto.htm#s">s</a>' - print the number of
+        Voronoi vertices and regions</li>
+    <li>'<a href="qh-opto.htm#p">p</a>' - print the Voronoi
+        vertices.</li>
+    <li>'<a href="qh-opto.htm#o">o</a>' - print the Voronoi
+        vertices and Voronoi regions (see below). In 2-d, this is
+        the Voronoi diagram without the unbounded rays.</li>
+</ul>
+
+<ul>
+    <li>'<a href="qh-opto.htm#i">i</a>' - list the Voronoi
+        regions for each Voronoi vertex</li>
+    <li>'<a href="qh-optf.htm#FN">FN</a>' - list the Voronoi
+        vertices for each Voronoi region</li>
+    <li>'<a href="qh-optf.htm#Fn">Fn</a>' - list the neighboring
+        Voronoi vertices for each Voronoi vertex</li>
+    <li>'<a href="qh-optq.htm#QVn">QVn</a> <a
+        href="qh-optp.htm#Pg">Pg</a>' - select Voronoi vertices
+        for input site <em>n</em> </li>
+</ul>
+
+<ul>
+    <li>'<a href="qh-optq.htm#Qc">Qc</a> <a href="qh-optf.htm#FP">FP</a>'
+        - print nearly incident points with distance to nearest
+        input site</li>
+</ul>
+
+<p>For the '<a href="qh-opto.htm#o">o</a>' option, the first
+number is the dimension. The next two numbers are the number of
+vertices and the number of input sites. The line ends with a
+&quot;1&quot;. The Voronoi vertices are listed one per line. The
+first (<em>0</em>'th) vertex indicates the infinity vertex. Its
+coordinates are <em>-10.101</em>. The infinity vertex also occurs
+for degenerate Delaunay triangles.</p>
+
+<p>The Voronoi regions follow the vertices with one line per
+input site. Each region is defined by the number of Voronoi
+vertices followed by the index of each vertex. Coplanar input
+sites have &quot;0&quot; vertices. In 2-d, the vertices are
+listed in adjacency order (unoriented). In 3-d and higher, the
+vertices are listed in numeric order. A zero index indicates the
+infinity vertex. Such regions are unbounded. If you use option '<a
+href="qh-optq.htm#Qz">Qz</a>', the last line will be the Voronoi
+region for the point-at-infinity (a single &quot;0&quot;).</p>
+
+<h3><a href="qh-opt.htm#opt">»</a> <a name="v-controls">Voronoi
+controls</a></h3>
+
+<p>These options provide additional control:</p>
+
+<ul>
+    <li>'<a href="qh-optt.htm#Tv">Tv</a>' - verify result</li>
+    <li>'<a href="qh-optq.htm#Qz">Qz</a>' - add a point above the
+        paraboloid to reduce precision errors. Use it for nearly
+        cocircular/cospherical input (e.g., 'rbox c | qhull v
+        Qz'). For option '<a href="qh-opto.htm#o">o</a>', the
+        point is listed as &quot;0&quot;.</li>
+    <li>'<a href="qh-optq.htm#Qbb">Qbb</a>' - scale the last
+        coordinate to reduce precision errors. Use it for integer
+        coefficients and nearly cocircular/cospherical input.</li>
+    <li>'<a href="qh-opto.htm#f">f </a>' - print the data
+        structure for each facet</li>
+    <li>'<a href="qh-optt.htm#TFn">TFn</a>' - report summary
+        after constructing <em>n</em> facets</li>
+</ul>
+
+<h3><a href="qh-opt.htm#opt">»</a> <a name="v-graphics">Voronoi
+graphics</a></h3>
+
+<p>In 2-d, Geomview output ('<a href="qh-optg.htm#G">G</a>')
+displays a Voronoi diagram with extra edges to close the
+unbounded Voronoi regions. To view the unbounded rays, enclose
+the input points in a square.</p>
+
+<p>You can also view Voronoi regions in 3-d. To view the Voronoi
+region for site 3 in Geomview, execute</p>
+
+<blockquote>
+    <p>qhull &lt;data FQ s GV3 v Fc Pg | qhull s G &gt;output</p>
+</blockquote>
+
+<p>The first <tt>qhull</tt> command returns the Voronoi vertices
+for all facets incident to point 3 in the Delaunay triangulation.
+The second <tt>qhull</tt> command computes their convex hull.
+This is the Voronoi region for input site 3. </p>
+
+<p>See the <a href="qh-eg.htm#delaunay">Delaunay and Voronoi
+examples</a> for 2-d and 3-d examples. Turn off normalization (on
+Geomview's 'obscure' menu) when comparing the Voronoi diagram
+with the corresponding Delaunay triangulation. </p>
+
+<h3><a href="qh-opt.htm#opt">»</a><a name="v-notes">Voronoi
+notes</a></h3>
+
+<p>To produce the unbounded rays in 2-d, enclose the input points
+in a square.</p>
+
+<p>In 3-d and higher, the adjacency information for the Voronoi
+diagram can be determined from Qhull's data structures. </p>
+
+<p>Qhull does not compute the unbounded regions of a Voronoi
+diagram. For example, '<tt>rbox c | qhull v Qz o</tt>' produces
+the Voronoi regions for the vertices of a cube centered at the
+origin. All regions are unbounded. The output is </p>
+
+<blockquote>
+    <pre>3
+2 9 1
+-10.101 -10.101 -10.101 
+     0      0      0 
+2 0 1
+2 0 1
+2 0 1
+2 0 1
+2 0 1
+2 0 1
+2 0 1
+2 0 1
+0
+</pre>
+</blockquote>
+
+<p>The first line is the dimension. The second line is the number
+of vertices and the number of regions. There is one region per
+input point plus a region for the point-at-infinity added by
+option '<a href="qh-optq.htm#Qz">Qz</a>'. The next two lines
+lists the Voronoi vertices. The first vertex is the infinity
+vertex. It is indicate by the coordinates <em>-10.101</em>. The
+second vertex is the origin. The next nine lines list the
+regions. Each region lists two vertices -- the infinity vertex
+and the origin. The last line is &quot;0&quot; because no region
+is associated with the point-at-infinity. A &quot;0&quot; would
+also be listed for nearly incident input sites. </p>
+
+<h2><a href="qh-opt.htm#opt">»</a><a name="dQu">Furthest-site
+Delaunay triangulation ('d Qu') </a></h2>
+
+<p>The furthest-site Delaunay triangulation is dual of the <a
+href="qh-optv.htm#vQu">furthest-site Voronoi diagram</a>. It
+corresponds to the upper Delaunay facets of the Delaunay
+construction ('<a href="qh-optv.htm#d">d</a>').</p>
+
+<h3><a href="qh-opt.htm#opt">»</a><a name="dQu-conventions"><font
+size="4">furthest-site Delaunay conventions</font></a></h3>
+
+<p>The following terminology is used for furthest-site Delaunay
+triangulations in Qhull. The underlying structure is a convex
+hull in one higher dimension. See <a
+href="qh-opt.htm#conventions">convex hull conventions</a> and <a
+href="qh-optv.htm#d-conventions">Delaunay conventions</a>.</p>
+
+<ul>
+    <li><em>input site</em> - a point in the input (one dimension
+        lower than a point on the convex hull)</li>
+    <li><em>point</em> - the last coordinate is the sum of the
+        squares of the input site's coordinates</li>
+    <li><em>vertex</em> - an input site in the furthest-site
+        Delaunay triangulation or a vertex of the paraboloid</li>
+    <li><em>upper facet</em> - a facet with a positive last
+        coordinate for the hyperplane</li>
+    <li><em>upper Delaunay facet</em> - an upper facet projected
+        to the input set</li>
+    <li><em>non-simplicial facet</em> - more than <em>d</em>
+        points are cocircular or cospherical</li>
+    <li><em>good facet</em> - a Delaunay facet with optional
+        restrictions by '<a href="qh-optq.htm#QVn">QVn</a>', etc.</li>
+</ul>
+
+<h3><a href="qh-opt.htm#opt">»</a><a name="dQu-outputs">furthest-site
+Delaunay outputs</a></h3>
+
+<p>These options control the output of furthest-site Delaunay
+triangulations:</p>
+
+<ul>
+    <li>'<a href="qh-opto.htm#s">s</a>' - print the number of
+        furthest-site Delaunay facets</li>
+    <li>'<a href="qh-opto.htm#i">i</a>' - list the input sites
+        for each furthest-site Delaunay facet</li>
+    <li>'<a href="qh-optf.htm#Ft">Ft</a>' - print a triangulation
+        of the furthest-site Delaunay facets</li>
+</ul>
+
+<ul>
+    <li>'<a href="qh-optf.htm#Fn">Fn</a>' - list neighboring
+        facets for each furthest-site Delaunay facet</li>
+    <li>'<a href="qh-optf.htm#FN">FN</a>' - list neighboring
+        facets for each input site</li>
+    <li>'<a href="qh-optf.htm#Fa">Fa</a>' - print area for each
+        furthest-site Delaunay facet</li>
+    <li>'<a href="qh-optf.htm#FA">FA</a>' - compute total area
+        for '<a href="qh-opto.htm#s">s</a>' and '<a
+        href="qh-optf.htm#FS">FS</a>'</li>
+</ul>
+
+<ul>
+    <li>'<a href="qh-opto.htm#o">o</a>' - print upper facets of
+        the corresponding convex hull</li>
+</ul>
+
+<h3><a href="qh-opt.htm#opt">»</a><a name="dQu-controls">furthest-site
+Delaunay controls</a></h3>
+
+<p>These options provide additional control:</p>
+
+<ul>
+    <li>'<a href="qh-optt.htm#Tv">Tv</a>' - verify result</li>
+    <li>'<a href="qh-optq.htm#Qbb">Qbb</a>' - scale the last
+        coordinate to reduce precision errors. Use it for integer
+        coefficients and nearly cocircular/cospherical input.</li>
+    <li>'<a href="qh-optp.htm#Pdk">Pdk:-1</a>' (where <i>k</i> is
+        the last dimension) - include all facets in the output</li>
+    <li>'<a href="qh-optq.htm#QVn">QVn</a> <a
+        href="qh-optp.htm#Pg">Pg</a>' - select facets adjacent to
+        input site <em>n</em> (marked 'good')</li>
+    <li>'<a href="qh-optq.htm#Q0">Q0</a>' - do not merge facets
+        for nearly cocircular/cospherical sites. This may
+        introduce precision errors.</li>
+    <li>'<a href="qh-opto.htm#f">f </a>' - print the data
+        structure for each facet</li>
+    <li>'<a href="qh-optt.htm#TFn">TFn</a>' - report summary
+        after constructing <em>n</em> facets</li>
+</ul>
+
+<h3><a href="qh-opt.htm#opt">»</a><a name="dQu-graphics">furthest-site
+Delaunay graphics</a></h3>
+
+<p>For 2-d and 3-d furthest-site Delaunay triangulations,
+Geomview ('qhull d Qu <a href="qh-optg.htm#G">G</a>') displays
+the corresponding convex hull (a paraboloid). </p>
+
+<p>To get a 2-d furthest-site Delaunay triangulation, use 'qhull
+d Qu <a href="qh-optg.htm#GDn">GrD2</a>' to drop the last
+dimension. This is the same as viewing the hull without
+perspective (see Geomview's 'cameras' menu). </p>
+
+<p>To get a 3-d furthest-site Delaunay triangulation, use 'qhull
+d Qu <a href="qh-optg.htm#GDn">GrD3</a>' to drop the last
+dimension. You may see extra edges. These are interior edges that
+Geomview moves towards the viewer (see 'lines closer' in
+Geomview's camera options). Use option '<a href="qh-optg.htm#Gt">Gt</a>'
+to make the outer ridges transparent in 3-d.</p>
+
+<p>For 2-d furthest-site Delaunay triangulations, Mathematica ('<a
+href="qh-opto.htm#m">m</a>') displays the corresponding convex
+hull (a paraboloid). </p>
+
+<h3><a href="qh-opt.htm#opt">»</a><a name="dQu-notes">furthest-site
+Delaunay notes</a></h3>
+
+<p>See <a href="qh-optv.htm#d-notes">Delaunay notes</a>.</p>
+
+<h2><a href="qh-opt.htm#opt">»</a><a name="vQu">Furthest-site
+Voronoi vertices and regions ('v Qu')</a></h2>
+
+<p>The furthest-site Voronoi diagram is the furthest-neighbor map
+for a set of points. See the survey article by Aurenhammer [<a
+href="qh-man.htm#aure91">'91</a>] and a brief introduction by
+O'Rourke [<a href="qh-man.htm#orou94">'94</a>]. </p>
+
+<p>The furthest-site Voronoi diagram is the dual of the <a
+href="qh-optv.htm#dQu">furthest-site Delaunay triangulation</a>.
+Each furthest-site Voronoi vertex is the circumcenter of an upper
+facet of the Delaunay triangulation. Each furthest-site Voronoi
+region corresponds to a vertex of the Delaunay triangulation
+(i.e., an input site). The correspondence skips interior input
+sites.</p>
+
+<p>Qhull outputs the furthest-site Voronoi vertices for each
+furthest-site Voronoi region. In 2-d, it generates the
+furthest-site Voronoi diagram. In higher-dimensions, it does not
+output the ridges that connect neighboring furthest-site Voronoi
+regions. With work, the user can derive this information from
+Qhull's data structures.</p>
+
+<h3><a href="qh-opt.htm#opt">»</a><a name="vQu-conventions"><font
+size="4"> furthest-site Voronoi conventions</font></a></h3>
+
+<p>The following terminology is used for furthest-site Voronoi
+diagrams in Qhull. The underlying structure is a furthest-site
+Delaunay triangulation from a convex hull in one higher
+dimension. Upper facets of the Delaunay triangulation correspond
+to vertices of the furthest-site Voronoi diagram. Vertices of the
+furthest-site Delaunay triangulation correspond to input sites
+and to regions of the furthest-site Voronoi diagram. See <a
+href="qh-opt.htm#conventions">convex hull conventions</a> and <a
+href="qh-optv.htm#dQu-conventions">furthest-site Delaunay
+conventions</a>.</p>
+
+<ul>
+    <li><em>input site</em> - a point in the input (one dimension
+        lower than a point on the convex hull)</li>
+    <li><em>point</em> - the last coordinate is the sum of the
+        squares of the input site's coordinates</li>
+    <li><em>vertex</em> - a vertex of the corresponding
+        furthest-site Delaunay triangulation, and an input site</li>
+    <li><em>furthest-site Voronoi vertex</em> - the circumcenter
+        of a furthest-site Delaunay facet</li>
+    <li><em>furthest-site Voronoi region</em> - the region of
+        Euclidean space further from an input site than any other
+        input site. Qhull lists the furthest-site Voronoi
+        vertices that define each furthest-site Voronoi region.</li>
+    <li><em>furthest-site Voronoi diagram</em> - the graph of the
+        furthest-site Voronoi regions with the ridges (edges)
+        between the regions.</li>
+    <li><em>infinity vertex</em> - the Voronoi vertex for
+        unbounded furthest-site Voronoi regions in '<a
+        href="qh-opto.htm#o">o</a>' output format. Its
+        coordinates are <em>-10.101</em>.</li>
+    <li><em>good facet</em> - an upper Delaunay facet with
+        optional restrictions by '<a href="qh-optq.htm#QVn">QVn</a>',
+        etc.</li>
+</ul>
+
+<h3><a href="qh-opt.htm#opt">»</a><a name="vQu-outputs">furthest-site
+Voronoi outputs</a></h3>
+
+<p>These options control the output of furthest-site Voronoi
+vertices and regions. Other output options return the
+corresponding furthest-site Delaunay triangulation.</p>
+
+<ul>
+    <li>'<a href="qh-opto.htm#s">s</a>' - print the number of
+        furthest-site Voronoi vertices and regions</li>
+    <li>'<a href="qh-opto.htm#p">p</a>' - print the furthest-site
+        Voronoi vertices.</li>
+    <li>'<a href="qh-opto.htm#o">o</a>' - print the furthest-site
+        Voronoi vertices and furthest-site Voronoi regions (see
+        below). In 2-d, this is the furthest-site Voronoi diagram
+        without the unbounded rays. </li>
+</ul>
+
+<ul>
+    <li>'<a href="qh-opto.htm#i">i</a>' - list the furthest-site
+        Voronoi regions for each furthest-site Voronoi vertex</li>
+    <li>'<a href="qh-optf.htm#FN">FN</a>' - list the
+        furthest-site Voronoi vertices for each furthest-site
+        Voronoi region</li>
+    <li>'<a href="qh-optf.htm#Fn">Fn</a>' - list the neighboring
+        furthest-site Voronoi vertices for each furthest-site
+        Voronoi vertex</li>
+    <li>'<a href="qh-optq.htm#QVn">QVn</a> <a
+        href="qh-optp.htm#Pg">Pg</a>' - select furthest-site
+        Voronoi vertices for input site <em>n</em> </li>
+</ul>
+
+<p>For the '<a href="qh-opto.htm#o">o</a>' option, the first
+number is the dimension. The next two numbers are the number of
+vertices and the number of input sites. The line ends with a
+&quot;1&quot;. The furthest-site Voronoi vertices are listed one
+per line. The first (<em>0</em>'th) vertex indicates the infinity
+vertex. Its coordinates are <em>-10.101</em>. The infinity vertex
+also occurs for degenerate Delaunay triangles.</p>
+
+<p>The furthest-site Voronoi regions follow the vertices with one
+line per input site. Each region is defined by the number of
+furthest-site Voronoi vertices followed by the index of each
+vertex. Coplanar and interior input sites have &quot;0&quot;
+vertices. In 2-d, the vertices are listed in adjacency order
+(unoriented). In 3-d and higher, the vertices are listed in
+numeric order. A zero index indicates the infinity vertex. Such
+regions are unbounded.</p>
+
+<h3><a href="qh-opt.htm#opt">»</a><a name="vQu-controls">furthest-site
+Voronoi controls</a></h3>
+
+<p>These options provide additional control:</p>
+
+<ul>
+    <li>'<a href="qh-optt.htm#Tv">Tv</a>' - verify result</li>
+    <li>'<a href="qh-optq.htm#Qbb">Qbb</a>' - scale the last
+        coordinate to reduce precision errors. Use it for integer
+        coefficients and nearly cocircular/cospherical input.</li>
+    <li>'<a href="qh-opto.htm#f">f </a>' - print the data
+        structure for each facet</li>
+    <li>'<a href="qh-optt.htm#TFn">TFn</a>' - report summary
+        after constructing <em>n</em> facets</li>
+</ul>
+
+<h3><a href="qh-opt.htm#opt">»</a><a name="vQu-graphics">furthest-site
+Voronoi graphics</a></h3>
+
+<p>In 2-d, Geomview output ('<a href="qh-optg.htm#G">G</a>')
+displays a furthest-site Voronoi diagram with extra edges to
+close the unbounded furthest-site Voronoi regions. Most regions
+will be unbounded!</p>
+
+<p>You can also view bounded, furthest-site Voronoi regions in
+3-d. To view the furthest-site Voronoi region for site 3 in
+Geomview, execute</p>
+
+<blockquote>
+    <p>qhull &lt;data FQ s GV3 v Qu Fc Pg | qhull s G &gt;output</p>
+</blockquote>
+
+<p>The first <tt>qhull</tt> command returns the furthest-site
+Voronoi vertices for all facets incident to point 3 in the
+furthest-site Delaunay triangulation. The second <tt>qhull</tt>
+command computes their convex hull. This is the furthest-site
+Voronoi region for input site 3. It will not work if the region
+is unbounded.</p>
+
+<p>See the <a href="qh-eg.htm#delaunay">Delaunay and Voronoi
+examples</a> for a 2-d example. Turn off normalization (on
+Geomview's 'obscure' menu) when comparing the furthest-site
+Voronoi diagram with the corresponding Voronoi diagram. </p>
+
+<h3><a href="qh-opt.htm#opt">»</a><a name="vQu-notes">furthest-site
+Voronoi notes</a></h3>
+
+<p>See <a href="qh-optv.htm#v-notes">Voronoi notes</a>.</p>
+<!-- Navigation links -->
+<hr>
+
+<p><b>Up:</b> <a href="http://www.geom.umn.edu/locate/qhull">Home
+page for Qhull</a> <br>
+<b>Up:</b> <a href="qh-man.htm#TOC">Qhull manual</a> <br>
+<b>Up:</b> <a href="qh-opt.htm">Qhull options</a></p>
+
+<p><b>To:</b> <a href="qh-man.htm#synopsis">Synopsis</a> &#149; <a
+href="qh-opt.htm#opt">Main</a> &#149; <a
+href="qh-opto.htm#output">Output</a> &#149; <a
+href="qh-optf.htm#format">Formats</a> &#149; <a
+href="qh-optg.htm#geomview">Geomview</a> &#149; <a
+href="qh-optp.htm#print">Print</a> &#149; <a
+href="qh-optq.htm#qhull">Qhull</a> &#149; <a
+href="qh-optc.htm#prec">Precision</a> &#149; <a
+href="qh-optt.htm#trace">Trace</a></p>
+<!-- GC common information -->
+<hr>
+
+<p><a href="http://www.geom.umn.edu/"><img src="qh--geom.gif"
+align="middle" width="40" height="40"></a><i>The Geometry Center
+Home Page </i></p>
+
+<p>Comments to: <a
+href="http://www.geom.umn.edu/software/qhull/qhull-mail.html">qhull@geom.umn.edu
+</a><br>
+Created: Sept. 25, 1995 --- <!-- hhmts start --> Last modified: see top <!-- hhmts end --> </p>
+</body>
+</html>

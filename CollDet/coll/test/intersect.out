@@ -1,0 +1,31 @@
+phase 0
+Polygons intersect  -> OK
+phase 1
+Polygons intersect  -> OK
+phase 2
+Polygons don't intersect  -> OK
+phase 3
+Polygons intersect  -> OK
+phase 4
+Polygons intersect  -> OK
+phase 5
+Polygons intersect  -> OK
+phase 6
+Polygons intersect  -> OK
+phase 7
+Polygons don't intersect  -> OK
+phase 8
+Polygons don't intersect  -> OK
+phase 9
+Polygons don't intersect  -> OK
+phase 10
+Polygons don't intersect  -> OK
+phase 11
+Polygons don't intersect
+phase 11
+Polygons don't intersect
+phase 11
+Polygons don't intersect
+phase 11
+Polygons don't intersect
+phase 12

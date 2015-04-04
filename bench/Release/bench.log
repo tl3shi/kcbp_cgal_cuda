@@ -1,0 +1,9 @@
+﻿  tangleibench.cpp
+tangleibench.cpp(1155): warning C4018: “<”: 有符号/无符号不匹配
+tangleibench.cpp(1202): warning C4018: “<”: 有符号/无符号不匹配
+tangleibench.cpp(1236): warning C4018: “<”: 有符号/无符号不匹配
+tangleibench.cpp(1241): warning C4018: “<”: 有符号/无符号不匹配
+tangleibench.cpp(1243): warning C4018: “<”: 有符号/无符号不匹配
+  正在生成代码
+  已完成代码的生成
+  bench.vcxproj -> D:\github\kcbp_cgal_cuda\kcbp_cgal_cuda\Release\bench.exe

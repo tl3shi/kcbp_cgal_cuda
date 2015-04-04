@@ -1,0 +1,871 @@
+// !$*UTF8*$!
+{
+	0867D690FE84028FC02AAC07 /* Project object */ = {
+		activeBuildConfigurationName = Release;
+		activeExecutable = 9260D2DA0C8B582A002BEFD9 /* bench */;
+		activeTarget = 9260D2D80C8B582A002BEFD9 /* bench */;
+		addToTargets = (
+			9260D3DF0C8B650F002BEFD9 /* utils */,
+		);
+		breakpoints = (
+		);
+		breakpointsGroup = 928B948E0C97024C0084D6D0 /* XCBreakpointsBucket */;
+		codeSenseManager = 92E460370C73A4F200A3FF4B /* Code sense */;
+		executables = (
+			92A32E2D0C75DD0800EFEBD0 /* interactive */,
+			92AD03FC0C8879A3000E7FBD /* intersect */,
+			9260D2880C8B50BF002BEFD9 /* movem */,
+			9260D2DA0C8B582A002BEFD9 /* bench */,
+			9260D2F70C8B5A49002BEFD9 /* boxtree */,
+			9260D3100C8B5BE2002BEFD9 /* convexHull */,
+			9260D32C0C8B5D35002BEFD9 /* doptree */,
+			9260D3460C8B5E54002BEFD9 /* exceptions */,
+			9260D3630C8B603D002BEFD9 /* grid */,
+			9260D3840C8B6176002BEFD9 /* multithreading */,
+			9260D39D0C8B62FA002BEFD9 /* queue */,
+			9260D3B40C8B6411002BEFD9 /* topology */,
+			9260D3E10C8B650F002BEFD9 /* utils */,
+		);
+		perUserDictionary = {
+			PBXConfiguration.PBXFileTableDataSource3.PBXBookmarksDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXBookmarksDataSource_NameID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					200,
+					200,
+					424.5835,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXBookmarksDataSource_LocationID,
+					PBXBookmarksDataSource_NameID,
+					PBXBookmarksDataSource_CommentsID,
+				);
+			};
+			PBXConfiguration.PBXFileTableDataSource3.PBXErrorsWarningsDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXErrorsWarningsDataSource_LocationID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					547,
+					200,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXErrorsWarningsDataSource_TypeID,
+					PBXErrorsWarningsDataSource_MessageID,
+					PBXErrorsWarningsDataSource_LocationID,
+				);
+			};
+			PBXConfiguration.PBXFileTableDataSource3.PBXExecutablesDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXExecutablesDataSource_NameID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					22,
+					300,
+					502,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXExecutablesDataSource_ActiveFlagID,
+					PBXExecutablesDataSource_NameID,
+					PBXExecutablesDataSource_CommentsID,
+				);
+			};
+			PBXConfiguration.PBXFileTableDataSource3.PBXFileTableDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					591,
+					20,
+					48,
+					43,
+					43,
+					20,
+					20,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+					PBXFileDataSource_Target_ColumnID,
+					PBXFileDataSource_SCM_ColumnID,
+				);
+			};
+			PBXConfiguration.PBXFileTableDataSource3.PBXSymbolsDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXSymbolsDataSource_SymbolNameID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					16,
+					200,
+					50,
+					200,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXSymbolsDataSource_SymbolTypeIconID,
+					PBXSymbolsDataSource_SymbolNameID,
+					PBXSymbolsDataSource_SymbolTypeID,
+					PBXSymbolsDataSource_ReferenceNameID,
+				);
+			};
+			PBXConfiguration.PBXFileTableDataSource3.XCSCMDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					20,
+					591,
+					20,
+					48,
+					43,
+					43,
+					20,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_SCM_ColumnID,
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+					PBXFileDataSource_Target_ColumnID,
+				);
+			};
+			PBXConfiguration.PBXTargetDataSource.PBXTargetDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					200,
+					435,
+					20,
+					48,
+					43,
+					43,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXTargetDataSource_PrimaryAttribute,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+				);
+			};
+			PBXPerProjectTemplateStateSaveDate = 212320735;
+			PBXWorkspaceStateSaveDate = 212320735;
+		};
+		perUserProjectItems = {
+			9209ABB50CAFF8870092C018 /* PBXTextBookmark */ = 9209ABB50CAFF8870092C018 /* PBXTextBookmark */;
+			9209ABB70CAFF8870092C018 /* PBXTextBookmark */ = 9209ABB70CAFF8870092C018 /* PBXTextBookmark */;
+			92E90F330C9EC1DF00D01636 /* PBXTextBookmark */ = 92E90F330C9EC1DF00D01636 /* PBXTextBookmark */;
+			92E90F340C9EC1DF00D01636 /* PBXTextBookmark */ = 92E90F340C9EC1DF00D01636 /* PBXTextBookmark */;
+		};
+		sourceControlManager = 92E460360C73A4F200A3FF4B /* Source Control */;
+		userBookmarkGroup = 928B94010C9047CF0084D6D0 /* PBXBookmarkGroup */;
+		userBuildSettings = {
+		};
+	};
+	9209ABB50CAFF8870092C018 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 9209ABB60CAFF8870092C018 /* interactive.cpp */;
+		name = "(null): 1217";
+		rLen = 0;
+		rLoc = 30683;
+		rType = 0;
+		vrLen = 1026;
+		vrLoc = 30154;
+	};
+	9209ABB60CAFF8870092C018 /* interactive.cpp */ = {
+		isa = PBXFileReference;
+		name = interactive.cpp;
+		path = /Users/zach/Code/CollDet/xcode/../coll/test/interactive.cpp;
+		sourceTree = "<absolute>";
+	};
+	9209ABB70CAFF8870092C018 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 92E4603C0C73A55B00A3FF4B /* ColBoxtree.cpp */;
+		name = "ColBoxtree.cpp: 1499";
+		rLen = 0;
+		rLoc = 44120;
+		rType = 0;
+		vrLen = 1111;
+		vrLoc = 43600;
+	};
+	9260D2860C8B50BF002BEFD9 /* movem */ = {
+		activeExec = 0;
+		executables = (
+			9260D2880C8B50BF002BEFD9 /* movem */,
+		);
+	};
+	9260D2880C8B50BF002BEFD9 /* movem */ = {
+		isa = PBXExecutable;
+		activeArgIndex = 0;
+		activeArgIndices = (
+			YES,
+			YES,
+			YES,
+			YES,
+		);
+		argumentStrings = (
+			"-n 10",
+			"-x 30",
+			"-e 3",
+			"-v n",
+		);
+		autoAttachOnCrash = 1;
+		configStateDict = {
+		};
+		customDataFormattersEnabled = 1;
+		debuggerPlugin = GDBDebugging;
+		disassemblyDisplayState = 0;
+		dylibVariantSuffix = "";
+		enableDebugStr = 1;
+		environmentEntries = (
+			{
+				active = YES;
+				name = DYLD_FALLBACK_LIBRARY_PATH;
+				value = "/usr/local/lib:/opt/local/lib:/sw/lib:/usr/local/qt/lib:/usr/local/lib/opt:/Users/zach/Code/CollDet/install/lib/macosx:/usr/X11R6/lib";
+			},
+		);
+		executableSystemSymbolLevel = 0;
+		executableUserSymbolLevel = 0;
+		libgmallocEnabled = 0;
+		name = movem;
+		sourceDirectories = (
+		);
+	};
+	9260D2D80C8B582A002BEFD9 /* bench */ = {
+		activeExec = 0;
+		executables = (
+			9260D2DA0C8B582A002BEFD9 /* bench */,
+		);
+	};
+	9260D2DA0C8B582A002BEFD9 /* bench */ = {
+		isa = PBXExecutable;
+		activeArgIndex = 0;
+		activeArgIndices = (
+			YES,
+			YES,
+			YES,
+			NO,
+			NO,
+			NO,
+			YES,
+			YES,
+		);
+		argumentStrings = (
+			"-d 1.3 0.701",
+			"-g sh",
+			"-n 5 500",
+			"-x 4",
+			"-x 5",
+			"-x 15",
+			"-x 40",
+			"-A bx",
+		);
+		autoAttachOnCrash = 1;
+		configStateDict = {
+		};
+		customDataFormattersEnabled = 1;
+		debuggerPlugin = GDBDebugging;
+		disassemblyDisplayState = 0;
+		dylibVariantSuffix = "";
+		enableDebugStr = 1;
+		environmentEntries = (
+			{
+				active = YES;
+				name = DYLD_FALLBACK_LIBRARY_PATH;
+				value = "/usr/local/lib:/opt/local/lib:/sw/lib:/usr/local/qt/lib:/usr/local/lib/opt:/Users/zach/Code/CollDet/install/lib/macosx:/usr/X11R6/lib";
+			},
+		);
+		executableSystemSymbolLevel = 0;
+		executableUserSymbolLevel = 0;
+		libgmallocEnabled = 0;
+		name = bench;
+		sourceDirectories = (
+		);
+	};
+	9260D2DB0C8B5847002BEFD9 /* bench.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {758, 17424}}";
+			sepNavSelRange = "{26840, 0}";
+			sepNavVisRect = "{{0, 3948}, {758, 865}}";
+			sepNavWindowFrame = "{{256, 184}, {797, 994}}";
+		};
+	};
+	9260D2F50C8B5A49002BEFD9 /* boxtree */ = {
+		activeExec = 0;
+		executables = (
+			9260D2F70C8B5A49002BEFD9 /* boxtree */,
+		);
+	};
+	9260D2F70C8B5A49002BEFD9 /* boxtree */ = {
+		isa = PBXExecutable;
+		activeArgIndex = 2147483647;
+		activeArgIndices = (
+		);
+		argumentStrings = (
+		);
+		autoAttachOnCrash = 1;
+		configStateDict = {
+		};
+		customDataFormattersEnabled = 1;
+		debuggerPlugin = GDBDebugging;
+		disassemblyDisplayState = 0;
+		enableDebugStr = 1;
+		environmentEntries = (
+		);
+		executableSystemSymbolLevel = 0;
+		executableUserSymbolLevel = 0;
+		libgmallocEnabled = 0;
+		name = boxtree;
+		sourceDirectories = (
+		);
+	};
+	9260D30E0C8B5BE2002BEFD9 /* convexHull */ = {
+		activeExec = 0;
+		executables = (
+			9260D3100C8B5BE2002BEFD9 /* convexHull */,
+		);
+	};
+	9260D3100C8B5BE2002BEFD9 /* convexHull */ = {
+		isa = PBXExecutable;
+		activeArgIndex = 2147483647;
+		activeArgIndices = (
+		);
+		argumentStrings = (
+		);
+		autoAttachOnCrash = 1;
+		configStateDict = {
+		};
+		customDataFormattersEnabled = 1;
+		debuggerPlugin = GDBDebugging;
+		disassemblyDisplayState = 0;
+		enableDebugStr = 1;
+		environmentEntries = (
+		);
+		executableSystemSymbolLevel = 0;
+		executableUserSymbolLevel = 0;
+		libgmallocEnabled = 0;
+		name = convexHull;
+		sourceDirectories = (
+		);
+	};
+	9260D32A0C8B5D35002BEFD9 /* doptree */ = {
+		activeExec = 0;
+		executables = (
+			9260D32C0C8B5D35002BEFD9 /* doptree */,
+		);
+	};
+	9260D32C0C8B5D35002BEFD9 /* doptree */ = {
+		isa = PBXExecutable;
+		activeArgIndex = 2147483647;
+		activeArgIndices = (
+		);
+		argumentStrings = (
+		);
+		autoAttachOnCrash = 1;
+		configStateDict = {
+		};
+		customDataFormattersEnabled = 1;
+		debuggerPlugin = GDBDebugging;
+		disassemblyDisplayState = 0;
+		dylibVariantSuffix = "";
+		enableDebugStr = 1;
+		environmentEntries = (
+		);
+		executableSystemSymbolLevel = 0;
+		executableUserSymbolLevel = 0;
+		libgmallocEnabled = 0;
+		name = doptree;
+		sourceDirectories = (
+		);
+	};
+	9260D3440C8B5E54002BEFD9 /* exceptions */ = {
+		activeExec = 0;
+		executables = (
+			9260D3460C8B5E54002BEFD9 /* exceptions */,
+		);
+	};
+	9260D3460C8B5E54002BEFD9 /* exceptions */ = {
+		isa = PBXExecutable;
+		activeArgIndex = 2147483647;
+		activeArgIndices = (
+		);
+		argumentStrings = (
+		);
+		autoAttachOnCrash = 1;
+		configStateDict = {
+		};
+		customDataFormattersEnabled = 1;
+		debuggerPlugin = GDBDebugging;
+		disassemblyDisplayState = 0;
+		enableDebugStr = 1;
+		environmentEntries = (
+		);
+		executableSystemSymbolLevel = 0;
+		executableUserSymbolLevel = 0;
+		libgmallocEnabled = 0;
+		name = exceptions;
+		sourceDirectories = (
+		);
+	};
+	9260D3470C8B5E73002BEFD9 /* exceptions.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {643, 745}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRect = "{{0, 0}, {643, 745}}";
+			sepNavWindowFrame = "{{15, -1}, {682, 874}}";
+		};
+	};
+	9260D3610C8B603D002BEFD9 /* grid */ = {
+		activeExec = 0;
+		executables = (
+			9260D3630C8B603D002BEFD9 /* grid */,
+		);
+	};
+	9260D3630C8B603D002BEFD9 /* grid */ = {
+		isa = PBXExecutable;
+		activeArgIndex = 2147483647;
+		activeArgIndices = (
+		);
+		argumentStrings = (
+		);
+		autoAttachOnCrash = 1;
+		configStateDict = {
+		};
+		customDataFormattersEnabled = 1;
+		debuggerPlugin = GDBDebugging;
+		disassemblyDisplayState = 0;
+		enableDebugStr = 1;
+		environmentEntries = (
+		);
+		executableSystemSymbolLevel = 0;
+		executableUserSymbolLevel = 0;
+		libgmallocEnabled = 0;
+		name = grid;
+		sourceDirectories = (
+		);
+	};
+	9260D3820C8B6176002BEFD9 /* multithreading */ = {
+		activeExec = 0;
+		executables = (
+			9260D3840C8B6176002BEFD9 /* multithreading */,
+		);
+	};
+	9260D3840C8B6176002BEFD9 /* multithreading */ = {
+		isa = PBXExecutable;
+		activeArgIndex = 2147483647;
+		activeArgIndices = (
+		);
+		argumentStrings = (
+		);
+		autoAttachOnCrash = 1;
+		configStateDict = {
+			"PBXLSLaunchAction-0" = {
+				PBXLSLaunchAction = 0;
+				PBXLSLaunchStartAction = 1;
+				PBXLSLaunchStdioStyle = 2;
+				PBXLSLaunchStyle = 0;
+				class = PBXLSRunLaunchConfig;
+				displayName = "Executable Runner";
+				identifier = com.apple.Xcode.launch.runConfig;
+				remoteHostInfo = "";
+				startActionInfo = "";
+			};
+		};
+		customDataFormattersEnabled = 1;
+		debuggerPlugin = GDBDebugging;
+		disassemblyDisplayState = 0;
+		dylibVariantSuffix = "";
+		enableDebugStr = 1;
+		environmentEntries = (
+			{
+				active = YES;
+				name = DYLD_FALLBACK_LIBRARY_PATH;
+				value = "/usr/local/lib:/opt/local/lib:/sw/lib:/usr/local/qt/lib:/usr/local/lib/opt:/Users/zach/Code/CollDet/install/lib/macosx:/usr/X11R6/lib";
+			},
+		);
+		executableSystemSymbolLevel = 0;
+		executableUserSymbolLevel = 0;
+		libgmallocEnabled = 0;
+		name = multithreading;
+		savedGlobals = {
+		};
+		sourceDirectories = (
+		);
+		startupPath = /Users/zach/Code/CollDet/xcode/../coll/test;
+		variableFormatDictionary = {
+		};
+	};
+	9260D3880C8B61A5002BEFD9 /* multithreading.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1153, 11168}}";
+			sepNavSelRange = "{16663, 0}";
+			sepNavVisRect = "{{0, 9892}, {1153, 745}}";
+			sepNavWindowFrame = "{{25, 4}, {1192, 874}}";
+		};
+	};
+	9260D39B0C8B62FA002BEFD9 /* queue */ = {
+		activeExec = 0;
+		executables = (
+			9260D39D0C8B62FA002BEFD9 /* queue */,
+		);
+	};
+	9260D39D0C8B62FA002BEFD9 /* queue */ = {
+		isa = PBXExecutable;
+		activeArgIndex = 2147483647;
+		activeArgIndices = (
+		);
+		argumentStrings = (
+		);
+		autoAttachOnCrash = 1;
+		configStateDict = {
+		};
+		customDataFormattersEnabled = 1;
+		debuggerPlugin = GDBDebugging;
+		disassemblyDisplayState = 0;
+		enableDebugStr = 1;
+		environmentEntries = (
+		);
+		executableSystemSymbolLevel = 0;
+		executableUserSymbolLevel = 0;
+		libgmallocEnabled = 0;
+		name = queue;
+		sourceDirectories = (
+		);
+	};
+	9260D3B20C8B6411002BEFD9 /* topology */ = {
+		activeExec = 0;
+		executables = (
+			9260D3B40C8B6411002BEFD9 /* topology */,
+		);
+	};
+	9260D3B40C8B6411002BEFD9 /* topology */ = {
+		isa = PBXExecutable;
+		activeArgIndex = 2147483647;
+		activeArgIndices = (
+		);
+		argumentStrings = (
+		);
+		autoAttachOnCrash = 1;
+		configStateDict = {
+		};
+		customDataFormattersEnabled = 1;
+		debuggerPlugin = GDBDebugging;
+		disassemblyDisplayState = 0;
+		enableDebugStr = 1;
+		environmentEntries = (
+		);
+		executableSystemSymbolLevel = 0;
+		executableUserSymbolLevel = 0;
+		libgmallocEnabled = 0;
+		name = topology;
+		sourceDirectories = (
+		);
+	};
+	9260D3DF0C8B650F002BEFD9 /* utils */ = {
+		activeExec = 0;
+		executables = (
+			9260D3E10C8B650F002BEFD9 /* utils */,
+		);
+	};
+	9260D3E10C8B650F002BEFD9 /* utils */ = {
+		isa = PBXExecutable;
+		activeArgIndex = 2147483647;
+		activeArgIndices = (
+		);
+		argumentStrings = (
+		);
+		autoAttachOnCrash = 1;
+		configStateDict = {
+		};
+		customDataFormattersEnabled = 1;
+		debuggerPlugin = GDBDebugging;
+		disassemblyDisplayState = 0;
+		enableDebugStr = 1;
+		environmentEntries = (
+		);
+		executableSystemSymbolLevel = 0;
+		executableUserSymbolLevel = 0;
+		libgmallocEnabled = 0;
+		name = utils;
+		sourceDirectories = (
+		);
+	};
+	9260D3E20C8B6530002BEFD9 /* utils.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {643, 13468}}";
+			sepNavSelRange = "{17388, 0}";
+			sepNavVisRect = "{{0, 10107}, {643, 745}}";
+			sepNavWindowFrame = "{{14, 1}, {682, 874}}";
+		};
+	};
+	928B94010C9047CF0084D6D0 /* PBXBookmarkGroup */ = {
+		isa = PBXBookmarkGroup;
+		children = (
+			928B94550C96FB8F0084D6D0 /* PBXTextBookmark */,
+		);
+		name = Root;
+	};
+	928B94550C96FB8F0084D6D0 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 92A32E330C75DE1400EFEBD0 /* interactive.cpp */;
+		name = createfilename;
+		rLen = 0;
+		rLoc = 30400;
+		rType = 0;
+		vrLen = 1005;
+		vrLoc = 29894;
+	};
+	928B948E0C97024C0084D6D0 /* XCBreakpointsBucket */ = {
+		isa = XCBreakpointsBucket;
+		name = "Project Breakpoints";
+		objects = (
+		);
+	};
+	928B94AF0C973F420084D6D0 /* interactive.cpp */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.cpp.cpp;
+		name = interactive.cpp;
+		path = /Users/zach/Code/CollDet/xcode/../coll/test/interactive.cpp;
+		sourceTree = "<absolute>";
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {780, 26048}}";
+			sepNavSelRange = "{30683, 0}";
+			sepNavVisRect = "{{0, 19092}, {780, 745}}";
+			sepNavWindowFrame = "{{219, 4}, {819, 874}}";
+		};
+	};
+	929586610C903E6B00507427 /* all */ = {
+		activeExec = 0;
+	};
+	92A32E2B0C75DD0800EFEBD0 /* interactive */ = {
+		activeExec = 0;
+		executables = (
+			92A32E2D0C75DD0800EFEBD0 /* interactive */,
+		);
+	};
+	92A32E2D0C75DD0800EFEBD0 /* interactive */ = {
+		isa = PBXExecutable;
+		activeArgIndex = 0;
+		activeArgIndices = (
+			YES,
+			YES,
+			YES,
+			YES,
+		);
+		argumentStrings = (
+			"-g to",
+			"-x 50",
+			"-a bx",
+			"-v d",
+		);
+		autoAttachOnCrash = 1;
+		configStateDict = {
+			"PBXLSLaunchAction-0" = {
+				PBXLSLaunchAction = 0;
+				PBXLSLaunchStartAction = 1;
+				PBXLSLaunchStdioStyle = 2;
+				PBXLSLaunchStyle = 0;
+				class = PBXLSRunLaunchConfig;
+				displayName = "Executable Runner";
+				identifier = com.apple.Xcode.launch.runConfig;
+				remoteHostInfo = "";
+				startActionInfo = "";
+			};
+		};
+		customDataFormattersEnabled = 1;
+		debuggerPlugin = GDBDebugging;
+		disassemblyDisplayState = 0;
+		dylibVariantSuffix = "";
+		enableDebugStr = 1;
+		environmentEntries = (
+			{
+				active = YES;
+				name = DYLD_FALLBACK_LIBRARY_PATH;
+				value = "/usr/local/lib:/opt/local/lib:/sw/lib:/usr/local/qt/lib:/usr/local/lib/opt:/Users/zach/Code/CollDet/install/lib/macosx:/usr/X11R6/lib";
+			},
+		);
+		executableSystemSymbolLevel = 0;
+		executableUserSymbolLevel = 0;
+		libgmallocEnabled = 0;
+		name = interactive;
+		savedGlobals = {
+		};
+		sourceDirectories = (
+		);
+		startupPath = /Users/zach/Code/CollDet/coll/test;
+		variableFormatDictionary = {
+		};
+	};
+	92A32E330C75DE1400EFEBD0 /* interactive.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {780, 26048}}";
+			sepNavSelRange = "{30683, 0}";
+			sepNavVisRect = "{{0, 19092}, {780, 745}}";
+			sepNavWindowFrame = "{{750, 4}, {682, 874}}";
+		};
+	};
+	92AD03FA0C8879A3000E7FBD /* intersect */ = {
+		activeExec = 0;
+		executables = (
+			92AD03FC0C8879A3000E7FBD /* intersect */,
+		);
+	};
+	92AD03FC0C8879A3000E7FBD /* intersect */ = {
+		isa = PBXExecutable;
+		activeArgIndex = 0;
+		activeArgIndices = (
+			YES,
+		);
+		argumentStrings = (
+			"-w",
+		);
+		autoAttachOnCrash = 1;
+		configStateDict = {
+		};
+		customDataFormattersEnabled = 1;
+		debuggerPlugin = GDBDebugging;
+		disassemblyDisplayState = 0;
+		dylibVariantSuffix = "";
+		enableDebugStr = 1;
+		environmentEntries = (
+			{
+				active = YES;
+				name = DYLD_FALLBACK_LIBRARY_PATH;
+				value = "/usr/local/lib:/opt/local/lib:/sw/lib:/usr/local/qt/lib:/usr/local/lib/opt:/Users/zach/Code/CollDet/install/lib/macosx:/usr/X11R6/lib";
+			},
+		);
+		executableSystemSymbolLevel = 0;
+		executableUserSymbolLevel = 0;
+		libgmallocEnabled = 0;
+		name = intersect;
+		savedGlobals = {
+		};
+		sourceDirectories = (
+		);
+		variableFormatDictionary = {
+		};
+	};
+	92AD04000C8879E5000E7FBD /* intersect.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {607, 13944}}";
+			sepNavSelRange = "{2734, 0}";
+			sepNavVisRect = "{{0, 1100}, {607, 740}}";
+			sepNavWindowFrame = "{{15, 4}, {646, 869}}";
+		};
+	};
+	92E460360C73A4F200A3FF4B /* Source Control */ = {
+		isa = PBXSourceControlManager;
+		fallbackIsa = XCSourceControlManager;
+		isSCMEnabled = 1;
+		scmConfiguration = {
+			SubversionToolPath = /usr/local/bin/svn;
+		};
+		scmType = scm.subversion;
+	};
+	92E460370C73A4F200A3FF4B /* Code sense */ = {
+		isa = PBXCodeSenseManager;
+		indexTemplatePath = "";
+	};
+	92E4603C0C73A55B00A3FF4B /* ColBoxtree.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {780, 33200}}";
+			sepNavSelRange = "{44120, 0}";
+			sepNavVisRect = "{{0, 23604}, {780, 745}}";
+			sepNavWindowFrame = "{{59, 4}, {819, 874}}";
+		};
+	};
+	92E4603D0C73A55B00A3FF4B /* ColBoxtree.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {818, 4016}}";
+			sepNavSelRange = "{5799, 0}";
+			sepNavVisRect = "{{0, 2396}, {818, 745}}";
+			sepNavWindowFrame = "{{261, 8}, {857, 874}}";
+		};
+	};
+	92E4603E0C73A55B00A3FF4B /* ColConvexHull.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1164, 7168}}";
+			sepNavSelRange = "{8749, 11}";
+			sepNavVisRect = "{{0, 4024}, {1164, 898}}";
+			sepNavWindowFrame = "{{61, 104}, {1203, 1027}}";
+		};
+	};
+	92E460410C73A55B00A3FF4B /* ColDopTree.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1164, 38752}}";
+			sepNavSelRange = "{42375, 0}";
+			sepNavVisRect = "{{0, 24074}, {1164, 699}}";
+			sepNavWindowFrame = "{{15, 4}, {1203, 828}}";
+		};
+	};
+	92E4604D0C73A55B00A3FF4B /* Collision.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1164, 13692}}";
+			sepNavSelRange = "{3575, 0}";
+			sepNavVisRect = "{{0, 1282}, {1164, 699}}";
+			sepNavWindowFrame = "{{15, 4}, {1203, 828}}";
+		};
+	};
+	92E4604E0C73A55B00A3FF4B /* Collision.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1164, 6076}}";
+			sepNavSelRange = "{1959, 0}";
+			sepNavVisRect = "{{0, 344}, {1164, 699}}";
+			sepNavWindowFrame = "{{15, 4}, {1203, 828}}";
+		};
+	};
+	92E4604F0C73A55B00A3FF4B /* ColObj.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1135, 15288}}";
+			sepNavSelRange = "{20885, 0}";
+			sepNavVisRect = "{{0, 12451}, {1135, 369}}";
+			sepNavWindowFrame = "{{15, 4}, {1203, 828}}";
+		};
+	};
+	92E460590C73A55B00A3FF4B /* ColUtils.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1091, 45744}}";
+			sepNavSelRange = "{63748, 52}";
+			sepNavVisRect = "{{0, 37303}, {643, 745}}";
+			sepNavWindowFrame = "{{38, 278}, {682, 874}}";
+		};
+	};
+	92E4605D0C73A55B00A3FF4B /* lulgs.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1164, 1666}}";
+			sepNavSelRange = "{1072, 0}";
+			sepNavVisRect = "{{0, 0}, {1164, 898}}";
+			sepNavWindowFrame = "{{107, 62}, {1203, 1027}}";
+		};
+	};
+	92E90F330C9EC1DF00D01636 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 928B94AF0C973F420084D6D0 /* interactive.cpp */;
+		name = "interactive.cpp: 1220";
+		rLen = 0;
+		rLoc = 30683;
+		rType = 0;
+		vrLen = 1096;
+		vrLoc = 30112;
+	};
+	92E90F340C9EC1DF00D01636 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 92E4603C0C73A55B00A3FF4B /* ColBoxtree.cpp */;
+		name = "ColBoxtree.cpp: 1501";
+		rLen = 0;
+		rLoc = 44120;
+		rType = 0;
+		vrLen = 949;
+		vrLoc = 43624;
+	};
+	D2AAC09C05546B4700DB518D /* colldet */ = {
+		activeExec = 0;
+	};
+}

@@ -1,0 +1,106 @@
+./"  This is the Unix manual page for rbox, written in nroff, the standard
+./"  manual formatter for Unix systems.  To format it, type
+./"
+./"  nroff -man rbox.man
+./"
+./"  This will print a formatted copy to standard output.  If you want
+./"  to ensure that the output is plain ascii, free of any control
+./"  characters that nroff uses for underlining etc, pipe the output
+./"  through "col -b":
+./"
+./"  nroff -man rbox.man | col -b
+./"
+.TH rbox 1 "Jan 23, 1995" "Geometry Center"
+.SH NAME
+rbox \- generate point distributions for qhull
+.SH SYNOPSIS
+Command "rbox" (w/o arguments) lists the options.
+.SH DESCRIPTION
+.PP
+rbox generates random or regular points according to the options given, and 
+outputs
+the points to stdout. The points are generated in a cube, unless 's' or
+'k' option is
+given. The format of the output is the following: first line
+contains the dimension and a comment, 
+second line contains the number of points, and the 
+following lines contain the points, one point per line. Points are represented
+by their coordinate values.
+.SH OPTIONS
+.TP
+n
+number of points
+.TP
+Dn
+dimension n-d (default 3-d)
+.TP
+Bn
+bounding box coordinates (default 0.5)
+.TP
+l
+spiral distribution, available only in 3-d
+.TP
+Ln
+lens distribution of radius n.  May be used with 's', 'r', 'G', and 'W'.
+.TP
+s
+cospherical points randomly generated in a cube and projected to the unit sphere
+.TP
+Wn
+restrict points to distance n of the surface of a sphere or a cube
+.TP
+c
+add a unit cube to the output
+.TP
+c Gm
+add a cube with all combinations of +m and -m to the output
+.TP
+d
+add a unit diamond to the output.
+.TP
+d Gm
+add a diamond made of 0, +m and -m to the output
+.TP
+Pn,m,r
+add point [n,m,r] to the output first.  Pad coordinates with 0.0.
+.TP
+n
+Remove the command line from the first line of output.
+.TP
+t
+use time in seconds as the random number seed (default is command line).
+.TP
+tn
+set the random number seed to n.
+.TP
+z
+generate integer coordinates.  Use 'Bn' to change the range.  
+The default is 'B1e6' for six-digit coordinates.  In R^4, seven-digit
+coordinates will overflow hyperplane normalization.
+.TP
+Zn s
+restrict points to a disk about the z+ axis and the sphere (default Z1.0). 
+Includes the opposite pole.  'Z1e-6' generates degenerate points under
+single precision.
+.TP
+Zn Gm s
+same as Zn with an empty center (default G0.5). 
+.TP
+r s D2
+generate a regular polygon
+.TP
+r s Z1 G0.1
+generate a regular cone
+.SH BUGS
+Some combinations of arguments generate odd results.
+
+Report bugs to qhull_bug@geom.umn.edu, other correspondence to qhull@geom.umn.edu 
+.SH SEE ALSO
+qhull(1)
+.SH AUTHOR
+.nf
+C. Bradford Barber
+c/o The Geometry Center
+1300 South Second Street, Suite 500
+Minneapolis, MN 55454
+.fi

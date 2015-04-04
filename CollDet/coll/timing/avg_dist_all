@@ -1,0 +1,134 @@
+#!/bin/bash -p
+
+#    Plots average coll.det. time over complexity for all objects and all algos.
+#    The average for one obj/algo is computed over an "interesting" dist range.
+#    Calls gnuplot at the end.
+#
+# The list of objects is explicit,
+# because we also need the mindist/maxdist values
+#
+# Caveat: Only data files can have the underscore in there name!
+#         (Log files, for instance, must not!)
+#
+# Usage: avg_dist_all dir1 dir2 ...
+#
+# GZ 2002
+
+
+# generate list of objects
+objs=(happy_buddha scheinwerfer schloss sh sharan to)
+
+datadirs=( $* )
+echo "data directories = ${datadirs[*]}"
+
+# mindist/maxdist per obj
+mindist=(0.9 1.1 1.0 0.9 1.1 1.4)
+maxdist=(1.2 1.8 1.6 1.3 1.6 2.0)
+
+
+# compute averages
+
+declare -i i=0
+
+for o in ${objs[*]}
+do
+
+	# generate list of complexities
+	complexities=`ls -1 ${datadirs[0]}/${o}_* | sed 's/.*_\(.*\)/\1/' | sort -n`
+
+	for dir in ${datadirs[*]}
+	do
+		avgdata=$dir/avg-${o}.dat
+		echo $avgdata
+		rm -f $avgdata
+
+		for c in $complexities
+		do
+			#determine real complexity
+			cx=`cat $dir/${o}_${c} | grep "num faces" | \
+				tr -s " \t" " " | cut -d' ' -f5`
+			if [[ -z "$cx" ]]
+			then
+				cx=$c
+			fi
+
+			printf "%7d  " $cx >> $avgdata
+			./avg_dist $dir/${o}_${c} ${mindist[$i]} ${maxdist[$i]} >> $avgdata
+		done
+
+	done
+
+	(( i++ ))
+done
+
+
+# plot them
+
+declare -i plot_nr=0
+
+pf=avg_dist.plt
+rm -f $pf
+
+# offsets of each plot inside the multiplot
+x=(0 0.5 0    0.5  0   0.5 0    0.5  0   0.5 0    0.5)
+# y offsets depending on number of plots
+declare -i n_rows
+n_rows=${#objs[*]}
+(( n_rows++ ))
+(( n_rows /= 2 ))
+if [[ $n_rows = 1 ]]
+then
+	y=(0 0);  ysize=0.5
+elif [[ $n_rows = 2 ]]
+then
+	y=(0 0   0.5  0.5);  ysize=0.5
+elif [[ $n_rows = 3 ]]
+then
+	y=(0 0   0.33 0.33 0.66 0.66);  ysize=0.33
+elif [[ $n_rows = 4 ]]
+then
+	y=(0 0   0.25 0.25 0.5  0.5  0.75 0.75);  ysize=0.25
+elif [[ $n_rows = 5 ]]
+then
+	y=(0 0   0.2  0.2  0.4  0.4  0.6  0.6  0.8  0.8);  ysize=0.2
+else
+	y=(0 0   0.16 0.16 0.33 0.33 0.50 0.50 0.66 0.66 0.83 0.83);  ysize=0.166
+fi
+
+# header of plot file
+echo "
+set terminal postscript portrait color 'Helvetica' 8
+set output '${pf%plt}eps'
+set size 1, 1
+set origin 0, 0
+set ylabel 'time / millisec'
+set xlabel 'Triangles * 1000'
+set data style lines
+#set xrange [ 0.6 : ]
+set multiplot
+set size 0.5, $ysize
+" >> $pf
+
+for obj in ${objs[*]}
+do
+
+	echo "set origin ${x[plot_nr]} , ${y[plot_nr]}" >> $pf
+	echo "set title '$obj' 0,-1" >> $pf
+	echo "plot \\" >> $pf
+
+	# one plot for all algos(=dirs) and one obj
+	for dir in ${datadirs[*]}
+	do
+		avgdata=$dir/avg-${obj}.dat
+		echo "  '$avgdata' using (\$1/1000):(\$2) title '${dir#results_}', \\" \
+			>> $pf
+	done
+	echo "     0 notitle" >> $pf						# dummy
+	(( plot_nr++ ))
+
+done
+
+gnuplot $pf
+kghostview ${pf%plt}eps &
+
+

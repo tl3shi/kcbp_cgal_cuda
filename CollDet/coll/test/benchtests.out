@@ -1,0 +1,57 @@
+DOP tree
+DopTree:init: Dop::NumOri = 24
+# dist:  num. colls.:
+1.500     198
+1.250     344
+1.000     432
+0.751     500
+0.501     500
+# num collisions = 1974
+# num faces = 50
+DopTree:init: Dop::NumOri = 24
+# dist:  num. colls.:
+1.500       0
+1.250       0
+1.000       0
+0.751     500
+0.501     500
+# num collisions = 1000
+# num faces = 320
+DopTree:init: Dop::NumOri = 24
+# dist:  num. colls.:
+1.500      36
+1.250      50
+1.000     129
+0.749     348
+0.499     500
+# num collisions = 1063
+# num faces = 32
+
+Boxtree
+DopTree:init: Dop::NumOri = 24
+# dist:  num. colls.:
+1.500     198
+1.250     344
+1.000     432
+0.751     500
+0.501     500
+# num collisions = 1974
+# num faces = 50
+DopTree:init: Dop::NumOri = 24
+# dist:  num. colls.:
+1.500       0
+1.250       0
+1.000       0
+0.751     500
+0.501     500
+# num collisions = 1000
+# num faces = 320
+DopTree:init: Dop::NumOri = 24
+# dist:  num. colls.:
+1.500      36
+1.250      50
+1.000     129
+0.749     348
+0.499     500
+# num collisions = 1063
+# num faces = 32

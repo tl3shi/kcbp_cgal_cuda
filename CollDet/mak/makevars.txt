@@ -1,0 +1,122 @@
+
+Variables expected by mak/subdir.mak
+====================================
+
+These variables have to be defined by the OS and compiler specific
+include file mak/<os>_<compiler>.mak (e.g. mak/linux2_gcc.mak).
+
+Name					Comment
+-------------------------------------------------------------------------------
+
+LIBS_PRE				libraries BEFORE package libraries
+LIBS_PROJECT			package libraries
+LIBS_POSTx				libraries AFTER package libraries
+						(only base names, e.g. "TestProj" instead
+						 of "-lTestProj" or "libTestProj.a")
+
+AR						the archiver
+CC						the C compiler
+CXX						the C++ compiler
+LD						the linker
+MOC						the meta object compiler (QT)
+FLEX					flex, i.e. GNU lex
+BISON					bison, i.e. GNU yacc
+DOXYGEN					doxygen
+
+PRINTF					the printf binary, e.g. /usr/bin/printf
+STRIP					the strip binary
+LNS						the symbolic link command, i.e. "ln -s"
+MV						the move command, i.e. "mv"
+RM						the remove command, i.e. "rm -f"
+RMR						the recursive remove command, i.e. "rm -rf"
+
+ARFLAGS					archiver flags
+
+CFLAGS					C compiler flags
+CLOCALFLAGS				additional C flags
+						(default empty, may be specified on make command line)
+CINCLUDEPATH			C include path (-I/some/path ...)
+
+CXXFLAGS				C++ compiler flags
+CXXLOCALFLAGS			additional C++ flags
+						(default empty, may be specified on make command line)
+CXXINCLUDEPATH			C++ include path (-I/some/path ...)
+
+LDFLAGS					linker flags
+LDLOCALFLAGS			additional linker flags
+						(default empty, may be specified on make command line)
+LDPATH					library search path (-L/some/path ..., see LIBDIRS)
+LDLIBS					libraries (-llib ..., see LIBS)
+
+LDSOFLAGS				linker flags for creating shared objects (SOs)
+LDSOLOCALFLAGS			additional linker flags for SOs
+						(default empty, may be specified on make command line)
+
+II_FILESDIR				directory with ii-files (only for SGI/Irix)
+
+DEBUG_MAKE				if set, more messages of make process are output
+
+REQUIRED_PACKAGES		packages required by current package
+						(==> includes mak/<package>.mak files)
+
+EXCLUDED_SOURCES		sources NOT to be included in library (target "lib")
+
+INCLUDED_SOURCES		sources additionally included in library (target "lib")
+
+DEFAULT_TARGETS			targets to be made by default (usually using implicit rules)
+
+
+Variables internal to mak/<os>_<compiler>.mak
+=============================================
+
+These variables are used to define some of the above variables in a more
+specific way. Some of them may be extended in mak/<package>.mak
+(e.g. INCDIRS_C, INCDIRS_CXX, LIBDIRS).
+
+GNUDIR					directory with GNU utilities
+
+INCDIR_STL				include directory for C++ Standard Template Library
+LIBDIR_STL				library directory for C++ Standard Template Library
+
+INCDIRS_C				include directories for C sources
+INCDIRS_CXX				include directories for C++ sources
+
+LIBDIRS					search directories for libraries during link
+
+NOSTDINC_C				disable standard include path for C
+NOSTDINC_CXX			disable standard include path for CXX
+
+DEPFLAGS_C				flags to generate dependencies in C
+DEPFLAGS_CXX			flags to generate dependencies in CXX
+
+DEFINES					defines for C and C++ (-Dxxx ...)
+
+WARNINGS				warning flags for C and C++
+WARNINGS_OFF_C			disabled warnings for C
+WARNINGS_OFF_CXX		disabled warnings for C++
+WARNINGS_OFF_LD			disabled warnings for linker
+
+ABI						application binary interface (IRIX only)
+ISA						instruction set architecture
+CPU						cpu type
+TARG					target platform (IRIX only)
+
+FLAGS_C					specific C compiler flags
+FLAGS_CXX				specific C++ compiler flags
+FLAGS_LD				specific linker flags
+
+FLAGS_SO_C				specific C compiler flags for shared objects
+FLAGS_SO_CXX			specific C++ compiler flags for shared objects
+FLAGS_SO_LD				specific linker flags for shared objects
+
+OPTIM					optimize / debug flags
+
+LIBS					combination of LIBS_PRE LIBS_PROJECT LIBS_POSTx
+
+
+Variables defined in common.mak, and used in subdir.mak or <os>_<compiler>.mak
+==============================================================================
+
+TOOLSDIR				directory of internal tools, like doxygen or bison
+TOOLSDIR_OS				OS-specific TOOLSDIR.
+

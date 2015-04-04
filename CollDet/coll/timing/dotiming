@@ -1,0 +1,276 @@
+#!/bin/bash -p
+
+#  Do timing for one algo with all benchmark suite objects.
+#  Can also be used for statistics.
+#
+#  Usage: dotiming [options] <algo> [<prefix>]
+#  If prefix is not specified, then prefix := algo.
+#
+#  bench is called with option '-A <algo>'.
+#  Data files are named <obj>_<compl>.
+#  They are put in directory results_<prefix>.
+#  Options:
+#  -d   if the data file is already existing, then the test will not be
+#       performed!
+#  -a   use a different set of (smaller) distance ranges for benchmarking
+#       (to be used with "all triangles" coll.det.)
+#  -s   small set of objects / complexities
+#  -i   don't output timings of single collision tests;
+#       by default, these will be stored in results_<prefix>/indv/.
+#       You might want to set this when STATS is on in bench.cpp.
+#
+#  GZ 2002
+#
+
+#export #LD_LIBRARY_PATH=.:/work/hardware_stats/CollDet/install/lib/linux2:/work/common/install/lib/linux2:/home/work/Zach/osg-1.0-rh73/lib/opt:/home/work/Zach/lib-gcc304-rh73
+
+# parse command line
+
+commandline="$0 $*"
+
+while [[ "$#" -gt 0 ]]
+do
+	case "$1" in
+		-d) dont_remove=1; shift ;;
+		-a) alltris=1; shift ;;
+		-s) smallobjset=1; shift ;;
+		-i) dontindv=1; shift ;;
+		-h) printhelp=1; shift ;;
+		 *) if [[ -z "$algo" ]]
+		 	then
+				algo="$1"
+			else
+				outprefix=$1
+			fi
+			shift ;;
+	esac
+done
+
+if [[ -z "$algo" || ! -z "$printhelp" ]]
+then
+	echo "Usage: dotiming [options] <algo> [<prefix>]"
+	exit 1
+fi
+
+if [[ -z "$outprefix" ]]
+then
+	outprefix=$algo
+fi
+
+outdir=results_$outprefix
+
+if [[ ! -d $outdir ]]
+then
+	mkdir $outdir
+fi
+if [[ -z "$dontindv" && ! -d $outdir/indv ]]
+then
+	mkdir $outdir/indv
+fi
+
+#   set bench options and set of objects and set of distances
+
+#rwrwtest
+options="-a 30 -r 60 -A $algo"
+#if [[ -z "$dontindv" ]]
+#then
+#	options="$options -M 10"
+#fi
+#  option -S is set below!
+
+if [[ -z "$alltris" ]]
+then
+	default_dist="5,3,2,1,0.5,0,-1"
+	obj_dist[0]="abdeckung";	spec_dist[0]="0.7 0.0"
+	obj_dist[1]="happy";		spec_dist[1]="1.4 0.2"
+	obj_dist[2]="pipes";		spec_dist[2]="2.5 1.0"
+	obj_dist[3]="to";			spec_dist[3]="2.2 1.0"
+else
+	default_dist="5,3,2,1,0.5,0,-1"
+	obj_dist[0]="abdeckung";	spec_dist[0]="0.7 0.25"
+	obj_dist[1]="happy";		spec_dist[1]="1.4 0.8"
+	obj_dist[2]="pipes";		spec_dist[2]="2.5 2.0"
+	obj_dist[3]="to";			spec_dist[3]="2.2 1.5"
+	obj_dist[4]="filter";		spec_dist[4]="1.6 0.8"
+	obj_dist[5]="scheinwerfer";	spec_dist[5]="1.7 1.0"
+	obj_dist[6]="schloss";		spec_dist[6]="1.6 0.9"
+	obj_dist[7]="sh";			spec_dist[7]="1.2 0.9"
+	obj_dist[8]="sharan";		spec_dist[8]="1.8 1.4"
+fi
+
+if [[ -z "$smallobjset" ]]
+then
+
+	# large obj set
+	objlist="motorbunt\
+            scheinwerfer_5947 scheinwerfer_8351 scheinwerfer_12015 \
+			scheinwerfer_17159 scheinwerfer_30075 scheinwerfer_64026 \
+			schloss_741 schloss_1008 schloss_1502 schloss_3004 \
+			schloss_7010 schloss_12624 schloss_20898 schloss_26136 \
+			schloss_43509 schloss_80989 schloss_207290 \
+			sharan_2026 sharan_4093 sharan_8005 sharan_12736 \
+			sharan_20026 sharan_28167 sharan_60755 \
+			abdeckung_14951 abdeckung_21756 abdeckung_30477 abdeckung_39358 \
+			abdeckung_6401 abdeckung_9589 \
+			pipes_124736 pipes_21295 pipes_44330 pipes_81932 pipes_9814 \
+			filter_6444 filter_3415 filter_10306 filter_15177 filter_19326 \
+	        happy_buddha_10000 happy_buddha_20000 happy_buddha_50000 \
+			happy_buddha_100000 happy_buddha_125000 happy_buddha_250000 \
+			happy_buddha_500000 happy_buddha_1087716"
+	# filter should be last because it takes longest
+
+	synthobjs[0]="to";		compl[0]="10 20 30 100 200";
+	synthobjs[1]="sh";		compl[1]="3 5 8 13 22";
+
+else
+
+	# small obj set
+	objlist="scheinwerfer_5947 scheinwerfer_17159 scheinwerfer_64026 \
+			schloss_3004 schloss_26136 \
+			sharan_4093 sharan_28167 \
+			abdeckung_6401 abdeckung_14951 \
+			filter_6444 \
+	        happy_buddha_50000"
+
+	synthobjs[0]="to";		compl[0]="20 30";
+	synthobjs[1]="sh";		compl[1]="3 8";
+
+fi
+
+# paths and data/log file setup
+
+testobjdir="/home/weller/CollDet/Bench"
+bench="../test/bench"
+logfile="$outdir/log-$$"
+grep="grep -v -e DopTree:init -e unbalanced"
+
+if [[ ! -d $testobjdir ]]
+then
+	echo
+	echo "Couldn't find testobj directory $testobjdir !"
+	echo
+	exit 1
+fi
+if [[ `ls -1 $testobjdir | wc -l` -lt 2 ]]
+then
+	echo
+	echo "Less than 2 files in testobj directory $testobjdir !"
+	echo
+	exit 1
+fi
+
+rm -f $logfile
+
+echo " " > $logfile
+echo $commandline >> $logfile
+echo " " >> $logfile
+
+#  print some infos about current timing tests into log file
+date >> $logfile
+ldd $bench >> $logfile
+echo "$bench -g file -f $testobjdir/file.wrl $options" >> $logfile
+echo "$bench -g to/sh -x complexity $options" >> $logfile
+echo "resulting data file names = $outdir/obj_compl" >> $logfile
+echo " " >> $logfile
+
+#  set limits to prevent swapping, rather have it aborted
+ulimit -d 360000
+ulimit -c 0
+
+declare -i i j
+
+# benchmarking of vrml objects
+
+for f in $objlist
+do
+	outfile=$outdir/$f
+	if [[ ! -z "$dont_remove" && -e $outfile ]]
+	then
+		continue
+	fi
+
+	dist_idx=${f%%_*}
+	dist="$default_dist"
+	i=0
+	while [[ $i -lt ${#obj_dist[*]} ]]
+	do
+		if [[ "$dist_idx" == "${obj_dist[i]}" ]]
+		then
+			dist="${spec_dist[i]}"
+			break
+		fi
+		(( i++ ))
+	done
+
+	alloptions="-g file -f $testobjdir/$f.wrl $options -d $dist"
+	#rwrwif [[ -z "$dontindv" ]]
+	#rwrwthen
+	#rwrw	alloptions="$alloptions -S $outdir/indv/${f}_%d"
+	#rwrwfi
+
+	echo "#$bench $alloptions" > $outfile
+	uname=`uname -n|cut -d. -f1`
+	cpu_name=`cat /proc/cpuinfo | grep "model name" | head -1 | cut -d: -f2`
+	cpu_mhz=`cat /proc/cpuinfo | \grep "MHz" | head -1 | cut -d: -f2`
+	echo "# $uname $cpu_name $cpu_mhz" >> $outfile
+	echo -n "#start: " >> $outfile; date >> $outfile
+	echo " " >> $logfile
+	echo "$bench $alloptions" >> $logfile
+
+	$bench $alloptions 2>> $logfile | $grep >> $outfile
+
+	echo -n "#stop: " >> $outfile; date >> $outfile
+done
+
+# benchmarking of synthetic objects
+
+j=0
+while [[ ! -z "${synthobjs[j]}" ]]
+do
+
+	obj=${synthobjs[j]}
+
+	dist="$default_dist"
+	i=0
+	while [[ $i -lt ${#obj_dist[*]} ]]
+	do
+		if [[ "$obj" == "${obj_dist[i]}" ]]
+		then
+			dist="${spec_dist[i]}"
+			break
+		fi
+		(( i++ ))
+	done
+
+	for cx in ${compl[j]}
+	do
+		outfile=$outdir/${obj}_$cx
+
+		if [[ ! -z "$dont_remove" && -e $outfile ]]
+		then
+			continue
+		fi
+
+		alloptions="-g $obj -x $cx $options -d $dist"
+		#rwrwif [[ -z "$dontindv" ]]
+		#rwrwthen
+		#rwrw	alloptions="$alloptions -S $outdir/indv/${obj}_%d"
+		#rwrwfi
+
+		echo "#$bench $alloptions" > $outfile
+		echo -n "#start: " >> $outfile; date >> $outfile
+		echo " " >> $logfile
+		echo "$bench $alloptions" >> $logfile
+
+		$bench $alloptions 2>> $logfile | $grep >> $outfile
+
+		echo -n "#stop: " >> $outfile; date >> $outfile
+	done
+
+	(( j++ ))
+done
+
+# finishing touches
+
+grep -v "constructHier: very unbalanced" $outdir/$logfile > $outdir/log-short-$$
+

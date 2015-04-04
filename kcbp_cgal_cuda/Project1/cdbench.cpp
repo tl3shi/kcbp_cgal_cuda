@@ -504,6 +504,7 @@ void genModels(int modelnum, string config)
             i++;
         }
         fin.close();
+        assert(rotate_angles.size() != 0);
     }
     
     for(int i = 0; i < rotate_angles.size(); i++)

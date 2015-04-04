@@ -1,0 +1,9 @@
+# File produced by AccuTrans 3D
+
+newmtl ball
+       Ns 4
+       d 1
+       illum 2
+       Kd 0.086275 0.176471 0.650980
+       Ka 0.086275 0.176471 0.650980
+       Ks 1.000000 1.000000 1.000000

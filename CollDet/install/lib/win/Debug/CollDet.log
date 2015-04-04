@@ -1,0 +1,29 @@
+﻿  nrutil.cpp
+  lulgs.cpp
+  ColVisDebug.cpp
+  ColUtils.cpp
+  ColTopology.cpp
+  ColRequest.cpp
+  ColPipelineData.cpp
+  ColObj.cpp
+  Collision.cpp
+d:\github\kcbp_cgal_cuda\colldet\coll\collision.cpp(123): warning C4351: 新增行为: 默认情况下初始化数组“col::Data::dop”的元素
+  ColIntersect.cpp
+  ColGridObj.cpp
+  ColGridCell.cpp
+  ColGrid.cpp
+  ColExceptions.cpp
+  ColDopTree.cpp
+d:\github\kcbp_cgal_cuda\colldet\coll\coldoptree.cpp(140): warning C4351: 新增行为: 默认情况下初始化数组“col::DopTransform::o”的元素
+d:\github\kcbp_cgal_cuda\colldet\coll\coldoptree.cpp(140): warning C4351: 新增行为: 默认情况下初始化数组“col::DopTransform::Bb”的元素
+d:\github\kcbp_cgal_cuda\colldet\coll\coldoptree.cpp(310): warning C4351: 新增行为: 默认情况下初始化数组“col::Dop::d”的元素
+  ColConvexHull.cpp
+d:\github\kcbp_cgal_cuda\colldet\common\qhull\qhull.h(673): warning C4273: “qh_printsummary”: dll 链接不一致
+          d:\github\kcbp_cgal_cuda\colldet\common\qhull\qhull.h(652) : 参见“qh_printsummary”的前一个定义
+d:\github\kcbp_cgal_cuda\colldet\common\qhull\qhull_a.h(120): warning C4273: “qh_printsummary”: dll 链接不一致
+          d:\github\kcbp_cgal_cuda\colldet\common\qhull\qhull.h(652) : 参见“qh_printsummary”的前一个定义
+  ColBoxtree.cpp
+  正在生成代码...
+ColBoxtree.obj : warning LNK4075: 忽略“/EDITANDCONTINUE”(由于“/OPT:LBR”规范)
+     正在创建库 ..\..\install\lib\win\Debug\CollDetD.lib 和对象 ..\..\install\lib\win\Debug\CollDetD.exp
+  CollDet.vcxproj -> D:\github\kcbp_cgal_cuda\CollDet\visual_studio\CollDet\..\..\install\lib\win\Debug\CollDetD.dll
