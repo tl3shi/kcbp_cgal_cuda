@@ -1052,6 +1052,8 @@ int main( int argc, char *argv[] )
 	
 	printf("reading %d model configs(plus fixed one,total = %d)\n", model_num-1, model_num);
 
+	vector<osg::NodePtr> boxNodes;
+	boxNodes.push_back(fixed_node);
 	for(int i = 0; i < model_num-1; i++) //act as kcbp_cgal_cuda
 	{
 		osg::NodePtr moving_node_t = fixed_node->clone();
@@ -1069,12 +1071,83 @@ int main( int argc, char *argv[] )
 		trf_node->setCore( moving_trf );
 		trf_node->addChild( moving_node_t );
 		endEditCP(trf_node);
-		light_node->addChild( trf_node); 
-	}
+		
+		boxNodes.push_back(trf_node);
 
+		light_node->addChild( trf_node); 
+		
+	}
 	// finish scene graph
 	endEditCP(root);
 	endEditCP( light_node );
+
+	/*
+	float min[3]; float max[3];
+	col::getNodeBBox(trf_node, min, max);
+	col::getNodeBBox(moving_node_t, min, max);
+	float min[3]; float max[3];
+	col::getNodeBBox(fixed_node, min, max);
+	*/
+	//the bondingbox got isnot the same as kcbp_cgal_cuda, I calc it myself.
+	/*osg::MFPnt3f *points = col::getPoints( fixed_node);
+	for ( unsigned int i = 0; i < points->size(); i ++ )
+		for ( unsigned int j = 0; j < 3; j ++ )
+			(*points)[i][j] = ((*points)[i][j] - c[j]) / s;
+	*/
+	clock_t box_time = clock();
+	vector<osg::BoxVolume> bbox;
+	float min[3]; float max[3];
+	col::getNodeBBox(fixed_node, min, max);
+	bbox.push_back(osg::BoxVolume(min[0], min[1], min[2], max[0], max[1], max[2]));
+	osg::MFPnt3f *points = col::getPoints( fixed_node);
+	float float_max = 1e10f;
+	for(int index = 0; index < model_num; index++)
+	{
+		osg::Matrix m = col::axisToMat( rotation_xyzs[index], rotates[index]);	 
+		m.setTranslate(translates[index]);
+		for(int j = 0; j < 3; j++)
+		{
+			min[j] = float_max;
+			max[j] = -float_max;
+		}
+		for ( unsigned int i = 0; i < points->size(); i ++ )
+		{
+			Pnt3f p = (*points)[i];
+			p = m * p;
+			for ( unsigned int j = 0; j < 3; j ++ )
+			{
+				if( p[j] < min[j])
+					min[j] = p[j];
+				if( p[j] > max[j])
+					max[j] = p[j];
+			}
+		}
+		bbox.push_back(osg::BoxVolume(min[0], min[1], min[2], max[0], max[1], max[2]));
+	}
+	box_time = clock() - box_time;
+	printf("build boundingbox time(including transform points): %.2f\n", box_time * 1.0);
+	box_time = clock();
+	std::vector<std::pair<int, int> > box_pairs;
+	vector<bool> kdopBuild(model_num, false);
+	for(int i = 0; i < model_num-1; i++)
+		for(int j = i+1; j < model_num; j++)
+		{
+			bool c = bbox[i].intersect(bbox[j]);
+			if(c)
+			{
+				box_pairs.push_back(std::make_pair(i, j));
+				kdopBuild[i] = kdopBuild[j] = true;
+			}
+		}
+	if(print_pairs){
+		printf("box filter : \n");
+		for(int i = 0; i < box_pairs.size(); i++)
+			printf("(%d, %d)", box_pairs[i].first, box_pairs[i].second);
+		printf("\n");
+	}
+	box_time = clock() - box_time;
+	printf("collision detection box time : %.2f\n", box_time*1.0);
+	printf("box collision size: %d\n", box_pairs.size());
 
 	//if(false)
 	try
@@ -1091,62 +1164,69 @@ int main( int argc, char *argv[] )
 		
 		assert(model_num == all_nodes.size());
 		assert(model_num == all_geoms.size());
+		
 		for(int i = 0; i < model_num; i++)
 		{
 			// register objects with collision detection module
-			cobjs.push_back(new col::ColObj( all_geoms[i],  all_nodes[i],
+			if(kdopBuild[i] == true)
+				cobjs.push_back(new col::ColObj( all_geoms[i],  all_nodes[i],
 									  false, false, false, Algorithm, false ));
+			else
+				cobjs.push_back(NULL); //just fill in the blank
 		}
 		build_time = clock() - build_time;
 		if (Algorithm == col::ALGO_BOXTREE)
-			printf("build time(boxtree) = %.2f\n", build_time*1.0);
+			printf("build time(boxtree): %.2f\n", build_time*1.0);
 		else
-			printf("build time(kDOP) = %.2f\n", build_time*1.0);
+			printf("build time(kDOP): %.2f\n", build_time*1.0);
 
 
 		std::vector<std::pair<int, int> > cpairs;
 		clock_t c_time = clock();
 		vector<col::MatrixCell *> cells;
 		vector<BenchCallback *> callbacks;
-		for(int i = 0; i < model_num-1; i++)
+		//for(int i = 0; i < model_num-1; i++)
+		//{
+		//	for(int j = i+1; j < model_num; j++)
+		for(int index = 0; index < box_pairs.size(); index++)
 		{
-			for(int j = i+1; j < model_num; j++)
+			int i = box_pairs[index].first;
+			int j = box_pairs[index].second;
+			col::MatrixCell * cell = new col::MatrixCell( cobjs[i], cobjs[j] );
+			BenchCallback * callback = new BenchCallback( all_nodes[i], all_nodes[j], col::LEVEL_EXACT );
+			cell->addCallback( callback );
+			cells.push_back(cell);
+			callbacks.push_back(callback);
+//			clock_t collision_time = clock();//col::time();
+			 
+			// perform coll. det., without convex hull pre-check
+			bool c = cell->check( false );
+			if ( c )
 			{
-				col::MatrixCell * cell = new col::MatrixCell( cobjs[i], cobjs[j] );
-				BenchCallback * callback = new BenchCallback( all_nodes[i], all_nodes[j], col::LEVEL_EXACT );
-				cell->addCallback( callback );
-				cells.push_back(cell);
-				callbacks.push_back(callback);
-//				clock_t collision_time = clock();//col::time();
-				 
-				// perform coll. det., without convex hull pre-check
-				bool c = cell->check( false );
-				if ( c )
-				{
-					cpairs.push_back(std::pair<int, int> (i, j));
+				cpairs.push_back(std::pair<int, int> (i, j));
 //#if _DEBUG
 //					printf("collision!");
 //#endif
-				}
+			}
 //#if _DEBUG
 //				collision_time = clock() - collision_time;
 //				printf("collision time = %.2f\n", collision_time*1.0);
 //#endif
-				
-			}
+			
 		}
+		//}
 		c_time = clock() - c_time;
 		if (Algorithm == col::ALGO_BOXTREE)
-			printf("total collision time(boxtree) = %.2f\n", c_time*1.0);
+			printf("total collision time(boxtree): %.2f\n", c_time*1.0);
 		else
-			printf("total collision time(kDOP) = %.2f\n", c_time*1.0);
+			printf("total collision time(kDOP): %.2f\n", c_time*1.0);
 
 		if(print_pairs){
 			for(int i = 0; i < cpairs.size(); i++)
 				printf("(%d, %d)", cpairs[i].first, cpairs[i].second);
 			printf("\n");
 		}
-		printf("collision pairs is %d\n", cpairs.size());
+		printf("collision pairs : %d\n", cpairs.size());
 		for(int i = 0; i < cells.size(); i++)
 			delete cells[i];
 		for(int i = 0; i < callbacks.size(); i++)
