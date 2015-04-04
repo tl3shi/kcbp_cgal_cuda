@@ -590,13 +590,18 @@ void genModels(int modelnum, string config)
     int model_num = MeshpolyhedraData.size();
     clock_t time_start = clock();
     vector<AABBTree*> aabbtrees(model_num, NULL);
+    int aabbneed = 0;
     for(int i = 0; i < model_num; i++)
     {
         if(needMoreCheck[i])
+        {
             aabbtrees[i] = constructAABBTree(MeshPointsData[i], trianges_index);
+            aabbneed++;
+        }
     }
     float time_during = clock() - time_start;
     printf("build AABB time : %.2f\n", time_during);
+    printf("build AABB count: %d\n", aabbneed);
     {
         printf("The Following result uses AABB directly\n");
         collision_index.resize(model_num);
@@ -866,7 +871,7 @@ void  display(void)
             glCallList(MeshBoundingBoxList[37]);
         #else
 
-        if(modelnum > 50 && points3d.size() > 100000) //two much to draw
+        if(!(modelnum > 50 && points3d.size() > 100000)) //two much to draw
         {
             for(int i = 0; i < MeshPointsDataList.size(); i++)
             {

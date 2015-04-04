@@ -10,8 +10,8 @@ resultfilename = inputfilename + '.result.csv'
 inputfile = open(inputfilename, 'r')
 result = {} 
 
-features_key  = ['ach', 'cluster', 'projection', 'duality', 'aabbBuild', 'bboxBuild', 'CD(aabb)', 'init(kCBP)', 'CD(kCBP)', 'init(GJK)', 'CD(GJK)', 'count(kCBP)', 'count(GJK)', 'count(real)'] 
-features_value= ['ach banchtest', 'cluster time', 'Projection time',  'duality mapping time', 'build AABB time :', 'build boundingbox time', 'total collision time(AABB directly)', 'build AABB time 4 KCBP :', 'total collision time(KCBP AABB filter)', 'init GJK time 4 KCBP', 'total collision time(KCBP GJK filter)', 'kcbp collision size(AABB filter)','kcbp collision size(GJK filter)', 'collision pairs :'] 
+features_key  = ['ach', 'cluster', 'projection', 'duality', 'aabbBuild', 'aabbBuildCount', 'CD(aabb)', 'init(kCBP)', 'CD(kCBP)', 'init(GJK)', 'CD(GJK)','count(Box)', 'count(kCBP)', 'count(GJK)', 'count(real)'] 
+features_value= ['ach banchtest', 'cluster time', 'Projection time',  'duality mapping time', 'build AABB time :','build AABB count:', 'total collision time(AABB directly)', 'build AABB time 4 KCBP :', 'total collision time(KCBP AABB filter)', 'init GJK time 4 KCBP', 'total collision time(KCBP GJK filter)', 'box collision size:', 'kcbp collision size(AABB filter)','kcbp collision size(GJK filter)', 'collision pairs :'] 
 
 if len(features_key) != len(features_value) :
     print 'key value Error!'

@@ -4,6 +4,8 @@
 
 #include "TriangleTriangleIntersectionDetection.hpp"
 #include <algorithm>
+#include <queue>
+
 using namespace std;
 
 #define GREATER(x, y)	fabsf(x) > (y)
@@ -322,7 +324,8 @@ public:
     static bool TraverseDetective(AABBNode* roota, AABBNode * rootb)
     {
         if(roota == NULL || rootb == NULL) return false;//no intersection
-        
+        //#define  RECURSIVE
+        #ifdef RECURSIVE
         if (! roota->Box.IntersectWith(rootb->Box))
             return false;
         if(roota->IsLeaf())
@@ -358,8 +361,53 @@ public:
             return true;
         if(TraverseDetective(roota->Right, rootb->Right))
             return true;
-
         return false;
+        #else
+        queue<std::pair<AABBNode*, AABBNode*> > q;
+        q.push(std::make_pair(roota, rootb));
+        while(! q.empty())
+        {
+            AABBNode * nodeA = q.front().first;
+            AABBNode * nodeB = q.front().second;
+            q.pop();
+            if ( nodeA == NULL || nodeB == NULL) continue;
+            if (! nodeA->Box.IntersectWith(nodeB->Box))
+                continue;
+            if(nodeA->IsLeaf())
+            {
+                if (nodeB->IsLeaf())
+                {
+                    PrimitivePtr * a = nodeA->Data;
+                    PrimitivePtr * b = nodeB->Data;
+                    for(int i = 0; i < nodeA->DataSize; i++)
+                    {
+                        for(int j = 0; j < nodeB->DataSize; j++)
+                        {
+                            bool t = TrianlgeTriangleIntersectionDetection::NoDivTriTriIsect(a[i]->v0, a[i]->v1, a[i]->v2,
+                                b[j]->v0, b[j]->v1, b[j]->v2);
+                            if(t) 
+                                return true;
+                        }
+                    }
+                    continue;
+                }else//nodeB has children
+                {
+                    if (nodeB->Left != NULL)
+                        q.push(std::make_pair(nodeA, nodeB->Left));
+                    if (nodeB->Right != NULL)
+                        q.push(std::make_pair(nodeA, nodeB->Right));
+                }
+            }
+            else// node A has children
+            {
+                if (nodeA->Left != NULL)
+                    q.push(std::make_pair(nodeA->Left, nodeB));
+                if (nodeA->Right != NULL)
+                    q.push(std::make_pair(nodeA->Right, nodeB));
+            }
+        }//end while
+        return false;
+        #endif
     }
 
     static bool MeshMeshDetection(PrimitivePtr * a, int a_size, PrimitivePtr* b, int b_size)
