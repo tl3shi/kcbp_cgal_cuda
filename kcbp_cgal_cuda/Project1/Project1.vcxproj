@@ -85,6 +85,10 @@
     <IncludePath>D:\CGAL-4.1\include;D:\CGAL-4.1\auxiliary\gmp\include;C:\Boost\include\boost-1_53;D:\CGAL-4.1\build\include;$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSDK_IncludePath);</IncludePath>
     <LibraryPath>D:\CGAL-4.1\build\lib;D:\CGAL-4.1\auxiliary\gmp\lib;C:\Boost\lib;$(VCInstallDir)lib;$(VCInstallDir)atlmfc\lib;$(WindowsSDK_LibraryPath_x86);</LibraryPath>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <IncludePath>D:\CGAL-4.1\include;D:\CGAL-4.1\auxiliary\gmp\include;C:\Boost\include\boost-1_53;D:\CGAL-4.1\build\include;$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSDK_IncludePath);</IncludePath>
+    <LibraryPath>D:\CGAL-4.1\build\lib;D:\CGAL-4.1\auxiliary\gmp\lib;C:\Boost\lib;$(VCInstallDir)lib\amd64;$(VCInstallDir)atlmfc\lib\amd64;$(WindowsSDK_LibraryPath_x64);</LibraryPath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -132,12 +136,17 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
+      <AdditionalIncludeDirectories>D:\cpp\research\kcbp_cgal_cuda\Project1\swiftinclude;%(AdditionalIncludeDirectories);$(CudaToolkitIncludeDir)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>D:\CGAL-4.1\auxiliary\gmp\lib\libmpfr-4.lib;D:\CGAL-4.1\auxiliary\gmp\lib\libgmp-10.lib;$(OutputPath)\swift.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <CudaCompile>
+      <TargetMachinePlatform>64</TargetMachinePlatform>
+    </CudaCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="AABB.hpp" />

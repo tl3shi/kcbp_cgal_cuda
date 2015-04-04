@@ -71,7 +71,7 @@ struct LibCCDQuery: public ICollisionQuery
         //origin_pos.z += world0[2][3];
         ccdVec3Set(&obj1->pos, world0[0][3], world0[1][3], world0[2][3]);
         int intersect = ccdGJKIntersect(obj1, obj2, &ccd);
-        printf("intersection = %d\n", intersect);
+        //printf("intersection = %d\n", intersect);
         return intersect == 0 ? false : true;
     }
 

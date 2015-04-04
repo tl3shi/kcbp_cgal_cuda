@@ -199,7 +199,7 @@ public:
         return ss.str();
     } 
     
-    CP_Vector3D toDualPoint()
+    CP_Vector3D toDualPoint() const
     {
         //plane fucntion: ax+by+cz=d=ax0+by0+cz0
         double d = normal * point;

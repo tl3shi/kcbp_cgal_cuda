@@ -1,0 +1,115 @@
+debug k=16，random为D
+kCBP-AABB filter结果
++		[0]	(0, 2)	std::pair<int,int>
++		[1]	(0, 11)	std::pair<int,int>
++		[2]	(0, 14)	std::pair<int,int>
++		[3]	(0, 26)	std::pair<int,int>
++		[4]	(0, 37)	std::pair<int,int>
++		[5]	(3, 23)	std::pair<int,int>
++		[6]	(5, 16)	std::pair<int,int>
++		[7]	(5, 27)	std::pair<int,int>
++		[8]	(5, 38)	std::pair<int,int>
++		[9]	(5, 39)	std::pair<int,int>
++		[10]	(6, 11)	std::pair<int,int>
++		[11]	(6, 14)	std::pair<int,int>
++		[12]	(8, 28)	std::pair<int,int>
++		[13]	(9, 19)	std::pair<int,int>
++		[14]	(9, 20)	std::pair<int,int>
++		[15]	(11, 14)	std::pair<int,int>
++		[16]	(11, 26)	std::pair<int,int>
++		[17]	(11, 37)	std::pair<int,int>
++		[18]	(11, 40)	std::pair<int,int>
++		[19]	(12, 47)	std::pair<int,int>
++		[20]	(12, 48)	std::pair<int,int>
++		[21]	(13, 16)	std::pair<int,int>
++		[22]	(13, 37)	std::pair<int,int>
++		[23]	(13, 38)	std::pair<int,int>
++		[24]	(14, 37)	std::pair<int,int>
++		[25]	(14, 40)	std::pair<int,int>
++		[26]	(15, 18)	std::pair<int,int>
++		[27]	(16, 38)	std::pair<int,int>
++		[28]	(19, 20)	std::pair<int,int>
++		[29]	(19, 32)	std::pair<int,int>
++		[30]	(20, 32)	std::pair<int,int>
++		[31]	(22, 24)	std::pair<int,int>
++		[32]	(23, 28)	std::pair<int,int>
++		[33]	(23, 40)	std::pair<int,int>
++		[34]	(25, 30)	std::pair<int,int>
++		[35]	(25, 45)	std::pair<int,int>
++		[36]	(27, 41)	std::pair<int,int>
++		[37]	(29, 31)	std::pair<int,int>
++		[38]	(29, 45)	std::pair<int,int>
++		[39]	(30, 45)	std::pair<int,int>
++		[40]	(31, 45)	std::pair<int,int>
++		[41]	(33, 44)	std::pair<int,int>
++		[42]	(35, 37)	std::pair<int,int>
++		[43]	(39, 42)	std::pair<int,int>
++		[44]	(39, 48)	std::pair<int,int>
++		[45]	(42, 47)	std::pair<int,int>
+
+kcbp-GJK filter结果
+
++		[0]	(0, 2)	std::pair<int,int>
++		[1]	(0, 11)	std::pair<int,int>
++		[2]	(0, 14)	std::pair<int,int>
++		[3]	(0, 26)	std::pair<int,int>
++		[4]	(0, 37)	std::pair<int,int>
++		[5]	(3, 23)	std::pair<int,int>
++		[6]	(5, 16)	std::pair<int,int>
++		[7]	(5, 27)	std::pair<int,int>
++		[8]	(5, 38)	std::pair<int,int>
++		[9]	(5, 39)	std::pair<int,int>
++		[10]	(6, 11)	std::pair<int,int>
++		[11]	(6, 14)	std::pair<int,int>
++		[12]	(8, 28)	std::pair<int,int>
++		[13]	(9, 19)	std::pair<int,int>
++		[14]	(9, 20)	std::pair<int,int>
++		[15]	(11, 14)	std::pair<int,int>
++		[16]	(11, 26)	std::pair<int,int>
++		[17]	(11, 37)	std::pair<int,int>
++		[18]	(11, 40)	std::pair<int,int>
++		[19]	(12, 47)	std::pair<int,int>
++		[20]	(12, 48)	std::pair<int,int>
++		[21]	(13, 16)	std::pair<int,int>
++		[22]	(13, 38)	std::pair<int,int>
++		[23]	(14, 37)	std::pair<int,int>
++		[24]	(14, 40)	std::pair<int,int>
++		[25]	(15, 18)	std::pair<int,int>
++		[26]	(16, 38)	std::pair<int,int>
++		[27]	(19, 20)	std::pair<int,int>
++		[28]	(19, 32)	std::pair<int,int>
++		[29]	(20, 32)	std::pair<int,int>
++		[30]	(22, 24)	std::pair<int,int>
++		[31]	(23, 28)	std::pair<int,int>
++		[32]	(23, 40)	std::pair<int,int>
++		[33]	(25, 30)	std::pair<int,int>
++		[34]	(25, 45)	std::pair<int,int>
++		[35]	(27, 41)	std::pair<int,int>
++		[36]	(29, 31)	std::pair<int,int>
++		[37]	(29, 45)	std::pair<int,int>
++		[38]	(30, 45)	std::pair<int,int>
++		[39]	(31, 45)	std::pair<int,int>
++		[40]	(33, 44)	std::pair<int,int>
++		[41]	(35, 37)	std::pair<int,int>
++		[42]	(39, 42)	std::pair<int,int>
++		[43]	(39, 48)	std::pair<int,int>
++		[44]	(42, 47)	std::pair<int,int>
+
+KCBP的AABB(顶层是kcbp的节点) 跟 GJK顶层的Boundingbox(顶层用的model的boundingbox)不一致。
+结果是因为浮点运算的误差引起的。两个boundingbox/kcbp靠的很近，运算不一致。
+
+AABB 13 V.S 37
++		Min	{x=-0.96691681424181353 y=-0.0054314750670581002 z=-3.3112499607867969 }	CP_Vector3D
++		Max	{x=1.0607632315462916 y=1.8433629863954386 z=-0.74577559968044471 }	CP_Vector3D
+
+
+
+ModelBoundingBoxes[13]
++		Min	{x=-0.88735206793837040 y=0.028025404779925100 z=-3.2719438948623489 }	CP_Vector3D
++		Max	{x=0.89527175164624184 y=1.7864618916911703 z=-ModelBoundingBoxes[37]
+0.85326827834718100 }	CP_Vector3D
++		Min	{x=-1.1177228825224677 y=-0.23958317344194002 z=-0.83582001122867633 }	CP_Vector3D
++		Max	{x=1.1217545636264084 y=1.9417845986256044 z=0.76165375235105903 }	CP_Vector3D
+
+
+

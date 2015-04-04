@@ -36,6 +36,8 @@ int polygon_mode = GL_LINE;
 bool noxyz = false;
 bool NO_DISPLAY = true;
 
+//#define TEMPDEBUG
+
 vector<CP_Vector3D> points3d;
 vector<int> trianges_index;
 vector<CP_Vector3D> normals;
@@ -224,7 +226,7 @@ int main(int argc, char** argv)
     }
     cout << "ModelNum = " << modelnum << endl;
 
-    int benchtest = 1;
+    int benchtest = modelnum;
     if(argc >= 6)
     {
        readconfig = argv[5];
@@ -237,7 +239,7 @@ int main(int argc, char** argv)
             print_pairs = true;
     }
     
-    if(benchtest > 1)
+    if(true)
     {
         clock_t s, e;
         s = clock();
@@ -246,7 +248,7 @@ int main(int argc, char** argv)
             ach =  ACH3D::getACH(points3d, 10, 10);
         }
         e = clock();
-        printf("ach banchtest %d times : %.4f", benchtest, (e - s) * 1.0f/ benchtest);
+        printf("ach banchtest (%d times) totally: %.2f\n", benchtest, (e - s) * 1.0f);
     }
     else
     {
@@ -257,29 +259,39 @@ int main(int argc, char** argv)
     for(int i = 0; i < benchtest; i++)
         normals = KCBP::getClusterNormals(ach, k, true, false);
     e = clock();
-    printf("cluster time (%d times): %.4f\n", benchtest, (e - s) * 1.0f / benchtest);
-
+    printf("cluster time (%d times) totally: %.2f\n", benchtest, (e - s) * 1.0f);
 
     printf("normalsize = %d\n", normals.size());
-
    SSEProjection::projectCPUSSE(points3d, normals, planes, benchtest);
    //KDop3D::projectCPU(points3d, normals, planes, benchtest);
-     //KCBP::evaluate(points3d, normals, KCBP::CUDA_MUL_NORMAL, planes, benchtest);
+   //KCBP::evaluate(points3d, normals, KCBP::CUDA_MUL_NORMAL, planes, benchtest);
 
     printf("duality mapping\n");
-    KDop3D::getResultByDualMapping(planes, polyhedra);//mapping get points / then sort points ccw construct kcbp
-    KDop3D::getResultByDualMappingMesh(planes, MeshPolyhedronPoints);//mapping get points/ then call convexhull get kcbp mesh
-    printf("Polytopes: %d\n", polyhedra.size());
-    
-    if (draw_convexhull)
+    s = clock();
+    vector<vector<Polygon3D*>> tmpPolyhedra;
+    for(int i = 0; i < benchtest ;i++)
     {
-        // the convex hull use int to coordinate
-        CGALConvexHull::getConvexHullFacets(points3d, convexhull, benchtest);
-        cout << "Facet number in convex hull: " << convexhull.size() /3  <<  endl;
+        vector<Polygon3D*> tmp;
+        KDop3D::getResultByDualMapping(planes, tmp);//mapping get points / then sort points ccw construct kcbp
+        tmpPolyhedra.push_back(tmp);
     }
- 
+    e = clock();
+    printf("duality mapping time (%d times) totally: %.2f\n", benchtest, (e - s) * 1.0f);
+    polyhedra = tmpPolyhedra[0];
+    for(int i = 1; i < tmpPolyhedra.size(); i++)
+        for(int j = 0; j < tmpPolyhedra[i].size(); j++)
+            delete tmpPolyhedra[i][j];
+
+    KDop3D::getResultByDualMappingMesh(planes, MeshPolyhedronPoints);//mapping get points/ then call convexhull get kcbp mesh
+    
+    printf("Polytopes: %d\n", polyhedra.size());
+
     genModels(modelnum, readconfig);
  
+#ifdef TEMPDEBUG
+    NO_DISPLAY = false;
+#endif // TEMPDEBUG
+
     if(NO_DISPLAY) return 0;
      
     draw(argc, argv);
@@ -414,11 +426,13 @@ void genModels(int modelnum, string config)
     bool isConfigreadin = config.length() > 0;
     streambuf *defaultstream = cout.rdbuf();
 
+   
     vector<int> rotate_angles;
     vector<CP_Vector3D> translations;
     vector<CP_Vector3D> rotations;
     if(! isConfigreadin)
     {
+        srand(time(0));
         time_t t = time(0); 
         char tmp[64]; 
         strftime( tmp, sizeof(tmp), "%m-%d-%H-%M", localtime(&t) ); 
@@ -526,6 +540,7 @@ void genModels(int modelnum, string config)
     }
 
     ModelBoundingBoxes.resize(MeshpolyhedraData.size());
+    clock_t c_time = clock();
     for(int i = 0; i < ModelBoundingBoxes.size(); i++)
     {
         BoundingBox box = BoundingBox::GetNull();
@@ -548,6 +563,8 @@ void genModels(int modelnum, string config)
         }
         ModelBoundingBoxes[i] = box;
     }
+    c_time = clock() - c_time;
+    printf("build boundingbox time : %.2f\n", c_time*1.0);
     /*
     #ifdef USE_SOLID //bug remains, is not very precise
         collision_query = new SolidCollisionQuery(MeshPointsData[0], trianges_index);
@@ -560,24 +577,37 @@ void genModels(int modelnum, string config)
         kcbp_query = new LibCCDQuery(MeshpolyhedraData[0], MeshpolyhedraData[1]);
     #endif // USE_SOLID
     */
-
-
+    vector<std::pair<int, int> > boxPairs;
+    c_time = clock();
+    BoundingBox::CollsionDetection(ModelBoundingBoxes, boxPairs);
+    c_time = clock() - c_time;
+    printf("collision detection box time: %.2f\n", c_time * 1.0);
+    printf("box collision size: %d\n", boxPairs.size());
+    vector<bool> needMoreCheck(modelnum, false);
+    for(auto it = boxPairs.begin(); it != boxPairs.end(); it++)
+        needMoreCheck[it->first] = needMoreCheck[it->second] = true;
+    
     int model_num = MeshpolyhedraData.size();
     clock_t time_start = clock();
     vector<AABBTree*> aabbtrees(model_num, NULL);
     for(int i = 0; i < model_num; i++)
-        aabbtrees[i] = constructAABBTree(MeshPointsData[i], trianges_index);
+    {
+        if(needMoreCheck[i])
+            aabbtrees[i] = constructAABBTree(MeshPointsData[i], trianges_index);
+    }
     float time_during = clock() - time_start;
-    printf("build AABB time = %.2f\n", time_during);
+    printf("build AABB time : %.2f\n", time_during);
     {
         printf("The Following result uses AABB directly\n");
         collision_index.resize(model_num);
         std::vector<std::pair<int, int> > cpairs;
         clock_t c_time = clock();
-        for(int i = 0; i < model_num-1; i++)
+        //for(int i = 0; i < model_num-1; i++)
+        for(auto it = boxPairs.begin(); it != boxPairs.end(); it++)
         {
-            for(int j = i+1; j < model_num; j++)
-            {
+            int i = it->first; int j = it->second;
+        //    for(int j = i+1; j < model_num; j++)
+        //    {
                 time_start = clock();
                 bool c = AABBTree::TraverseDetective(aabbtrees[i]->Root, aabbtrees[j]->Root);
                 if(c)
@@ -591,10 +621,10 @@ void genModels(int modelnum, string config)
                 //#if _DEBUG
                 //printf("collision time = %.2f\n", time_during);
                 //#endif
-            }
+            //}
         }
         c_time = clock() - c_time;
-        printf("total collision time(AABB directly) = %.2f\n", c_time * 1.0);
+        printf("total collision time(AABB directly) : %.2f\n", c_time * 1.0);
         
         for(int i = 0; i < cpairs.size(); i++)
         {
@@ -604,27 +634,33 @@ void genModels(int modelnum, string config)
             collision_index[cpairs[i].second] = true;
         }
         if(print_pairs) printf("\n");
-        printf("collision pairs is %d\n", cpairs.size());
+        printf("collision pairs : %d\n", cpairs.size());
     }
     { //use kcbp filter first
-        printf("The Following result uses KCBP filter first\n");
+        printf("The Following result uses KCBP(AABB) filter first\n");
         time_start = clock();
         vector<AABBTree*> aabbtrees4kcbp(model_num, NULL);
         for(int i = 0; i < model_num; i++)
-            aabbtrees4kcbp[i] = constructAABBTree(MeshpolyhedraData[i], MeshPolyhedronIndex);
+        {
+           if(needMoreCheck[i])
+                aabbtrees4kcbp[i] = constructAABBTree(MeshpolyhedraData[i], MeshPolyhedronIndex);
+        }
         time_during = clock() - time_start;
-        printf("build AABB time 4 KCBP = %.2f\n", time_during);
+        printf("build AABB time 4 KCBP : %.2f\n", time_during);
         std::vector<std::pair<int, int> > kcbppairs;
         std::vector<std::pair<int, int> > cpairs;
         clock_t c_time = clock();
-        for(int i = 0; i < model_num-1; i++)
+        CMatrix ident = CMatrix::Identity;
+        //for(int i = 0; i < model_num-1; i++)
+        for(auto it = boxPairs.begin(); it != boxPairs.end(); it++)
         {
-            for(int j = i+1; j < model_num; j++)
-            {
+            int i = it->first; int j = it->second;        
+            //for(int j = i+1; j < model_num; j++)
+            //{
                 bool c = AABBTree::TraverseDetective(aabbtrees4kcbp[i]->Root, aabbtrees4kcbp[j]->Root);
                 if(c)
                     kcbppairs.push_back(std::make_pair(i, j));
-            }
+            //}
         }
         for(auto it = kcbppairs.begin(); it != kcbppairs.end(); it++)
         {
@@ -633,10 +669,59 @@ void genModels(int modelnum, string config)
                 cpairs.push_back(std::make_pair(it->first, it->second));
         }
         c_time = clock() - c_time;
-        printf("kcbp collision size = %d\n", kcbppairs.size());
-        printf("total collision time(KCBP AABB filter) = %.2f\n", c_time * 1.0);
-        printf("collision pairs is %d\n", cpairs.size());
+        printf("kcbp collision size(AABB filter) : %d\n", kcbppairs.size());
+        printf("total collision time(KCBP AABB filter) : %.2f\n", c_time * 1.0);
+        printf("collision pairs : %d\n", cpairs.size());
+        //deconstructor
+        for(int i = 0; i < aabbtrees4kcbp.size(); i++)
+            delete aabbtrees4kcbp[i];
+        
     }
+    {
+        //use kcbp filter first
+        printf("The Following result uses KCBP(GJK) filter first\n");
+        time_start = clock();
+        vector<LibCCDQuery*> gjkquerys;
+        
+        //for(int i = 0; i < model_num-1; i++)
+        //    for(int j = i+1; j < model_num; j++)
+                for(auto it = boxPairs.begin(); it != boxPairs.end(); it++)
+                {
+                    gjkquerys.push_back(new LibCCDQuery(MeshpolyhedraData[it->first], MeshpolyhedraData[it->second]));
+                    //gjkqueryIndex.push_back(*it);
+                }
+
+        time_during = clock() - time_start;
+        printf("init GJK time 4 KCBP : %.2f\n", time_during); //including Boundingbox collision detection
+        std::vector<std::pair<int, int> > kcbppairs;
+        std::vector<std::pair<int, int> > cpairs;
+        clock_t c_time = clock();
+        CMatrix ident = CMatrix::Identity;
+        for(int i = 0; i < gjkquerys.size(); i++)
+        {
+           bool cc = gjkquerys[i]->detection(ident, ident);
+           if(cc)
+                //kcbppairs.push_back(std::make_pair(i/(model_num-1), i%(model_num-1)+1));
+                kcbppairs.push_back(std::make_pair(boxPairs[i].first, boxPairs[i].second));
+        }
+
+        for(auto it = kcbppairs.begin(); it != kcbppairs.end(); it++)
+        {
+            bool c = AABBTree::TraverseDetective(aabbtrees[it->first]->Root, aabbtrees[it->second]->Root);
+            if(c)
+                cpairs.push_back(std::make_pair(it->first, it->second));
+        }
+        c_time = clock() - c_time;
+        printf("kcbp collision size(GJK filter) : %d\n", kcbppairs.size());
+        printf("total collision time(KCBP GJK filter) : %.2f\n", c_time * 1.0);
+        printf("collision pairs : %d\n", cpairs.size());
+        //deconstructor
+        for(int i = 0; i < gjkquerys.size(); i++)
+            delete gjkquerys[i];
+    }
+    //deconstructor 4 aabbtrees
+    for(int i = 0; i < aabbtrees.size(); i++)
+        delete aabbtrees[i];
     return;
 }
 
@@ -773,17 +858,27 @@ void  display(void)
         GLfloat collsion_color[3] = {1.0, 0, 0};
         GLfloat oldColor[4];
         glGetFloatv(GL_CURRENT_COLOR, oldColor);
-         
-        for(int i = 0; i < MeshPointsDataList.size(); i++)
+        
+        #ifdef TEMPDEBUG 
+            glCallList(MeshPolyhedronDataList[13]);
+            glCallList(MeshPolyhedronDataList[37]);
+            glCallList(MeshBoundingBoxList[13]);
+            glCallList(MeshBoundingBoxList[37]);
+        #else
+
+        if(modelnum > 50 && points3d.size() > 100000) //two much to draw
         {
-            if(collision_index[i])
-                glColor3fv(collsion_color);
-            else
-                glColor4fv(oldColor);
- 
-            #ifdef DRAW_MODEL
-            glCallList(MeshPointsDataList[i]);
-            #endif
+            for(int i = 0; i < MeshPointsDataList.size(); i++)
+            {
+                if(collision_index[i])
+                    glColor3fv(collsion_color);
+                else
+                    glColor4fv(oldColor);
+
+                #ifdef DRAW_MODEL
+                glCallList(MeshPointsDataList[i]);
+                #endif
+            }
         }
 
         if(true)
@@ -801,12 +896,13 @@ void  display(void)
         #ifdef DRAW_MODEL
         glCallList(MeshPointsDataList[movingModelIndex]);
         #endif
-
         glColor3f(0, 0, 1);
         glCallList(MeshPolyhedronDataList[movingModelIndex]);
         glColor3f(0, 0, 0);
         glCallList(MeshBoundingBoxList[movingModelIndex]);
         glColor4fv(oldColor);
+
+        #endif
 
         gl2psDisable(GL2PS_LINE_STIPPLE);
          

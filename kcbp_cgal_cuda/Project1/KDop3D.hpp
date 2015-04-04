@@ -96,17 +96,20 @@ public:
     }
     
 
-    static void getResultByDualMapping(vector<Plane3D> &planes, vector<Polygon3D*> &result)
+    static void getResultByDualMapping(const vector<Plane3D> &planes, vector<Polygon3D*> &result)
     {
         result.clear();
         vector<CP_Vector3D> intersection_points;
-        clock_t start_time, end_time;
-        
 
+        #ifdef PRINT_DETAILS
+        clock_t start_time, end_time;
         start_time = clock();
         CGALConvexHull::getIntersecionPoints(planes, intersection_points); //including transform dual and transfrom to cgal point
         end_time = clock();
         cout << "Intersection Time:" << end_time - start_time << endl;
+        #else
+        CGALConvexHull::getIntersecionPoints(planes, intersection_points); //including transform dual and transfrom to cgal point
+        #endif
         /*
         vector<Point_3> intersection_points2;
         start_time = clock();
@@ -148,17 +151,20 @@ public:
         //better not use polygon3d, just use mesh to presentation
     }
 
-    static void getResultByDualMappingMesh(vector<Plane3D> &planes, vector<CP_Vector3D> &result)
+    static void getResultByDualMappingMesh(const vector<Plane3D> &planes, vector<CP_Vector3D> &result)
     {
         result.clear();
-         clock_t start_time, end_time;
-
         vector<Point_3> intersection_points2;
+
+        #ifdef PRINT_DETAILS
+        clock_t start_time, end_time;
         start_time = clock();
         CGALConvexHull::getIntersecionPoints2(planes, intersection_points2); //including transform dual and transfrom to cgal point
         end_time = clock();
         cout << "Intersection Time2(Mesh):" << end_time - start_time << endl;
-
+        #else
+        CGALConvexHull::getIntersecionPoints2(planes, intersection_points2); //including transform dual and transfrom to cgal point
+        #endif
         /*
         vector<CP_Vector3D> intersection_points;
         start_time = clock();

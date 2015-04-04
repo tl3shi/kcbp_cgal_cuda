@@ -148,7 +148,9 @@ public:
             }
             if(!move_on)
             {
+                #ifdef PRINT_DETAILS
                 cout << "Clustering Converged with iterate times: " << iterTime << endl;
+                #endif
                 break;
             }
         }

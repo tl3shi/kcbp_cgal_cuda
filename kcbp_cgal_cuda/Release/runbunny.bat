@@ -1,0 +1,11 @@
+kCBP_CGAL_CUDA.exe 24 models/bunny2.obj n 10 04-03-10-rand.config >>bunny2.k24.log
+kCBP_CGAL_CUDA.exe 24 models/bunny2.obj n 30 04-03-30-rand.config >>bunny2.k24.log
+kCBP_CGAL_CUDA.exe 24 models/bunny2.obj n 50 04-03-50-rand.config >>bunny2.k24.log
+kCBP_CGAL_CUDA.exe 24 models/bunny2.obj n 70 04-03-70-rand.config >>bunny2.k24.log
+kCBP_CGAL_CUDA.exe 24 models/bunny2.obj n 90 04-03-90-rand.config >>bunny2.k24.log
+kCBP_CGAL_CUDA.exe 24 models/bunny2.obj n 100 04-03-100-rand.config >>bunny2.k24.log
+kCBP_CGAL_CUDA.exe 24 models/bunny2.obj n 110 04-03-110-rand.config >>bunny2.k24.log
+kCBP_CGAL_CUDA.exe 24 models/bunny2.obj n 130 04-03-130-rand.config >>bunny2.k24.log
+kCBP_CGAL_CUDA.exe 24 models/bunny2.obj n 150 04-03-150-rand.config >>bunny2.k24.log
+kCBP_CGAL_CUDA.exe 24 models/bunny2.obj n 170 04-03-170-rand.config >>bunny2.k24.log
+kCBP_CGAL_CUDA.exe 24 models/bunny2.obj n 200 04-03-200-rand.config >>bunny2.k24.log

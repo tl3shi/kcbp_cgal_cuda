@@ -1,0 +1,11 @@
+KCBP构造时间构成：
+	ACH： ach banchtest %d times totaly:
+	Cluster： cluster time (%d times) totaly:
+	Projection: Projection time banchtest 
+	Duality: duality mapping time (%d times) totaly:
+	
+碰撞检测的时间： 静态多体(模型)模拟环境
+3类
+	1： AABBTree直接包括：AABBTree build时间 + AABBTree traverse时间
+	2： kcbp AABB过滤包括：kcbp构造时间+ kcbp的AABB构造 + kcbp的aabbtraverse和AABB最终traverse
+	3： kcbp GJK过滤：kcbp构造+  GJK过滤INIT + kcbp的GJK和AABB Traverse

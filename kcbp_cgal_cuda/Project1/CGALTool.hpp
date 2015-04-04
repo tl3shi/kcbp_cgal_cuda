@@ -92,7 +92,7 @@ public:
 
     struct Plane3D_to_CGAL_Point
     {
-        Point_3 operator()(Plane3D &plane)
+        Point_3 operator()(const Plane3D &plane)
         {
             CP_Vector3D &p = plane.toDualPoint();
             return Point_3(p.x, p.y, p.z);
@@ -117,18 +117,19 @@ public:
         assert(points.size() > 0);
 
         Polyhedron_3 poly;
+        #ifdef PRINT_DETAILS
         clock_t start_time, end_time;
-
         start_time = clock();
         for (int i = 0; i < benchtest; i++)
-        {
             CGAL::convex_hull_3(points.begin(), points.end(), poly);
-        }
         end_time = clock();
         if(benchtest == 1)
             cout << "convexhull time: " << end_time - start_time << endl;
         else
             cout << "convexhull time (benchtest " << benchtest << " times) :" << (end_time - start_time) * 1.0f / benchtest << endl;
+        #else
+            CGAL::convex_hull_3(points.begin(), points.end(), poly);
+        #endif
         // assign a plane equation to each polyhedron facet using functor Plane_from_facet
         std::transform(poly.facets_begin(), poly.facets_end(), poly.planes_begin(), Plane_from_facet());
 
@@ -144,14 +145,13 @@ public:
             cgal_to_vector(h->next()->vertex()->point(), convexhull_points[index++]);
             cgal_to_vector(h->opposite()->vertex()->point(), convexhull_points[index++]);
         }
-
     }
 
     void static getConvexHullFacets(vector<Point_3> &points, vector<CP_Vector3D> &convexhull_points, int benchtest = 1)
     {
         Polyhedron_3 poly;
+        #ifdef PRINT_DETAILS
         clock_t start_time, end_time;
-
         start_time = clock();
         for (int i = 0; i < benchtest; i++)
         {
@@ -162,6 +162,10 @@ public:
             cout << "convexhull time: " << end_time - start_time << endl;
         else
             cout << "convexhull time (benchtest " << benchtest << " times) :" << (end_time - start_time) * 1.0f / benchtest << endl;
+        #else
+        CGAL::convex_hull_3(points.begin(), points.end(), poly);
+        #endif
+        
         // assign a plane equation to each polyhedron facet using functor Plane_from_facet
         std::transform(poly.facets_begin(), poly.facets_end(), poly.planes_begin(), Plane_from_facet());
 
@@ -211,7 +215,7 @@ public:
 
     //For this duality procedure towork, the k-DOPmust be translated to contain
     //the origin, if it is not already contained in the k-DOP
-    void static getIntersecionPoints(vector<Plane3D> &planes, vector<CP_Vector3D> &intersection_points)
+    void static getIntersecionPoints(const vector<Plane3D> &planes, vector<CP_Vector3D> &intersection_points)
     {
         vector<Point_3> cgal_points(planes.size());
         std::transform(planes.begin(), planes.end(), cgal_points.begin(), Plane3D_to_CGAL_Point());
@@ -243,7 +247,7 @@ public:
         */
     }
 
-    void static getIntersecionPoints2(vector<Plane3D> &planes, vector<Point_3> &intersection_points)
+    void static getIntersecionPoints2(const vector<Plane3D> &planes, vector<Point_3> &intersection_points)
     {
         vector<Point_3> cgal_points(planes.size());
         for (unsigned int i = 0; i <  planes.size(); i++)

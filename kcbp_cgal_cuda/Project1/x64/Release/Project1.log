@@ -1,0 +1,31 @@
+﻿cdbench.obj : error LNK2001: 无法解析的外部符号 glutReshapeWindow
+cdbench.obj : error LNK2001: 无法解析的外部符号 ccdGJKIntersect
+cdbench.obj : error LNK2001: 无法解析的外部符号 __imp___gmpq_init
+cdbench.obj : error LNK2001: 无法解析的外部符号 glutCreateWindow
+cdbench.obj : error LNK2001: 无法解析的外部符号 __imp___gmpq_set
+cdbench.obj : error LNK2001: 无法解析的外部符号 glutPositionWindow
+cdbench.obj : error LNK2001: 无法解析的外部符号 glutMotionFunc
+cdbench.obj : error LNK2001: 无法解析的外部符号 "__declspec(dllimport) void __cdecl CGAL::postcondition_fail(char const *,char const *,int,char const *)" (__imp_?postcondition_fail@CGAL@@YAXPEBD0H0@Z)
+cdbench.obj : error LNK2001: 无法解析的外部符号 "__declspec(dllimport) void __cdecl CGAL::assertion_fail(char const *,char const *,int,char const *)" (__imp_?assertion_fail@CGAL@@YAXPEBD0H0@Z)
+cdbench.obj : error LNK2001: 无法解析的外部符号 "__declspec(dllimport) void __cdecl CGAL::precondition_fail(char const *,char const *,int,char const *)" (__imp_?precondition_fail@CGAL@@YAXPEBD0H0@Z)
+cdbench.obj : error LNK2001: 无法解析的外部符号 __imp___gmpq_add
+cdbench.obj : error LNK2001: 无法解析的外部符号 __imp___gmpq_cmp
+cdbench.obj : error LNK2001: 无法解析的外部符号 glutSwapBuffers
+cdbench.obj : error LNK2001: 无法解析的外部符号 __imp___gmpq_mul
+cdbench.obj : error LNK2001: 无法解析的外部符号 glutReshapeFunc
+cdbench.obj : error LNK2001: 无法解析的外部符号 __imp___gmpq_sub
+cdbench.obj : error LNK2001: 无法解析的外部符号 "class boost::system::error_category const & __cdecl boost::system::system_category(void)" (?system_category@system@boost@@YAAEBVerror_category@12@XZ)
+cdbench.obj : error LNK2001: 无法解析的外部符号 "class boost::system::error_category const & __cdecl boost::system::generic_category(void)" (?generic_category@system@boost@@YAAEBVerror_category@12@XZ)
+cdbench.obj : error LNK2001: 无法解析的外部符号 __imp___gmpq_equal
+cdbench.obj : error LNK2001: 无法解析的外部符号 __imp___gmpq_clear
+cdbench.obj : error LNK2001: 无法解析的外部符号 glutInitDisplayMode
+cdbench.obj : error LNK2001: 无法解析的外部符号 ccdFirstDirDefault
+cdbench.obj : error LNK2001: 无法解析的外部符号 glutSpecialFunc
+cdbench.obj : error LNK2001: 无法解析的外部符号 glutMouseFunc
+cdbench.obj : error LNK2001: 无法解析的外部符号 __imp___gmpq_set_d
+cdbench.obj : error LNK2001: 无法解析的外部符号 glutInit
+cdbench.obj : error LNK2001: 无法解析的外部符号 glutKeyboardFunc
+cdbench.obj : error LNK2001: 无法解析的外部符号 glutMainLoop
+cdbench.obj : error LNK2001: 无法解析的外部符号 glutPostRedisplay
+cdbench.obj : error LNK2001: 无法解析的外部符号 glutDisplayFunc
+D:\github\kcbp_cgal_cuda\kcbp_cgal_cuda\x64\Release\kCBP_CGAL_CUDA.exe : fatal error LNK1120: 30 个无法解析的外部命令

@@ -18,14 +18,11 @@ public:
         if(benchmark > 0)
         {
             double t = .0f;
+             start_time = clock();
             for (int i = 0; i < benchmark; i++)
-            {
-                start_time = clock();
                 result = projectsse(points, normals);
-                end_time = clock();
-                t += end_time - start_time;
-            }
-            cout << "banchtest(" << benchmark << " times) CPU(SSE) :" << t / benchmark << endl;
+            t = clock() - start_time;
+            cout << "Projection time banchtest(" << benchmark << " times) CPU(SSE) totaly:" << t  << endl;
         }else
         {
             start_time = clock();
