@@ -71,7 +71,7 @@
       <Path>traverse-iterator.vspx</Path>
     </Report>
     <Report>
-      <Path>kCBP_CGAL_CUDA150404.vspx</Path>
+      <Path>traverse-recursive.vspx</Path>
     </Report>
   </Reports>
   <Launches>

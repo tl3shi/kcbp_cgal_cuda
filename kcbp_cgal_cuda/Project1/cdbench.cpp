@@ -603,6 +603,7 @@ void genModels(int modelnum, string config)
     float time_during = clock() - time_start;
     printf("build AABB time : %.2f\n", time_during);
     printf("build AABB count: %d\n", aabbneed);
+    if(false) //No direct
     {
         printf("The Following result uses AABB directly\n");
         collision_index.resize(model_num);
@@ -657,16 +658,16 @@ void genModels(int modelnum, string config)
         std::vector<std::pair<int, int> > cpairs;
         clock_t c_time = clock();
         CMatrix ident = CMatrix::Identity;
-        //for(int i = 0; i < model_num-1; i++)
+        vector<bool> needModelCheck(model_num, false);
         for(auto it = boxPairs.begin(); it != boxPairs.end(); it++)
         {
             int i = it->first; int j = it->second;        
-            //for(int j = i+1; j < model_num; j++)
-            //{
-                bool c = AABBTree::TraverseDetective(aabbtrees4kcbp[i]->Root, aabbtrees4kcbp[j]->Root);
-                if(c)
-                    kcbppairs.push_back(std::make_pair(i, j));
-            //}
+            bool c = AABBTree::TraverseDetective(aabbtrees4kcbp[i]->Root, aabbtrees4kcbp[j]->Root);
+            if(c)
+            {
+                kcbppairs.push_back(std::make_pair(i, j));
+                needModelCheck[i] = needModelCheck[j] = true;
+            }
         }
         for(auto it = kcbppairs.begin(); it != kcbppairs.end(); it++)
         {
@@ -675,7 +676,14 @@ void genModels(int modelnum, string config)
                 cpairs.push_back(std::make_pair(it->first, it->second));
         }
         c_time = clock() - c_time;
+        int needModelCheckCount = 0;
+        for(int i = 0; i < needMoreCheck.size(); i++)
+        {
+            if(needMoreCheck[i])
+                needModelCheckCount++;
+        }
         printf("kcbp collision size(AABB filter) : %d\n", kcbppairs.size());
+        printf("kcbp model check count: %d\n", needModelCheckCount);
         printf("total collision time(KCBP AABB filter) : %.2f\n", c_time * 1.0);
         printf("collision pairs : %d\n", cpairs.size());
         //deconstructor

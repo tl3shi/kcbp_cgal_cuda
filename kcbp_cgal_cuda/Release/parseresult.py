@@ -6,12 +6,12 @@ if len(sys.argv) < 2:
     exit()
 
 inputfilename = sys.argv[1]
-resultfilename = inputfilename + '.result.csv'
+resultfilename = inputfilename + '.result.detail.csv'
 inputfile = open(inputfilename, 'r')
 result = {} 
 
-features_key  = ['ach', 'cluster', 'projection', 'duality', 'aabbBuild', 'aabbBuildCount', 'CD(aabb)', 'init(kCBP)', 'CD(kCBP)', 'init(GJK)', 'CD(GJK)','count(Box)', 'count(kCBP)', 'count(GJK)', 'count(real)'] 
-features_value= ['ach banchtest', 'cluster time', 'Projection time',  'duality mapping time', 'build AABB time :','build AABB count:', 'total collision time(AABB directly)', 'build AABB time 4 KCBP :', 'total collision time(KCBP AABB filter)', 'init GJK time 4 KCBP', 'total collision time(KCBP GJK filter)', 'box collision size:', 'kcbp collision size(AABB filter)','kcbp collision size(GJK filter)', 'collision pairs :'] 
+features_key  = ['ach', 'cluster', 'projection', 'duality', 'aabbBuild', 'aabbBuildCount', 'init(kCBP)', 'CD(kCBP)', 'init(GJK)', 'CD(GJK)','kcbpModelCheckCount', 'count(Box)', 'count(kCBP)', 'count(GJK)', 'count(real)'] 
+features_value= ['ach banchtest', 'cluster time', 'Projection time',  'duality mapping time', 'build AABB time :','build AABB count:', 'build AABB time 4 KCBP :', 'total collision time(KCBP AABB filter)', 'init GJK time 4 KCBP', 'total collision time(KCBP GJK filter)', 'kcbp model check count', 'box collision size:', 'kcbp collision size(AABB filter)','kcbp collision size(GJK filter)', 'collision pairs :'] 
 
 if len(features_key) != len(features_value) :
     print 'key value Error!'
@@ -49,7 +49,23 @@ for key in result.keys():
 resultfile.flush()
 resultfile.close()
 
+
+simpleresultfilename = inputfilename + '.result.simple.csv'
+simpleresultfile = open(simpleresultfilename, 'w')
+#header of CSV simple
+simpleresultfile.write('n, ConstructKCBP, ConstructModelAABB, init-CD(kCBP-aabb), init-CD(kCBP-GJK), count(kCBP), count(real)\n')
+
+for key in result.keys():
+    value = result[key]
+    simpleresultfile.write(str(key) + ',')
+    simpleresultfile.write(str(float(value['ach']) + float(value['cluster']) + float(value['projection']) + float(value['duality'])) + ',') # ConstructKCBP
+    simpleresultfile.write(str(float(value['aabbBuild'])  / float(value['aabbBuildCount']) * float(value['kcbpModelCheckCount'])) + ',') # ConstructModelAABB
+    simpleresultfile.write(str(float(value['init(kCBP)']) + float(value['CD(kCBP)'])) + ',') 
+    simpleresultfile.write(str(float(value['init(GJK)'])  + float(value['CD(GJK)'])) + ',') 
+    simpleresultfile.write(str(value['count(kCBP)']) + ',' + str(value['count(real)']) + '\n') 
+
+simpleresultfile.flush()
+simpleresultfile.close()
+
 print 'done.\n'
-
-
 
