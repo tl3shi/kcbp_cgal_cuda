@@ -1,0 +1,204 @@
+﻿  Compiling CUDA source file test.cu...
+  
+  D:\github\kcbp_cgal_cuda\kcbp_cgal_cuda\Project1>"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v5.0\bin\nvcc.exe" -gencode=arch=compute_10,code=\"sm_10,compute_10\" --use-local-env --cl-version 2010 -ccbin "C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\x86_amd64"  -I"D:\cpp\research\kcbp_cgal_cuda\Project1\swiftinclude" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v5.0\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v5.0\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v5.0\include"  -G   --keep-dir "x64\Debug" -maxrregcount=0  --machine 64 --compile  -g   -D_MBCS -Xcompiler "/EHsc /W3 /nologo /Od /Zi /RTC1 /MDd  " -o "x64\Debug\test.cu.obj" "D:\github\kcbp_cgal_cuda\kcbp_cgal_cuda\Project1\test.cu" 
+c:\program files\nvidia gpu computing toolkit\cuda\v5.0\include\device_functions.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+c:\program files\nvidia gpu computing toolkit\cuda\v5.0\include\device_functions.h(785): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+c:\program files\nvidia gpu computing toolkit\cuda\v5.0\include\device_functions.h(1663): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+c:\program files\nvidia gpu computing toolkit\cuda\v5.0\include\sm_13_double_functions.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+D:/github/kcbp_cgal_cuda/kcbp_cgal_cuda/Project1/test.cu(20): warning : variable "result_index" was set but never used
+c:\program files\nvidia gpu computing toolkit\cuda\v5.0\include\device_functions.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+c:\program files\nvidia gpu computing toolkit\cuda\v5.0\include\device_functions.h(785): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+c:\program files\nvidia gpu computing toolkit\cuda\v5.0\include\device_functions.h(1663): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+c:\program files\nvidia gpu computing toolkit\cuda\v5.0\include\sm_13_double_functions.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+c:\program files\nvidia gpu computing toolkit\cuda\v5.0\include\device_functions.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+c:\program files\nvidia gpu computing toolkit\cuda\v5.0\include\device_functions.h(785): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+c:\program files\nvidia gpu computing toolkit\cuda\v5.0\include\device_functions.h(1663): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+c:\program files\nvidia gpu computing toolkit\cuda\v5.0\include\sm_13_double_functions.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+D:/github/kcbp_cgal_cuda/kcbp_cgal_cuda/Project1/test.cu(20): warning : variable "result_index" was set but never used
+  tmpxft_000016a0_00000000-12_test.ii
+D:/github/kcbp_cgal_cuda/kcbp_cgal_cuda/Project1/test.cu(366): warning C4267: “参数”: 从“size_t”转换到“int”，可能丢失数据
+D:/github/kcbp_cgal_cuda/kcbp_cgal_cuda/Project1/test.cu(383): warning C4267: “初始化”: 从“size_t”转换到“unsigned int”，可能丢失数据
+D:/github/kcbp_cgal_cuda/kcbp_cgal_cuda/Project1/test.cu(384): warning C4267: “初始化”: 从“size_t”转换到“unsigned int”，可能丢失数据
+D:/github/kcbp_cgal_cuda/kcbp_cgal_cuda/Project1/test.cu(386): warning C4267: “初始化”: 从“size_t”转换到“unsigned int”，可能丢失数据
+D:/github/kcbp_cgal_cuda/kcbp_cgal_cuda/Project1/test.cu(400): warning C4267: “参数”: 从“size_t”转换到“unsigned int”，可能丢失数据
+D:/github/kcbp_cgal_cuda/kcbp_cgal_cuda/Project1/test.cu(409): warning C4267: “参数”: 从“size_t”转换到“int”，可能丢失数据
+D:/github/kcbp_cgal_cuda/kcbp_cgal_cuda/Project1/test.cu(451): warning C4267: “初始化”: 从“size_t”转换到“unsigned int”，可能丢失数据
+D:/github/kcbp_cgal_cuda/kcbp_cgal_cuda/Project1/test.cu(452): warning C4267: “初始化”: 从“size_t”转换到“unsigned int”，可能丢失数据
+D:/github/kcbp_cgal_cuda/kcbp_cgal_cuda/Project1/test.cu(476): warning C4267: “参数”: 从“size_t”转换到“int”，可能丢失数据
+  Vector.cpp
+  SSEProjection.hpp
+SSEProjection.hpp(40): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+  Matrix.cpp
+  CP_PointVector.cpp
+  cdbench.cpp
+d:\github\kcbp_cgal_cuda\kcbp_cgal_cuda\project1\UIHelper.hpp(252): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+d:\github\kcbp_cgal_cuda\kcbp_cgal_cuda\project1\UIHelper.hpp(478): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+C:\Program Files (x86)\Windows Kits\8.0\Include\shared\minwindef.h(127): warning C4005: “CALLBACK”: 宏重定义
+          C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\GL/glut.h(33) : 参见“CALLBACK”的前一个定义
+C:\Boost\include\boost-1_53\boost/format/alt_sstream_impl.hpp : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+d:\github\kcbp_cgal_cuda\kcbp_cgal_cuda\project1\ClassicalKmeans.hpp(15): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+d:\github\kcbp_cgal_cuda\kcbp_cgal_cuda\project1\ClassicalKmeans.hpp(95): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+d:\github\kcbp_cgal_cuda\kcbp_cgal_cuda\project1\SSEProjection.hpp(40): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+d:\github\kcbp_cgal_cuda\kcbp_cgal_cuda\project1\KCBP.hpp(69): warning C4267: “=”: 从“size_t”转换到“int”，可能丢失数据
+d:\github\kcbp_cgal_cuda\kcbp_cgal_cuda\project1\KCBP.hpp(615): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+d:\github\kcbp_cgal_cuda\kcbp_cgal_cuda\project1\KCBP.hpp(649): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+d:\github\kcbp_cgal_cuda\kcbp_cgal_cuda\project1\KCBP.hpp(691): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+d:\github\kcbp_cgal_cuda\kcbp_cgal_cuda\project1\KCBP.hpp(750): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+d:\github\kcbp_cgal_cuda\kcbp_cgal_cuda\project1\KCBP.hpp(769): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+d:\github\kcbp_cgal_cuda\kcbp_cgal_cuda\project1\AABB.hpp(438): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+d:\github\kcbp_cgal_cuda\kcbp_cgal_cuda\project1\AABB.hpp(439): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+d:\github\kcbp_cgal_cuda\kcbp_cgal_cuda\project1\AABB.hpp(458): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+d:\github\kcbp_cgal_cuda\kcbp_cgal_cuda\project1\AABB.hpp(459): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+d:\github\kcbp_cgal_cuda\kcbp_cgal_cuda\project1\CollsionQuery.hpp(11): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+d:\github\kcbp_cgal_cuda\kcbp_cgal_cuda\project1\CollsionQuery.hpp(17): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+d:\github\kcbp_cgal_cuda\kcbp_cgal_cuda\project1\CollsionQuery.hpp(26): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+d:\github\kcbp_cgal_cuda\kcbp_cgal_cuda\project1\CollsionQuery.hpp(32): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+d:\github\kcbp_cgal_cuda\kcbp_cgal_cuda\project1\LibCCDQuery.hpp(87): warning C4267: “初始化”: 从“size_t”转换到“const int”，可能丢失数据
+d:\github\kcbp_cgal_cuda\kcbp_cgal_cuda\project1\LibCCDQuery.hpp(111): warning C4267: “参数”: 从“size_t”转换到“int”，可能丢失数据
+d:\github\kcbp_cgal_cuda\kcbp_cgal_cuda\project1\LibCCDQuery.hpp(112): warning C4267: “参数”: 从“size_t”转换到“int”，可能丢失数据
+cdbench.cpp(408): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+cdbench.cpp(591): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\algorithm(1066): warning C4996: 'std::_Transform1': Function call with parameters that may be unsafe - this call relies on the caller to check that the passed values are correct. To disable this warning, use -D_SCL_SECURE_NO_WARNINGS. See documentation on how to use Visual C++ 'Checked Iterators'
+          C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\algorithm(1047) : 参见“std::_Transform1”的声明
+          d:\github\kcbp_cgal_cuda\kcbp_cgal_cuda\project1\CGALTool.hpp(134): 参见对正在编译的函数 模板 实例化“_OutIt std::transform<CGAL::internal::In_place_list_iterator<T,Alloc>,CGAL::Iterator_project<I,Fct>,CGALConvexHull::Plane_from_facet>(_InIt,_InIt,_OutIt,_Fn1)”的引用
+          with
+          [
+              _OutIt=CGAL::Iterator_project<CGAL::internal::In_place_list_iterator<CGAL::HalfedgeDS_in_place_list_face<CGAL::I_Polyhedron_facet<CGAL::HalfedgeDS_face_base<CGAL::HalfedgeDS_list_types<CGAL::Epick,CGAL::I_Polyhedron_derived_items_3<CGAL::Polyhedron_items_3>,std::allocator<int>>,CGAL::Tag_true,CGAL::Plane_3<CGAL::Epick>>>>,std::allocator<CGAL::HalfedgeDS_in_place_list_face<CGAL::I_Polyhedron_facet<CGAL::HalfedgeDS_face_base<CGAL::HalfedgeDS_list_types<CGAL::Epick,CGAL::I_Polyhedron_derived_items_3<CGAL::Polyhedron_items_3>,std::allocator<int>>,CGAL::Tag_true,CGAL::Plane_3<CGAL::Epick>>>>>>,CGAL::Project_plane<CGAL::HalfedgeDS_in_place_list_face<CGAL::I_Polyhedron_facet<CGAL::HalfedgeDS_face_base<CGAL::HalfedgeDS_list_types<CGAL::Epick,CGAL::I_Polyhedron_derived_items_3<CGAL::Polyhedron_items_3>,std::allocator<int>>,CGAL::Tag_true,CGAL::Plane_3<CGAL::Epick>>>>>>,
+              T=CGAL::HalfedgeDS_in_place_list_face<CGAL::I_Polyhedron_facet<CGAL::HalfedgeDS_face_base<CGAL::HalfedgeDS_list_types<CGAL::Epick,CGAL::I_Polyhedron_derived_items_3<CGAL::Polyhedron_items_3>,std::allocator<int>>,CGAL::Tag_true,CGAL::Plane_3<CGAL::Epick>>>>,
+              Alloc=std::allocator<CGAL::HalfedgeDS_in_place_list_face<CGAL::I_Polyhedron_facet<CGAL::HalfedgeDS_face_base<CGAL::HalfedgeDS_list_types<CGAL::Epick,CGAL::I_Polyhedron_derived_items_3<CGAL::Polyhedron_items_3>,std::allocator<int>>,CGAL::Tag_true,CGAL::Plane_3<CGAL::Epick>>>>>,
+              I=CGAL::internal::In_place_list_iterator<CGAL::HalfedgeDS_in_place_list_face<CGAL::I_Polyhedron_facet<CGAL::HalfedgeDS_face_base<CGAL::HalfedgeDS_list_types<CGAL::Epick,CGAL::I_Polyhedron_derived_items_3<CGAL::Polyhedron_items_3>,std::allocator<int>>,CGAL::Tag_true,CGAL::Plane_3<CGAL::Epick>>>>,std::allocator<CGAL::HalfedgeDS_in_place_list_face<CGAL::I_Polyhedron_facet<CGAL::HalfedgeDS_face_base<CGAL::HalfedgeDS_list_types<CGAL::Epick,CGAL::I_Polyhedron_derived_items_3<CGAL::Polyhedron_items_3>,std::allocator<int>>,CGAL::Tag_true,CGAL::Plane_3<CGAL::Epick>>>>>>,
+              Fct=CGAL::Project_plane<CGAL::HalfedgeDS_in_place_list_face<CGAL::I_Polyhedron_facet<CGAL::HalfedgeDS_face_base<CGAL::HalfedgeDS_list_types<CGAL::Epick,CGAL::I_Polyhedron_derived_items_3<CGAL::Polyhedron_items_3>,std::allocator<int>>,CGAL::Tag_true,CGAL::Plane_3<CGAL::Epick>>>>>,
+              _InIt=CGAL::internal::In_place_list_iterator<CGAL::HalfedgeDS_in_place_list_face<CGAL::I_Polyhedron_facet<CGAL::HalfedgeDS_face_base<CGAL::HalfedgeDS_list_types<CGAL::Epick,CGAL::I_Polyhedron_derived_items_3<CGAL::Polyhedron_items_3>,std::allocator<int>>,CGAL::Tag_true,CGAL::Plane_3<CGAL::Epick>>>>,std::allocator<CGAL::HalfedgeDS_in_place_list_face<CGAL::I_Polyhedron_facet<CGAL::HalfedgeDS_face_base<CGAL::HalfedgeDS_list_types<CGAL::Epick,CGAL::I_Polyhedron_derived_items_3<CGAL::Polyhedron_items_3>,std::allocator<int>>,CGAL::Tag_true,CGAL::Plane_3<CGAL::Epick>>>>>>,
+              _Fn1=CGALConvexHull::Plane_from_facet
+          ]
+D:\CGAL-4.1\include\CGAL/Polytope_distance_d.h(391): warning C4267: “return”: 从“size_t”转换到“int”，可能丢失数据
+          D:\CGAL-4.1\include\CGAL/Polytope_distance_d.h(391): 编译类 模板 成员函数“int CGAL::Polytope_distance_d<Traits_>::number_of_points_p(void) const”时
+          with
+          [
+              Traits_=Traits
+          ]
+          D:\CGAL-4.1\include\CGAL/Polytope_distance_d.h(773): 参见对正在编译的函数 模板 实例化“int CGAL::Polytope_distance_d<Traits_>::number_of_points_p(void) const”的引用
+          with
+          [
+              Traits_=Traits
+          ]
+          d:\github\kcbp_cgal_cuda\kcbp_cgal_cuda\project1\CGALTool.hpp(358): 参见对正在编译的类 模板 实例化“CGAL::Polytope_distance_d<Traits_>”的引用
+          with
+          [
+              Traits_=Traits
+          ]
+D:\CGAL-4.1\include\CGAL/Polytope_distance_d.h(392): warning C4267: “return”: 从“size_t”转换到“int”，可能丢失数据
+          D:\CGAL-4.1\include\CGAL/Polytope_distance_d.h(392): 编译类 模板 成员函数“int CGAL::Polytope_distance_d<Traits_>::number_of_points_q(void) const”时
+          with
+          [
+              Traits_=Traits
+          ]
+          D:\CGAL-4.1\include\CGAL/Polytope_distance_d.h(773): 参见对正在编译的函数 模板 实例化“int CGAL::Polytope_distance_d<Traits_>::number_of_points_q(void) const”的引用
+          with
+          [
+              Traits_=Traits
+          ]
+D:\CGAL-4.1\include\CGAL/Polytope_distance_d.h(406): warning C4267: “return”: 从“size_t”转换到“int”，可能丢失数据
+          D:\CGAL-4.1\include\CGAL/Polytope_distance_d.h(406): 编译类 模板 成员函数“int CGAL::Polytope_distance_d<Traits_>::number_of_support_points_p(void) const”时
+          with
+          [
+              Traits_=Traits
+          ]
+          D:\CGAL-4.1\include\CGAL/Polytope_distance_d.h(773): 参见对正在编译的函数 模板 实例化“int CGAL::Polytope_distance_d<Traits_>::number_of_support_points_p(void) const”的引用
+          with
+          [
+              Traits_=Traits
+          ]
+D:\CGAL-4.1\include\CGAL/Polytope_distance_d.h(407): warning C4267: “return”: 从“size_t”转换到“int”，可能丢失数据
+          D:\CGAL-4.1\include\CGAL/Polytope_distance_d.h(407): 编译类 模板 成员函数“int CGAL::Polytope_distance_d<Traits_>::number_of_support_points_q(void) const”时
+          with
+          [
+              Traits_=Traits
+          ]
+          D:\CGAL-4.1\include\CGAL/Polytope_distance_d.h(773): 参见对正在编译的函数 模板 实例化“int CGAL::Polytope_distance_d<Traits_>::number_of_support_points_q(void) const”的引用
+          with
+          [
+              Traits_=Traits
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\numeric(108): warning C4996: 'std::_Inner_product1': Function call with parameters that may be unsafe - this call relies on the caller to check that the passed values are correct. To disable this warning, use -D_SCL_SECURE_NO_WARNINGS. See documentation on how to use Visual C++ 'Checked Iterators'
+          C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\numeric(92) : 参见“std::_Inner_product1”的声明
+          D:\CGAL-4.1\include\CGAL/QP_solver/QP_solver_impl.h(117): 参见对正在编译的函数 模板 实例化“_Ty std::inner_product<std::_Vector_const_iterator<_Myvec>,boost::transform_iterator<UnaryFunc,Iterator>,ET>(_InIt1,_InIt1,_InIt2,_Ty)”的引用
+          with
+          [
+              _Ty=CGAL::Gmpzf,
+              _Myvec=std::_Vector_val<std::_Simple_types<CGAL::Gmpzf>>,
+              UnaryFunc=CGAL::QP_matrix_pairwise_accessor<boost::transform_iterator<CGAL::PD_detail::D_matrix<CGAL::Gmpzf>,boost::counting_iterator<int>>,CGAL::Gmpzf>,
+              Iterator=CGAL::QP_solver<CGAL::Nonnegative_quadratic_program_from_iterators<boost::transform_iterator<CGAL::PD_detail::A_matrix<CGAL::Gmpzf,CGAL::Access_coordinates_begin_3<CGAL::Homogeneous<ET>>,std::_Vector_const_iterator<std::_Vector_val<std::_Simple_types<CGAL::Point_3<CGAL::Homogeneous<ET>>>>>>,boost::counting_iterator<int>>,boost::transform_iterator<CGAL::PD_detail::B_vector<CGAL::Gmpzf>,boost::counting_iterator<int>>,CGAL::Polytope_distance_d<Traits>::R_iterator,boost::transform_iterator<CGAL::PD_detail::D_matrix<CGAL::Gmpzf>,boost::counting_iterator<int>>,CGAL::Const_oneset_iterator<CGAL::Gmpzf>>,CGAL::Gmpzf,CGAL::Polytope_distance_d<Traits>::QP_tags>::Index_const_iterator,
+              ET=CGAL::Gmpzf,
+              _InIt1=std::_Vector_const_iterator<std::_Vector_val<std::_Simple_types<CGAL::Gmpzf>>>,
+              _InIt2=boost::transform_iterator<CGAL::QP_matrix_pairwise_accessor<boost::transform_iterator<CGAL::PD_detail::D_matrix<CGAL::Gmpzf>,boost::counting_iterator<int>>,CGAL::Gmpzf>,CGAL::QP_solver<CGAL::Nonnegative_quadratic_program_from_iterators<boost::transform_iterator<CGAL::PD_detail::A_matrix<CGAL::Gmpzf,CGAL::Access_coordinates_begin_3<CGAL::Homogeneous<ET>>,std::_Vector_const_iterator<std::_Vector_val<std::_Simple_types<CGAL::Point_3<CGAL::Homogeneous<ET>>>>>>,boost::counting_iterator<int>>,boost::transform_iterator<CGAL::PD_detail::B_vector<CGAL::Gmpzf>,boost::counting_iterator<int>>,CGAL::Polytope_distance_d<Traits>::R_iterator,boost::transform_iterator<CGAL::PD_detail::D_matrix<CGAL::Gmpzf>,boost::counting_iterator<int>>,CGAL::Const_oneset_iterator<CGAL::Gmpzf>>,CGAL::Gmpzf,CGAL::Polytope_distance_d<Traits>::QP_tags>::Index_const_iterator>
+          ]
+          D:\CGAL-4.1\include\CGAL/QP_solver/QP_solver_impl.h(92): 编译类 模板 成员函数“CGAL::Gmpzf CGAL::QP_solver<Q,ET,Tags>::solution_numerator(void) const”时
+          with
+          [
+              Q=CGAL::Nonnegative_quadratic_program_from_iterators<boost::transform_iterator<CGAL::PD_detail::A_matrix<CGAL::Gmpzf,CGAL::Access_coordinates_begin_3<CGAL::Homogeneous<ET>>,std::_Vector_const_iterator<std::_Vector_val<std::_Simple_types<CGAL::Point_3<CGAL::Homogeneous<ET>>>>>>,boost::counting_iterator<int>>,boost::transform_iterator<CGAL::PD_detail::B_vector<CGAL::Gmpzf>,boost::counting_iterator<int>>,CGAL::Polytope_distance_d<Traits>::R_iterator,boost::transform_iterator<CGAL::PD_detail::D_matrix<CGAL::Gmpzf>,boost::counting_iterator<int>>,CGAL::Const_oneset_iterator<CGAL::Gmpzf>>,
+              ET=CGAL::Gmpzf,
+              Tags=CGAL::Polytope_distance_d<Traits>::QP_tags
+          ]
+          D:\CGAL-4.1\include\CGAL/Polytope_distance_d.h(466): 参见对正在编译的函数 模板 实例化“CGAL::Gmpzf CGAL::QP_solver<Q,ET,Tags>::solution_numerator(void) const”的引用
+          with
+          [
+              Q=CGAL::Nonnegative_quadratic_program_from_iterators<boost::transform_iterator<CGAL::PD_detail::A_matrix<CGAL::Gmpzf,CGAL::Access_coordinates_begin_3<CGAL::Homogeneous<ET>>,std::_Vector_const_iterator<std::_Vector_val<std::_Simple_types<CGAL::Point_3<CGAL::Homogeneous<ET>>>>>>,boost::counting_iterator<int>>,boost::transform_iterator<CGAL::PD_detail::B_vector<CGAL::Gmpzf>,boost::counting_iterator<int>>,CGAL::Polytope_distance_d<Traits>::R_iterator,boost::transform_iterator<CGAL::PD_detail::D_matrix<CGAL::Gmpzf>,boost::counting_iterator<int>>,CGAL::Const_oneset_iterator<CGAL::Gmpzf>>,
+              ET=CGAL::Gmpzf,
+              Tags=CGAL::Polytope_distance_d<Traits>::QP_tags
+          ]
+          D:\CGAL-4.1\include\CGAL/Polytope_distance_d.h(357): 参见对正在编译的类 模板 实例化“CGAL::QP_solver<Q,ET,Tags>”的引用
+          with
+          [
+              Q=CGAL::Nonnegative_quadratic_program_from_iterators<boost::transform_iterator<CGAL::PD_detail::A_matrix<CGAL::Gmpzf,CGAL::Access_coordinates_begin_3<CGAL::Homogeneous<ET>>,std::_Vector_const_iterator<std::_Vector_val<std::_Simple_types<CGAL::Point_3<CGAL::Homogeneous<ET>>>>>>,boost::counting_iterator<int>>,boost::transform_iterator<CGAL::PD_detail::B_vector<CGAL::Gmpzf>,boost::counting_iterator<int>>,CGAL::Polytope_distance_d<Traits>::R_iterator,boost::transform_iterator<CGAL::PD_detail::D_matrix<CGAL::Gmpzf>,boost::counting_iterator<int>>,CGAL::Const_oneset_iterator<CGAL::Gmpzf>>,
+              ET=CGAL::Gmpzf,
+              Tags=CGAL::Polytope_distance_d<Traits>::QP_tags
+          ]
+D:\CGAL-4.1\include\CGAL/Polytope_distance_d.h(682): warning C4267: “初始化”: 从“size_t”转换到“unsigned int”，可能丢失数据
+          D:\CGAL-4.1\include\CGAL/Polytope_distance_d.h(675): 编译类 模板 成员函数“void CGAL::Polytope_distance_d<Traits_>::compute_distance(void)”时
+          with
+          [
+              Traits_=Traits
+          ]
+          D:\CGAL-4.1\include\CGAL/Polytope_distance_d.h(519): 参见对正在编译的函数 模板 实例化“void CGAL::Polytope_distance_d<Traits_>::compute_distance(void)”的引用
+          with
+          [
+              Traits_=Traits
+          ]
+D:\CGAL-4.1\include\CGAL/Polytope_distance_d.h(689): warning C4267: “参数”: 从“size_t”转换到“int”，可能丢失数据
+D:\CGAL-4.1\include\CGAL/Polytope_distance_d.h(702): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+  Camera.cpp
+  正在生成代码...
+  gl2ps.c
+gl2ps.c(4477): warning C4267: “=”: 从“size_t”转换到“int”，可能丢失数据
+cdbench.obj : error LNK2019: 无法解析的外部符号 glutInit，该符号在函数 "void __cdecl draw(int,char * *)" (?draw@@YAXHPEAPEAD@Z) 中被引用
+cdbench.obj : error LNK2019: 无法解析的外部符号 glutInitDisplayMode，该符号在函数 "void __cdecl draw(int,char * *)" (?draw@@YAXHPEAPEAD@Z) 中被引用
+cdbench.obj : error LNK2019: 无法解析的外部符号 glutMainLoop，该符号在函数 "void __cdecl draw(int,char * *)" (?draw@@YAXHPEAPEAD@Z) 中被引用
+cdbench.obj : error LNK2019: 无法解析的外部符号 glutCreateWindow，该符号在函数 "void __cdecl draw(int,char * *)" (?draw@@YAXHPEAPEAD@Z) 中被引用
+cdbench.obj : error LNK2019: 无法解析的外部符号 glutPostRedisplay，该符号在函数 "void __cdecl keyboard(unsigned char,int,int)" (?keyboard@@YAXEHH@Z) 中被引用
+cdbench.obj : error LNK2019: 无法解析的外部符号 glutSwapBuffers，该符号在函数 "void __cdecl display(void)" (?display@@YAXXZ) 中被引用
+cdbench.obj : error LNK2019: 无法解析的外部符号 glutPositionWindow，该符号在函数 "void __cdecl draw(int,char * *)" (?draw@@YAXHPEAPEAD@Z) 中被引用
+cdbench.obj : error LNK2019: 无法解析的外部符号 glutReshapeWindow，该符号在函数 "void __cdecl draw(int,char * *)" (?draw@@YAXHPEAPEAD@Z) 中被引用
+cdbench.obj : error LNK2019: 无法解析的外部符号 glutDisplayFunc，该符号在函数 "void __cdecl draw(int,char * *)" (?draw@@YAXHPEAPEAD@Z) 中被引用
+cdbench.obj : error LNK2019: 无法解析的外部符号 glutReshapeFunc，该符号在函数 "void __cdecl draw(int,char * *)" (?draw@@YAXHPEAPEAD@Z) 中被引用
+cdbench.obj : error LNK2019: 无法解析的外部符号 glutKeyboardFunc，该符号在函数 "void __cdecl draw(int,char * *)" (?draw@@YAXHPEAPEAD@Z) 中被引用
+cdbench.obj : error LNK2019: 无法解析的外部符号 glutMouseFunc，该符号在函数 "void __cdecl draw(int,char * *)" (?draw@@YAXHPEAPEAD@Z) 中被引用
+cdbench.obj : error LNK2019: 无法解析的外部符号 glutMotionFunc，该符号在函数 "void __cdecl draw(int,char * *)" (?draw@@YAXHPEAPEAD@Z) 中被引用
+cdbench.obj : error LNK2019: 无法解析的外部符号 glutSpecialFunc，该符号在函数 "void __cdecl draw(int,char * *)" (?draw@@YAXHPEAPEAD@Z) 中被引用
+cdbench.obj : error LNK2019: 无法解析的外部符号 "__declspec(dllimport) void __cdecl CGAL::assertion_fail(char const *,char const *,int,char const *)" (__imp_?assertion_fail@CGAL@@YAXPEBD0H0@Z)，该符号在函数 "class CGAL::Tee_for_output_iterator<class std::back_insert_iterator<class std::list<class CGAL::Point_3<class CGAL::Epick>,class std::allocator<class CGAL::Point_3<class CGAL::Epick> > > >,class CGAL::Point_3<class CGAL::Epick> > __cdecl CGAL::ch__ref_graham_andrew_scan<class std::_Vector_iterator<class std::_Vector_val<struct std::_Simple_types<class CGAL::Point_3<class CGAL::Epick> > > >,class CGAL::Tee_for_output_iterator<class std::back_insert_iterator<class std::list<class CGAL::Point_3<class CGAL::Epick>,class std::allocator<class CGAL::Point_3<class CGAL::Epick> > > >,class CGAL::Point_3<class CGAL::Epick> >,class CGAL::Projection_traits_xy_3<class CGAL::Epick> >(class std::_Vector_iterator<class std::_Vector_val<struct std::_Simple_types<class CGAL::Point_3<class CGAL::Epick> > > >,class std::_Vector_iterator<class std::_Vector_val<struct std::_Simple_types<class CGAL::Point_3<class CGAL::Epick> > > >,class CGAL::Tee_for_output_iterator<class std::back_insert_iterator<class std::list<class CGAL::Point_3<class CGAL::Epick>,class std::allocator<class CGAL::Point_3<class CGAL::Epick> > > >,class CGAL::Point_3<class CGAL::Epick> > &,class CGAL::Projection_traits_xy_3<class CGAL::Epick> const &)" (??$ch__ref_graham_andrew_scan@V?$_Vector_iterator@V?$_Vector_val@U?$_Simple_types@V?$Point_3@VEpick@CGAL@@@CGAL@@@std@@@std@@@std@@V?$Tee_for_output_iterator@V?$back_insert_iterator@V?$list@V?$Point_3@VEpick@CGAL@@@CGAL@@V?$allocator@V?$Point_3@VEpick@CGAL@@@CGAL@@@std@@@std@@@std@@V?$Point_3@VEpick@CGAL@@@CGAL@@@CGAL@@V?$Projection_traits_xy_3@VEpick@CGAL@@@4@@CGAL@@YA?AV?$Tee_for_output_iterator@V?$back_insert_iterator@V?$list@V?$Point_3@VEpick@CGAL@@@CGAL@@V?$allocator@V?$Point_3@VEpick@CGAL@@@CGAL@@@std@@@std@@@std@@V?$Point_3@VEpick@CGAL@@@CGAL@@@0@V?$_Vector_iterator@V?$_Vector_val@U?$_Simple_types@V?$Point_3@VEpick@CGAL@@@CGAL@@@std@@@std@@@std@@0AEAV10@AEBV?$Projection_traits_xy_3@VEpick@CGAL@@@0@@Z) 中被引用
+cdbench.obj : error LNK2019: 无法解析的外部符号 "__declspec(dllimport) void __cdecl CGAL::precondition_fail(char const *,char const *,int,char const *)" (__imp_?precondition_fail@CGAL@@YAXPEBD0H0@Z)，该符号在函数 "class CGAL::Tee_for_output_iterator<class std::back_insert_iterator<class std::list<class CGAL::Point_3<class CGAL::Epick>,class std::allocator<class CGAL::Point_3<class CGAL::Epick> > > >,class CGAL::Point_3<class CGAL::Epick> > __cdecl CGAL::ch__ref_graham_andrew_scan<class std::_Vector_iterator<class std::_Vector_val<struct std::_Simple_types<class CGAL::Point_3<class CGAL::Epick> > > >,class CGAL::Tee_for_output_iterator<class std::back_insert_iterator<class std::list<class CGAL::Point_3<class CGAL::Epick>,class std::allocator<class CGAL::Point_3<class CGAL::Epick> > > >,class CGAL::Point_3<class CGAL::Epick> >,class CGAL::Projection_traits_xy_3<class CGAL::Epick> >(class std::_Vector_iterator<class std::_Vector_val<struct std::_Simple_types<class CGAL::Point_3<class CGAL::Epick> > > >,class std::_Vector_iterator<class std::_Vector_val<struct std::_Simple_types<class CGAL::Point_3<class CGAL::Epick> > > >,class CGAL::Tee_for_output_iterator<class std::back_insert_iterator<class std::list<class CGAL::Point_3<class CGAL::Epick>,class std::allocator<class CGAL::Point_3<class CGAL::Epick> > > >,class CGAL::Point_3<class CGAL::Epick> > &,class CGAL::Projection_traits_xy_3<class CGAL::Epick> const &)" (??$ch__ref_graham_andrew_scan@V?$_Vector_iterator@V?$_Vector_val@U?$_Simple_types@V?$Point_3@VEpick@CGAL@@@CGAL@@@std@@@std@@@std@@V?$Tee_for_output_iterator@V?$back_insert_iterator@V?$list@V?$Point_3@VEpick@CGAL@@@CGAL@@V?$allocator@V?$Point_3@VEpick@CGAL@@@CGAL@@@std@@@std@@@std@@V?$Point_3@VEpick@CGAL@@@CGAL@@@CGAL@@V?$Projection_traits_xy_3@VEpick@CGAL@@@4@@CGAL@@YA?AV?$Tee_for_output_iterator@V?$back_insert_iterator@V?$list@V?$Point_3@VEpick@CGAL@@@CGAL@@V?$allocator@V?$Point_3@VEpick@CGAL@@@CGAL@@@std@@@std@@@std@@V?$Point_3@VEpick@CGAL@@@CGAL@@@0@V?$_Vector_iterator@V?$_Vector_val@U?$_Simple_types@V?$Point_3@VEpick@CGAL@@@CGAL@@@std@@@std@@@std@@0AEAV10@AEBV?$Projection_traits_xy_3@VEpick@CGAL@@@0@@Z) 中被引用
+cdbench.obj : error LNK2019: 无法解析的外部符号 "__declspec(dllimport) void __cdecl CGAL::postcondition_fail(char const *,char const *,int,char const *)" (__imp_?postcondition_fail@CGAL@@YAXPEBD0H0@Z)，该符号在函数 "class std::back_insert_iterator<class std::list<class CGAL::Point_3<class CGAL::Epick>,class std::allocator<class CGAL::Point_3<class CGAL::Epick> > > > __cdecl CGAL::ch_akl_toussaint<class std::_List_iterator<class std::_List_val<struct std::_List_simple_types<class CGAL::Point_3<class CGAL::Epick> > > >,class std::back_insert_iterator<class std::list<class CGAL::Point_3<class CGAL::Epick>,class std::allocator<class CGAL::Point_3<class CGAL::Epick> > > >,class CGAL::Projection_traits_xy_3<class CGAL::Epick> >(class std::_List_iterator<class std::_List_val<struct std::_List_simple_types<class CGAL::Point_3<class CGAL::Epick> > > >,class std::_List_iterator<class std::_List_val<struct std::_List_simple_types<class CGAL::Point_3<class CGAL::Epick> > > >,class std::back_insert_iterator<class std::list<class CGAL::Point_3<class CGAL::Epick>,class std::allocator<class CGAL::Point_3<class CGAL::Epick> > > >,class CGAL::Projection_traits_xy_3<class CGAL::Epick> const &)" (??$ch_akl_toussaint@V?$_List_iterator@V?$_List_val@U?$_List_simple_types@V?$Point_3@VEpick@CGAL@@@CGAL@@@std@@@std@@@std@@V?$back_insert_iterator@V?$list@V?$Point_3@VEpick@CGAL@@@CGAL@@V?$allocator@V?$Point_3@VEpick@CGAL@@@CGAL@@@std@@@std@@@2@V?$Projection_traits_xy_3@VEpick@CGAL@@@CGAL@@@CGAL@@YA?AV?$back_insert_iterator@V?$list@V?$Point_3@VEpick@CGAL@@@CGAL@@V?$allocator@V?$Point_3@VEpick@CGAL@@@CGAL@@@std@@@std@@@std@@V?$_List_iterator@V?$_List_val@U?$_List_simple_types@V?$Point_3@VEpick@CGAL@@@CGAL@@@std@@@std@@@2@0V12@AEBV?$Projection_traits_xy_3@VEpick@CGAL@@@0@@Z) 中被引用
+cdbench.obj : error LNK2019: 无法解析的外部符号 "class boost::system::error_category const & __cdecl boost::system::system_category(void)" (?system_category@system@boost@@YAAEBVerror_category@12@XZ)，该符号在函数 "void __cdecl boost::system::`dynamic initializer for 'native_ecat''(void)" (??__Enative_ecat@system@boost@@YAXXZ) 中被引用
+cdbench.obj : error LNK2019: 无法解析的外部符号 "class boost::system::error_category const & __cdecl boost::system::generic_category(void)" (?generic_category@system@boost@@YAAEBVerror_category@12@XZ)，该符号在函数 "void __cdecl boost::system::`dynamic initializer for 'errno_ecat''(void)" (??__Eerrno_ecat@system@boost@@YAXXZ) 中被引用
+cdbench.obj : error LNK2019: 无法解析的外部符号 __imp___gmpq_add，该符号在函数 "public: class CGAL::Gmpq & __cdecl CGAL::Gmpq::operator+=(class CGAL::Gmpq const &)" (??YGmpq@CGAL@@QEAAAEAV01@AEBV01@@Z) 中被引用
+cdbench.obj : error LNK2019: 无法解析的外部符号 __imp___gmpq_clear，该符号在函数 "public: __cdecl CGAL::Gmpq_rep::~Gmpq_rep(void)" (??1Gmpq_rep@CGAL@@QEAA@XZ) 中被引用
+cdbench.obj : error LNK2019: 无法解析的外部符号 __imp___gmpq_cmp，该符号在函数 "public: bool __cdecl CGAL::Gmpq::operator<(class CGAL::Gmpq const &)const " (??MGmpq@CGAL@@QEBA_NAEBV01@@Z) 中被引用
+cdbench.obj : error LNK2019: 无法解析的外部符号 __imp___gmpq_equal，该符号在函数 "public: bool __cdecl CGAL::Gmpq::operator==(class CGAL::Gmpq const &)const " (??8Gmpq@CGAL@@QEBA_NAEBV01@@Z) 中被引用
+cdbench.obj : error LNK2019: 无法解析的外部符号 __imp___gmpq_init，该符号在函数 "public: __cdecl CGAL::Gmpq_rep::Gmpq_rep(void)" (??0Gmpq_rep@CGAL@@QEAA@XZ) 中被引用
+cdbench.obj : error LNK2019: 无法解析的外部符号 __imp___gmpq_mul，该符号在函数 "public: class CGAL::Gmpq & __cdecl CGAL::Gmpq::operator*=(class CGAL::Gmpq const &)" (??XGmpq@CGAL@@QEAAAEAV01@AEBV01@@Z) 中被引用
+cdbench.obj : error LNK2019: 无法解析的外部符号 __imp___gmpq_set，该符号在函数 __gmpq_neg 中被引用
+cdbench.obj : error LNK2019: 无法解析的外部符号 __imp___gmpq_set_d，该符号在函数 "public: __cdecl CGAL::Gmpq::Gmpq(double)" (??0Gmpq@CGAL@@QEAA@N@Z) 中被引用
+cdbench.obj : error LNK2019: 无法解析的外部符号 __imp___gmpq_sub，该符号在函数 "public: class CGAL::Gmpq & __cdecl CGAL::Gmpq::operator-=(class CGAL::Gmpq const &)" (??ZGmpq@CGAL@@QEAAAEAV01@AEBV01@@Z) 中被引用
+cdbench.obj : error LNK2019: 无法解析的外部符号 ccdFirstDirDefault，该符号在函数 "public: __cdecl LibCCDQuery::LibCCDQuery(class std::vector<class CP_Vector3D,class std::allocator<class CP_Vector3D> >,class std::vector<class CP_Vector3D,class std::allocator<class CP_Vector3D> >)" (??0LibCCDQuery@@QEAA@V?$vector@VCP_Vector3D@@V?$allocator@VCP_Vector3D@@@std@@@std@@0@Z) 中被引用
+cdbench.obj : error LNK2019: 无法解析的外部符号 ccdGJKIntersect，该符号在函数 "public: virtual bool __cdecl LibCCDQuery::detection(class CMatrix &,class CMatrix &)" (?detection@LibCCDQuery@@UEAA_NAEAVCMatrix@@0@Z) 中被引用
+D:\github\kcbp_cgal_cuda\kcbp_cgal_cuda\x64\Debug\kCBP_CGAL_CUDA.exe : fatal error LNK1120: 30 个无法解析的外部命令

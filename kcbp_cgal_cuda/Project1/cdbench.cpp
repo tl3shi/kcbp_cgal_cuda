@@ -200,7 +200,7 @@ int main(int argc, char** argv)
 {
     vector<Plane3D> planes;
     
-    objfilename = "models/bunny2.obj"; 
+    objfilename = "models/budda.obj"; 
     //objfilename = "models/apple.obj";
     if(argc >= 3)
         objfilename = argv[2];
@@ -211,14 +211,14 @@ int main(int argc, char** argv)
     scalebunny(points3d, SingleModelBoundingBox.Min, SingleModelBoundingBox.Max); //Attention
     if(! loaded) {cout << "load failed:" << objfilename << endl;return 0;}
     cout << objfilename << " \tpoints number: " << points3d.size() <<endl;
-
-    string readconfig = "d:/08-25-12-10-50-rand.config";//"12-19-10-31-50-rand.config";
+    
+    string readconfig = "config/04-03-200-rand.config";//"12-19-10-31-50-rand.config";
 
     k =  16;
     if(argc >= 2) 
         k = atoi(argv[1]);
     cout << "K = " << k << endl;
-    modelnum = 50;
+    modelnum = 10;
     if(argc >= 5)
     {
        modelnum = atoi(argv[4]);
@@ -262,10 +262,10 @@ int main(int argc, char** argv)
     printf("cluster time (%d times) totally: %.2f\n", benchtest, (e - s) * 1.0f);
 
     printf("normalsize = %d\n", normals.size());
-   SSEProjection::projectCPUSSE(points3d, normals, planes, benchtest);
+    SSEProjection::projectCPUSSE(points3d, normals, planes, benchtest);
    //KDop3D::projectCPU(points3d, normals, planes, benchtest);
    //KCBP::evaluate(points3d, normals, KCBP::CUDA_MUL_NORMAL, planes, benchtest);
-
+    
     printf("duality mapping\n");
     s = clock();
     vector<vector<Polygon3D*>> tmpPolyhedra;
@@ -285,9 +285,10 @@ int main(int argc, char** argv)
     KDop3D::getResultByDualMappingMesh(planes, MeshPolyhedronPoints);//mapping get points/ then call convexhull get kcbp mesh
     
     printf("Polytopes: %d\n", polyhedra.size());
-
+    
     genModels(modelnum, readconfig);
  
+   
 #ifdef TEMPDEBUG
     NO_DISPLAY = false;
 #endif // TEMPDEBUG
