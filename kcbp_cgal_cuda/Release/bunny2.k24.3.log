@@ -14,9 +14,6 @@ collision detection box time: 0.00
 box collision size: 2
 build AABB time : 16.00
 build AABB count: 3
-The Following result uses AABB directly
-total collision time(AABB directly) : 0.00
-collision pairs : 0
 The Following result uses KCBP(AABB) filter first
 build AABB time 4 KCBP : 0.00
 kcbp collision size(AABB filter) : 2
@@ -24,17 +21,17 @@ kcbp model check count: 3
 total collision time(KCBP AABB filter) : 0.00
 collision pairs : 0
 The Following result uses KCBP(GJK) filter first
-init GJK time 4 KCBP : 0.00
+init GJK time 4 KCBP : 1.00
 kcbp collision size(GJK filter) : 2
 total collision time(KCBP GJK filter) : 0.00
 collision pairs : 0
 models/bunny2.obj 	points number: 2503
 K = 24
 ModelNum = 20
-ach banchtest (20 times) totally: 20.00
-cluster time (20 times) totally: 1.00
+ach banchtest (20 times) totally: 27.00
+cluster time (20 times) totally: 3.00
 normalsize = 24
-Projection time banchtest(20 times) CPU(SSE) totaly:3
+Projection time banchtest(20 times) CPU(SSE) totaly:2
 duality mapping
 duality mapping time (20 times) totally: 2.00
 Polytopes: 24
@@ -42,16 +39,13 @@ reading 19 model configs(plus fixed one,total = 20)
 build boundingbox time : 0.00
 collision detection box time: 0.00
 box collision size: 10
-build AABB time : 54.00
+build AABB time : 55.00
 build AABB count: 10
-The Following result uses AABB directly
-total collision time(AABB directly) : 0.00
-collision pairs : 2
 The Following result uses KCBP(AABB) filter first
-build AABB time 4 KCBP : 0.00
+build AABB time 4 KCBP : 1.00
 kcbp collision size(AABB filter) : 4
 kcbp model check count: 10
-total collision time(KCBP AABB filter) : 1.00
+total collision time(KCBP AABB filter) : 0.00
 collision pairs : 2
 The Following result uses KCBP(GJK) filter first
 init GJK time 4 KCBP : 0.00
@@ -61,22 +55,19 @@ collision pairs : 2
 models/bunny2.obj 	points number: 2503
 K = 24
 ModelNum = 30
-ach banchtest (30 times) totally: 26.00
-cluster time (30 times) totally: 2.00
+ach banchtest (30 times) totally: 29.00
+cluster time (30 times) totally: 3.00
 normalsize = 24
 Projection time banchtest(30 times) CPU(SSE) totaly:3
 duality mapping
-duality mapping time (30 times) totally: 4.00
+duality mapping time (30 times) totally: 3.00
 Polytopes: 24
 reading 29 model configs(plus fixed one,total = 30)
-build boundingbox time : 1.00
+build boundingbox time : 0.00
 collision detection box time: 0.00
 box collision size: 42
-build AABB time : 127.00
+build AABB time : 133.00
 build AABB count: 24
-The Following result uses AABB directly
-total collision time(AABB directly) : 0.00
-collision pairs : 24
 The Following result uses KCBP(AABB) filter first
 build AABB time 4 KCBP : 1.00
 kcbp collision size(AABB filter) : 31
@@ -86,45 +77,42 @@ collision pairs : 24
 The Following result uses KCBP(GJK) filter first
 init GJK time 4 KCBP : 1.00
 kcbp collision size(GJK filter) : 31
-total collision time(KCBP GJK filter) : 1.00
+total collision time(KCBP GJK filter) : 0.00
 collision pairs : 24
 models/bunny2.obj 	points number: 2503
 K = 24
 ModelNum = 40
-ach banchtest (40 times) totally: 29.00
+ach banchtest (40 times) totally: 34.00
 cluster time (40 times) totally: 3.00
 normalsize = 24
 Projection time banchtest(40 times) CPU(SSE) totaly:4
 duality mapping
-duality mapping time (40 times) totally: 4.00
+duality mapping time (40 times) totally: 5.00
 Polytopes: 24
 reading 39 model configs(plus fixed one,total = 40)
 build boundingbox time : 0.00
 collision detection box time: 0.00
 box collision size: 42
-build AABB time : 198.00
+build AABB time : 206.00
 build AABB count: 38
-The Following result uses AABB directly
-total collision time(AABB directly) : 1.00
-collision pairs : 19
 The Following result uses KCBP(AABB) filter first
-build AABB time 4 KCBP : 2.00
+build AABB time 4 KCBP : 1.00
 kcbp collision size(AABB filter) : 21
 kcbp model check count: 38
-total collision time(KCBP AABB filter) : 0.00
+total collision time(KCBP AABB filter) : 1.00
 collision pairs : 19
 The Following result uses KCBP(GJK) filter first
-init GJK time 4 KCBP : 1.00
+init GJK time 4 KCBP : 0.00
 kcbp collision size(GJK filter) : 21
-total collision time(KCBP GJK filter) : 0.00
+total collision time(KCBP GJK filter) : 1.00
 collision pairs : 19
 models/bunny2.obj 	points number: 2503
 K = 24
 ModelNum = 50
-ach banchtest (50 times) totally: 35.00
+ach banchtest (50 times) totally: 40.00
 cluster time (50 times) totally: 4.00
 normalsize = 24
-Projection time banchtest(50 times) CPU(SSE) totaly:5
+Projection time banchtest(50 times) CPU(SSE) totaly:6
 duality mapping
 duality mapping time (50 times) totally: 6.00
 Polytopes: 24
@@ -132,11 +120,8 @@ reading 49 model configs(plus fixed one,total = 50)
 build boundingbox time : 0.00
 collision detection box time: 0.00
 box collision size: 66
-build AABB time : 244.00
+build AABB time : 254.00
 build AABB count: 46
-The Following result uses AABB directly
-total collision time(AABB directly) : 1.00
-collision pairs : 35
 The Following result uses KCBP(AABB) filter first
 build AABB time 4 KCBP : 2.00
 kcbp collision size(AABB filter) : 43
@@ -144,29 +129,26 @@ kcbp model check count: 46
 total collision time(KCBP AABB filter) : 1.00
 collision pairs : 35
 The Following result uses KCBP(GJK) filter first
-init GJK time 4 KCBP : 1.00
+init GJK time 4 KCBP : 2.00
 kcbp collision size(GJK filter) : 43
 total collision time(KCBP GJK filter) : 1.00
 collision pairs : 35
 models/bunny2.obj 	points number: 2503
 K = 24
 ModelNum = 60
-ach banchtest (60 times) totally: 36.00
-cluster time (60 times) totally: 5.00
+ach banchtest (60 times) totally: 44.00
+cluster time (60 times) totally: 4.00
 normalsize = 24
 Projection time banchtest(60 times) CPU(SSE) totaly:6
 duality mapping
-duality mapping time (60 times) totally: 6.00
+duality mapping time (60 times) totally: 7.00
 Polytopes: 24
 reading 59 model configs(plus fixed one,total = 60)
-build boundingbox time : 0.00
+build boundingbox time : 1.00
 collision detection box time: 0.00
 box collision size: 121
-build AABB time : 313.00
+build AABB time : 319.00
 build AABB count: 59
-The Following result uses AABB directly
-total collision time(AABB directly) : 1.00
-collision pairs : 49
 The Following result uses KCBP(AABB) filter first
 build AABB time 4 KCBP : 2.00
 kcbp collision size(AABB filter) : 62
@@ -181,7 +163,7 @@ collision pairs : 49
 models/bunny2.obj 	points number: 2503
 K = 24
 ModelNum = 70
-ach banchtest (70 times) totally: 51.00
+ach banchtest (70 times) totally: 53.00
 cluster time (70 times) totally: 5.00
 normalsize = 24
 Projection time banchtest(70 times) CPU(SSE) totaly:7
@@ -189,19 +171,16 @@ duality mapping
 duality mapping time (70 times) totally: 8.00
 Polytopes: 24
 reading 69 model configs(plus fixed one,total = 70)
-build boundingbox time : 1.00
-collision detection box time: 0.00
+build boundingbox time : 0.00
+collision detection box time: 1.00
 box collision size: 144
-build AABB time : 362.00
+build AABB time : 365.00
 build AABB count: 68
-The Following result uses AABB directly
-total collision time(AABB directly) : 1.00
-collision pairs : 61
 The Following result uses KCBP(AABB) filter first
 build AABB time 4 KCBP : 3.00
 kcbp collision size(AABB filter) : 77
 kcbp model check count: 68
-total collision time(KCBP AABB filter) : 2.00
+total collision time(KCBP AABB filter) : 3.00
 collision pairs : 61
 The Following result uses KCBP(GJK) filter first
 init GJK time 4 KCBP : 3.00
@@ -211,7 +190,7 @@ collision pairs : 61
 models/bunny2.obj 	points number: 2503
 K = 24
 ModelNum = 80
-ach banchtest (80 times) totally: 44.00
+ach banchtest (80 times) totally: 50.00
 cluster time (80 times) totally: 6.00
 normalsize = 24
 Projection time banchtest(80 times) CPU(SSE) totaly:8
@@ -219,49 +198,43 @@ duality mapping
 duality mapping time (80 times) totally: 9.00
 Polytopes: 24
 reading 79 model configs(plus fixed one,total = 80)
-build boundingbox time : 0.00
+build boundingbox time : 1.00
 collision detection box time: 0.00
 box collision size: 167
-build AABB time : 413.00
+build AABB time : 416.00
 build AABB count: 78
-The Following result uses AABB directly
-total collision time(AABB directly) : 1.00
-collision pairs : 85
 The Following result uses KCBP(AABB) filter first
-build AABB time 4 KCBP : 4.00
+build AABB time 4 KCBP : 3.00
 kcbp collision size(AABB filter) : 101
 kcbp model check count: 78
-total collision time(KCBP AABB filter) : 3.00
+total collision time(KCBP AABB filter) : 4.00
 collision pairs : 85
 The Following result uses KCBP(GJK) filter first
-init GJK time 4 KCBP : 3.00
+init GJK time 4 KCBP : 4.00
 kcbp collision size(GJK filter) : 101
-total collision time(KCBP GJK filter) : 4.00
+total collision time(KCBP GJK filter) : 3.00
 collision pairs : 85
 models/bunny2.obj 	points number: 2503
 K = 24
 ModelNum = 90
-ach banchtest (90 times) totally: 63.00
+ach banchtest (90 times) totally: 59.00
 cluster time (90 times) totally: 6.00
 normalsize = 24
-Projection time banchtest(90 times) CPU(SSE) totaly:9
+Projection time banchtest(90 times) CPU(SSE) totaly:10
 duality mapping
 duality mapping time (90 times) totally: 10.00
 Polytopes: 24
 reading 89 model configs(plus fixed one,total = 90)
-build boundingbox time : 0.00
-collision detection box time: 1.00
+build boundingbox time : 1.00
+collision detection box time: 0.00
 box collision size: 261
 build AABB time : 466.00
 build AABB count: 88
-The Following result uses AABB directly
-total collision time(AABB directly) : 3.00
-collision pairs : 84
 The Following result uses KCBP(AABB) filter first
 build AABB time 4 KCBP : 4.00
 kcbp collision size(AABB filter) : 119
 kcbp model check count: 88
-total collision time(KCBP AABB filter) : 4.00
+total collision time(KCBP AABB filter) : 5.00
 collision pairs : 84
 The Following result uses KCBP(GJK) filter first
 init GJK time 4 KCBP : 5.00
@@ -271,22 +244,19 @@ collision pairs : 84
 models/bunny2.obj 	points number: 2503
 K = 24
 ModelNum = 100
-ach banchtest (100 times) totally: 65.00
+ach banchtest (100 times) totally: 57.00
 cluster time (100 times) totally: 8.00
 normalsize = 24
 Projection time banchtest(100 times) CPU(SSE) totaly:10
 duality mapping
-duality mapping time (100 times) totally: 10.00
+duality mapping time (100 times) totally: 11.00
 Polytopes: 24
 reading 99 model configs(plus fixed one,total = 100)
 build boundingbox time : 1.00
 collision detection box time: 0.00
 box collision size: 335
-build AABB time : 515.00
+build AABB time : 550.00
 build AABB count: 97
-The Following result uses AABB directly
-total collision time(AABB directly) : 4.00
-collision pairs : 161
 The Following result uses KCBP(AABB) filter first
 build AABB time 4 KCBP : 4.00
 kcbp collision size(AABB filter) : 200
@@ -294,7 +264,7 @@ kcbp model check count: 97
 total collision time(KCBP AABB filter) : 6.00
 collision pairs : 161
 The Following result uses KCBP(GJK) filter first
-init GJK time 4 KCBP : 7.00
+init GJK time 4 KCBP : 8.00
 kcbp collision size(GJK filter) : 200
-total collision time(KCBP GJK filter) : 6.00
+total collision time(KCBP GJK filter) : 7.00
 collision pairs : 161
