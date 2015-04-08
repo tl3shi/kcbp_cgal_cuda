@@ -84,6 +84,21 @@ public:
         return true;
     }
 
+    bool IsIdentity() const
+    {
+        if(_11 != 1.0 && _22 != 1.0 && _33 != 1.0 && _44 != 1.0) 
+            return false;
+        if(_12 != 0 && _13 != 0 && _14 != 0)
+            return false;
+        if(_21 != 0 && _23 != 0 && _24 != 0)
+            return false;
+        if(_31 != 0 && _32 != 0 && _34 != 0)
+            return false;
+        if(_41 != 0 && _42 != 0 && _43 != 0)
+            return false;
+        return true;
+    }
+
 public:
     
     CMatrix &operator=(const CMatrix &_m);

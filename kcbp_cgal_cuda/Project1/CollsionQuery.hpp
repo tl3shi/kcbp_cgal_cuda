@@ -48,7 +48,7 @@ struct CollisionQuery : public ICollisionQuery
 
     mat4 transformMatrix; // for world0
 
-    bool detection(mat4 &world0, mat4 &world1)
+    bool detection(const mat4 &world0, const mat4 &world1)
     {
        initQuery(world0, world1);
        assert(world1.IsIdentity());
@@ -56,9 +56,15 @@ struct CollisionQuery : public ICollisionQuery
         return _Collide(tree0->Root, tree1->Root);
     }
 
+    bool detection(const vec3 &axis, const int jiaodu, const vec3 &translate)
+    {
+        assert(false);
+        return false;
+    }
+
     private:
 
-        void initQuery(mat4 &world0, mat4 &world1)
+        void initQuery(const mat4 &world0, const mat4 &world1)
         {
             transformMatrix = world0;
             AABBTests = 0;

@@ -4,12 +4,11 @@
     <ShowAllFiles>true</ShowAllFiles>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <LocalDebuggerCommandArguments>
-    </LocalDebuggerCommandArguments>
+    <LocalDebuggerCommandArguments>24 models/bunny2.obj w 2 config/04-03-2-rand.config np config/04-03-10-rand.config AABB</LocalDebuggerCommandArguments>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <LocalDebuggerCommandArguments>24 models/bunny2.obj w 10 config/04-03-10-rand.config</LocalDebuggerCommandArguments>
+    <LocalDebuggerCommandArguments>24 models/bunny2.obj n 2 config/04-03-2-rand.config np config/04-03-10 AABB</LocalDebuggerCommandArguments>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
   </PropertyGroup>
 </Project>

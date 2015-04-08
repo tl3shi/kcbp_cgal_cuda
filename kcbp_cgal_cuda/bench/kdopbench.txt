@@ -1,1 +1,6 @@
 bench.exe -g file -f "d:\bunny2.obj" -A do -r "d:\08-25-12-10-50-rand.config"
+
+D:\github\kcbp_cgal_cuda\kcbp_cgal_cuda\bench\Release>
+DynamicBench.exe -g file -f models/bunny2.obj -A do -r config/04-03-50-rand.config -w -W -p -R config/04-03-1000-rand.config
+
+-g file -f "C:\Users\Administrator\Desktop\CollDet\coll\test\Data\bunny2.obj" -A do -r "d:\08-25-12-10-50-rand.config" -w -W -p -R "d:\08-25-12-10-50-rand.config"

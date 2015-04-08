@@ -63,17 +63,30 @@ void supportConvex(const void* obj, const ccd_vec3_t* dir_, ccd_vec3_t* v)
 struct LibCCDQuery: public ICollisionQuery
 {
 
-    bool detection(mat4 &world0, mat4 &world1)
+    bool detection(const mat4 &world0, const mat4 &world1)
     {
         //(world0[0][3], world0[1][3], world0[2][3]);
         //origin_pos.x += world0[0][3];
         //origin_pos.y += world0[1][3];
         //origin_pos.z += world0[2][3];
         ccdVec3Set(&obj1->pos, world0[0][3], world0[1][3], world0[2][3]);
+        //ccdQuatSetAngleAxis
         int intersect = ccdGJKIntersect(obj1, obj2, &ccd);
         //printf("intersection = %d\n", intersect);
         return intersect == 0 ? false : true;
     }
+
+    bool detection(const vec3 &axis, const int jiaodu, const vec3 &translate)
+    {
+        ccdVec3Set(&obj1->pos, translate.x, translate.y, translate.z);
+        ccd_vec3_t ax;
+        ccdVec3Set(&ax, axis.x, axis.y, axis.z);
+        ccdQuatSetAngleAxis(&obj1->quat, jiaodu / 180.0 * PI, &ax);
+        int intersect = ccdGJKIntersect(obj1, obj2, &ccd);
+        //printf("intersection = %d\n", intersect);
+        return intersect == 0 ? false : true;
+    }
+
 
 private:
     
