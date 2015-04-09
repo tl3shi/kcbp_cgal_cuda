@@ -25,8 +25,9 @@
 #define _DEBUG false
 //#define USE_SOLID
 #define SAME_BUNNY
+#define DRAW_MODEL
 
-//#define  ROTATE_ENABLE
+#define  ROTATE_ENABLE
 
 bool draw_facets = true;
 bool draw_convexhull = false;
@@ -102,7 +103,7 @@ bool OUTPUT_POLYHEDRON = true;
 int k = 0;
 
 bool finish_without_update = false; //used to cal fps
-bool usekcbp = true;
+bool usekcbp = false;
 
 ICollisionQuery * collision_query = 0;
 ICollisionQuery * kcbp_query = 0;
@@ -464,7 +465,9 @@ void genModels(int modelnum, string config)
             }else //angle rot
             {
                 ss >> angle >> x >> y >> z;
-                rotations.push_back(CP_Vector3D(x,y,z));
+                CP_Vector3D axisa(x, y, z);
+                axisa.mf_normalize();
+                rotations.push_back(axisa);
                 rotate_angles.push_back(angle);
             }
             i++;
@@ -794,7 +797,7 @@ void  display(void)
         {
             mat4 rotateMatrix = rotateDeg == 0 ? mat4::Identity : mat4::GetRotate(rotateDeg, rotateAxis);
             mat4 translateMatrix = mat4::GetTranslate(translatePos);
-            mat4 transformMatrix = translateMatrix * rotateMatrix;
+            mat4 transformMatrix =  rotateMatrix * translateMatrix;
             collision_pair.clear();
             if(false)
             {

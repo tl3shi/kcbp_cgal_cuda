@@ -282,10 +282,11 @@ void move_and_check()
     }
     assert(moving_step < transformN);
     CMatrix world0 = transforms[moving_step];
+    
     current_moving_angle = moving_rotate_angles[moving_step];
     current_moving_axis = moving_rotations[moving_step];
     current_moving_translation = moving_translations[moving_step];
-
+    
     BoxDetection(world0);
     //for(int i = 0; i < kcbp_queries.size(); i++)
     #ifdef KCBP_FILTER
@@ -295,7 +296,7 @@ void move_and_check()
         {
             //bool c = kcbp_queries[i-1]->detection(world0 , ident);
             bool c;
-            if(lib_ccd) 
+            if(lib_ccd) //this moving/rotate/asix is not same as the glTranslate/glRotate, should use the matrix
                 c = kcbp_queries[i-1]->detection(current_moving_axis, current_moving_angle, current_moving_translation);
             else //AABB
                 c = kcbp_queries[i-1]->detection(world0 , ident);
@@ -548,13 +549,10 @@ void genMovingData(string movingConfig, int genN)
         int rotate_angle = moving_rotate_angles[i];
         CP_Vector3D rot = moving_rotations[i];
         CP_Vector3D tran = moving_translations[i];
-        mat4 rotmat;
         mat4 transmat;
-        rotate_angle = -rotate_angle; //Act as Coll/TestSolution/Bench
-        mat4::GetRotate(rotmat, rotate_angle, rot);
+        mat4 rotmat = mat4::GetRotate(rotate_angle, rot);
         mat4::GetTranslate(transmat, tran);
-
-        mat4 mat = rotmat * transmat; // the UI match  transmat*rotmat match Coll/TestSolution/Bench
+        mat4 mat = rotmat * transmat; 
         transforms.push_back(mat);
     }
     transformN = transforms.size();
