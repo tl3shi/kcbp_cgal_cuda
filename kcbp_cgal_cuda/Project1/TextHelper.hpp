@@ -151,7 +151,7 @@ public:
     }
 
     // same code as inline static bool ParseFloat(char *&buffer, float &value)
-    inline static bool Parse(char *&buffer, float &value)
+    inline static bool Parse(char *&buffer, RealValueType &value)
     {
         char *p = buffer;
         bool is_negative = false;
@@ -196,8 +196,9 @@ public:
         return true;
     }
 
+    /*
     // same code as inline static bool ParseReal(char *&buffer, System::real &value)
-    inline static bool Parse(char *&buffer, double &value)
+    inline static bool Parse(char *&buffer, RealValueType &value)
     {
         char *p = buffer;
         bool is_negative = false;
@@ -210,7 +211,7 @@ public:
             p++;
             is_negative = true;
         }
-        double v = 0;
+        RealValueType v = 0;
         while ((*p >= '0') && (*p <= '9'))
         {
             v = v * 10 + (*p - '0');
@@ -219,7 +220,7 @@ public:
         if (*p == '.')
         {
             p++;
-            double w = 0.1;
+            RealValueType w = 0.1;
             while ((*p >= '0') && (*p <= '9'))
             {
                 v += w * (*p - '0');
@@ -241,7 +242,7 @@ public:
             value = v;
         return true;
     }
-
+    */
     inline static bool ParseBlank(char *&buffer)
     {
         char *p = buffer;

@@ -17,7 +17,7 @@ __global__ void projection(float* result , float3* normals, float3* points, int 
     int idx = threadIdx.x;
     if(idx < normal_size)
     {
-        int result_index = -1;
+        //int result_index = -1;
         float3 normal = normals[idx];
         float distance = -MaxValue;
         for(int i = 0; i < point_size; i++)
@@ -26,7 +26,7 @@ __global__ void projection(float* result , float3* normals, float3* points, int 
             if(temp > distance)
             {
                 distance = temp;
-                result_index = i;
+          //      result_index = i;
             }
         }
         result[idx] = distance;

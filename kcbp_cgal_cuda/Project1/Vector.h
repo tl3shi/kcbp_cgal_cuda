@@ -18,16 +18,34 @@
 #define writeonly(var) __declspec(property(put=Set##var)) var
 #endif
 
-#define DEGREE_PER_RADIAN   57.2957795130823208768
-#define DOUBLE_PI           6.28318530717958647692
-#define PI                  3.14159265358979323846
-#define HALF_PI             1.57079632679489661923
+#define DEGREE_PER_RADIAN   57.2957795130823208768f
+#define DOUBLE_PI           6.28318530717958647692f
+
+#ifndef PI
+#define PI                  3.14159265358979323846f
+#endif
 
 
-typedef double DataType;
+#define HALF_PI             1.57079632679489661923f
+
+
+//typedef float RealValueType;
+
+
+#ifdef UseFloat
+    #ifndef RealValueType 
+    #define RealValueType float
+    #endif
+#else
+    #ifndef RealValueType 
+    #define RealValueType double
+    #endif
+#endif
+
+
 namespace Math
 {
-    inline DataType Abs(DataType value)
+    inline RealValueType Abs(RealValueType value)
     {
         return value > 0.0 ? value : -value;
     }
@@ -37,13 +55,13 @@ template <unsigned int dim>
 class CVector
 {
 public:
-    DataType data[dim];
+    RealValueType data[dim];
 public:
     enum {VectorDimension = dim};
 public:
-    CVector(void){memset(data, 0, VectorDimension * sizeof(DataType));}
-    CVector(const DataType* _data){memcpy(data, _data, VectorDimension * sizeof(DataType));}
-    CVector(const CVector &v){memcpy(data, v.data, VectorDimension * sizeof(DataType));}
+    CVector(void){memset(data, 0, VectorDimension * sizeof(RealValueType));}
+    CVector(const RealValueType* _data){memcpy(data, _data, VectorDimension * sizeof(RealValueType));}
+    CVector(const CVector &v){memcpy(data, v.data, VectorDimension * sizeof(RealValueType));}
     // do not use virtual destructor due to increasing memory space
     /*virtual*/~CVector(void){}
 
@@ -56,7 +74,7 @@ public:
 
     CVector &operator=(const CVector &v)       // assignment
     {
-        memcpy(data, v.data, VectorDimension * sizeof(DataType));
+        memcpy(data, v.data, VectorDimension * sizeof(RealValueType));
         return *this;
     }
 
@@ -72,13 +90,13 @@ public:
             data[i] -= v.data[i];
         return *this;
     }
-    CVector &operator*= (DataType k)
+    CVector &operator*= (RealValueType k)
     {
         for(unsigned int i = 0; i < VectorDimension; i++)
             data[i] *= k;
         return *this;
     }
-    CVector &operator/= (DataType k)
+    CVector &operator/= (RealValueType k)
     {
 #ifdef DEBUG
         if (k == 0.0)
@@ -104,22 +122,22 @@ public:
         return retval;
     }
 
-    DataType operator*(const CVector &v) const  // dot product
+    RealValueType operator*(const CVector &v) const  // dot product
     {
-        DataType retval = 0.0f;
+        RealValueType retval = 0.0f;
         for (unsigned int i = 0; i < VectorDimension; i++)
             retval += data[i] * v.data[i];
         return retval;
     }
 
-    CVector operator*(DataType k) const
+    CVector operator*(RealValueType k) const
     {
         CVector<VectorDimension> retval;
         for (unsigned int i = 0; i < VectorDimension; i++)
             retval.data[i] = data[i] * k;
         return retval;
     }
-    CVector operator/(DataType k) const
+    CVector operator/(RealValueType k) const
     {
 #ifdef DEBUG
         if (k == 0.0)
@@ -155,22 +173,22 @@ public:
         return false;
     }
 
-    const DataType &operator[](unsigned int index) const
+    const RealValueType &operator[](unsigned int index) const
     {
         return data[index];
     }
 
-    DataType &operator[](unsigned int index)
+    RealValueType &operator[](unsigned int index)
     {
         return data[index];
     }
 
-    const DataType &operator()(unsigned int index) const
+    const RealValueType &operator()(unsigned int index) const
     {
         return data[index];
     }
 
-    DataType &operator()(unsigned int index)
+    RealValueType &operator()(unsigned int index)
     {
         return data[index];
     }
@@ -181,22 +199,22 @@ public:
         return *this;
     }
 
-    DataType readonly(Length);
-    DataType GetLength(void) const
+    RealValueType readonly(Length);
+    RealValueType GetLength(void) const
     {
-        DataType length_square = 0.0;
+        RealValueType length_square = 0.0;
         for (unsigned int i = 0; i < VectorDimension; i++)
             length_square += data[i] * data[i];
         if (length_square == 0.0)
-            return DataType(0.0);
+            return RealValueType(0.0);
         return sqrt(length_square);
     }
 
-    DataType readonly(LengthSquare);
-    DataType GetLengthSquare(void) const
+    RealValueType readonly(LengthSquare);
+    RealValueType GetLengthSquare(void) const
     {
         {
-            DataType length_square = 0.0f;
+            RealValueType length_square = 0.0f;
             for (unsigned int i = 0; i < VectorDimension; i++)
             {
                 length_square += data[i] * data[i];
@@ -205,9 +223,9 @@ public:
         }
     }
 
-    DataType Distance(const CVector &v) const
+    RealValueType Distance(const CVector &v) const
     {
-        DataType length_square = 0.0f;
+        RealValueType length_square = 0.0f;
         for (unsigned int i = 0; i < VectorDimension; i++)
             length_square += (data[i] - v.data[i]) * (data[i] - v.data[i]);
         if (length_square == 0.0)
@@ -215,9 +233,9 @@ public:
         return sqrt(length_square);
     }
 
-    DataType DistanceSquare(const CVector &v) const
+    RealValueType DistanceSquare(const CVector &v) const
     {
-        DataType length_square = 0.0f;
+        RealValueType length_square = 0.0f;
         for (unsigned int i = 0; i < VectorDimension; i++)
             length_square += (data[i] - v.data[i]) * (data[i] - v.data[i]);
         return length_square;
@@ -241,9 +259,9 @@ public:
 
     bool IsSyntropic(const CVector &v) const
     {
-        DataType dot_product = *this * v;
-        DataType lensquare1 = this->GetLengthSquare();
-        DataType lensquare2 = v.GetLengthSquare();
+        RealValueType dot_product = *this * v;
+        RealValueType lensquare1 = this->GetLengthSquare();
+        RealValueType lensquare2 = v.GetLengthSquare();
         return Math::Abs(lensquare1 * lensquare2 - dot_product * dot_product) < TOLERANCE;
     }
 };
@@ -262,25 +280,25 @@ class CVector4D : public CVector<4>
 {
 public:
     CVector4D(void){}
-    CVector4D(const CVector<4> &v){memcpy(data, v.data, VectorDimension * sizeof(DataType));}
-    CVector4D(DataType _x, DataType _y, DataType _z, DataType _w = 1.0f){data[0] = _x; data[1] = _y; data[2] = _z; data[3] = _w;}
+    CVector4D(const CVector<4> &v){memcpy(data, v.data, VectorDimension * sizeof(RealValueType));}
+    CVector4D(RealValueType _x, RealValueType _y, RealValueType _z, RealValueType _w = 1.0f){data[0] = _x; data[1] = _y; data[2] = _z; data[3] = _w;}
     ~CVector4D(void){}
 
-    DataType Getx() const{return data[0];}
-    void Setx(DataType value){data[0] = value;}
-    DataType readwrite(x);
+    RealValueType Getx() const{return data[0];}
+    void Setx(RealValueType value){data[0] = value;}
+    RealValueType readwrite(x);
 
-    DataType Gety() const{return data[1];}
-    void Sety(DataType value){data[1] = value;}
-    DataType readwrite(y);
+    RealValueType Gety() const{return data[1];}
+    void Sety(RealValueType value){data[1] = value;}
+    RealValueType readwrite(y);
 
-    DataType Getz() const{return data[2];}
-    void Setz(DataType value){data[2] = value;}
-    DataType readwrite(z);
+    RealValueType Getz() const{return data[2];}
+    void Setz(RealValueType value){data[2] = value;}
+    RealValueType readwrite(z);
 
-    DataType Getw() const{return data[3];}
-    void Setw(DataType value){data[3] = value;}
-    DataType readwrite(w);
+    RealValueType Getw() const{return data[3];}
+    void Setw(RealValueType value){data[3] = value;}
+    RealValueType readwrite(w);
 
     CVector4D operator^(const CVector4D &v) const
     {
@@ -294,4 +312,4 @@ typedef CVector4D vec4;
 typedef vec4 Point4D;
 
 
-extern vec4 operator*(DataType k, const vec4 &v);
+extern vec4 operator*(RealValueType k, const vec4 &v);

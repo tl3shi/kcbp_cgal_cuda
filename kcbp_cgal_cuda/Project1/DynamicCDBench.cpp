@@ -2,7 +2,7 @@
 #pragma warning(disable:4018)
 #pragma warning(disable:4224)
 
-//#define double float
+//#define RealValueType float
 
 
 #include "UIHelper.hpp"
@@ -76,9 +76,9 @@ vector<int> MeshPolyhedronDataList; // for KCBP
 vector<int> MeshBoundingBoxList;
 
 
-double Scale_Bunny = 1.0;//100.0;
+RealValueType Scale_Bunny = 1.0;//100.0;
 int scale_convexhull =  1;
-const double tranlate_unit = 0.01 * Scale_Bunny;
+const RealValueType tranlate_unit = 0.01 * Scale_Bunny;
 CCamera m_camera;
 CP_Vector2D m_formerMousePos;
 bool m_isLeftButtonDown = false;
@@ -139,7 +139,7 @@ void scalebunny(vector<CP_Vector3D> &input, const CP_Vector3D &low, const CP_Vec
     //scale same as CollDet\visual_studio\TestSolution\Bench
     CP_Vector3D c = 0.5 * low + 0.5 * high;
     CP_Vector3D d = 0.5 * high - 0.5 * low; 
-    double s = max(d.x, max(d.y, d.z));
+    RealValueType s = max(d.x, max(d.y, d.z));
     for (int i = 0; i < input.size(); i ++ )
         input[i] = (input[i] - c) / s;
 }
@@ -269,7 +269,7 @@ void myReshape(int w, int h)
 void move_and_check()
 {
     //static int move_step = 0;
-    static double start_time = 0;
+    static RealValueType start_time = 0;
     static int numOfModelCollisions = 0;
     static int numOfKCBPCollisions = 0;
     static bool first_time = true;
@@ -377,8 +377,8 @@ void genRandomData(string config, vector<int> &rotate_angles, vector<CP_Vector3D
         cout << "rand config write to :" << string(tmp) + "-" + to_string(n) + "-rand.config" << endl;
         cout.rdbuf(f.rdbuf());
 
-        double xx = SingleModelBoundingBox.Max.x - SingleModelBoundingBox.Min.x;
-        double range = n*xx;
+        RealValueType xx = SingleModelBoundingBox.Max.x - SingleModelBoundingBox.Min.x;
+        RealValueType range = n*xx;
         for(int i = 0; i < n; i++)
         {
             float trans_x = (rand() % (int) 5*range) / (range);
@@ -975,10 +975,10 @@ void BoxDetection(const CMatrix &transformMatrix)
     //bounding box
     BoundingBox movingModelBBoxBak = ModelBoundingBoxes[movingModelIndex];
     vector<CP_Vector3D> vertices = movingModelBBoxBak.GetAABBVertices();
-    double min_x, min_y, min_z;
-    min_x = min_y = min_z = DBL_MAX;
-    double max_x, max_y, max_z;
-    max_x = max_y = max_z = -DBL_MAX;
+    RealValueType min_x, min_y, min_z;
+    min_x = min_y = min_z = RealValueTypeMax;
+    RealValueType max_x, max_y, max_z;
+    max_x = max_y = max_z = -RealValueTypeMax;
     for(int i = 0; i < 8; i++)
     {
         CP_Vector3D v = transformMatrix * vertices[i];

@@ -27,11 +27,11 @@ class UIHelper
         glColor4fv(color);
     }
 
-    static void drawPolygons3D(vector<Polygon3D*> &polygons, int start, int end, int Polygon_Mode, double draw_scale)
+    static void drawPolygons3D(vector<Polygon3D*> &polygons, int start, int end, int Polygon_Mode, RealValueType draw_scale)
     {
         drawPolygons3D(polygons, start, end, Polygon_Mode, draw_scale, 1.0);
     }
-    static void drawPolygons3D(vector<Polygon3D*> &polygons, int start, int end, int Polygon_Mode, double draw_scale, double width)
+    static void drawPolygons3D(vector<Polygon3D*> &polygons, int start, int end, int Polygon_Mode, RealValueType draw_scale, RealValueType width)
     {
         ////draw 
         GLfloat color[4];
@@ -88,10 +88,10 @@ class UIHelper
     {
         #define RADPERDEG 0.0174533
 
-        double x=x2-x1;
-        double y=y2-y1;
-        double z=z2-z1;
-        double L=sqrt(x*x+y*y+z*z);
+        RealValueType x=x2-x1;
+        RealValueType y=y2-y1;
+        RealValueType z=z2-z1;
+        RealValueType L=sqrt(x*x+y*y+z*z);
 
         GLUquadricObj *quadObj;
 
@@ -222,7 +222,7 @@ class UIHelper
         glPopMatrix();
     }
 
-    static void drawPoints(vector<CP_Vector3D> & points, double scala = 1.0)
+    static void drawPoints(vector<CP_Vector3D> & points, RealValueType scala = 1.0)
     {
         glColor3f(1.0, 0.0, 0.0);
         glBegin(GL_POINTS);
@@ -244,7 +244,7 @@ class UIHelper
         drawFacets(points, index, 1.0);
     }
 
-    static void drawFacets(vector<CP_Vector3D> & points, vector<int> &index, double scala = 1.0)
+    static void drawFacets(vector<CP_Vector3D> & points, vector<int> &index, RealValueType scala = 1.0)
     {
         //glColor3f(1.0, 0.0, 0.0);
         glLineWidth(1.0);
@@ -262,7 +262,7 @@ class UIHelper
         glEnd();
     }
    
-    static void drawBoundingBox(const BoundingBox &box, double scala = 1.0)
+    static void drawBoundingBox(const BoundingBox &box, RealValueType scala = 1.0)
     {
         CP_Vector3D min = box.Min;
         CP_Vector3D max = box.Max;
@@ -303,7 +303,7 @@ class UIHelper
         glEnd();
     }
 
-    static void drawTrainges(vector<CP_Vector3D> & points, double scala = 1.0)
+    static void drawTrainges(vector<CP_Vector3D> & points, RealValueType scala = 1.0)
     {
         glPolygonMode(GL_FRONT_AND_BACK ,GL_LINE );
         GLfloat color[4];

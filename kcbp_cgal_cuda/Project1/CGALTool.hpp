@@ -17,7 +17,7 @@ typedef CGAL::Tetrahedron_3<K> Tetrahedron_3;
 
 // define point creator
 typedef K::Point_3                                Point_3;
-typedef CGAL::Creator_uniform_3<double, Point_3>  PointCreator;
+typedef CGAL::Creator_uniform_3<RealValueType, Point_3>  PointCreator;
 
 
 class CPVector_to_CgalPoint
@@ -64,10 +64,10 @@ public:
             Polyhedron_3::Plane_3 plane_quation = f.plane();
             //cout << (*it).plane() << endl;
             //mapping back ax +by +cz = 1
-            double a = plane_quation.a();
-            double b = plane_quation.b();
-            double c = plane_quation.c();
-            double d = plane_quation.d();
+            RealValueType a = plane_quation.a();
+            RealValueType b = plane_quation.b();
+            RealValueType c = plane_quation.c();
+            RealValueType d = plane_quation.d();
             assert(d != 0);
             return (CP_Vector3D(a / -d, b / -d, c / -d));
         }
@@ -80,10 +80,10 @@ public:
             Polyhedron_3::Plane_3 plane_quation = f.plane();
             //cout << (*it).plane() << endl;
             //mapping back ax +by +cz = 1
-            double a = plane_quation.a();
-            double b = plane_quation.b();
-            double c = plane_quation.c();
-            double d = plane_quation.d();
+            RealValueType a = plane_quation.a();
+            RealValueType b = plane_quation.b();
+            RealValueType c = plane_quation.c();
+            RealValueType d = plane_quation.d();
             assert(d != 0);
             return (Point_3(a / -d, b / -d, c / -d));
         }
@@ -190,7 +190,7 @@ public:
         v = CP_Vector3D(p.x(), p.y(), p.z());
     }
 
-    double static getVolume(vector<CP_Vector3D> &input_points)
+    RealValueType static getVolume(vector<CP_Vector3D> &input_points)
     {
         vector<Point_3> points(input_points.size());
         std::transform(input_points.begin(), input_points.end(), points.begin(), CPVector_to_CgalPoint());
@@ -204,7 +204,7 @@ public:
         for (Polyhedron_3::Vertex_const_iterator  it = poly.vertices_begin(); it != poly.vertices_end(); it++) 
             L.push_back(Triangulation::Point(it->point().x(), it->point().y(), it->point().z())); 
         Triangulation T(L.begin(), L.end()); 
-        double hull_volume = .0; 
+        RealValueType hull_volume = .0; 
         for(Triangulation::Finite_cells_iterator it = T.finite_cells_begin(); it != T.finite_cells_end(); it++) 
         { 
             Tetrahedron_3 tetr = T.tetrahedron(it); 
@@ -237,10 +237,10 @@ public:
             Polyhedron_3::Plane_3 plane_quation = (*it).plane();
             //cout << (*it).plane() << endl;
             //mapping back ax +by +cz = 1
-            double a = plane_quation.a();
-            double b = plane_quation.b();
-            double c = plane_quation.c();
-            double d = plane_quation.d();
+            RealValueType a = plane_quation.a();
+            RealValueType b = plane_quation.b();
+            RealValueType c = plane_quation.c();
+            RealValueType d = plane_quation.d();
             assert(d != 0);
             intersection_points[index++]=(CP_Vector3D(a / -d, b / -d, c / -d));
         }
@@ -300,10 +300,10 @@ public:
             Polyhedron_3::Plane_3 plane_quation = (*it).plane();
             cout << (*it).plane() << endl;
             //mapping back ax +by +cz = 1
-            double a = plane_quation.a();
-            double b = plane_quation.b();
-            double c = plane_quation.c();
-            double d = plane_quation.d();
+            RealValueType a = plane_quation.a();
+            RealValueType b = plane_quation.b();
+            RealValueType c = plane_quation.c();
+            RealValueType d = plane_quation.d();
             assert(d != 0);
             intersection_points.push_back(Point_3(a / -d, b / -d, c / -d));
         }
@@ -346,7 +346,7 @@ public:
 class CGALDistanceTool
 {
 private:
-    double static GetDistance_private(const vector<CP_Vector3D> &a, const vector<CP_Vector3D> &b)
+    RealValueType static GetDistance_private(const vector<CP_Vector3D> &a, const vector<CP_Vector3D> &b)
     {
         vector<Point_3_K2> points_a(a.size());
         std::transform(a.begin(), a.end(), points_a.begin(), CPVector_to_CgalPoint_3_K2());
@@ -373,7 +373,7 @@ public:
     {
         Polytope_distance pd(a.begin(), a.end(), b.begin(), b.end());
         assert (pd.is_valid());
-        double dis =  CGAL::to_double (pd.squared_distance_numerator()) /
+        RealValueType dis =  CGAL::to_double (pd.squared_distance_numerator()) /
             CGAL::to_double (pd.squared_distance_denominator());
         return dis < TOLERANCE;
     }
@@ -396,7 +396,7 @@ typedef Kernel::Point_3                                       Point_3_K3;
 typedef Kernel::Triangle_3                                    Triangle_3;
 typedef std::vector<Triangle_3>                               Triangles;
 typedef Triangles::iterator                                   Iterator;
-typedef CGAL::Box_intersection_d::Box_with_handle_d<double,3,Iterator> Box;
+typedef CGAL::Box_intersection_d::Box_with_handle_d<RealValueType,3,Iterator> Box;
 Triangles triangles; // global vector of all triangles
 
 using namespace std;

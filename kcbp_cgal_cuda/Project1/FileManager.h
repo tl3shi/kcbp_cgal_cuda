@@ -134,17 +134,17 @@ public:
         cout.rdbuf(default_buf);
     }
 
-    static void adjustPointsbak(vector<CP_Vector3D> &points, const double &min_, const double &max_)
+    static void adjustPointsbak(vector<CP_Vector3D> &points, const RealValueType &min_, const RealValueType &max_)
     {
         //the opengl be ..
-        double scale = 20.0 / (max_ - min_);
+        RealValueType scale = 20.0 / (max_ - min_);
         for (unsigned int i = 0; i < points.size(); i++)
         {
             points[i] = points[i] * scale;
         }
     }
 
-    static double getDrawScale(const double &min_, const double max_)
+    static RealValueType getDrawScale(const RealValueType &min_, const RealValueType max_)
     {
         return 20.0 / (max_ - min_);
     }
@@ -182,7 +182,7 @@ public:
         return result;
     }
 
-    bool static readObjPoints(vector<CP_Vector3D> &vecs, string file_name, double & draw_scale,  bool pointsAreOnlyFirstPart = true)
+    bool static readObjPoints(vector<CP_Vector3D> &vecs, string file_name, RealValueType & draw_scale,  bool pointsAreOnlyFirstPart = true)
     {
         //only want to load the points, ignore the normal and faces
         bool no_normals = true;
@@ -199,13 +199,13 @@ public:
         vector<CP_Vector3D> normals;
         vector<int *> faces;
 
-        double xmin = DBL_MAX, xmax = -DBL_MAX;
+        RealValueType xmin = RealValueTypeMax, xmax = -RealValueTypeMax;
         string line;  
         while( getline(fin,line) )
         {    
             if (line[0] == 'v')
             {
-                double vec[3];
+                RealValueType vec[3];
 
                 std::string temp;
                 std::stringstream ss(line);
@@ -266,7 +266,7 @@ public:
     }
 
     template <typename T>
-    bool static readObjPointsFast(vector<T> &vecs, string file_name, double & draw_scale)
+    bool static readObjPointsFast(vector<T> &vecs, string file_name, RealValueType & draw_scale)
     {
         ifstream is(file_name.c_str(), std::ifstream::binary);
         if(is)
@@ -305,7 +305,7 @@ public:
             vecs.resize(vertex_count);
             parse_end = false;
             int index = 0;
-            double xmin = DBL_MAX, xmax = -DBL_MAX;
+            RealValueType xmin = RealValueTypeMax, xmax = -RealValueTypeMax;
             p = buffer;//from the start to parse
             while (!parse_end)
             {
@@ -340,8 +340,8 @@ public:
     bool static readObjPointsAndFacetsFast(vector<T> &vecs, vector<int> &faces, string file_name, T &box_min, T &box_max)
     {
         ifstream is(file_name.c_str(), std::ifstream::binary);
-        box_min = T(DBL_MAX, DBL_MAX, DBL_MAX);
-        box_max = T(-DBL_MAX, -DBL_MAX, -DBL_MAX);
+        box_min = T(RealValueTypeMax, RealValueTypeMax, RealValueTypeMax);
+        box_max = T(-RealValueTypeMax, -RealValueTypeMax, -RealValueTypeMax);
         if(is)
         {
             is.seekg (0, is.end);
@@ -437,7 +437,7 @@ public:
     }
 
     template <typename T>
-    bool static readObjPointsAndFacetsFast(vector<T> &vecs, vector<int> &faces, string file_name, double &draw_scale)
+    bool static readObjPointsAndFacetsFast(vector<T> &vecs, vector<int> &faces, string file_name, RealValueType &draw_scale)
     {
         ifstream is(file_name.c_str(), std::ifstream::binary);
         if(is)
@@ -483,7 +483,7 @@ public:
             int index = 0;
             int face_v_index = 0;
             p = buffer;//from the start to parse
-            double xmin = DBL_MAX, xmax = -DBL_MAX;
+            RealValueType xmin = RealValueTypeMax, xmax = -RealValueTypeMax;
             while (!parse_end)
             {
                 ObjLineType line_type = ObjReadHelper::NextLine(p);

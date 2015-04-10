@@ -2,9 +2,31 @@
 #ifndef CP_POINTVECTOR_H
 #define CP_POINTVECTOR_H
 
+//#define  UseFloat
+
+#ifdef UseFloat
+#define RealValueType float
+#define RealValueTypeMax FLT_MAX 
+#else
+#define RealValueType double
+#define RealValueTypeMax DBL_MAX 
+
+#endif // UseFloat
+
+
+
+#ifndef PI2          
 #define PI2         6.28318530717958647692
+#endif
+
+#ifndef PI          
 #define PI          3.14159265358979323846
+#endif
+
+#ifndef PI_2        
 #define PI_2        1.57079632679489661923
+#endif
+
 //tolerance if too small, something will wrong, for example three plane get intersection, when k = 18, then kdop normals
 #define  TOLERANCE 0.0001      
 
@@ -17,19 +39,19 @@ class Line3D;
 class CP_Point2D
 {
 public:
-    double    x, y;
+    RealValueType    x, y;
 public:
     //构造函数
-    CP_Point2D (double newx=0.0, double newy=0.0);
+    CP_Point2D (RealValueType newx=0.0, RealValueType newy=0.0);
 };
 
 class CP_Point3D
 {
 public:
-    double    x, y, z;
+    RealValueType    x, y, z;
 public:
     //构造函数
-    CP_Point3D (double newx=0.0, double newy=0.0, double newz=0.0);
+    CP_Point3D (RealValueType newx=0.0, RealValueType newy=0.0, RealValueType newz=0.0);
     string toString()
     {
         std::stringstream ss;
@@ -41,23 +63,23 @@ public:
 class CP_Vector2D
 {
 public:
-    double    x, y;
+    RealValueType    x, y;
 
 public:
-    CP_Vector2D (double newx=0.0, double newy=0.0);
+    CP_Vector2D (RealValueType newx=0.0, RealValueType newy=0.0);
 
     // 赋值操作
     CP_Vector2D& operator += (const CP_Vector2D& v);
     CP_Vector2D& operator -= (const CP_Vector2D& v);
-    CP_Vector2D& operator *= (double num);
-    CP_Vector2D& operator /= (double num);
-    double operator ^(const CP_Vector2D& v);
+    CP_Vector2D& operator *= (RealValueType num);
+    CP_Vector2D& operator /= (RealValueType num);
+    RealValueType operator ^(const CP_Vector2D& v);
 
     //单目减
     CP_Vector2D operator - ( ) const;
 
-    double mf_getLength( ) const; // 取长度
-    double mf_getLengthSqr2( ) const; // 取长度的平方
+    RealValueType mf_getLength( ) const; // 取长度
+    RealValueType mf_getLengthSqr2( ) const; // 取长度的平方
 
     CP_Vector2D mf_getPerpendicularVector( ) const; //逆时针得到一个垂直的向量
     CP_Vector2D mf_getPerpendicularVectorCW() const;// 顺时针得到一个垂直向量
@@ -65,25 +87,25 @@ public:
     void mf_normalize( ); // 单位化
 
 
-    void mf_setValue(double newx=0.0, double newy=0.0);
+    void mf_setValue(RealValueType newx=0.0, RealValueType newy=0.0);
 };
 
 class CP_Vector3D
 {
 public:
-    double    x, y, z;
+    RealValueType    x, y, z;
 
 public:
-    CP_Vector3D (double newx=0.0, double newy=0.0, double newz=0.0);
+    CP_Vector3D (RealValueType newx=0.0, RealValueType newy=0.0, RealValueType newz=0.0);
 
     //赋值操作
     CP_Vector3D& operator += (const CP_Vector3D& v);
     CP_Vector3D& operator -= (const CP_Vector3D& v);
-    CP_Vector3D& operator *= (double num);
-    CP_Vector3D& operator /= (double num);
+    CP_Vector3D& operator *= (RealValueType num);
+    CP_Vector3D& operator /= (RealValueType num);
     CP_Vector3D& operator ^= (const CP_Vector3D& v);
 
-    double operator [](int i) const
+    RealValueType operator [](int i) const
     {
         switch (i)
         {
@@ -100,12 +122,12 @@ public:
     //单目减
     CP_Vector3D operator - () const;
 
-    double mf_getLength ( ) const; // 取长度
-    double mf_getLengthSquare( )  const; //取长度的平方 
+    RealValueType mf_getLength ( ) const; // 取长度
+    RealValueType mf_getLengthSquare( )  const; //取长度的平方 
     CP_Vector3D mf_getPerpendicularVector( ) const; //得到一个垂直的向量
 
     void mf_normalize( ); // 单位化
-    void mf_setValue(double newx=0.0, double newy=0.0,double newz=0.0);
+    void mf_setValue(RealValueType newx=0.0, RealValueType newy=0.0,RealValueType newz=0.0);
 
     string toString()
     {
@@ -135,19 +157,19 @@ extern CP_Vector3D operator - (const CP_Point3D& p, const CP_Point3D& q);
 
 extern CP_Vector2D operator + (const CP_Vector2D& u, const CP_Vector2D& v); 
 extern CP_Vector2D operator - (const CP_Vector2D& u, const CP_Vector2D& v); 
-extern double  operator * (const CP_Vector2D& u, const CP_Vector2D& v); // 点积
-extern CP_Vector2D operator * (const CP_Vector2D& v, double num);
-extern CP_Vector2D operator / (const CP_Vector2D& v, double num); 
+extern RealValueType  operator * (const CP_Vector2D& u, const CP_Vector2D& v); // 点积
+extern CP_Vector2D operator * (const CP_Vector2D& v, RealValueType num);
+extern CP_Vector2D operator / (const CP_Vector2D& v, RealValueType num); 
 
 extern CP_Vector3D operator + (const CP_Vector3D& u, const CP_Vector3D& v);
 extern CP_Vector3D operator - (const CP_Vector3D& u, const CP_Vector3D& v);
-extern double operator * (const CP_Vector3D& u, const CP_Vector3D& v); // 点积
+extern RealValueType operator * (const CP_Vector3D& u, const CP_Vector3D& v); // 点积
 extern CP_Vector3D operator ^ (const CP_Vector3D& u, const CP_Vector3D& v); // 叉积
 
-extern CP_Vector3D operator * (const CP_Vector3D& v, double num);
-extern CP_Vector3D operator / (const CP_Vector3D& v, double num);
+extern CP_Vector3D operator * (const CP_Vector3D& v, RealValueType num);
+extern CP_Vector3D operator / (const CP_Vector3D& v, RealValueType num);
 
-extern CP_Vector3D operator * (double num, const CP_Vector3D& v  );
+extern CP_Vector3D operator * (RealValueType num, const CP_Vector3D& v  );
 
 
 extern  bool  isParallel(const CP_Vector2D &univ_v1, const CP_Vector2D &univ_v2);
@@ -202,7 +224,7 @@ public:
     CP_Vector3D toDualPoint() const
     {
         //plane fucntion: ax+by+cz=d=ax0+by0+cz0
-        double d = normal * point;
+        RealValueType d = normal * point;
         assert(d != 0);
         return CP_Vector3D(normal) / d;
     }  
@@ -217,9 +239,9 @@ public:
 
 class CP_Vector4D 
 {
-    typedef double DataType ;
+    //typedef float RealValueType ;
 public:
-    DataType x, y, z, w;
+    RealValueType x, y, z, w;
     CP_Vector4D(void){}
     CP_Vector4D(const CP_Vector4D &v)
     {
@@ -229,7 +251,7 @@ public:
         this->w = v.w;
       
     }
-    CP_Vector4D(DataType _x, DataType _y, DataType _z, DataType _w = 1.0f){x = _x; y = _y; z = _z; w = _w;}
+    CP_Vector4D(RealValueType _x, RealValueType _y, RealValueType _z, RealValueType _w = 1.0f){x = _x; y = _y; z = _z; w = _w;}
     ~CP_Vector4D(void){}
 
     CP_Vector4D operator^(const CP_Vector4D &v) const
@@ -237,12 +259,12 @@ public:
         return CP_Vector4D(this->y * v.z - this->y * v.z, this->z * v.x - this->x * v.z ,this->x * v.y - this->y * v.x, 1.0f);
     }
 
-    CP_Vector4D operator /(const DataType p) const
+    CP_Vector4D operator /(const RealValueType p) const
     {
         return CP_Vector4D(this->x/p, this->y/p, this->z/p, this->w/p);
     }
     
-    CP_Vector4D operator /=(const DataType p) 
+    CP_Vector4D operator /=(const RealValueType p) 
     {
         (*this).x = this->x /p;
         (*this).y = this->y /p;
@@ -251,7 +273,7 @@ public:
         return *this;
     }
     
-    CP_Vector4D operator +=(const DataType p) 
+    CP_Vector4D operator +=(const RealValueType p) 
     {
         (*this).x = this->x + p;
         (*this).y = this->y + p;
@@ -260,7 +282,7 @@ public:
         return *this;
 
     }
-    CP_Vector4D operator -=(const DataType p) 
+    CP_Vector4D operator -=(const RealValueType p) 
     {
         (*this).x = this->x - p;
         (*this).y = this->y - p;
@@ -292,7 +314,7 @@ public:
     }*/
 };
 
-int round(double number);
+int round(RealValueType number);
 
 //class is different from struct,struct is defaultly public , otherwise class is private
 class CPVector_to_Float3
@@ -310,9 +332,9 @@ public:
 class AreaIndex
 {
 public:
-    double area;
+    RealValueType area;
     int index;
-    AreaIndex(double a, int i):area(a), index(i){}
+    AreaIndex(RealValueType a, int i):area(a), index(i){}
     int operator < (const AreaIndex &areaIndex)
     {
         return area > areaIndex.area;

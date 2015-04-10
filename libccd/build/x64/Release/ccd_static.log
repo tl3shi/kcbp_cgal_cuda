@@ -1,0 +1,13 @@
+﻿  ccd.c
+..\src\ccd.c(604): warning C4267: “函数”: 从“size_t”转换到“int”，可能丢失数据
+  mpr.c
+..\src\mpr.c(441): warning C4267: “函数”: 从“size_t”转换到“int”，可能丢失数据
+..\src\mpr.c(445): warning C4267: “函数”: 从“size_t”转换到“int”，可能丢失数据
+  polytope.c
+..\src\polytope.c(257): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+          C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\stdio.h(218) : 参见“fopen”的声明
+..\src\polytope.c(278): warning C4267: “=”: 从“size_t”转换到“int”，可能丢失数据
+  support.c
+  vec3.c
+  正在生成代码...
+  ccd_static.vcxproj -> D:\github\libccd\build\x64\Release\ccd.lib

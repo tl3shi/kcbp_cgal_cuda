@@ -1,0 +1,4 @@
+D:/github/libccd/build/CMakeFiles/ALL_BUILD.dir
+D:/github/libccd/build/CMakeFiles/ZERO_CHECK.dir
+D:/github/libccd/build/CMakeFiles/ccd.dir
+D:/github/libccd/build/CMakeFiles/ccd_static.dir

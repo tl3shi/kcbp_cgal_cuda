@@ -121,7 +121,14 @@ struct SolidCollisionQuery: public ICollisionQuery
     {
          dtSelectObject(&object0);
          //solid matrix is DIFFERENT from myself
+#ifdef UseFloat
+         dtLoadMatrixf(world0.transpose().m);
+         #else
          dtLoadMatrixd(world0.transpose().m);
+#endif // UseFloat
+
+
+
          //dtLoadIdentity();
          //dtTranslate(world0[0][3], world0[1][3], world0[2][3]);
          

@@ -12,14 +12,14 @@ class ACH3D
 {
     //get min max index and value for given input
     //d = 0==>x, 1==>y, 2==>z
-    static void min_max(vector<CP_Vector3D>&input, int d, vector<int> &index_min, vector<int> &index_max, double &v_min, double &v_max)
+    static void min_max(vector<CP_Vector3D>&input, int d, vector<int> &index_min, vector<int> &index_max, RealValueType &v_min, RealValueType &v_max)
     {
-        v_min = DBL_MAX;
-        v_max = -DBL_MAX;
+        v_min = RealValueTypeMax;
+        v_max = -RealValueTypeMax;
         
         for (unsigned int i = 0; i < input.size(); i++)
         {
-            double tmp = input[i][d];
+            RealValueType tmp = input[i][d];
             if(tmp <= v_min)
             {
                 if(tmp == v_min)
@@ -60,7 +60,7 @@ public:
     static vector<CP_Vector3D> getACH(vector<CP_Vector3D> &input, int kx, int ky)
     {
         vector<int> index_xmin(0), index_xmax(0) , index_ymin(0), index_ymax(0);
-        double xmin=.0, xmax=.0, ymin=.0, ymax=.0;
+        RealValueType xmin=.0, xmax=.0, ymin=.0, ymax=.0;
         min_max(input, 0, index_xmin, index_xmax, xmin, xmax);
         min_max(input, 1, index_ymin, index_ymax, ymin, ymax);
 
@@ -70,8 +70,8 @@ public:
         //putting points in x,y-strips
         for (int i = 0; i < input.size(); i++)
         {
-            double tmpx = input[i].x;
-            double tmpy = input[i].y;
+            RealValueType tmpx = input[i].x;
+            RealValueType tmpy = input[i].y;
             if(tmpx != xmin && tmpx != xmax
                 && tmpy != ymin && tmpy != ymax)
             {
@@ -91,13 +91,13 @@ public:
         {
             for (int j = 0; j < strips[i].size(); j++)
             {
-                double zmin = DBL_MAX;
-                double zmax = -DBL_MIN;
+                RealValueType zmin = RealValueTypeMax;
+                RealValueType zmax = -DBL_MIN;
                 int zmin_index = -1, zmax_index = -1;
                 for (int p = 0; p < strips[i][j].size(); p++)
                 {
                     int index_point = strips[i][j][p];
-                    double tmp = input[index_point].z;
+                    RealValueType tmp = input[index_point].z;
                     if(tmp < zmin)
                     {
                         zmin = tmp;

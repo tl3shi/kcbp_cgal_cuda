@@ -14,8 +14,8 @@ public:
      }
      BoundingBox() 
      {
-        Min = vec3(DBL_MAX, DBL_MAX, DBL_MAX);
-        Max = vec3(-DBL_MAX, -DBL_MAX, -DBL_MAX);
+        Min = vec3(RealValueTypeMax, RealValueTypeMax, RealValueTypeMax);
+        Max = vec3(-RealValueTypeMax, -RealValueTypeMax, -RealValueTypeMax);
         //mCenter = CP_Vector3D(0,0,0); mExtents = CP_Vector3D(0,0,0);
      }
 
@@ -45,7 +45,7 @@ public:
 
     static BoundingBox  GetNull() 
     {
-        return BoundingBox(vec3(DBL_MAX, DBL_MAX, DBL_MAX), vec3(-DBL_MAX, -DBL_MAX, -DBL_MAX));
+        return BoundingBox(vec3(RealValueTypeMax, RealValueTypeMax, RealValueTypeMax), vec3(-RealValueTypeMax, -RealValueTypeMax, -RealValueTypeMax));
     }
 
     vec3 GetCenter() 

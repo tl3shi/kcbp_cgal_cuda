@@ -8,7 +8,7 @@
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <LocalDebuggerCommandArguments>24 models/bunny2.obj w 100 config/04-03-100-rand.config np config/04-03-100-rand.config AABBa</LocalDebuggerCommandArguments>
+    <LocalDebuggerCommandArguments>24 models/bunny2.obj nw 100 config/04-03-100-rand.config np config/04-03-1000-rand.config AABBa</LocalDebuggerCommandArguments>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
   </PropertyGroup>
 </Project>

@@ -25,7 +25,7 @@ public:
         clock_t start_time, end_time;
         if(benchmark > 0)
         {
-            double t = .0f;
+            RealValueType t = .0f;
             for (int i = 0; i < benchmark; i++)
             {
                 start_time = clock();
@@ -205,8 +205,8 @@ public:
             CP_Vector3D l_pivot = pivot - center;
             l_pivot.mf_normalize();
 
-            double pivot1_direction = ((l_pivot ^ l_1) * normal);
-            double pivot2_direction = ((l_pivot ^ l_2) * normal);
+            RealValueType pivot1_direction = ((l_pivot ^ l_1) * normal);
+            RealValueType pivot2_direction = ((l_pivot ^ l_2) * normal);
 
             if(isParallel(l_pivot, l_1))//parallel, pi between lpivot and l1,cannot be zero,for have returned 
             {
@@ -226,8 +226,8 @@ public:
 
             if( pivot1_direction * pivot2_direction > 0) //from l_pivot to l1 or l2, the same half circle
             {
-                double accos1 = l_pivot * l_1;
-                double accos2 = l_pivot * l_2;
+                RealValueType accos1 = l_pivot * l_1;
+                RealValueType accos2 = l_pivot * l_2;
 
                 if(pivot1_direction > TOLERANCE)
                 {
@@ -252,7 +252,7 @@ public:
     {
         for (unsigned int j = 0; j < planes.size(); j++)
         {
-            double t =  (p - planes[j].point)* planes[j].normal;
+            RealValueType t =  (p - planes[j].point)* planes[j].normal;
             if( (!(p == planes[j].point))
                 && t > TOLERANCE)
             {
@@ -278,13 +278,13 @@ private:
         vector<Plane3D> planes;
         assert(points.size() > 0);
 
-        vector<double*> d_array;
+        vector<RealValueType*> d_array;
         d_array.resize(normals.size());
         for (unsigned int i = 0; i < d_array.size(); i++)
         {
-            d_array[i] = new double[4];
-            d_array[i][0] = DBL_MAX;
-            d_array[i][1] = -DBL_MAX;
+            d_array[i] = new RealValueType[4];
+            d_array[i][0] = RealValueTypeMax;
+            d_array[i][1] = -RealValueTypeMax;
              //d_array[i][2] = -1;//store the index point who min
              //d_array[i][3] = -1;//store the index point who max
         }
@@ -293,7 +293,7 @@ private:
         {
             for (unsigned int i = 0; i < points.size(); i++)
             {
-                double distance = points[i] * (normals[d]);//the distance to line
+                RealValueType distance = points[i] * (normals[d]);//the distance to line
 
                 if(distance < d_array[d][0])//min
                 {
@@ -316,8 +316,8 @@ private:
 
         for (unsigned int i = 0; i < normals.size(); i++)
         {
-            double min = d_array[i][0];
-            double max =  d_array[i][1];
+            RealValueType min = d_array[i][0];
+            RealValueType max =  d_array[i][1];
             //CP_Vector3D min_p = points[d_array[i][2]];
             //CP_Vector3D max_p = points[d_array[i][3]];
             CP_Vector3D min_p = min * (-normals[i]); // translate: origin + normal * distance

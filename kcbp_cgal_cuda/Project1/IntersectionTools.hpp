@@ -22,7 +22,7 @@ public:
                 common_normal = ((g1.normal - g2.normal) / 2.0);
                 common_normal.mf_normalize();
             }
-            double planes_signed_distance = (g1.point - g2.point) * common_normal; 
+            RealValueType planes_signed_distance = (g1.point - g2.point) * common_normal; 
 
             if (planes_signed_distance * planes_signed_distance >= TOLERANCE)
             {
@@ -57,17 +57,17 @@ public:
         CP_Vector3D m2 =  CP_Vector3D(p1.normal.y, p2.normal.y, p3.normal.y);
         CP_Vector3D m3 = CP_Vector3D(p1.normal.z, p2.normal.z, p3.normal.z);
         CP_Vector3D u = m2 ^ m3;//Cross(m2, m3);
-        double denom = m1 * u;//Dot(m1, u);
+        RealValueType denom = m1 * u;//Dot(m1, u);
         if (abs(denom) < TOLERANCE) 
             return 0; // Planes do not intersect in a point
         
-        double p1_d = p1.normal * p1.point;
-        double p2_d = p2.normal * p2.point;
-        double p3_d = p3.normal * p3.point;
+        RealValueType p1_d = p1.normal * p1.point;
+        RealValueType p2_d = p2.normal * p2.point;
+        RealValueType p3_d = p3.normal * p3.point;
         //CP_Vector3D d(p1.d, p2.d, p3.d);
         CP_Vector3D d(p1_d, p2_d, p3_d);
         CP_Vector3D v = m1 ^ d;//Cross(m1, d);
-        double ood = 1.0f / denom;
+        RealValueType ood = 1.0f / denom;
         p.x = d*u*ood;//Dot(d, u) * ood;
         p.y = m3*v*ood;//Dot(m3, v) * ood;
         p.z = -m2*v*ood;//-Dot(m2, v) * ood;
@@ -79,14 +79,14 @@ private:
         const CP_Vector3D &g1p, const CP_Vector3D &g2p,
         const CP_Vector3D &g1_normal, const CP_Vector3D &g2_normal)
     {
-        double cos_alpha = g1_normal * g2_normal;
+        RealValueType cos_alpha = g1_normal * g2_normal;
         CP_Vector3D intersect_line_direction = (g1_normal ^ g2_normal);
         intersect_line_direction.mf_normalize();
 
         if (abs(cos_alpha) <= TOLERANCE)
         {
-            double g1p_g2_signed_distance = (g1p - g2p) * g2_normal;
-            double g2p_g1_signed_distance = (g2p - g1p) * g1_normal;
+            RealValueType g1p_g2_signed_distance = (g1p - g2p) * g2_normal;
+            RealValueType g2p_g1_signed_distance = (g2p - g1p) * g1_normal;
             CP_Vector3D g1h = g1p - g2_normal * g1p_g2_signed_distance;
             CP_Vector3D  g2h = g2p - g1_normal * g2p_g1_signed_distance;
 
@@ -100,9 +100,9 @@ private:
 
             CP_Vector3D g1p_perpendicular_on_g2 = g2p + ProjectToPlane(g1p - g2p, perpendicular_direction_on_g1, perpendicular_direction_on_g2);
 
-            double v0 = (perpendicular_direction_on_g1 ^ perpendicular_direction_on_g2) * intersect_line_direction;
-            double v1 = (g1p_perpendicular_on_g2  ^ perpendicular_direction_on_g1) * intersect_line_direction;
-            double v2 = (g2p ^ perpendicular_direction_on_g2) * intersect_line_direction;
+            RealValueType v0 = (perpendicular_direction_on_g1 ^ perpendicular_direction_on_g2) * intersect_line_direction;
+            RealValueType v1 = (g1p_perpendicular_on_g2  ^ perpendicular_direction_on_g1) * intersect_line_direction;
+            RealValueType v2 = (g2p ^ perpendicular_direction_on_g2) * intersect_line_direction;
             CP_Vector3D g2h = (perpendicular_direction_on_g1 * v2 - perpendicular_direction_on_g2 * v1) / v0;
             CP_Vector3D g1h = perpendicular_direction_on_g1 * ((g2h - g1p) * perpendicular_direction_on_g1) + g1p;
 
@@ -142,14 +142,14 @@ private:
         CP_Vector3D common_perpendicular_direction = g1.direction ^ g2.direction;
         CP_Vector3D g1_g2_difference = g1.point - g2.point;
 
-        //if (tolerance->IsLengthNonzero(System::Math::LinearSpace3<double>::ProjectToLine(g1_g2_difference, common_perpendicular_direction)))
+        //if (tolerance->IsLengthNonzero(System::Math::LinearSpace3<RealValueType>::ProjectToLine(g1_g2_difference, common_perpendicular_direction)))
         if(ProjectToLine(g1_g2_difference, common_perpendicular_direction).mf_getLength() >= abs(TOLERANCE))
         {
             return false;
         }
 
         CP_Vector3D g1h, g2h;
-        double parameter_on_g1, parameter_on_g2;
+        RealValueType parameter_on_g1, parameter_on_g2;
         if (isPerpendicular(g1.direction, g2.direction))
         {
             g2h = g2.point + g2.direction * (g1_g2_difference * g2.direction);
@@ -161,8 +161,8 @@ private:
         else
         {
             // two lines are coplanar
-            double common_perpendicular_squared_norm = common_perpendicular_direction.mf_getLengthSquare();
-            double cos_alpha = g1.direction * g2.direction;
+            RealValueType common_perpendicular_squared_norm = common_perpendicular_direction.mf_getLengthSquare();
+            RealValueType cos_alpha = g1.direction * g2.direction;
 
             parameter_on_g2 = ((g1_g2_difference * g2.direction) - cos_alpha * (g1_g2_difference * g1.direction)) / common_perpendicular_squared_norm;
             parameter_on_g1 = cos_alpha * parameter_on_g2 - g1_g2_difference * g1.direction;
@@ -172,7 +172,7 @@ private:
 
         if (ignoring_domain || true)//(tolerance->IsInDomain(g1, parameter_on_g1) && tolerance->IsInDomain(g2, parameter_on_g2)))
         {
-            retval = (g1h + g2h) / double(2);
+            retval = (g1h + g2h) / RealValueType(2);
             return true;
         }
         else

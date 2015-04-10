@@ -1,24 +1,25 @@
 #include "Matrix.h"
 typedef CP_Vector3D vec3;
 
+
 const CMatrix CMatrix::Identity(1.0f, 0.0, 0.0f, 0.0f, 0.0f, 1.0f, 0.0, 0.0f, 0.0f, 0.0f, 1.0f, 0.0, 0.0f, 0.0f, 0.0f, 1.0f);
 
 CMatrix::CMatrix(void)
 {
-    memset(m, 0, DATA_COUNT * sizeof(DataType));
+    memset(m, 0, DATA_COUNT * sizeof(RealValueType));
 }
 CMatrix::CMatrix(const CMatrix &_m)
 {
-    memcpy(m, _m.m,DATA_COUNT * sizeof(DataType));
+    memcpy(m, _m.m,DATA_COUNT * sizeof(RealValueType));
 }
-CMatrix::CMatrix(const DataType* data)
+CMatrix::CMatrix(const RealValueType* data)
 {
-    memcpy(m, data,DATA_COUNT * sizeof(DataType));
+    memcpy(m, data,DATA_COUNT * sizeof(RealValueType));
 }
-CMatrix::CMatrix(DataType a11, DataType a12, DataType a13, DataType a14,
-DataType a21, DataType a22, DataType a23, DataType a24,
-DataType a31, DataType a32, DataType a33, DataType a34,
-DataType a41, DataType a42, DataType a43, DataType a44
+CMatrix::CMatrix(RealValueType a11, RealValueType a12, RealValueType a13, RealValueType a14,
+RealValueType a21, RealValueType a22, RealValueType a23, RealValueType a24,
+RealValueType a31, RealValueType a32, RealValueType a33, RealValueType a34,
+RealValueType a41, RealValueType a42, RealValueType a43, RealValueType a44
 ):_11(a11), _12(a12), _13(a13), _14(a14),
 _21(a21), _22(a22), _23(a23), _24(a24),
 _31(a31), _32(a32), _33(a33), _34(a34),
@@ -26,7 +27,7 @@ _41(a41), _42(a42), _43(a43), _44(a44){}
 
 CMatrix::~CMatrix(void){}
 
-CMatrix CMatrix::GetRotate(DataType angle, const CVector3D &axis)
+CMatrix CMatrix::GetRotate(RealValueType angle, const CVector3D &axis)
 {
     //
     // http://blog.csdn.net/xiajun07061225/article/details/7766838
@@ -35,10 +36,10 @@ CMatrix CMatrix::GetRotate(DataType angle, const CVector3D &axis)
     CMatrix retval = CMatrix::Identity;
     vec3 r(axis);
     r.mf_normalize();
-
-    DataType cosine = cos(angle / DEGREE_PER_RADIAN);
-    DataType sine = sin(angle / DEGREE_PER_RADIAN);
-    DataType one_minus_consine = 1.0f - cosine;
+    
+    RealValueType cosine = cos(angle / DEGREE_PER_RADIAN);
+    RealValueType sine = sin(angle / DEGREE_PER_RADIAN);
+    RealValueType one_minus_consine = 1.0f - cosine;
 
     retval[0][0] = cosine+one_minus_consine*r.x*r.x;
     retval[0][1] = one_minus_consine*r.x*r.y - r.z*sine;
@@ -55,7 +56,7 @@ CMatrix CMatrix::GetRotate(DataType angle, const CVector3D &axis)
     return retval;
 }
 
-void CMatrix::GetRotate(CMatrix &mat, DataType angle, const CVector3D &axis)
+void CMatrix::GetRotate(CMatrix &mat, RealValueType angle, const CVector3D &axis)
 {
     //
     // http://blog.csdn.net/xiajun07061225/article/details/7766838
@@ -66,9 +67,9 @@ void CMatrix::GetRotate(CMatrix &mat, DataType angle, const CVector3D &axis)
     assert(abs(r.mf_getLengthSquare() - 1.0) < 0.0001);
     mat = CMatrix::Identity;
 
-    DataType cosine = cos(angle / DEGREE_PER_RADIAN);
-    DataType sine = sin(angle / DEGREE_PER_RADIAN);
-    DataType one_minus_consine = 1.0f - cosine;
+    RealValueType cosine = cos(angle / DEGREE_PER_RADIAN);
+    RealValueType sine = sin(angle / DEGREE_PER_RADIAN);
+    RealValueType one_minus_consine = 1.0f - cosine;
 
     mat[0][0] = cosine+one_minus_consine*r.x*r.x;
     mat[0][1] = one_minus_consine*r.x*r.y + r.z*sine;
@@ -83,12 +84,12 @@ void CMatrix::GetRotate(CMatrix &mat, DataType angle, const CVector3D &axis)
     mat[2][2] = cosine + one_minus_consine*r.z*r.z;
 }
 
-CMatrix CMatrix::GetRotateXAxis(DataType angle)
+CMatrix CMatrix::GetRotateXAxis(RealValueType angle)
 {
     CMatrix retval = CMatrix::Identity;
 
-    DataType cosine = cos(angle / DEGREE_PER_RADIAN);
-    DataType sine = sin(angle / DEGREE_PER_RADIAN);
+    RealValueType cosine = cos(angle / DEGREE_PER_RADIAN);
+    RealValueType sine = sin(angle / DEGREE_PER_RADIAN);
 
     retval[1][1] = cosine;
     retval[1][2] = -sine;
@@ -98,12 +99,12 @@ CMatrix CMatrix::GetRotateXAxis(DataType angle)
     return retval;
 }
 
-void CMatrix::GetRotateXAxis(CMatrix &mat, DataType angle)
+void CMatrix::GetRotateXAxis(CMatrix &mat, RealValueType angle)
 {
     mat = CMatrix::Identity;
 
-    DataType cosine = cos(angle / DEGREE_PER_RADIAN);
-    DataType sine = sin(angle / DEGREE_PER_RADIAN);
+    RealValueType cosine = cos(angle / DEGREE_PER_RADIAN);
+    RealValueType sine = sin(angle / DEGREE_PER_RADIAN);
 
     mat[1][1] = cosine;
     mat[1][2] = -sine;
@@ -111,12 +112,12 @@ void CMatrix::GetRotateXAxis(CMatrix &mat, DataType angle)
     mat[2][2] = cosine;
 }
 
-CMatrix CMatrix::GetRotateYAxis(DataType angle)
+CMatrix CMatrix::GetRotateYAxis(RealValueType angle)
 {
     CMatrix retval = CMatrix::Identity;
 
-    DataType cosine = cos(angle / DEGREE_PER_RADIAN);
-    DataType sine = sin(angle / DEGREE_PER_RADIAN);
+    RealValueType cosine = cos(angle / DEGREE_PER_RADIAN);
+    RealValueType sine = sin(angle / DEGREE_PER_RADIAN);
 
     retval[0][0] = cosine;
     retval[0][2] = sine;
@@ -126,12 +127,12 @@ CMatrix CMatrix::GetRotateYAxis(DataType angle)
     return retval;
 }
 
-void CMatrix::GetRotateYAxis(CMatrix &mat, DataType angle)
+void CMatrix::GetRotateYAxis(CMatrix &mat, RealValueType angle)
 {
     mat = CMatrix::Identity;
 
-    DataType cosine = cos(angle / DEGREE_PER_RADIAN);
-    DataType sine = sin(angle / DEGREE_PER_RADIAN);
+    RealValueType cosine = cos(angle / DEGREE_PER_RADIAN);
+    RealValueType sine = sin(angle / DEGREE_PER_RADIAN);
 
     mat[0][0] = cosine;
     mat[0][2] = sine;
@@ -139,12 +140,12 @@ void CMatrix::GetRotateYAxis(CMatrix &mat, DataType angle)
     mat[2][2] = cosine;
 }
 
-CMatrix CMatrix::GetRotateZAxis(DataType angle)
+CMatrix CMatrix::GetRotateZAxis(RealValueType angle)
 {
     CMatrix retval = CMatrix::Identity;
 
-    DataType cosine = cos(angle / DEGREE_PER_RADIAN);
-    DataType sine = sin(angle / DEGREE_PER_RADIAN);
+    RealValueType cosine = cos(angle / DEGREE_PER_RADIAN);
+    RealValueType sine = sin(angle / DEGREE_PER_RADIAN);
 
     retval[0][0] = cosine;
     retval[0][1] = -sine;
@@ -154,12 +155,12 @@ CMatrix CMatrix::GetRotateZAxis(DataType angle)
     return retval;
 }
 
-void CMatrix::GetRotateZAxis(CMatrix &mat, DataType angle)
+void CMatrix::GetRotateZAxis(CMatrix &mat, RealValueType angle)
 {
     mat = CMatrix::Identity;
 
-    DataType cosine = cos(angle / DEGREE_PER_RADIAN);
-    DataType sine = sin(angle / DEGREE_PER_RADIAN);
+    RealValueType cosine = cos(angle / DEGREE_PER_RADIAN);
+    RealValueType sine = sin(angle / DEGREE_PER_RADIAN);
 
     mat[0][0] = cosine;
     mat[0][1] = -sine;
@@ -248,7 +249,7 @@ CMatrix &CMatrix::operator*=(const CMatrix &_m)
             }
         }
     }
-    memcpy(m, retval.m, DATA_COUNT * sizeof(DataType));
+    memcpy(m, retval.m, DATA_COUNT * sizeof(RealValueType));
     return *this;
 }
 
@@ -319,7 +320,7 @@ CVector3D CMatrix::operator*(const CVector3D &v) const
     return CVector3D(retval.data[0], retval.data[1], retval.data[2]);
 }
 
-CMatrix CMatrix::operator*(DataType k) const
+CMatrix CMatrix::operator*(RealValueType k) const
 {
     CMatrix retval;
     for (unsigned int i = 0; i < DATA_COUNT; i++)
@@ -329,7 +330,7 @@ CMatrix CMatrix::operator*(DataType k) const
     return retval;
 }
 
-CMatrix CMatrix::operator/(DataType k) const
+CMatrix CMatrix::operator/(RealValueType k) const
 {
     CMatrix retval;
     for (unsigned int i = 0; i < DATA_COUNT; i++)
@@ -349,7 +350,7 @@ CMatrix CMatrix::operator-() const
     return retval;
 }
 
-const DataType &CMatrix::operator()(unsigned int row, unsigned int column) const
+const RealValueType &CMatrix::operator()(unsigned int row, unsigned int column) const
 {
     return m[row * COLUMN_COUNT + column];
 }
@@ -364,7 +365,7 @@ const CMatrix::RowVector &CMatrix::operator[](unsigned int row) const
     return rowvec[row];
 }
 
-DataType &CMatrix::operator()(unsigned int row, unsigned int column)
+RealValueType &CMatrix::operator()(unsigned int row, unsigned int column)
 {
     return m[row * COLUMN_COUNT + column];
 }

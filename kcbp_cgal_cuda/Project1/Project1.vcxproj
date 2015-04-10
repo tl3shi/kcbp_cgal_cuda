@@ -157,6 +157,11 @@
     <ClInclude Include="ACH3D.hpp" />
     <ClInclude Include="BoundingBox.hpp" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="ccd\ccd.h" />
+    <ClInclude Include="ccd\compiler.h" />
+    <ClInclude Include="ccd\config.h" />
+    <ClInclude Include="ccd\quat.h" />
+    <ClInclude Include="ccd\vec3.h" />
     <ClInclude Include="CGALTool.hpp" />
     <ClInclude Include="ClassicalKmeans.hpp" />
     <ClInclude Include="CollsionQuery.hpp" />

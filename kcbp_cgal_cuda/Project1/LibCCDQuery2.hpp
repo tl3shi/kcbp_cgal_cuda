@@ -2,7 +2,6 @@
 
 #include "ICollisionQuery.h"
 
-
 #include "ccd/ccd.h"
 #include "ccd/quat.h" // for work with quaternions
 
@@ -27,13 +26,13 @@ struct CCD_Convex
 void supportConvex2(const void* obj, const ccd_vec3_t* dir_, ccd_vec3_t* v)
 {
     const CCD_Convex * c = static_cast<const CCD_Convex*>(obj);
-    double maxdot = - DBL_MAX;
+    RealValueType maxdot = - RealValueTypeMax;
     CP_Vector3D dir(dir_->v[0], dir_->v[1], dir_->v[2]);
     CP_Vector3D newP;
     for(int i = 0; i < c->points.size(); i++)
     {
         CP_Vector3D curp = c->transformMatrix * c->points[i];
-        double dot = curp * dir;
+        RealValueType dot = curp * dir;
         if(dot > maxdot)
         {
             newP = curp;

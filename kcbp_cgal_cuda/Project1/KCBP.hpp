@@ -58,7 +58,7 @@ public:
         assert(planes_gpu.size() == planes_cpu.size() && planes_cpu_sse.size() == planes_cpu.size());
     }
 
-    double static getVolume(vector<Polygon3D*> &polyhedra)
+    RealValueType static getVolume(vector<Polygon3D*> &polyhedra)
     {
         vector<CP_Vector3D> points;
         int lastadd = 0;
@@ -94,8 +94,8 @@ public:
 
     static void getMinMax(vector<CP_Vector3D> &points, CP_Vector3D &leftlow, CP_Vector3D &rightup)
     {
-        double xmin = DBL_MAX, ymin = DBL_MAX, zmin = DBL_MAX;
-        double xmax = -DBL_MAX, ymax = -DBL_MAX, zmax = -DBL_MAX;
+        RealValueType xmin = RealValueTypeMax, ymin = RealValueTypeMax, zmin = RealValueTypeMax;
+        RealValueType xmax = -RealValueTypeMax, ymax = -RealValueTypeMax, zmax = -RealValueTypeMax;
         for (unsigned int i = 0; i < points.size(); i++)
         {
             if(xmin > points[i].x)
@@ -117,7 +117,7 @@ public:
     }
 
      
-    static vector<CP_Vector3D> getClusterNormals(vector<CP_Vector3D> &ach_points, const int &k, bool weigthed = false, bool deleteifno = false, double reserve = 0.1)
+    static vector<CP_Vector3D> getClusterNormals(vector<CP_Vector3D> &ach_points, const int &k, bool weigthed = false, bool deleteifno = false, RealValueType reserve = 0.1)
     {
         if(k == 6)
             return genKdopNormals(6);
@@ -127,7 +127,7 @@ public:
         sort(areas.begin(), areas.end());
 
         vector<CP_Vector3D> long_;
-        double long_rate = reserve;
+        RealValueType long_rate = reserve;
         int long_k = (int)k * long_rate;
 
         for (int i = 0; i < long_k; i++)
@@ -168,7 +168,7 @@ public:
             CP_Vector3D c = ach_points[i+2];
 
             CP_Vector3D normal = (b - a) ^ (c - a);
-            double area = abs(1 / 2.0 * normal.mf_getLength());
+            RealValueType area = abs(1 / 2.0 * normal.mf_getLength());
             if ((a - inner_point) * normal < 0)
                 normal = -normal;
             normal.mf_normalize();
@@ -487,7 +487,7 @@ public:
     static vector<CP_Vector3D> hammersleyNormals(int n)
     {
         vector<CP_Vector3D> result;
-        double p, t, st, phi, phirad;
+        RealValueType p, t, st, phi, phirad;
         int k, kk, pos;
         /*
         for (k = 0, pos =0; k < n; k++)
@@ -535,18 +535,18 @@ public:
         vector<CP_Vector3D> result;
         if(true)
         {
-            double a = 4 * PI / k;
-            double d = sqrt(a);
+            RealValueType a = 4 * PI / k;
+            RealValueType d = sqrt(a);
             int m_v = round(PI/d); 
-            double d_v = PI / m_v;
-            double d_phi = a / d_v;
+            RealValueType d_v = PI / m_v;
+            RealValueType d_phi = a / d_v;
             for (int m = 0; m < m_v; m++)
             {
-                double v = PI * (m + 0.5) / m_v;
-                double m_phi = round(2*PI * sin(v) / d_phi);
+                RealValueType v = PI * (m + 0.5) / m_v;
+                RealValueType m_phi = round(2*PI * sin(v) / d_phi);
                 for (int n = 0; n < m_phi; n++)
                 {
-                    double phi = 2*PI*n/m_phi;
+                    RealValueType phi = 2*PI*n/m_phi;
                     CP_Vector3D normal = CP_Vector3D(sin(v)*cos(phi), sin(v)*sin(phi), cos(v)); 
                     normal.mf_normalize();
                     result.push_back(normal);
@@ -560,11 +560,11 @@ public:
             int P =  round(PI/sqrt(4*PI/k));
             for (int i = 1; i <= P-1; i++)
             {
-                double thita = i * PI / P;
-                double n_m = round(2*PI*P*sin(i * PI / P));
+                RealValueType thita = i * PI / P;
+                RealValueType n_m = round(2*PI*P*sin(i * PI / P));
                 for (int n = 1; n <= n_m; n++)
                 {
-                    double phi = 2*n*PI / n_m;
+                    RealValueType phi = 2*n*PI / n_m;
                     CP_Vector3D normal = CP_Vector3D(sin(thita)*cos(phi), sin(thita)*sin(phi), cos(thita)); 
                     normal.mf_normalize();
                     result.push_back(normal);

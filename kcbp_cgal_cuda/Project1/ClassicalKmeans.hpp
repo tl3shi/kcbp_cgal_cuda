@@ -16,7 +16,7 @@ public:
         centroids = init_centers;
         int iterTime = 0;
         const int MaxIterCount = 100;
-        const double tol = 1 * PI / 180.0; //1 degree
+        const RealValueType tol = 1 * PI / 180.0; //1 degree
         const CP_Vector3D deleted_center = CP_Vector3D(0,0,0);
 
         while (iterTime ++ < MaxIterCount)
@@ -25,14 +25,14 @@ public:
             vector<int> cluster_num(k);
             for (unsigned int i = 0; i < input_points.size(); i++)
             {
-                double tmp = -DBL_MAX;
+                RealValueType tmp = -RealValueTypeMax;
                 int cluster_type = -1;
                 for (int j = 0; j < k; j++)
                 {
                     if(centroids[j] == deleted_center)
                         {continue;}
                     //cos
-                    double cos_ =  input_points[i] * centroids[j]; //all normalized / (input_points[i].mf_getLength() * init_centers[j].mf_getLength());
+                    RealValueType cos_ =  input_points[i] * centroids[j]; //all normalized / (input_points[i].mf_getLength() * init_centers[j].mf_getLength());
                     if(cos_ > tmp)
                     {
                         tmp = cos_;
@@ -59,7 +59,7 @@ public:
 
                 CP_Vector3D new_center = sum[i] / cluster_num[i];//average
                 new_center.mf_normalize(); //normalized
-                double acs = centroids[i] * new_center;
+                RealValueType acs = centroids[i] * new_center;
                 if(acs < cos(tol)) // center move on // cos(x1) < cos(x2):x1>x2
                 {
                     move_on = true;
@@ -96,23 +96,23 @@ public:
         centroids = init_centers;
         int iterTime = 0;
         const int MaxIterCount = 100;
-        const double tol = 1 * PI / 180.0; //1 degree
+        const RealValueType tol = 1 * PI / 180.0; //1 degree
         const CP_Vector3D deleted_center = CP_Vector3D(0,0,0);
 
         while (iterTime ++ < MaxIterCount)
         {
             vector<int> cluster_types(input_areas.size());
-            vector<double> cluster_num(k);
+            vector<RealValueType> cluster_num(k);
             for (unsigned int i = 0; i < input_areas.size(); i++)
             {
-                double tmp = -DBL_MAX;
+                RealValueType tmp = -RealValueTypeMax;
                 int cluster_type = -1;
                 for (int j = 0; j < k; j++)
                 {
                     if(centroids[j] == deleted_center)
                     {continue;}
                     //cos
-                    double cos_ =  normals[input_areas[i].index] * centroids[j]; 
+                    RealValueType cos_ =  normals[input_areas[i].index] * centroids[j]; 
                     if(cos_ > tmp)
                     {
                         tmp = cos_;
@@ -139,7 +139,7 @@ public:
 
                 CP_Vector3D new_center = sum[i] / cluster_num[i];//average
                 new_center.mf_normalize(); //normalized
-                double acs = centroids[i] * new_center;
+                RealValueType acs = centroids[i] * new_center;
                 if(acs < cos(tol)) // center move on // cos(x1) < cos(x2):x1>x2
                 {
                     move_on = true;

@@ -22,24 +22,24 @@ public:
     BoundingBox Box;
     Triangle3D(CP_Vector3D _x, CP_Vector3D _y, CP_Vector3D _z):v0(_x), v1(_y),v2(_z)
     {
-        /*double minx = std::min(v2.x, std::min(v0.x, v1.x));
-        double miny = std::min(v2.y, std::min(v0.y, v1.y));
-        double minz = std::min(v2.z, std::min(v0.z, v1.z));
-        double maxx = std::max(v2.x, std::max(v0.x, v1.x));
-        double maxy = std::max(v2.y, std::max(v0.y, v1.y));
-        double maxz = std::max(v2.z, std::max(v0.z, v1.z));*/
-        double minx = v0.x < v1.x ? v0.x : v1.x;
+        /*RealValueType minx = std::min(v2.x, std::min(v0.x, v1.x));
+        RealValueType miny = std::min(v2.y, std::min(v0.y, v1.y));
+        RealValueType minz = std::min(v2.z, std::min(v0.z, v1.z));
+        RealValueType maxx = std::max(v2.x, std::max(v0.x, v1.x));
+        RealValueType maxy = std::max(v2.y, std::max(v0.y, v1.y));
+        RealValueType maxz = std::max(v2.z, std::max(v0.z, v1.z));*/
+        RealValueType minx = v0.x < v1.x ? v0.x : v1.x;
                minx = minx < v2.x ? minx : v2.x;
-        double miny = v0.y < v1.y ? v0.y : v1.y;
+        RealValueType miny = v0.y < v1.y ? v0.y : v1.y;
                miny = miny < v2.y ? miny : v2.y;
-        double minz = v0.z < v1.z ? v0.z : v1.z;
+        RealValueType minz = v0.z < v1.z ? v0.z : v1.z;
                minz = minz < v2.z ? minz : v2.z;
         
-        double maxx = v0.x > v1.x ? v0.x : v1.x;
+        RealValueType maxx = v0.x > v1.x ? v0.x : v1.x;
                maxx = maxx > v2.x ? maxx : v2.x;
-        double maxy = v0.y > v1.y ? v0.y : v1.y;
+        RealValueType maxy = v0.y > v1.y ? v0.y : v1.y;
                maxy = maxy > v2.y ? maxy : v2.y;
-        double maxz = v0.z > v1.z ? v0.z : v1.z;
+        RealValueType maxz = v0.z > v1.z ? v0.z : v1.z;
                maxz = maxz > v2.z ? maxz : v2.z;
 
         Box.Min = CP_Vector3D(minx, miny, minz);
@@ -235,9 +235,9 @@ private:
     int  LongestAixs(const BBox &box)
 {
     vec3 delta = box.Max - box.Min;
-    const double dx = delta.x;
-    const double dy = delta.y;
-    const double dz = delta.z;
+    const RealValueType dx = delta.x;
+    const RealValueType dy = delta.y;
+    const RealValueType dz = delta.z;
     if(dx >= dy)
     {
         if(dx >= dz)

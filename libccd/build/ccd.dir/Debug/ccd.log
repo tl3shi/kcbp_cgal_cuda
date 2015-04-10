@@ -1,0 +1,11 @@
+﻿  Building Custom Rule D:/github/libccd/CMakeLists.txt
+  CMake does not need to re-run because D:\github\libccd\build\CMakeFiles\generate.stamp is up-to-date.
+  ccd.c
+  mpr.c
+  polytope.c
+..\src\polytope.c(257): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+          C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\stdio.h(218) : 参见“fopen”的声明
+  support.c
+  vec3.c
+  正在生成代码...
+  ccd.vcxproj -> D:\github\libccd\build\Debug\ccd.dll

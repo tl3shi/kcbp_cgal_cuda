@@ -29,7 +29,7 @@ public:
                 cpureduction += cpureductionclock;
             }
             cout << "banchtest(" << benchmark << " times) GPU :" << t / benchmark << endl;
-            cout << "Last cpu reduction: " << (double)cpureduction / benchmark << endl;
+            cout << "Last cpu reduction: " << (RealValueType)cpureduction / benchmark << endl;
         }else
         {
             

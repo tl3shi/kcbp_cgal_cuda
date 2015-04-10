@@ -87,6 +87,21 @@
     <ClInclude Include="LibCCDQuery2.hpp">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="ccd\ccd.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ccd\quat.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ccd\config.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ccd\vec3.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ccd\compiler.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CudaCompile Include="test.cu">

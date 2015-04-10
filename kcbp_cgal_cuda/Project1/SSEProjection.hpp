@@ -17,11 +17,10 @@ public:
         clock_t start_time, end_time;
         if(benchmark > 0)
         {
-            double t = .0f;
-             start_time = clock();
+            start_time = clock();
             for (int i = 0; i < benchmark; i++)
                 result = projectsse(points, normals);
-            t = clock() - start_time;
+            clock_t  t = clock() - start_time;
             cout << "Projection time banchtest(" << benchmark << " times) CPU(SSE) totaly:" << t  << endl;
         }else
         {

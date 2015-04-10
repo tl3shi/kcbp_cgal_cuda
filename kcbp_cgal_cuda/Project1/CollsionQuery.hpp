@@ -76,7 +76,7 @@ struct CollisionQuery : public ICollisionQuery
             AABBTests++;
 
             vector<CP_Vector3D> vertices = box.GetAABBVertices();
-            BoundingBox transformedBBox(CP_Vector3D(DBL_MAX, DBL_MAX, DBL_MAX), -CP_Vector3D(DBL_MAX, DBL_MAX, DBL_MAX));
+            BoundingBox transformedBBox(CP_Vector3D(RealValueTypeMax, RealValueTypeMax, RealValueTypeMax), -CP_Vector3D(RealValueTypeMax, RealValueTypeMax, RealValueTypeMax));
             for(int i = 0; i < 8; i++)
             {
                 CP_Vector3D v = transformMatrix * vertices[i];
