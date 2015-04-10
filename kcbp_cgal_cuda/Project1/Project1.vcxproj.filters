@@ -84,6 +84,9 @@
     <ClInclude Include="LibCCDQuery.hpp">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="LibCCDQuery2.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CudaCompile Include="test.cu">

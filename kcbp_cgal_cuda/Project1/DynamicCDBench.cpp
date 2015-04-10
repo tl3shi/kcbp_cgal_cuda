@@ -20,7 +20,7 @@
 #include "AABB.hpp"
 #include "CollsionQuery.hpp"
 #include "SolidCollisionQuery.hpp"
-#include "LibCCDQuery.hpp"
+#include "LibCCDQuery2.hpp"
 
 #include <sstream>
 #include <fstream>
@@ -60,6 +60,7 @@ void writetofile(bool obj);
 vector<vector<CP_Vector3D> > MeshPointsData;
 //vector<vector<int> > MeshIndexes; the index is always the same
 vector<vector<CP_Vector3D>> MeshpolyhedraData;
+vector<vector<CP_Vector3D>> NonMeshPolyhedraData; //not mesh
 vector<int> MeshPolyhedronIndex;
 
 vector<CP_Vector3D> MeshPolyhedronPoints;
@@ -105,7 +106,7 @@ string objfilename;
 bool lib_ccd = true;
 int k = 0;
 
-#define BOX_FILTER
+//#define BOX_FILTER
 
 #define KCBP_FILTER
 
@@ -296,9 +297,9 @@ void move_and_check()
         {
             //bool c = kcbp_queries[i-1]->detection(world0 , ident);
             bool c;
-            if(lib_ccd) //this moving/rotate/asix is not same as the glTranslate/glRotate, should use the matrix
-                c = kcbp_queries[i-1]->detection(current_moving_axis, current_moving_angle, current_moving_translation);
-            else //AABB
+            //if(lib_ccd) //this moving/rotate/asix is not same as the glTranslate/glRotate, should use the matrix
+            //    c = kcbp_queries[i-1]->detection(current_moving_axis, current_moving_angle, current_moving_translation);
+            //else //AABB
                 c = kcbp_queries[i-1]->detection(world0 , ident);
             if(c == false)
                 collision_index[i] = false;
@@ -454,6 +455,12 @@ void genModels(int modelnum, string config)
     MeshPointsData.push_back(points3d);
     MeshpolyhedraData.push_back(MeshPolyhedronPoints);
 
+    //nonMeshPolyhedra
+    vector<CP_Vector3D> nonMeshPolyhedra;
+    for(auto it = polyhedra.begin(); it != polyhedra.end(); it++)
+        std::copy((*it)->data.begin(), (*it)->data.end(), std::back_inserter(nonMeshPolyhedra));
+    NonMeshPolyhedraData.push_back(nonMeshPolyhedra);
+
     vector<int> rotate_angles;
     vector<CP_Vector3D> translations;
     vector<CP_Vector3D> rotations;
@@ -485,6 +492,11 @@ void genModels(int modelnum, string config)
         vector<CP_Vector3D> kcbpdata(MeshPolyhedronPoints.size());
         std::transform(MeshPolyhedronPoints.begin(), MeshPolyhedronPoints.end(), kcbpdata.begin(), trans);
         MeshpolyhedraData.push_back(kcbpdata);
+
+        vector<CP_Vector3D> kcbpNonMesh(nonMeshPolyhedra.size());
+        std::transform(nonMeshPolyhedra.begin(), nonMeshPolyhedra.end(), kcbpNonMesh.begin(), trans);
+        NonMeshPolyhedraData.push_back(kcbpNonMesh);
+
         if(i == modelnum-2)
         {
             printf("reading %d model configs(plus fixed one,total = %d)\n", modelnum-1, modelnum);
@@ -529,7 +541,8 @@ void genModels(int modelnum, string config)
             continue;
         collision_queries.push_back(new CollisionQuery(MeshPointsData[movingModelIndex], trianges_index, MeshPointsData[i], trianges_index));
         if(lib_ccd)
-            kcbp_queries.push_back(new LibCCDQuery(MeshpolyhedraData[movingModelIndex], MeshpolyhedraData[i]));
+            //kcbp_queries.push_back(new LibCCDQuery(MeshpolyhedraData[movingModelIndex], MeshpolyhedraData[i]));
+            kcbp_queries.push_back(new LibCCDQuery2(NonMeshPolyhedraData[movingModelIndex], NonMeshPolyhedraData[i]));
         else
             kcbp_queries.push_back(new CollisionQuery(MeshpolyhedraData[movingModelIndex], MeshpolyhedraData[i]));
     }

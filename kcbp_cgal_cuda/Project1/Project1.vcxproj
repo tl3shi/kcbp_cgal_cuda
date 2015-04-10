@@ -170,6 +170,7 @@
     <ClInclude Include="KCBP.hpp" />
     <ClInclude Include="KDop3D.hpp" />
     <ClInclude Include="LibCCDQuery.hpp" />
+    <ClInclude Include="LibCCDQuery2.hpp" />
     <ClInclude Include="Matrix.h" />
     <ClInclude Include="SolidCollisionQuery.hpp" />
     <ClInclude Include="SwiftCollisionDetection.hpp" />

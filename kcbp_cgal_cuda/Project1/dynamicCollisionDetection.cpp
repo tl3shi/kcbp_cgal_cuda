@@ -103,7 +103,7 @@ bool OUTPUT_POLYHEDRON = true;
 int k = 0;
 
 bool finish_without_update = false; //used to cal fps
-bool usekcbp = false;
+bool usekcbp = true;
 
 ICollisionQuery * collision_query = 0;
 ICollisionQuery * kcbp_query = 0;
