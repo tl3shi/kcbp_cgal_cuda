@@ -76,9 +76,6 @@
     <Report>
       <Path>Dynamic-kCBP_CGAL_CUDA150410.vspx</Path>
     </Report>
-    <Report>
-      <Path>Dynamic-kCBP_CGAL_CUDA150410(1).vspx</Path>
-    </Report>
   </Reports>
   <Launches>
     <ProjBinary>

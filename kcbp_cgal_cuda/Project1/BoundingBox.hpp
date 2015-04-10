@@ -114,7 +114,8 @@ public:
         vec3 min = this->Min;
         vec3 max = this->Max;
 
-        vector<vec3> vertices(8);
+        static vector<vec3> vertices; //once allocate mem, speedup
+        vertices.resize(8);
         //top and bottom
         /*
         0 ---- 3

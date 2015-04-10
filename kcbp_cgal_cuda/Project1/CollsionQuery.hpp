@@ -76,18 +76,21 @@ struct CollisionQuery : public ICollisionQuery
             AABBTests++;
 
             vector<CP_Vector3D> vertices = box.GetAABBVertices();
-            BoundingBox transformedBBox(CP_Vector3D(RealValueTypeMax, RealValueTypeMax, RealValueTypeMax), -CP_Vector3D(RealValueTypeMax, RealValueTypeMax, RealValueTypeMax));
+            RealValueType min_x, min_y, min_z;
+            RealValueType max_x, max_y, max_z;
+            min_x = min_y = min_z = RealValueTypeMax;
+            max_x = max_y = max_z = -RealValueTypeMax;
             for(int i = 0; i < 8; i++)
             {
                 CP_Vector3D v = transformMatrix * vertices[i];
-                transformedBBox.Min.x = min(transformedBBox.Min.x, v.x);
-                transformedBBox.Min.y = min(transformedBBox.Min.y, v.y);
-                transformedBBox.Min.z = min(transformedBBox.Min.z, v.z);
-                transformedBBox.Max.x = max(transformedBBox.Max.x, v.x);
-                transformedBBox.Max.y = max(transformedBBox.Max.y, v.y);
-                transformedBBox.Max.z = max(transformedBBox.Max.z, v.z);
+                min_x = min(min_x, v.x);
+                min_y = min(min_y, v.y);
+                min_z = min(min_z, v.z);
+                max_x = max(max_x, v.x);
+                max_y = max(max_y, v.y);
+                max_z = max(max_z, v.z);
             }
-            return transformedBBox;
+            return BoundingBox(CP_Vector3D(min_x, min_y, min_z), CP_Vector3D(max_x, max_y, max_z));
         }
 
         bool _Collide(AABBNode * b0, AABBNode *b1)
