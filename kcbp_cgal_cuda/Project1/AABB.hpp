@@ -178,6 +178,7 @@ public:
         switch (range)
         {
         case 1:
+            assert(false);//just belong self node
             Left = new AABBNode(1);
             Left->Data = &(data[first]);
             Left->Box = data[first]->Box;

@@ -106,7 +106,7 @@ string objfilename;
 bool lib_ccd = true;
 int k = 0;
 
-//#define BOX_FILTER
+#define BOX_FILTER
 
 #define KCBP_FILTER
 
@@ -326,7 +326,8 @@ void move_and_check()
         start_time = clock() - start_time;
         if(first_time)
         {
-            printf("Moving steps : %d, cost time: %.2f\n", moving_step, start_time * 1.0);
+            //printf("Moving steps : %d\n", moving_step);
+            printf("Collision detection cost time: %.2f\n", start_time * 1.0);
             printf("Collisions of kcbp pairs: %d\n", numOfKCBPCollisions);
             printf("Collisions of model pairs: %d\n", numOfModelCollisions);
         }
@@ -990,13 +991,25 @@ void BoxDetection(const CMatrix &transformMatrix)
         max_z = max(max_z, v.z);
     }
     BoundingBox transformedBBox(CP_Vector3D(min_x, min_y, min_z), CP_Vector3D(max_x, max_y, max_z));
-    ModelBoundingBoxes[movingModelIndex] = transformedBBox;
     for(int i = 1; i < modelnum; i++)
     {
-        if(ModelBoundingBoxes[movingModelIndex].IntersectWith(ModelBoundingBoxes[i]))
+        if(transformedBBox.IntersectWith(ModelBoundingBoxes[i]))
             collision_index[i] = true;
     }
-    ModelBoundingBoxes[movingModelIndex] = movingModelBBoxBak;
+}
+
+int parseMoving(string movingconfigFile)
+{
+    string filereverse(movingconfigFile);
+    std::reverse(filereverse.begin(), filereverse.end());
+    int start = filereverse.find("-", 0);
+    int end = filereverse.find("-", start+1);
+    string configStr = filereverse.substr(start+1, end-(start+1));//substr(offsetstartwith0, count)
+    std::reverse(configStr.begin(), configStr.end());
+    int num = 0;
+    stringstream ss(configStr);
+    ss >> num;
+    return num;
 }
 
 //Dynamic-kCBP_CGAL_CUDA.exe k models/bunny2.obj n(owindow)  10  rand.config p(rint_pairs) moving.config(or genNumer) AABB(or else libccd)
@@ -1004,7 +1017,7 @@ int main(int argc, char** argv)
 {
     vector<Plane3D> planes;
 
-    objfilename = "models/budda.obj"; 
+    objfilename = "models/bunny2.obj"; 
     //objfilename = "models/apple.obj";
     if(argc >= 3)
         objfilename = argv[2];
@@ -1051,6 +1064,10 @@ int main(int argc, char** argv)
             movingConfig = "";
 
     }
+    if(transformN == 0) 
+        cout << "Moving steps : " << parseMoving(movingConfig) << "\n";
+    else
+        printf("Moving steps : %d\n", transformN);
 
     if(argc >= 9){
         string libccd = (argv[8]);

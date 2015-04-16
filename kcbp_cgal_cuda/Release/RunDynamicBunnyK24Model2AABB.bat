@@ -1,0 +1,12 @@
+Dynamic-kCBP_CGAL_CUDA.exe 24 models/bunny2.obj n 2 config/04-03-10-rand.config np config/04-16-10-24-10-rand.config AABB >>bunny2-k24-model2.AABB.1.log
+Dynamic-kCBP_CGAL_CUDA.exe 24 models/bunny2.obj n 2 config/04-03-10-rand.config np config/04-16-10-24-50-rand.config  AABB >>bunny2-k24-model2.AABB.1.log
+Dynamic-kCBP_CGAL_CUDA.exe 24 models/bunny2.obj n 2 config/04-03-10-rand.config np config/04-16-10-24-100-rand.config AABB >>bunny2-k24-model2.AABB.1.log
+Dynamic-kCBP_CGAL_CUDA.exe 24 models/bunny2.obj n 2 config/04-03-10-rand.config np config/04-16-10-24-200-rand.config AABB >>bunny2-k24-model2.AABB.1.log
+Dynamic-kCBP_CGAL_CUDA.exe 24 models/bunny2.obj n 2 config/04-03-10-rand.config np config/04-16-10-24-300-rand.config AABB >>bunny2-k24-model2.AABB.1.log
+Dynamic-kCBP_CGAL_CUDA.exe 24 models/bunny2.obj n 2 config/04-03-10-rand.config np config/04-16-10-24-400-rand.config AABB >>bunny2-k24-model2.AABB.1.log
+Dynamic-kCBP_CGAL_CUDA.exe 24 models/bunny2.obj n 2 config/04-03-10-rand.config np config/04-16-10-24-500-rand.config AABB >>bunny2-k24-model2.AABB.1.log
+Dynamic-kCBP_CGAL_CUDA.exe 24 models/bunny2.obj n 2 config/04-03-10-rand.config np config/04-16-10-24-600-rand.config AABB >>bunny2-k24-model2.AABB.1.log
+Dynamic-kCBP_CGAL_CUDA.exe 24 models/bunny2.obj n 2 config/04-03-10-rand.config np config/04-16-10-24-700-rand.config AABB >>bunny2-k24-model2.AABB.1.log
+Dynamic-kCBP_CGAL_CUDA.exe 24 models/bunny2.obj n 2 config/04-03-10-rand.config np config/04-16-10-24-800-rand.config AABB >>bunny2-k24-model2.AABB.1.log
+Dynamic-kCBP_CGAL_CUDA.exe 24 models/bunny2.obj n 2 config/04-03-10-rand.config np config/04-16-10-24-900-rand.config AABB >>bunny2-k24-model2.AABB.1.log
+Dynamic-kCBP_CGAL_CUDA.exe 24 models/bunny2.obj n 2 config/04-03-10-rand.config np config/04-16-10-24-1000-rand.config AABB >>bunny2-k24-model2.AABB.1.log

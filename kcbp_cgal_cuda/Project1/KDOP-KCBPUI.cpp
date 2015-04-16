@@ -362,7 +362,8 @@ int main(int argc, char** argv)
    //KDop3D::projectCPU(points3d, normals, planes, benchtest);
     //KCBP::evaluate(points3d, normals, KCBP::CUDA_MUL_NORMAL, planes, benchtest);
 
-    KDop3D::getResultByDualMapping(planes, polyhedra);
+    //KDop3D::getResultByDualMapping(planes, polyhedra);
+    KDop3D::getResultByThreePlane(planes, polyhedra);
     printf("Polytopes: %d\n", polyhedra.size());
     double volume = KCBP::getVolume(polyhedra);
     printf("Volume: %.12f\n", volume);
@@ -545,16 +546,22 @@ void  display(void)
         assert(draw_scale != .0);
         gl2psEnable(GL2PS_LINE_STIPPLE);
 
-        UIHelper::drawPolygons3D(polyhedra, 0, polyhedra.size(), polygon_mode, draw_scale);
+        float polygon_size = 3.0;
+        if(objfilename ==  "models/dinosaur.obj")
+            glTranslatef(0, 20, 0);
+        UIHelper::drawPolygons3D(polyhedra, 0, polyhedra.size(), polygon_mode, draw_scale, polygon_size);
 
         if(!noxyz) 
             UIHelper::drawXYZ();
-
+        glPointSize(1.0);
         UIHelper::drawPoints(points3d, draw_scale);
         gl2psDisable(GL2PS_LINE_STIPPLE);
         if(draw_convexhull)
         {
-            glTranslatef(25, 0, 0); //(0,70,0) dinosaur
+            if(objfilename ==  "models/dinosaur.obj")
+                glTranslatef(0, 70, 0);
+            else
+                glTranslatef(25, 0, 0); //(0,70,0) dinosaur
 
             // the convex hull use int to coordinate
             UIHelper::drawPoints(points3d, draw_scale);
@@ -563,10 +570,13 @@ void  display(void)
 
         if(draw_kdop)
         {
-            glTranslatef(-50, 0, 0);
+            if(objfilename ==  "models/dinosaur.obj")
+                glTranslatef(0, -70, 0);
+            else
+                glTranslatef(-50, 0, 0);
             // the convex hull use int to coordinate
             UIHelper::drawPoints(points3d, draw_scale);
-            UIHelper::drawPolygons3D(kdoppolyhedra, 0, kdoppolyhedra.size(), polygon_mode, draw_scale);
+            UIHelper::drawPolygons3D(kdoppolyhedra, 0, kdoppolyhedra.size(), polygon_mode, draw_scale, polygon_size);
         }
     }else
     {

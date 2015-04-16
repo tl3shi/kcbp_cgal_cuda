@@ -32,6 +32,9 @@ BoundingBox SingleModelBoundingBox;
 
 vector<vector<BoundingBox>> bvh;
 int bvh_layer = 0;
+vector<AABBNode*> DisplayAABBNodes;
+int display_tree_node_index = 0;
+
 
 void draw(int argc, char** argv);
 void initlight();
@@ -173,6 +176,7 @@ int main(int argc, char** argv)
     //double volume = KCBP::getVolume(polyhedra);
     //printf("Volume: %.12f\n", volume);
 
+
     if (draw_convexhull)
     {
         // the convex hull use int to coordinate
@@ -181,13 +185,23 @@ int main(int argc, char** argv)
     }
    
     if(NO_DISPLAY) return 0;
-     
-
-    int a_triangle_size = trianges_index.size() / 3;
+    
+    vector<CP_Vector3D> kcbpMeshPoints;
+    KDop3D::getResultByDualMappingMesh(planes, kcbpMeshPoints);//mapping get points/ then call convexhull get kcbp mesh
+    //#ifdef ModelAABBTree
+        int a_triangle_size = trianges_index.size() / 3;
+        PrimitivePtr* modela = new PrimitivePtr[a_triangle_size];
+        for(int i = 0; i < trianges_index.size(); i += 3)
+            modela[i/3] = new Primitive(points3d[trianges_index[i]], points3d[trianges_index[i+1]], points3d[trianges_index[i+2]]);
+        AABBTree* tree_a = new AABBTree(modela, a_triangle_size, 10);
+    /*#else
+    int a_triangle_size = kcbpMeshPoints.size() / 3;
     PrimitivePtr* modela = new PrimitivePtr[a_triangle_size];
-    for(int i = 0; i < trianges_index.size(); i += 3)
-        modela[i/3] = new Primitive(points3d[trianges_index[i]], points3d[trianges_index[i+1]], points3d[trianges_index[i+2]]);
+    for(int i = 0; i < kcbpMeshPoints.size(); i += 3)
+        modela[i/3] = new Primitive(kcbpMeshPoints[i], kcbpMeshPoints[i+1], kcbpMeshPoints[i+2]);
     AABBTree* tree_a = new AABBTree(modela, a_triangle_size, 10);
+    #endif*/
+    
     
     //level traverse
     queue<AABBNode*> q;
@@ -200,6 +214,7 @@ int main(int argc, char** argv)
         {
             AABBNode * top = q.front();
             q.pop();
+            DisplayAABBNodes.push_back(top);
             if(top->Left != NULL) 
                 q.push(top->Left);
             if(top->Right != NULL)
@@ -240,8 +255,13 @@ void keyboard(unsigned char key, int x, int y)
         exit(0);
         break;
     case 'a':
+#ifdef ModelAABB
         bvh_layer++;
         bvh_layer %= bvh.size();
+        #else
+        display_tree_node_index++;
+        display_tree_node_index %= DisplayAABBNodes.size();
+#endif // ModelAABB
         glutPostRedisplay();
         break;
     }
@@ -283,14 +303,23 @@ void  display(void)
         glPolygonMode(GL_FRONT_AND_BACK, polygon_mode);
         glColor3f(1.0, 0.0, 0);
 
+        #ifdef ModelAABBTree
         UIHelper::drawFacets(points3d, trianges_index);
-
-        glColor3f(0.0, 0.0, 1.0);
+        //UIHelper::drawPolygons3D(polyhedra, 0, polyhedra.size(), polygon_mode, 1.0, 3.0);
+        
+        glLineWidth(1.0);
+        glColor3f(1.0, 0.0, 0.0);
         for (int i = 0; bvh_layer < bvh.size() && i < bvh[bvh_layer].size(); i++)
         {
             UIHelper::drawBoundingBox(bvh[bvh_layer][i]);
         }
+        #else
 
+        assert(display_tree_node_index < DisplayAABBNodes.size());
+        UIHelper::drawPrimitives(DisplayAABBNodes[display_tree_node_index]->Data, DisplayAABBNodes[display_tree_node_index]->DataSize);
+        UIHelper::drawBoundingBox(DisplayAABBNodes[display_tree_node_index]->Box);
+        #endif
+        
 
         gl2psDisable(GL2PS_LINE_STIPPLE);
          

@@ -4,6 +4,7 @@
 using namespace std;
 #include <GL/glut.h>
 #include "BoundingBox.hpp"
+#include "AABB.hpp"
 
 class UIHelper
 {
@@ -479,5 +480,27 @@ class UIHelper
         glRasterPos2i(x,y);  
         for (int i = 0; i < n; i++)  
             glutBitmapCharacter(GLUT_BITMAP_8_BY_13, *(str+i)); 
+    }
+
+
+    static void  drawPrimitives(PrimitivePtr * data, int size)
+    {
+        GLfloat color[4];
+        glGetFloatv(GL_CURRENT_COLOR, color);
+        glColor3f(0, 0, 1);
+        glLineWidth(1.0);
+        glBegin(GL_TRIANGLES);
+        for(int i = 0; i < size; i++)
+        {
+            PrimitivePtr pri = data[i];
+            CP_Vector3D p = pri->v0;
+            glVertex3d(p.x , p.y , p.z);    
+            p = pri->v1;
+            glVertex3d(p.x , p.y , p.z);    
+            p = pri->v2;
+            glVertex3d(p.x , p.y , p.z);    
+        }
+        glColor4fv(color);
+        glEnd();
     }
 };

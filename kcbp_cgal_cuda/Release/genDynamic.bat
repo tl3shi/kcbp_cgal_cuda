@@ -1,0 +1,12 @@
+Dynamic-kCBP_CGAL_CUDA.exe 16 models/alice.obj n 2 config/04-03-10-rand.config np 10 libccd >>gen2models.log
+Dynamic-kCBP_CGAL_CUDA.exe 16 models/alice.obj n 2 config/04-03-10-rand.config np 50  libccd >>gen2models.log
+Dynamic-kCBP_CGAL_CUDA.exe 16 models/alice.obj n 2 config/04-03-10-rand.config np 100 libccd >>gen2models.log
+Dynamic-kCBP_CGAL_CUDA.exe 16 models/alice.obj n 2 config/04-03-10-rand.config np 200 libccd >>gen2models.log
+Dynamic-kCBP_CGAL_CUDA.exe 16 models/alice.obj n 2 config/04-03-10-rand.config np 300 libccd >>gen2models.log
+Dynamic-kCBP_CGAL_CUDA.exe 16 models/alice.obj n 2 config/04-03-10-rand.config np 400 libccd >>gen2models.log
+Dynamic-kCBP_CGAL_CUDA.exe 16 models/alice.obj n 2 config/04-03-10-rand.config np 500 libccd >>gen2models.log
+Dynamic-kCBP_CGAL_CUDA.exe 16 models/alice.obj n 2 config/04-03-10-rand.config np 600 libccd >>gen2models.log
+Dynamic-kCBP_CGAL_CUDA.exe 16 models/alice.obj n 2 config/04-03-10-rand.config np 700 libccd >>gen2models.log
+Dynamic-kCBP_CGAL_CUDA.exe 16 models/alice.obj n 2 config/04-03-10-rand.config np 800 libccd >>gen2models.log
+Dynamic-kCBP_CGAL_CUDA.exe 16 models/alice.obj n 2 config/04-03-10-rand.config np 900 libccd >>gen2models.log
+Dynamic-kCBP_CGAL_CUDA.exe 16 models/alice.obj n 2 config/04-03-10-rand.config np 1000 libccd >>gen2models.log
