@@ -266,6 +266,7 @@ void myReshape(int w, int h)
     glViewport(0, 0, (GLsizei)w, (GLsizei)h); 
 }
 
+vector<PrimitivePtr> DebugVisData;
 void move_and_check()
 {
     //static int move_step = 0;
@@ -310,6 +311,7 @@ void move_and_check()
     #endif
     for(int i = 1; i < collision_index.size(); i++)
     {
+        
         if(collision_index[i])
         {
             bool c = collision_queries[i-1]->detection(world0 , ident);
@@ -319,6 +321,23 @@ void move_and_check()
                 numOfModelCollisions++;
         }
     }
+    #if _DEBUG
+    for(int i = 1; i < collision_index.size(); i++)
+    {
+        if(collision_index[i])
+        {
+            CollisionQuery * tmpAABB = static_cast<CollisionQuery*>(collision_queries[i-1]);
+            tmpAABB->AABBTests = 0;
+            tmpAABB->PrimitiveTests = 0;
+            tmpAABB->TmpIntersectionData.clear();
+            tmpAABB->detection(world0, ident);
+            printf("Collisioin, AABBTest= %d", tmpAABB->AABBTests);
+            printf("\t PrimitiveTest= %d\n", tmpAABB->PrimitiveTests);
+            DebugVisData = tmpAABB->TmpIntersectionData;
+            auto_rotate = false; break;
+        }
+    }        
+    #endif
      //can ++ here, for display used the moving_step/display flush also invoke 
     moving_step++;
     if(moving_step == transformN)
@@ -713,6 +732,12 @@ void  display(void)
            ;
         #else
 
+        #if _DEBUG
+        glColor3f(0, 0, 0);
+        glLineWidth(2.0);
+        if(DebugVisData.size() > 0)
+            UIHelper::drawPrimitives(&(DebugVisData[0]), DebugVisData.size());
+        #endif
         for(int i = 1; i < MeshPointsDataList.size(); i++)
         {
             if(collision_index[i])
@@ -721,11 +746,12 @@ void  display(void)
                 glColor4fv(oldColor);
 
             #ifdef DRAW_MODEL
-            glCallList(MeshPointsDataList[i]);
+            if(collision_index[i])
+                glCallList(MeshPointsDataList[i]);
             #endif
         }
 
-        if(true)
+        if(false)
         {
             glColor3f(0, 0, 1);
             for(int i = 1; i < MeshPolyhedronDataList.size(); i++)
@@ -746,14 +772,15 @@ void  display(void)
         #ifdef DRAW_MODEL
         glCallList(MeshPointsDataList[movingModelIndex]);
         #endif
-        glColor3f(0, 0, 1);
-        glCallList(MeshPolyhedronDataList[movingModelIndex]);
-        glColor3f(0, 0, 0);
-        glCallList(MeshBoundingBoxList[movingModelIndex]);
-        glColor4fv(oldColor);
-
+        if(false)
+        {
+            glColor3f(0, 0, 1);
+            glCallList(MeshPolyhedronDataList[movingModelIndex]);
+            glColor3f(0, 0, 0);
+            glCallList(MeshBoundingBoxList[movingModelIndex]);
+            glColor4fv(oldColor);
+        }
         #endif
-
         gl2psDisable(GL2PS_LINE_STIPPLE);
          
     } 

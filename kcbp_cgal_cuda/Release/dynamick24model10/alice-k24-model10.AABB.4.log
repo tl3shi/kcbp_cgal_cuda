@@ -1,0 +1,216 @@
+models/alice.obj 	points number: 224291
+K = 24
+ModelNum = 10
+Moving steps : 10
+ach banchtest (10 times) totally: 85.00
+cluster time (10 times) totally: 0.00
+normalsize = 24
+Projection time banchtest(10 times) CPU(SSE) totaly:99
+duality mapping
+duality mapping time (10 times) totally: 2.00
+Polytopes: 24
+reading 9 model configs(plus fixed one,total = 10)
+build boundingbox time : 6.00
+init time to build AABBTrees for model and kcbp (9 paris): 7896.00
+reading dynamic config transforms : 10
+Collision detection cost time: 124.00
+Collisions of kcbp pairs: 2
+Collisions of model pairs: 2
+models/alice.obj 	points number: 224291
+K = 24
+ModelNum = 10
+Moving steps : 50
+ach banchtest (10 times) totally: 83.00
+cluster time (10 times) totally: 1.00
+normalsize = 24
+Projection time banchtest(10 times) CPU(SSE) totaly:97
+duality mapping
+duality mapping time (10 times) totally: 1.00
+Polytopes: 24
+reading 9 model configs(plus fixed one,total = 10)
+build boundingbox time : 6.00
+init time to build AABBTrees for model and kcbp (9 paris): 7795.00
+reading dynamic config transforms : 50
+Collision detection cost time: 67.00
+Collisions of kcbp pairs: 1
+Collisions of model pairs: 1
+models/alice.obj 	points number: 224291
+K = 24
+ModelNum = 10
+Moving steps : 100
+ach banchtest (10 times) totally: 85.00
+cluster time (10 times) totally: 0.00
+normalsize = 24
+Projection time banchtest(10 times) CPU(SSE) totaly:99
+duality mapping
+duality mapping time (10 times) totally: 1.00
+Polytopes: 24
+reading 9 model configs(plus fixed one,total = 10)
+build boundingbox time : 7.00
+init time to build AABBTrees for model and kcbp (9 paris): 7735.00
+reading dynamic config transforms : 100
+Collision detection cost time: 617.00
+Collisions of kcbp pairs: 10
+Collisions of model pairs: 8
+models/alice.obj 	points number: 224291
+K = 24
+ModelNum = 10
+Moving steps : 200
+ach banchtest (10 times) totally: 84.00
+cluster time (10 times) totally: 0.00
+normalsize = 24
+Projection time banchtest(10 times) CPU(SSE) totaly:97
+duality mapping
+duality mapping time (10 times) totally: 2.00
+Polytopes: 24
+reading 9 model configs(plus fixed one,total = 10)
+build boundingbox time : 6.00
+init time to build AABBTrees for model and kcbp (9 paris): 7735.00
+reading dynamic config transforms : 200
+Collision detection cost time: 2252.00
+Collisions of kcbp pairs: 17
+Collisions of model pairs: 14
+models/alice.obj 	points number: 224291
+K = 24
+ModelNum = 10
+Moving steps : 300
+ach banchtest (10 times) totally: 84.00
+cluster time (10 times) totally: 1.00
+normalsize = 24
+Projection time banchtest(10 times) CPU(SSE) totaly:96
+duality mapping
+duality mapping time (10 times) totally: 1.00
+Polytopes: 24
+reading 9 model configs(plus fixed one,total = 10)
+build boundingbox time : 6.00
+init time to build AABBTrees for model and kcbp (9 paris): 7749.00
+reading dynamic config transforms : 300
+Collision detection cost time: 2704.00
+Collisions of kcbp pairs: 23
+Collisions of model pairs: 21
+models/alice.obj 	points number: 224291
+K = 24
+ModelNum = 10
+Moving steps : 400
+ach banchtest (10 times) totally: 85.00
+cluster time (10 times) totally: 1.00
+normalsize = 24
+Projection time banchtest(10 times) CPU(SSE) totaly:98
+duality mapping
+duality mapping time (10 times) totally: 1.00
+Polytopes: 24
+reading 9 model configs(plus fixed one,total = 10)
+build boundingbox time : 6.00
+init time to build AABBTrees for model and kcbp (9 paris): 7716.00
+reading dynamic config transforms : 400
+Collision detection cost time: 3049.00
+Collisions of kcbp pairs: 30
+Collisions of model pairs: 24
+models/alice.obj 	points number: 224291
+K = 24
+ModelNum = 10
+Moving steps : 500
+ach banchtest (10 times) totally: 84.00
+cluster time (10 times) totally: 1.00
+normalsize = 24
+Projection time banchtest(10 times) CPU(SSE) totaly:96
+duality mapping
+duality mapping time (10 times) totally: 1.00
+Polytopes: 24
+reading 9 model configs(plus fixed one,total = 10)
+build boundingbox time : 7.00
+init time to build AABBTrees for model and kcbp (9 paris): 7705.00
+reading dynamic config transforms : 500
+Collision detection cost time: 5835.00
+Collisions of kcbp pairs: 50
+Collisions of model pairs: 45
+models/alice.obj 	points number: 224291
+K = 24
+ModelNum = 10
+Moving steps : 600
+ach banchtest (10 times) totally: 84.00
+cluster time (10 times) totally: 1.00
+normalsize = 24
+Projection time banchtest(10 times) CPU(SSE) totaly:97
+duality mapping
+duality mapping time (10 times) totally: 1.00
+Polytopes: 24
+reading 9 model configs(plus fixed one,total = 10)
+build boundingbox time : 7.00
+init time to build AABBTrees for model and kcbp (9 paris): 7725.00
+reading dynamic config transforms : 600
+Collision detection cost time: 6742.00
+Collisions of kcbp pairs: 68
+Collisions of model pairs: 57
+models/alice.obj 	points number: 224291
+K = 24
+ModelNum = 10
+Moving steps : 700
+ach banchtest (10 times) totally: 85.00
+cluster time (10 times) totally: 0.00
+normalsize = 24
+Projection time banchtest(10 times) CPU(SSE) totaly:97
+duality mapping
+duality mapping time (10 times) totally: 2.00
+Polytopes: 24
+reading 9 model configs(plus fixed one,total = 10)
+build boundingbox time : 7.00
+init time to build AABBTrees for model and kcbp (9 paris): 7742.00
+reading dynamic config transforms : 700
+Collision detection cost time: 8679.00
+Collisions of kcbp pairs: 62
+Collisions of model pairs: 48
+models/alice.obj 	points number: 224291
+K = 24
+ModelNum = 10
+Moving steps : 800
+ach banchtest (10 times) totally: 86.00
+cluster time (10 times) totally: 1.00
+normalsize = 24
+Projection time banchtest(10 times) CPU(SSE) totaly:96
+duality mapping
+duality mapping time (10 times) totally: 2.00
+Polytopes: 24
+reading 9 model configs(plus fixed one,total = 10)
+build boundingbox time : 7.00
+init time to build AABBTrees for model and kcbp (9 paris): 8015.00
+reading dynamic config transforms : 800
+Collision detection cost time: 6713.00
+Collisions of kcbp pairs: 45
+Collisions of model pairs: 42
+models/alice.obj 	points number: 224291
+K = 24
+ModelNum = 10
+Moving steps : 900
+ach banchtest (10 times) totally: 84.00
+cluster time (10 times) totally: 0.00
+normalsize = 24
+Projection time banchtest(10 times) CPU(SSE) totaly:98
+duality mapping
+duality mapping time (10 times) totally: 1.00
+Polytopes: 24
+reading 9 model configs(plus fixed one,total = 10)
+build boundingbox time : 6.00
+init time to build AABBTrees for model and kcbp (9 paris): 7780.00
+reading dynamic config transforms : 900
+Collision detection cost time: 9623.00
+Collisions of kcbp pairs: 74
+Collisions of model pairs: 63
+models/alice.obj 	points number: 224291
+K = 24
+ModelNum = 10
+Moving steps : 1000
+ach banchtest (10 times) totally: 85.00
+cluster time (10 times) totally: 1.00
+normalsize = 24
+Projection time banchtest(10 times) CPU(SSE) totaly:98
+duality mapping
+duality mapping time (10 times) totally: 2.00
+Polytopes: 24
+reading 9 model configs(plus fixed one,total = 10)
+build boundingbox time : 6.00
+init time to build AABBTrees for model and kcbp (9 paris): 7770.00
+reading dynamic config transforms : 1000
+Collision detection cost time: 10574.00
+Collisions of kcbp pairs: 100
+Collisions of model pairs: 88

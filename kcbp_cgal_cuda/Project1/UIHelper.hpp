@@ -485,10 +485,9 @@ class UIHelper
 
     static void  drawPrimitives(PrimitivePtr * data, int size)
     {
-        GLfloat color[4];
-        glGetFloatv(GL_CURRENT_COLOR, color);
-        glColor3f(0, 0, 1);
-        glLineWidth(1.0);
+        //GLfloat color[4];
+        //glGetFloatv(GL_CURRENT_COLOR, color);
+        //glColor3f(0, 0, 1);
         glBegin(GL_TRIANGLES);
         for(int i = 0; i < size; i++)
         {
@@ -500,7 +499,7 @@ class UIHelper
             p = pri->v2;
             glVertex3d(p.x , p.y , p.z);    
         }
-        glColor4fv(color);
+        //glColor4fv(color);
         glEnd();
     }
 };

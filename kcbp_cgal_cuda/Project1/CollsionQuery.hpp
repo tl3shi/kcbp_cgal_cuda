@@ -61,13 +61,14 @@ struct CollisionQuery : public ICollisionQuery
         assert(false);
         return false;
     }
-
+    vector<PrimitivePtr> TmpIntersectionData;
     private:
 
         void initQuery(const mat4 &world0, const mat4 &world1)
         {
             transformMatrix = world0;
             AABBTests = 0;
+            PrimitiveTests = 0;
         }
 
         BoundingBox _TransformBox(BoundingBox &box)
@@ -97,7 +98,8 @@ struct CollisionQuery : public ICollisionQuery
         {
             if ( ! b1->Box.IntersectWith(_TransformBox(b0->Box)))
                 return false;
-
+                #define  RECURSIVE_Detectie
+#ifdef RECURSIVE_Detectie
             if(b0->IsLeaf())
             {
                 if(b1->IsLeaf())
@@ -134,6 +136,51 @@ struct CollisionQuery : public ICollisionQuery
                 if(_Collide(b0->Right, b1->Right))
                     return true;
             }
+#else
+            stack<AABBNode* > p;
+            stack<AABBNode* > q;
+            p.push(b0), q.push(b1);
+            while(! q.empty() && !q.empty())
+            {
+                AABBNode * nodeA = p.top();
+                AABBNode * nodeB = q.top();
+                p.pop(); q.pop();
+                if ( nodeA == NULL || nodeB == NULL) continue;
+                if (! nodeB->Box.IntersectWith(_TransformBox(nodeA->Box)))
+                    continue;
+                if(nodeA->IsLeaf())
+                {
+                    if (nodeB->IsLeaf())
+                    {
+                        PrimitivePtr * a = nodeA->Data;
+                        PrimitivePtr * b = nodeB->Data;
+                        assert(nodeA->DataSize == 1);
+                        assert(nodeB->DataSize == 1);
+                        bool t =  _PrimTest(a[0], b[0]);
+                        if(t)
+                            return true;
+                    }else//nodeB has children
+                    {
+                        p.push(nodeA), q.push(nodeB->Left);
+                        p.push(nodeA), q.push(nodeB->Right);
+                    }
+                }
+                else// node A has children
+                {
+                    if(nodeB->IsLeaf())
+                    {
+                        p.push(nodeA->Left), q.push(nodeB);
+                        p.push(nodeA->Right), q.push(nodeB);
+                    }else // both have children
+                    {
+                        p.push(nodeA->Left), q.push(nodeB->Left);
+                        p.push(nodeA->Left), q.push(nodeB->Right);
+                        p.push(nodeA->Right), q.push(nodeB->Left);
+                        p.push(nodeA->Right), q.push(nodeB->Right);
+                    }
+                }
+            }//end while
+#endif // ITERATOR
             return false;
         };
 
@@ -144,6 +191,8 @@ struct CollisionQuery : public ICollisionQuery
             CP_Vector3D u1 = transformMatrix * vp0->v1;
             CP_Vector3D u2 = transformMatrix * vp0->v2;
             
+            TmpIntersectionData.push_back(vp1);
+            TmpIntersectionData.push_back(new Primitive(u0, u1, u2));
             return TrianlgeTriangleIntersectionDetection::NoDivTriTriIsect(vp1->v0, vp1->v1, vp1->v2,
                u0, u1, u2);
         }

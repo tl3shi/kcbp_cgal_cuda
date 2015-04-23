@@ -4,7 +4,7 @@
     <ShowAllFiles>true</ShowAllFiles>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <LocalDebuggerCommandArguments>60 models/bunny2.obj w 2 config/04-03-200-rand np config/04-03-200-rand.config aAABB</LocalDebuggerCommandArguments>
+    <LocalDebuggerCommandArguments>24 models/budda.obj w 2 config/04-03-10-rand.config np config/04-16-10-24-200-rand.config aAABB</LocalDebuggerCommandArguments>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
