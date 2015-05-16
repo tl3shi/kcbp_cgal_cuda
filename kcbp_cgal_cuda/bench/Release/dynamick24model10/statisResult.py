@@ -1,7 +1,7 @@
 #alice-k24-model2.AABB.1.log.result.simple
 #alice-k24-model2.kdop.2.log.result.simple
 
-for model in ['bunny2', 'apple', 'budda', 'dinosaur', 'alice']:
+for model in ['hand']:#['bunny2', 'apple', 'budda', 'dinosaur', 'alice']:
 #if True:
 #    model = 'bunny2'
     colResultkdop = []
@@ -24,7 +24,7 @@ for model in ['bunny2', 'apple', 'budda', 'dinosaur', 'alice']:
     for i in range(len(colResultkdop)):
         colResultkdop[i] = [float(x)/5.0 for x in colResultkdop[i]]
 
-    resultfilename = model + '-k24-model2.log.stat.csv'
+    resultfilename = model + '-k24-model10.log.stat.csv'
     resultfile = open(resultfilename, 'w')
     resultfile.write(','.join(header))
     resultfile.write('\n')

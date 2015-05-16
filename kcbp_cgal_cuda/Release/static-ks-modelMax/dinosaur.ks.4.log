@@ -1,0 +1,567 @@
+models/dinosaur.obj 	points number: 40277
+K = 6
+ModelNum = 100
+ach banchtest (100 times) totally: 176.00
+cluster time (100 times) totally: 0.00
+normalsize = 6
+Projection time banchtest(100 times) CPU(SSE) totaly:49
+duality mapping
+duality mapping time (100 times) totally: 2.00
+Polytopes: 6
+reading 99 model configs(plus fixed one,total = 100)
+build boundingbox time : 14.00
+collision detection box time: 0.00
+box collision size: 106
+build AABB time : 9573.00
+build AABB count: 77
+The Following result uses KCBP(AABB) filter first
+build AABB time 4 KCBP : 0.00
+kcbp collision size(AABB filter) : 76
+kcbp model check count: 77
+total collision time(KCBP AABB filter) : 4.00
+collision pairs : 21
+The Following result uses KCBP(GJK) filter first
+init GJK time 4 KCBP : 0.00
+kcbp collision size(GJK filter) : 76
+total collision time(KCBP GJK filter) : 3.00
+collision pairs : 21
+models/dinosaur.obj 	points number: 40277
+K = 8
+ModelNum = 100
+ach banchtest (100 times) totally: 188.00
+cluster time (100 times) totally: 1.00
+normalsize = 8
+Projection time banchtest(100 times) CPU(SSE) totaly:62
+duality mapping
+duality mapping time (100 times) totally: 3.00
+Polytopes: 8
+reading 99 model configs(plus fixed one,total = 100)
+build boundingbox time : 13.00
+collision detection box time: 0.00
+box collision size: 106
+build AABB time : 9603.00
+build AABB count: 77
+The Following result uses KCBP(AABB) filter first
+build AABB time 4 KCBP : 1.00
+kcbp collision size(AABB filter) : 50
+kcbp model check count: 77
+total collision time(KCBP AABB filter) : 4.00
+collision pairs : 21
+The Following result uses KCBP(GJK) filter first
+init GJK time 4 KCBP : 0.00
+kcbp collision size(GJK filter) : 50
+total collision time(KCBP GJK filter) : 3.00
+collision pairs : 21
+models/dinosaur.obj 	points number: 40277
+K = 10
+ModelNum = 100
+ach banchtest (100 times) totally: 174.00
+cluster time (100 times) totally: 1.00
+normalsize = 10
+Projection time banchtest(100 times) CPU(SSE) totaly:75
+duality mapping
+duality mapping time (100 times) totally: 3.00
+Polytopes: 10
+reading 99 model configs(plus fixed one,total = 100)
+build boundingbox time : 13.00
+collision detection box time: 0.00
+box collision size: 106
+build AABB time : 9567.00
+build AABB count: 77
+The Following result uses KCBP(AABB) filter first
+build AABB time 4 KCBP : 1.00
+kcbp collision size(AABB filter) : 43
+kcbp model check count: 77
+total collision time(KCBP AABB filter) : 4.00
+collision pairs : 21
+The Following result uses KCBP(GJK) filter first
+init GJK time 4 KCBP : 1.00
+kcbp collision size(GJK filter) : 43
+total collision time(KCBP GJK filter) : 3.00
+collision pairs : 21
+models/dinosaur.obj 	points number: 40277
+K = 12
+ModelNum = 100
+ach banchtest (100 times) totally: 176.00
+cluster time (100 times) totally: 1.00
+normalsize = 12
+Projection time banchtest(100 times) CPU(SSE) totaly:88
+duality mapping
+duality mapping time (100 times) totally: 5.00
+Polytopes: 12
+reading 99 model configs(plus fixed one,total = 100)
+build boundingbox time : 15.00
+collision detection box time: 0.00
+box collision size: 106
+build AABB time : 9525.00
+build AABB count: 77
+The Following result uses KCBP(AABB) filter first
+build AABB time 4 KCBP : 2.00
+kcbp collision size(AABB filter) : 41
+kcbp model check count: 77
+total collision time(KCBP AABB filter) : 3.00
+collision pairs : 21
+The Following result uses KCBP(GJK) filter first
+init GJK time 4 KCBP : 1.00
+kcbp collision size(GJK filter) : 41
+total collision time(KCBP GJK filter) : 2.00
+collision pairs : 21
+models/dinosaur.obj 	points number: 40277
+K = 14
+ModelNum = 100
+ach banchtest (100 times) totally: 173.00
+cluster time (100 times) totally: 2.00
+normalsize = 14
+Projection time banchtest(100 times) CPU(SSE) totaly:100
+duality mapping
+duality mapping time (100 times) totally: 5.00
+Polytopes: 14
+reading 99 model configs(plus fixed one,total = 100)
+build boundingbox time : 14.00
+collision detection box time: 1.00
+box collision size: 106
+build AABB time : 9581.00
+build AABB count: 77
+The Following result uses KCBP(AABB) filter first
+build AABB time 4 KCBP : 2.00
+kcbp collision size(AABB filter) : 40
+kcbp model check count: 77
+total collision time(KCBP AABB filter) : 4.00
+collision pairs : 21
+The Following result uses KCBP(GJK) filter first
+init GJK time 4 KCBP : 1.00
+kcbp collision size(GJK filter) : 40
+total collision time(KCBP GJK filter) : 3.00
+collision pairs : 21
+models/dinosaur.obj 	points number: 40277
+K = 16
+ModelNum = 100
+ach banchtest (100 times) totally: 176.00
+cluster time (100 times) totally: 2.00
+normalsize = 16
+Projection time banchtest(100 times) CPU(SSE) totaly:113
+duality mapping
+duality mapping time (100 times) totally: 7.00
+Polytopes: 16
+reading 99 model configs(plus fixed one,total = 100)
+build boundingbox time : 15.00
+collision detection box time: 0.00
+box collision size: 106
+build AABB time : 9678.00
+build AABB count: 77
+The Following result uses KCBP(AABB) filter first
+build AABB time 4 KCBP : 2.00
+kcbp collision size(AABB filter) : 41
+kcbp model check count: 77
+total collision time(KCBP AABB filter) : 5.00
+collision pairs : 21
+The Following result uses KCBP(GJK) filter first
+init GJK time 4 KCBP : 2.00
+kcbp collision size(GJK filter) : 41
+total collision time(KCBP GJK filter) : 3.00
+collision pairs : 21
+models/dinosaur.obj 	points number: 40277
+K = 18
+ModelNum = 100
+ach banchtest (100 times) totally: 175.00
+cluster time (100 times) totally: 2.00
+normalsize = 18
+Projection time banchtest(100 times) CPU(SSE) totaly:125
+duality mapping
+duality mapping time (100 times) totally: 7.00
+Polytopes: 18
+reading 99 model configs(plus fixed one,total = 100)
+build boundingbox time : 13.00
+collision detection box time: 1.00
+box collision size: 106
+build AABB time : 9735.00
+build AABB count: 77
+The Following result uses KCBP(AABB) filter first
+build AABB time 4 KCBP : 3.00
+kcbp collision size(AABB filter) : 39
+kcbp model check count: 77
+total collision time(KCBP AABB filter) : 4.00
+collision pairs : 21
+The Following result uses KCBP(GJK) filter first
+init GJK time 4 KCBP : 1.00
+kcbp collision size(GJK filter) : 39
+total collision time(KCBP GJK filter) : 3.00
+collision pairs : 21
+models/dinosaur.obj 	points number: 40277
+K = 20
+ModelNum = 100
+ach banchtest (100 times) totally: 175.00
+cluster time (100 times) totally: 2.00
+normalsize = 20
+Projection time banchtest(100 times) CPU(SSE) totaly:139
+duality mapping
+duality mapping time (100 times) totally: 8.00
+Polytopes: 20
+reading 99 model configs(plus fixed one,total = 100)
+build boundingbox time : 13.00
+collision detection box time: 0.00
+box collision size: 106
+build AABB time : 9739.00
+build AABB count: 77
+The Following result uses KCBP(AABB) filter first
+build AABB time 4 KCBP : 2.00
+kcbp collision size(AABB filter) : 37
+kcbp model check count: 77
+total collision time(KCBP AABB filter) : 5.00
+collision pairs : 21
+The Following result uses KCBP(GJK) filter first
+init GJK time 4 KCBP : 2.00
+kcbp collision size(GJK filter) : 37
+total collision time(KCBP GJK filter) : 3.00
+collision pairs : 21
+models/dinosaur.obj 	points number: 40277
+K = 22
+ModelNum = 100
+ach banchtest (100 times) totally: 177.00
+cluster time (100 times) totally: 2.00
+normalsize = 22
+Projection time banchtest(100 times) CPU(SSE) totaly:150
+duality mapping
+duality mapping time (100 times) totally: 10.00
+Polytopes: 22
+reading 99 model configs(plus fixed one,total = 100)
+build boundingbox time : 14.00
+collision detection box time: 0.00
+box collision size: 106
+build AABB time : 9441.00
+build AABB count: 77
+The Following result uses KCBP(AABB) filter first
+build AABB time 4 KCBP : 3.00
+kcbp collision size(AABB filter) : 37
+kcbp model check count: 77
+total collision time(KCBP AABB filter) : 5.00
+collision pairs : 21
+The Following result uses KCBP(GJK) filter first
+init GJK time 4 KCBP : 2.00
+kcbp collision size(GJK filter) : 37
+total collision time(KCBP GJK filter) : 4.00
+collision pairs : 21
+models/dinosaur.obj 	points number: 40277
+K = 24
+ModelNum = 100
+ach banchtest (100 times) totally: 172.00
+cluster time (100 times) totally: 3.00
+normalsize = 24
+Projection time banchtest(100 times) CPU(SSE) totaly:161
+duality mapping
+duality mapping time (100 times) totally: 11.00
+Polytopes: 24
+reading 99 model configs(plus fixed one,total = 100)
+build boundingbox time : 14.00
+collision detection box time: 0.00
+box collision size: 106
+build AABB time : 9431.00
+build AABB count: 77
+The Following result uses KCBP(AABB) filter first
+build AABB time 4 KCBP : 3.00
+kcbp collision size(AABB filter) : 37
+kcbp model check count: 77
+total collision time(KCBP AABB filter) : 6.00
+collision pairs : 21
+The Following result uses KCBP(GJK) filter first
+init GJK time 4 KCBP : 2.00
+kcbp collision size(GJK filter) : 37
+total collision time(KCBP GJK filter) : 3.00
+collision pairs : 21
+models/dinosaur.obj 	points number: 40277
+K = 26
+ModelNum = 100
+ach banchtest (100 times) totally: 172.00
+cluster time (100 times) totally: 2.00
+normalsize = 26
+Projection time banchtest(100 times) CPU(SSE) totaly:175
+duality mapping
+duality mapping time (100 times) totally: 13.00
+Polytopes: 26
+reading 99 model configs(plus fixed one,total = 100)
+build boundingbox time : 13.00
+collision detection box time: 0.00
+box collision size: 106
+build AABB time : 9404.00
+build AABB count: 77
+The Following result uses KCBP(AABB) filter first
+build AABB time 4 KCBP : 3.00
+kcbp collision size(AABB filter) : 37
+kcbp model check count: 77
+total collision time(KCBP AABB filter) : 6.00
+collision pairs : 21
+The Following result uses KCBP(GJK) filter first
+init GJK time 4 KCBP : 2.00
+kcbp collision size(GJK filter) : 37
+total collision time(KCBP GJK filter) : 4.00
+collision pairs : 21
+models/dinosaur.obj 	points number: 40277
+K = 28
+ModelNum = 100
+ach banchtest (100 times) totally: 176.00
+cluster time (100 times) totally: 2.00
+normalsize = 28
+Projection time banchtest(100 times) CPU(SSE) totaly:188
+duality mapping
+duality mapping time (100 times) totally: 14.00
+Polytopes: 28
+reading 99 model configs(plus fixed one,total = 100)
+build boundingbox time : 12.00
+collision detection box time: 1.00
+box collision size: 106
+build AABB time : 9464.00
+build AABB count: 77
+The Following result uses KCBP(AABB) filter first
+build AABB time 4 KCBP : 4.00
+kcbp collision size(AABB filter) : 36
+kcbp model check count: 77
+total collision time(KCBP AABB filter) : 6.00
+collision pairs : 21
+The Following result uses KCBP(GJK) filter first
+init GJK time 4 KCBP : 2.00
+kcbp collision size(GJK filter) : 36
+total collision time(KCBP GJK filter) : 4.00
+collision pairs : 21
+models/dinosaur.obj 	points number: 40277
+K = 30
+ModelNum = 100
+ach banchtest (100 times) totally: 177.00
+cluster time (100 times) totally: 3.00
+normalsize = 30
+Projection time banchtest(100 times) CPU(SSE) totaly:214
+duality mapping
+duality mapping time (100 times) totally: 15.00
+Polytopes: 30
+reading 99 model configs(plus fixed one,total = 100)
+build boundingbox time : 14.00
+collision detection box time: 0.00
+box collision size: 106
+build AABB time : 9488.00
+build AABB count: 77
+The Following result uses KCBP(AABB) filter first
+build AABB time 4 KCBP : 4.00
+kcbp collision size(AABB filter) : 36
+kcbp model check count: 77
+total collision time(KCBP AABB filter) : 6.00
+collision pairs : 21
+The Following result uses KCBP(GJK) filter first
+init GJK time 4 KCBP : 4.00
+kcbp collision size(GJK filter) : 36
+total collision time(KCBP GJK filter) : 3.00
+collision pairs : 21
+models/dinosaur.obj 	points number: 40277
+K = 32
+ModelNum = 100
+ach banchtest (100 times) totally: 184.00
+cluster time (100 times) totally: 2.00
+normalsize = 32
+Projection time banchtest(100 times) CPU(SSE) totaly:225
+duality mapping
+duality mapping time (100 times) totally: 16.00
+Polytopes: 32
+reading 99 model configs(plus fixed one,total = 100)
+build boundingbox time : 14.00
+collision detection box time: 0.00
+box collision size: 106
+build AABB time : 9635.00
+build AABB count: 77
+The Following result uses KCBP(AABB) filter first
+build AABB time 4 KCBP : 5.00
+kcbp collision size(AABB filter) : 37
+kcbp model check count: 77
+total collision time(KCBP AABB filter) : 7.00
+collision pairs : 21
+The Following result uses KCBP(GJK) filter first
+init GJK time 4 KCBP : 3.00
+kcbp collision size(GJK filter) : 37
+total collision time(KCBP GJK filter) : 4.00
+collision pairs : 21
+models/dinosaur.obj 	points number: 40277
+K = 34
+ModelNum = 100
+ach banchtest (100 times) totally: 174.00
+cluster time (100 times) totally: 3.00
+normalsize = 34
+Projection time banchtest(100 times) CPU(SSE) totaly:224
+duality mapping
+duality mapping time (100 times) totally: 18.00
+Polytopes: 34
+reading 99 model configs(plus fixed one,total = 100)
+build boundingbox time : 13.00
+collision detection box time: 0.00
+box collision size: 106
+build AABB time : 9348.00
+build AABB count: 77
+The Following result uses KCBP(AABB) filter first
+build AABB time 4 KCBP : 5.00
+kcbp collision size(AABB filter) : 37
+kcbp model check count: 77
+total collision time(KCBP AABB filter) : 7.00
+collision pairs : 21
+The Following result uses KCBP(GJK) filter first
+init GJK time 4 KCBP : 4.00
+kcbp collision size(GJK filter) : 37
+total collision time(KCBP GJK filter) : 3.00
+collision pairs : 21
+models/dinosaur.obj 	points number: 40277
+K = 36
+ModelNum = 100
+ach banchtest (100 times) totally: 173.00
+cluster time (100 times) totally: 3.00
+normalsize = 35
+Projection time banchtest(100 times) CPU(SSE) totaly:230
+duality mapping
+duality mapping time (100 times) totally: 18.00
+Polytopes: 35
+reading 99 model configs(plus fixed one,total = 100)
+build boundingbox time : 15.00
+collision detection box time: 0.00
+box collision size: 106
+build AABB time : 9694.00
+build AABB count: 77
+The Following result uses KCBP(AABB) filter first
+build AABB time 4 KCBP : 5.00
+kcbp collision size(AABB filter) : 37
+kcbp model check count: 77
+total collision time(KCBP AABB filter) : 8.00
+collision pairs : 21
+The Following result uses KCBP(GJK) filter first
+init GJK time 4 KCBP : 4.00
+kcbp collision size(GJK filter) : 37
+total collision time(KCBP GJK filter) : 4.00
+collision pairs : 21
+models/dinosaur.obj 	points number: 40277
+K = 38
+ModelNum = 100
+ach banchtest (100 times) totally: 180.00
+cluster time (100 times) totally: 4.00
+normalsize = 38
+Projection time banchtest(100 times) CPU(SSE) totaly:253
+duality mapping
+duality mapping time (100 times) totally: 20.00
+Polytopes: 38
+reading 99 model configs(plus fixed one,total = 100)
+build boundingbox time : 13.00
+collision detection box time: 0.00
+box collision size: 106
+build AABB time : 9677.00
+build AABB count: 77
+The Following result uses KCBP(AABB) filter first
+build AABB time 4 KCBP : 6.00
+kcbp collision size(AABB filter) : 37
+kcbp model check count: 77
+total collision time(KCBP AABB filter) : 8.00
+collision pairs : 21
+The Following result uses KCBP(GJK) filter first
+init GJK time 4 KCBP : 4.00
+kcbp collision size(GJK filter) : 37
+total collision time(KCBP GJK filter) : 4.00
+collision pairs : 21
+models/dinosaur.obj 	points number: 40277
+K = 40
+ModelNum = 100
+ach banchtest (100 times) totally: 176.00
+cluster time (100 times) totally: 3.00
+normalsize = 39
+Projection time banchtest(100 times) CPU(SSE) totaly:261
+duality mapping
+duality mapping time (100 times) totally: 21.00
+Polytopes: 39
+reading 99 model configs(plus fixed one,total = 100)
+build boundingbox time : 14.00
+collision detection box time: 0.00
+box collision size: 106
+build AABB time : 9617.00
+build AABB count: 77
+The Following result uses KCBP(AABB) filter first
+build AABB time 4 KCBP : 6.00
+kcbp collision size(AABB filter) : 37
+kcbp model check count: 77
+total collision time(KCBP AABB filter) : 8.00
+collision pairs : 21
+The Following result uses KCBP(GJK) filter first
+init GJK time 4 KCBP : 4.00
+kcbp collision size(GJK filter) : 37
+total collision time(KCBP GJK filter) : 4.00
+collision pairs : 21
+models/dinosaur.obj 	points number: 40277
+K = 42
+ModelNum = 100
+ach banchtest (100 times) totally: 176.00
+cluster time (100 times) totally: 3.00
+normalsize = 42
+Projection time banchtest(100 times) CPU(SSE) totaly:279
+duality mapping
+duality mapping time (100 times) totally: 23.00
+Polytopes: 42
+reading 99 model configs(plus fixed one,total = 100)
+build boundingbox time : 15.00
+collision detection box time: 0.00
+box collision size: 106
+build AABB time : 9671.00
+build AABB count: 77
+The Following result uses KCBP(AABB) filter first
+build AABB time 4 KCBP : 6.00
+kcbp collision size(AABB filter) : 38
+kcbp model check count: 77
+total collision time(KCBP AABB filter) : 8.00
+collision pairs : 21
+The Following result uses KCBP(GJK) filter first
+init GJK time 4 KCBP : 4.00
+kcbp collision size(GJK filter) : 37
+total collision time(KCBP GJK filter) : 4.00
+collision pairs : 21
+models/dinosaur.obj 	points number: 40277
+K = 44
+ModelNum = 100
+ach banchtest (100 times) totally: 177.00
+cluster time (100 times) totally: 3.00
+normalsize = 44
+Projection time banchtest(100 times) CPU(SSE) totaly:293
+duality mapping
+duality mapping time (100 times) totally: 24.00
+Polytopes: 44
+reading 99 model configs(plus fixed one,total = 100)
+build boundingbox time : 15.00
+collision detection box time: 0.00
+box collision size: 106
+build AABB time : 9673.00
+build AABB count: 77
+The Following result uses KCBP(AABB) filter first
+build AABB time 4 KCBP : 7.00
+kcbp collision size(AABB filter) : 37
+kcbp model check count: 77
+total collision time(KCBP AABB filter) : 9.00
+collision pairs : 21
+The Following result uses KCBP(GJK) filter first
+init GJK time 4 KCBP : 6.00
+kcbp collision size(GJK filter) : 37
+total collision time(KCBP GJK filter) : 4.00
+collision pairs : 21
+models/dinosaur.obj 	points number: 40277
+K = 46
+ModelNum = 100
+ach banchtest (100 times) totally: 194.00
+cluster time (100 times) totally: 4.00
+normalsize = 46
+Projection time banchtest(100 times) CPU(SSE) totaly:305
+duality mapping
+duality mapping time (100 times) totally: 27.00
+Polytopes: 46
+reading 99 model configs(plus fixed one,total = 100)
+build boundingbox time : 14.00
+collision detection box time: 0.00
+box collision size: 106
+build AABB time : 9559.00
+build AABB count: 77
+The Following result uses KCBP(AABB) filter first
+build AABB time 4 KCBP : 7.00
+kcbp collision size(AABB filter) : 36
+kcbp model check count: 77
+total collision time(KCBP AABB filter) : 10.00
+collision pairs : 21
+The Following result uses KCBP(GJK) filter first
+init GJK time 4 KCBP : 5.00
+kcbp collision size(GJK filter) : 36
+total collision time(KCBP GJK filter) : 4.00
+collision pairs : 21

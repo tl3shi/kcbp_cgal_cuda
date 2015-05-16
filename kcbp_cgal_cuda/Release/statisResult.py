@@ -1,17 +1,17 @@
 
 
-#alice-k24-model2.AABB.1.log.result.simple
-#alice-k24-model2.gjk.2.log.result.simple
+#alice-k24-model2.patch.AABB.1.log.result.simple
+#alice-k24-model2.patch.gjk.2.log.result.simple
 
 #for model in ['bunny2', 'apple', 'budda', 'dinosaur', 'alice']:
 if True:
-    model = 'bunny2'
+    model = 'hand'
     colResultGJK = []
     colResultAABB = []
     header = []
     for i in range(1, 6):
-        gjkfilename = model + '-k24-model2.gjk.' + str(i) + '.log.result.simple.csv'
-        aabbfilename = model + '-k24-model2.AABB.' + str(i) + '.log.result.simple.csv'
+        gjkfilename = model + '-k24-model2.patch.gjk.' + str(i) + '.log.result.simple.csv'
+        aabbfilename = model + '-k24-model2.patch.AABB.' + str(i) + '.log.result.simple.csv'
         gjklines = open(gjkfilename, 'r').readlines()
         aabblines = open(aabbfilename, 'r').readlines()
         linesLen = len(aabblines)
@@ -32,7 +32,7 @@ if True:
         colResultGJK[i] = [float(x)/5.0 for x in colResultGJK[i]]
         colResultAABB[i] = [float(x)/5.0 for x in colResultAABB[i]]
 
-    resultfilename = model + '-k24-model2.log.stat.csv'
+    resultfilename = model + '-k24-model2.patch.log.stat.csv'
     resultfile = open(resultfilename, 'w')
     resultfile.write(','.join(header))
     resultfile.write(',,')

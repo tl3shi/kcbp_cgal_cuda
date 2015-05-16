@@ -1,7 +1,7 @@
 #alice-k24-model2.AABB.1.log.result.simple
 #alice-k24-model2.kdop.2.log.result.simple
 
-for model in ['bunny2', 'apple', 'budda', 'dinosaur', 'alice']:
+for model in ['hand']:#['bunny2', 'apple', 'budda', 'dinosaur', 'alice']:
 #if True:
 #    model = 'bunny2'
     colResultkdop = []

@@ -1,0 +1,48 @@
+reading 9 model configs(plus fixed one,total = 10)
+build boundingbox time(including transform points): 13.00
+collision detection box time : 0.00
+box collision size: 1
+DopTree:init: Dop::NumOri = 24
+build time(kDOP): 7828.00
+total collision time(kDOP): 0.00
+collision pairs : 0
+reading 19 model configs(plus fixed one,total = 20)
+build boundingbox time(including transform points): 26.00
+collision detection box time : 0.00
+box collision size: 3
+DopTree:init: Dop::NumOri = 24
+build time(kDOP): 19520.00
+total collision time(kDOP): 0.00
+collision pairs : 2
+reading 29 model configs(plus fixed one,total = 30)
+build boundingbox time(including transform points): 41.00
+collision detection box time : 0.00
+box collision size: 29
+DopTree:init: Dop::NumOri = 24
+build time(kDOP): 85901.00
+total collision time(kDOP): 2.00
+collision pairs : 7
+reading 39 model configs(plus fixed one,total = 40)
+build boundingbox time(including transform points): 53.00
+collision detection box time : 0.00
+box collision size: 15
+DopTree:init: Dop::NumOri = 24
+build time(kDOP): 105531.00
+total collision time(kDOP): 2.00
+collision pairs : 8
+reading 49 model configs(plus fixed one,total = 50)
+build boundingbox time(including transform points): 67.00
+collision detection box time : 0.00
+box collision size: 27
+DopTree:init: Dop::NumOri = 24
+build time(kDOP): 121146.00
+total collision time(kDOP): 3.00
+collision pairs : 11
+reading 59 model configs(plus fixed one,total = 60)
+build boundingbox time(including transform points): 80.00
+collision detection box time : 0.00
+box collision size: 43
+DopTree:init: Dop::NumOri = 24
+build time(kDOP): 187414.00
+total collision time(kDOP): 9.00
+collision pairs : 13

@@ -2,7 +2,7 @@
 #alice-k46-model10.kdop.2.log.result.simple
 
 #for model in ['bunny2', 'apple', 'budda', 'dinosaur', 'alice']:
-for model in ['budda', 'dinosaur']:
+for model in ['happy_buddha']:
     colResultkdop = []
     header = []
     for i in range(1, 6):
