@@ -31,7 +31,7 @@ public:
         }
     }
 
-private:
+public:
     
     static vector<Plane3D>  projectsse(vector<CP_Vector3D> &points, vector<CP_Vector3D> &normals)
     {

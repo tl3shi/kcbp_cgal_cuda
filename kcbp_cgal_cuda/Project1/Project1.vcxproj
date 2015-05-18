@@ -73,7 +73,7 @@
     <LibraryPath>D:\CGAL-4.1\build\lib;D:\CGAL-4.1\auxiliary\gmp\lib;C:\Boost\lib;$(LibraryPath)</LibraryPath>
     <SourcePath>D:\CGAL-4.1\src;$(SourcePath)</SourcePath>
     <LibraryWPath>$(WindowsSDK_MetadataPath)</LibraryWPath>
-    <TargetName>Dynamic-$(ProjectName)</TargetName>
+    <TargetName>BVPreBench</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ExecutablePath>$(ExecutablePath)</ExecutablePath>
@@ -85,7 +85,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <IncludePath>D:\CGAL-4.1\include;D:\CGAL-4.1\auxiliary\gmp\include;C:\Boost\include\boost-1_53;D:\CGAL-4.1\build\include;$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSDK_IncludePath);</IncludePath>
     <LibraryPath>D:\CGAL-4.1\build\lib;D:\CGAL-4.1\auxiliary\gmp\lib;C:\Boost\lib;$(VCInstallDir)lib;$(VCInstallDir)atlmfc\lib;$(WindowsSDK_LibraryPath_x86);</LibraryPath>
-    <TargetName>cdbench</TargetName>
+    <TargetName>BVPreBench</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <IncludePath>D:\CGAL-4.1\include;D:\CGAL-4.1\auxiliary\gmp\include;C:\Boost\include\boost-1_53;D:\CGAL-4.1\build\include;$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSDK_IncludePath);</IncludePath>
@@ -174,7 +174,7 @@
     <ClInclude Include="IntersectionTools.hpp" />
     <ClInclude Include="KCBP.hpp" />
     <ClInclude Include="KDop3D.hpp" />
-    <ClInclude Include="LibCCDQuery.hpp" />
+    <ClInclude Include="LibCCDQueryStatic.hpp" />
     <ClInclude Include="LibCCDQuery2.hpp" />
     <ClInclude Include="Matrix.h" />
     <ClInclude Include="SolidCollisionQuery.hpp" />
@@ -189,9 +189,9 @@
     </CudaCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BVPreBench.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="CP_PointVector.cpp" />
-    <ClCompile Include="DynamicCDBench.cpp" />
     <ClCompile Include="gl2ps.c" />
     <ClCompile Include="Matrix.cpp" />
     <ClCompile Include="SSEProjection.hpp" />

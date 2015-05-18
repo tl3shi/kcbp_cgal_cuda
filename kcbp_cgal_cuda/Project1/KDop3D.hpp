@@ -12,6 +12,28 @@
 
 using namespace std;
 
+struct kDOPNode
+{
+    vector<CP_Vector3D> singleDirection;
+    vector<RealValueType> minProj;
+    vector<RealValueType> maxProj;
+
+    static bool checkIntersection(const kDOPNode &node1, const kDOPNode &node2)
+    {
+        int singleDirectionSize = node1.singleDirection.size();
+        assert(singleDirectionSize == node2.singleDirection.size());
+        assert(node1.minProj.size() == node2.minProj.size());
+        assert(node1.maxProj.size() == node2.maxProj.size());
+
+        for(int i = 0; i < singleDirectionSize; i++)
+        {
+            if(node1.minProj[i] > node2.maxProj[i] || node1.maxProj[i] < node2.minProj[i])
+                return false;
+        }
+        return true;
+    }
+};
+
 class KDop3D
 {
 public:
@@ -270,6 +292,52 @@ public:
         points.push_back(CP_Vector3D(2, 0, 3));
     }
     
+
+    //the normals is double direction
+    static kDOPNode getKDop(vector<CP_Vector3D> &points, vector<CP_Vector3D> &normals)
+    {
+        assert(points.size() > 0);
+        int singleDirectionSize = normals.size() / 2;
+
+        vector<RealValueType*> d_array;
+        d_array.resize(singleDirectionSize);
+        for (unsigned int i = 0; i < d_array.size(); i++)
+        {
+            d_array[i] = new RealValueType[2];
+            d_array[i][0] = RealValueTypeMax;
+            d_array[i][1] = -RealValueTypeMax;
+        }
+
+        for (unsigned int d = 0; d < singleDirectionSize; d++)
+        {
+            for (unsigned int i = 0; i < points.size(); i++)
+            {
+                RealValueType distance = points[i] * (normals[d]);//the distance to line
+
+                if(distance < d_array[d][0])//min
+                {
+                    d_array[d][0] = distance;
+                    //d_array[d][2] = i;
+                }
+                if(distance >  d_array[d][1])//max
+                {
+                    d_array[d][1] = distance;
+                    //d_array[d][3] = i;
+                }
+            }
+        }
+        
+        kDOPNode node;
+        for (unsigned int i = 0; i < singleDirectionSize; i++)
+        {
+            node.singleDirection.push_back(normals[i]);
+            RealValueType min = d_array[i][0];
+            RealValueType max =  d_array[i][1];
+            node.minProj.push_back(min);
+            node.maxProj.push_back(max);
+        }
+        return node;
+    }
 
 private:
 

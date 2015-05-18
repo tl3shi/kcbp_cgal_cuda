@@ -14,7 +14,7 @@
 #endif // DEBUG
 
 
-struct CCD_Convex
+struct CCD_Convex_Moving
 {
     vector<CP_Vector3D> points;
     //mat4 transformMatrix;
@@ -22,7 +22,7 @@ struct CCD_Convex
     ccd_quat_t rotation;
     ccd_quat_t rotation_inv;
 
-    explicit CCD_Convex(const vector<CP_Vector3D> &p):points(p)//, transformMatrix(mat4::Identity)
+    explicit CCD_Convex_Moving(const vector<CP_Vector3D> &p):points(p)//, transformMatrix(mat4::Identity)
     {
         ccdVec3Set(&translate, 0, 0, 0);
         ccdQuatSet(&rotation, 0, 0, 0, 1);
@@ -33,7 +33,7 @@ struct CCD_Convex
 
 void supportConvex2(const void* obj, const ccd_vec3_t* dir_, ccd_vec3_t* v)
 {
-    const CCD_Convex * c = static_cast<const CCD_Convex*>(obj);
+    const CCD_Convex_Moving * c = static_cast<const CCD_Convex_Moving*>(obj);
     RealValueType maxdot = - RealValueTypeMax;
   
     #ifdef NonSpeedup
@@ -127,16 +127,16 @@ struct LibCCDQuery2: public ICollisionQuery
     }
 private:
     
-    CCD_Convex * obj2;
-    CCD_Convex * obj1;
+    CCD_Convex_Moving * obj2;
+    CCD_Convex_Moving * obj1;
     ccd_t ccd;
      
 public: 
     //only detection convex
     LibCCDQuery2(const vector<CP_Vector3D> points1, const vector<CP_Vector3D> points2)
     {
-        obj1 = new CCD_Convex(points1);
-        obj2 = new CCD_Convex(points2);
+        obj1 = new CCD_Convex_Moving(points1);
+        obj2 = new CCD_Convex_Moving(points2);
 
         CCD_INIT(&ccd); // initialize ccd_t struct
 

@@ -81,9 +81,6 @@
     <ClInclude Include="SolidCollisionQuery.hpp">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="LibCCDQuery.hpp">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="LibCCDQuery2.hpp">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -100,6 +97,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="ccd\compiler.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="LibCCDQueryStatic.hpp">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
@@ -127,7 +127,7 @@
     <ClCompile Include="SSEProjection.hpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="DynamicCDBench.cpp">
+    <ClCompile Include="BVPreBench.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

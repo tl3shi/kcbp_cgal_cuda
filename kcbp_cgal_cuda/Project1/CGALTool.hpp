@@ -147,6 +147,20 @@ public:
         }
     }
 
+    void static getConvexHullVertices(vector<CP_Vector3D> &input_points, vector<CP_Vector3D> &convexhull_vertices)
+    {
+        convexhull_vertices.clear();
+        vector<Point_3> points(input_points.size());
+        std::transform(input_points.begin(), input_points.end(), points.begin(), CPVector_to_CgalPoint());
+        assert(points.size() > 0);
+        Polyhedron_3 poly;
+        CGAL::convex_hull_3(points.begin(), points.end(), poly);
+        // assign a plane equation to each polyhedron facet using functor Plane_from_facet
+        std::transform(poly.facets_begin(), poly.facets_end(), poly.planes_begin(), Plane_from_facet());
+        convexhull_vertices.resize(poly.size_of_vertices());
+        std::transform(poly.points_begin(), poly.points_end(), convexhull_vertices.begin(), Point_3_to_CPVector());
+    }
+
     void static getConvexHullFacets(vector<Point_3> &points, vector<CP_Vector3D> &convexhull_points, int benchtest = 1)
     {
         Polyhedron_3 poly;

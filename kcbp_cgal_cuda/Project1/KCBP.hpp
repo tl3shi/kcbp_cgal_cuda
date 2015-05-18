@@ -1114,7 +1114,9 @@ public:
             m_Ori[21] = CP_Vector3D(0.808977,0.357304,0.466786);                   
             m_Ori[22] = CP_Vector3D(0.432344,-0.015215,0.901580);  
            //          Mindestabstand: 0.5257436 
-        }                 
+        }else{
+            assert(false);
+        }               
       
         // second half of orientations = mirrored first half
         for (int i = 0; i < k/2; i ++ )
