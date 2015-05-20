@@ -32,6 +32,37 @@ struct kDOPNode
         }
         return true;
     }
+
+    bool IntersectWith(const kDOPNode &node2) const
+    {
+        const kDOPNode &node1 = *this;
+        assert(node1.singleDirection.size() == node2.singleDirection.size());
+        assert(node1.minProj.size() == node2.minProj.size());
+        assert(node1.maxProj.size() == node2.maxProj.size());
+
+        for(int i = 0; i < node1.singleDirection.size(); i++)
+        {
+            if(node1.minProj[i] > node2.maxProj[i] || node1.maxProj[i] < node2.minProj[i])
+                return false;
+        }
+        return true;
+    }
+
+    static void CollsionDetection(const vector<kDOPNode> &boxes, vector<pair<int,int>> &collsioins)
+    {
+        collsioins.clear();
+        for(int i = 0; i < boxes.size()-1;i++)
+        {
+            const kDOPNode &box = boxes[i];
+            for(int j = i+1; j < boxes.size(); j++)
+            {
+                if(box.IntersectWith(boxes[j]))
+                {
+                    collsioins.push_back(pair<int,int>(i,j));
+                }
+            }
+        }
+    }
 };
 
 class KDop3D

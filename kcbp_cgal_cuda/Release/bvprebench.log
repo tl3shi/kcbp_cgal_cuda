@@ -1,0 +1,520 @@
+models/bunny2.obj 	points number: 2503
+K = 16
+ModelNum = 100
+kCBP for models time (100 times) totally: 78.00
+Polytopes: 16
+convexhull for models time (100 times) totally: 313.00
+reading 99 model configs(plus fixed one,total = 100)
+kDOP for models time (100 models) totally: 8.00
+boundingbox for models time (100 times) totally: 1.00
+boundingSphere for models time (100 times) totally: 1.00
+build AABB time: 567.00
+collision detection box time: 0.00
+Box check collision pair: 335
+Model collision pair by Box: 161
+Box init time(construct Box(100 count) + aabbtree(97 count): 550.99
+Box directly cd time: 4.00
+Box hit rate : 0.4806
+collision detection boundingsphere time: 0.00
+Sphere check collision pair: 458
+Model collision pair by Sphere: 161
+Sphere init time(construct Sphere(100 count) + aabbtree(100 count): 568.00
+Sphere directly cd time: 5.00
+Sphere hit rate : 0.3515
+collision detection kDop time: 0.00
+kDop check collision pair: 245
+Model collision pair by kDOP: 161
+kDOP init time(construct kdop(100 count) + aabbtree(93 count): 535.31
+kDOP cd time: 4.00
+kDOP hit rate : 0.6571
+init kCBP GJK time: 10.00 
+collision detection kDop time: 5.00
+kCBP check collision pair: 217
+Model collision pair by kCBP: 161
+kCBP init time(construct kcbp(100 count) + aabbtree(92 count): 599.64
+kCBP cd time: 9.00
+kCBP hit rate : 0.7419
+init convexhull GJK time: 34.00 
+collision detection kDop time: 12.00
+Convexhull check collision pair: 181
+Model collision pair by Convexhull: 161
+Convexhull init time(construct convexhull(100 count) + aabbtree(90 count): 823.30
+Convexhull cd time: 15.00
+Convexhull hit rate : 0.8895
+collision detection box time: 0.00
+box collision size: 335
+kDop check collision pair(AfterBox): 240
+Between kDop check time(AfterBox): 0.00 
+Model collision pair by kDOP(AfterBox): 161
+kDOP init time(AfterBox)(construct kdop(97 count) + aabbtree(93 count): 535.07
+kDOP cd time(AfterBox): 4.00
+kDOP hit rate(AfterBox) : 0.6708
+init kCBP GJK time(AfterBox): 0.00 
+kCBP check collision pair(AfterBox): 217
+Between kCBP check time(AfterBox): 1.00 
+Model collision pair by kCBP(AfterBox): 161
+kCBP init time(AfterBox)(construct kcbp(97 count) + aabbtree(92 count): 597.30
+kCBP cd time(AfterBox): 4.00
+kCBP hit rate(AfterBox): 0.7419
+init convexhull GJK time(AfterBox): 2.00 
+Convexhull check collision pair(AfterBox): 181
+Between Convexhull check time(AfterBox): 2.00 
+Model collision pair by Convexhull(AfterBox): 161
+Convexhull init time(AfterBox)(construct convexhull(97 count) + aabbtree(90 count): 813.91
+Convexhull cd time(AfterBox): 5.00
+Convexhull hit rate(AfterBox): 0.8895
+models/apple.obj 	points number: 8118
+K = 16
+ModelNum = 100
+kCBP for models time (100 times) totally: 164.00
+Polytopes: 16
+convexhull for models time (100 times) totally: 467.00
+reading 99 model configs(plus fixed one,total = 100)
+kDOP for models time (100 models) totally: 27.00
+boundingbox for models time (100 times) totally: 2.00
+boundingSphere for models time (100 times) totally: 4.00
+build AABB time: 1107.00
+collision detection box time: 0.00
+Box check collision pair: 220
+Model collision pair by Box: 170
+Box init time(construct Box(100 count) + aabbtree(93 count): 1031.51
+Box directly cd time: 6.00
+Box hit rate : 0.7727
+collision detection boundingsphere time: 0.00
+Sphere check collision pair: 255
+Model collision pair by Sphere: 170
+Sphere init time(construct Sphere(100 count) + aabbtree(95 count): 1055.65
+Sphere directly cd time: 5.00
+Sphere hit rate : 0.6667
+collision detection kDop time: 0.00
+kDop check collision pair: 194
+Model collision pair by kDOP: 170
+kDOP init time(construct kdop(100 count) + aabbtree(89 count): 1012.23
+kDOP cd time: 6.00
+kDOP hit rate : 0.8763
+init kCBP GJK time: 9.00 
+collision detection kDop time: 4.00
+kCBP check collision pair: 189
+Model collision pair by kCBP: 170
+kCBP init time(construct kcbp(100 count) + aabbtree(89 count): 1149.23
+kCBP cd time: 10.00
+kCBP hit rate : 0.8995
+init convexhull GJK time: 26.00 
+collision detection kDop time: 11.00
+Convexhull check collision pair: 170
+Model collision pair by Convexhull: 166
+Convexhull init time(construct convexhull(100 count) + aabbtree(89 count): 1452.23
+Convexhull cd time: 16.00
+Convexhull hit rate : 0.9765
+collision detection box time: 0.00
+box collision size: 220
+kDop check collision pair(AfterBox): 190
+Between kDop check time(AfterBox): 0.00 
+Model collision pair by kDOP(AfterBox): 170
+kDOP init time(AfterBox)(construct kdop(93 count) + aabbtree(89 count): 1010.34
+kDOP cd time(AfterBox): 5.00
+kDOP hit rate(AfterBox) : 0.8947
+init kCBP GJK time(AfterBox): 1.00 
+kCBP check collision pair(AfterBox): 185
+Between kCBP check time(AfterBox): 0.00 
+Model collision pair by kCBP(AfterBox): 170
+kCBP init time(AfterBox)(construct kcbp(93 count) + aabbtree(89 count): 1137.75
+kCBP cd time(AfterBox): 5.00
+kCBP hit rate(AfterBox): 0.9189
+init convexhull GJK time(AfterBox): 0.00 
+Convexhull check collision pair(AfterBox): 170
+Between Convexhull check time(AfterBox): 1.00 
+Model collision pair by Convexhull(AfterBox): 166
+Convexhull init time(AfterBox)(construct convexhull(93 count) + aabbtree(89 count): 1419.54
+Convexhull cd time(AfterBox): 6.00
+Convexhull hit rate(AfterBox): 0.9765
+models/happy_buddha.obj 	points number: 24810
+K = 16
+ModelNum = 100
+kCBP for models time (100 times) totally: 214.00
+Polytopes: 16
+convexhull for models time (100 times) totally: 1208.00
+reading 99 model configs(plus fixed one,total = 100)
+kDOP for models time (100 models) totally: 77.00
+boundingbox for models time (100 times) totally: 11.00
+boundingSphere for models time (100 times) totally: 12.00
+build AABB time: 7531.00
+collision detection box time: 0.00
+Box check collision pair: 168
+Model collision pair by Box: 62
+Box init time(construct Box(100 count) + aabbtree(88 count): 6638.28
+Box directly cd time: 4.00
+Box hit rate : 0.3690
+collision detection boundingsphere time: 0.00
+Sphere check collision pair: 250
+Model collision pair by Sphere: 62
+Sphere init time(construct Sphere(100 count) + aabbtree(92 count): 6940.52
+Sphere directly cd time: 3.00
+Sphere hit rate : 0.2480
+collision detection kDop time: 0.00
+kDop check collision pair: 115
+Model collision pair by kDOP: 62
+kDOP init time(construct kdop(100 count) + aabbtree(86 count): 6553.66
+kDOP cd time: 2.00
+kDOP hit rate : 0.5391
+init kCBP GJK time: 10.00 
+collision detection kDop time: 4.00
+kCBP check collision pair: 85
+Model collision pair by kCBP: 62
+kCBP init time(construct kcbp(100 count) + aabbtree(74 count): 5786.94
+kCBP cd time: 7.00
+kCBP hit rate : 0.7294
+init convexhull GJK time: 40.00 
+collision detection kDop time: 14.00
+Convexhull check collision pair: 70
+Model collision pair by Convexhull: 62
+Convexhull init time(construct convexhull(100 count) + aabbtree(69 count): 6404.39
+Convexhull cd time: 17.00
+Convexhull hit rate : 0.8857
+collision detection box time: 1.00
+box collision size: 168
+kDop check collision pair(AfterBox): 112
+Between kDop check time(AfterBox): 0.00 
+Model collision pair by kDOP(AfterBox): 62
+kDOP init time(AfterBox)(construct kdop(88 count) + aabbtree(85 count): 6469.11
+kDOP cd time(AfterBox): 3.00
+kDOP hit rate(AfterBox) : 0.5536
+init kCBP GJK time(AfterBox): 0.00 
+kCBP check collision pair(AfterBox): 84
+Between kCBP check time(AfterBox): 1.00 
+Model collision pair by kCBP(AfterBox): 62
+kCBP init time(AfterBox)(construct kcbp(88 count) + aabbtree(74 count): 5761.26
+kCBP cd time(AfterBox): 4.00
+kCBP hit rate(AfterBox): 0.7381
+init convexhull GJK time(AfterBox): 1.00 
+Convexhull check collision pair(AfterBox): 70
+Between Convexhull check time(AfterBox): 1.00 
+Model collision pair by Convexhull(AfterBox): 62
+Convexhull init time(AfterBox)(construct convexhull(88 count) + aabbtree(69 count): 6259.43
+Convexhull cd time(AfterBox): 4.00
+Convexhull hit rate(AfterBox): 0.8857
+models/budda.obj 	points number: 31232
+K = 16
+ModelNum = 100
+kCBP for models time (100 times) totally: 273.00
+Polytopes: 16
+convexhull for models time (100 times) totally: 2086.00
+reading 99 model configs(plus fixed one,total = 100)
+kDOP for models time (100 models) totally: 98.00
+boundingbox for models time (100 times) totally: 11.00
+boundingSphere for models time (100 times) totally: 16.00
+build AABB time: 9326.00
+collision detection box time: 0.00
+Box check collision pair: 237
+Model collision pair by Box: 113
+Box init time(construct Box(100 count) + aabbtree(93 count): 8684.18
+Box directly cd time: 125.00
+Box hit rate : 0.4768
+collision detection boundingsphere time: 0.00
+Sphere check collision pair: 365
+Model collision pair by Sphere: 113
+Sphere init time(construct Sphere(100 count) + aabbtree(100 count): 9342.00
+Sphere directly cd time: 122.00
+Sphere hit rate : 0.3096
+collision detection kDop time: 0.00
+kDop check collision pair: 173
+Model collision pair by kDOP: 113
+kDOP init time(construct kdop(100 count) + aabbtree(88 count): 8304.88
+kDOP cd time: 164.00
+kDOP hit rate : 0.6532
+init kCBP GJK time: 10.00 
+collision detection kDop time: 5.00
+kCBP check collision pair: 157
+Model collision pair by kCBP: 113
+kCBP init time(construct kcbp(100 count) + aabbtree(89 count): 8573.14
+kCBP cd time: 110.00
+kCBP hit rate : 0.7197
+init convexhull GJK time: 103.00 
+collision detection kDop time: 27.00
+Convexhull check collision pair: 126
+Model collision pair by Convexhull: 112
+Convexhull init time(construct convexhull(100 count) + aabbtree(85 count): 10013.10
+Convexhull cd time: 112.00
+Convexhull hit rate : 0.8889
+collision detection box time: 0.00
+box collision size: 237
+kDop check collision pair(AfterBox): 171
+Between kDop check time(AfterBox): 0.00 
+Model collision pair by kDOP(AfterBox): 113
+kDOP init time(AfterBox)(construct kdop(93 count) + aabbtree(88 count): 8298.02
+kDOP cd time(AfterBox): 115.00
+kDOP hit rate(AfterBox) : 0.6608
+init kCBP GJK time(AfterBox): 1.00 
+kCBP check collision pair(AfterBox): 155
+Between kCBP check time(AfterBox): 0.00 
+Model collision pair by kCBP(AfterBox): 113
+kCBP init time(AfterBox)(construct kcbp(93 count) + aabbtree(89 count): 8554.03
+kCBP cd time(AfterBox): 107.00
+kCBP hit rate(AfterBox): 0.7290
+init convexhull GJK time(AfterBox): 5.00 
+Convexhull check collision pair(AfterBox): 126
+Between Convexhull check time(AfterBox): 3.00 
+Model collision pair by Convexhull(AfterBox): 112
+Convexhull init time(AfterBox)(construct convexhull(93 count) + aabbtree(85 count): 9867.08
+Convexhull cd time(AfterBox): 88.00
+Convexhull hit rate(AfterBox): 0.8889
+models/dinosaur.obj 	points number: 40277
+K = 16
+ModelNum = 50
+kCBP for models time (50 times) totally: 155.00
+Polytopes: 16
+convexhull for models time (50 times) totally: 1014.00
+reading 49 model configs(plus fixed one,total = 50)
+kDOP for models time (50 models) totally: 64.00
+boundingbox for models time (50 times) totally: 8.00
+boundingSphere for models time (50 times) totally: 10.00
+build AABB time: 6146.00
+collision detection box time: 0.00
+Box check collision pair: 15
+Model collision pair by Box: 5
+Box init time(construct Box(50 count) + aabbtree(23 count): 2835.16
+Box directly cd time: 0.00
+Box hit rate : 0.3333
+collision detection boundingsphere time: 0.00
+Sphere check collision pair: 43
+Model collision pair by Sphere: 5
+Sphere init time(construct Sphere(50 count) + aabbtree(40 count): 4926.80
+Sphere directly cd time: 0.00
+Sphere hit rate : 0.1163
+collision detection kDop time: 0.00
+kDop check collision pair: 8
+Model collision pair by kDOP: 5
+kDOP init time(construct kdop(50 count) + aabbtree(14 count): 1784.88
+kDOP cd time: 0.00
+kDOP hit rate : 0.6250
+init kCBP GJK time: 3.00 
+collision detection kDop time: 0.00
+kCBP check collision pair: 7
+Model collision pair by kCBP: 5
+kCBP init time(construct kcbp(50 count) + aabbtree(13 count): 1752.96
+kCBP cd time: 1.00
+kCBP hit rate : 0.7143
+init convexhull GJK time: 17.00 
+collision detection kDop time: 5.00
+Convexhull check collision pair: 6
+Model collision pair by Convexhull: 5
+Convexhull init time(construct convexhull(50 count) + aabbtree(12 count): 2489.04
+Convexhull cd time: 5.00
+Convexhull hit rate : 0.8333
+collision detection box time: 0.00
+box collision size: 15
+kDop check collision pair(AfterBox): 8
+Between kDop check time(AfterBox): 0.00 
+Model collision pair by kDOP(AfterBox): 5
+kDOP init time(AfterBox)(construct kdop(23 count) + aabbtree(14 count): 1750.32
+kDOP cd time(AfterBox): 0.00
+kDOP hit rate(AfterBox) : 0.6250
+init kCBP GJK time(AfterBox): 0.00 
+kCBP check collision pair(AfterBox): 7
+Between kCBP check time(AfterBox): 0.00 
+Model collision pair by kCBP(AfterBox): 5
+kCBP init time(AfterBox)(construct kcbp(23 count) + aabbtree(13 count): 1669.26
+kCBP cd time(AfterBox): 0.00
+kCBP hit rate(AfterBox): 0.7143
+init convexhull GJK time(AfterBox): 1.00 
+Convexhull check collision pair(AfterBox): 6
+Between Convexhull check time(AfterBox): 0.00 
+Model collision pair by Convexhull(AfterBox): 5
+Convexhull init time(AfterBox)(construct convexhull(23 count) + aabbtree(12 count): 1941.48
+Convexhull cd time(AfterBox): 0.00
+Convexhull hit rate(AfterBox): 0.8333
+models/hand.obj 	points number: 64349
+K = 16
+ModelNum = 50
+kCBP for models time (50 times) totally: 237.00
+Polytopes: 16
+convexhull for models time (50 times) totally: 2033.00
+reading 49 model configs(plus fixed one,total = 50)
+kDOP for models time (50 models) totally: 104.00
+boundingbox for models time (50 times) totally: 14.00
+boundingSphere for models time (50 times) totally: 15.00
+build AABB time: 12504.00
+collision detection box time: 0.00
+Box check collision pair: 34
+Model collision pair by Box: 7
+Box init time(construct Box(50 count) + aabbtree(39 count): 9767.12
+Box directly cd time: 1.00
+Box hit rate : 0.2059
+collision detection boundingsphere time: 0.00
+Sphere check collision pair: 50
+Model collision pair by Sphere: 7
+Sphere init time(construct Sphere(50 count) + aabbtree(43 count): 10768.44
+Sphere directly cd time: 0.00
+Sphere hit rate : 0.1400
+collision detection kDop time: 0.00
+kDop check collision pair: 22
+Model collision pair by kDOP: 7
+kDOP init time(construct kdop(50 count) + aabbtree(30 count): 7606.40
+kDOP cd time: 1.00
+kDOP hit rate : 0.3182
+init kCBP GJK time: 2.00 
+collision detection kDop time: 1.00
+kCBP check collision pair: 15
+Model collision pair by kCBP: 7
+kCBP init time(construct kcbp(50 count) + aabbtree(28 count): 7239.24
+kCBP cd time: 2.00
+kCBP hit rate : 0.4667
+init convexhull GJK time: 23.00 
+collision detection kDop time: 7.00
+Convexhull check collision pair: 11
+Model collision pair by Convexhull: 7
+Convexhull init time(construct convexhull(50 count) + aabbtree(20 count): 7034.60
+Convexhull cd time: 7.00
+Convexhull hit rate : 0.6364
+collision detection box time: 0.00
+box collision size: 34
+kDop check collision pair(AfterBox): 22
+Between kDop check time(AfterBox): 0.00 
+Model collision pair by kDOP(AfterBox): 7
+kDOP init time(AfterBox)(construct kdop(39 count) + aabbtree(30 count): 7583.52
+kDOP cd time(AfterBox): 1.00
+kDOP hit rate(AfterBox) : 0.3182
+init kCBP GJK time(AfterBox): 0.00 
+kCBP check collision pair(AfterBox): 15
+Between kCBP check time(AfterBox): 0.00 
+Model collision pair by kCBP(AfterBox): 7
+kCBP init time(AfterBox)(construct kcbp(39 count) + aabbtree(28 count): 7187.10
+kCBP cd time(AfterBox): 0.00
+kCBP hit rate(AfterBox): 0.4667
+init convexhull GJK time(AfterBox): 1.00 
+Convexhull check collision pair(AfterBox): 11
+Between Convexhull check time(AfterBox): 0.00 
+Model collision pair by Convexhull(AfterBox): 7
+Convexhull init time(AfterBox)(construct convexhull(39 count) + aabbtree(20 count): 6587.34
+Convexhull cd time(AfterBox): 0.00
+Convexhull hit rate(AfterBox): 0.6364
+models/dragon.obj 	points number: 87257
+K = 16
+ModelNum = 35
+kCBP for models time (35 times) totally: 222.00
+Polytopes: 16
+convexhull for models time (35 times) totally: 1328.00
+reading 34 model configs(plus fixed one,total = 35)
+kDOP for models time (35 models) totally: 96.00
+boundingbox for models time (35 times) totally: 13.00
+boundingSphere for models time (35 times) totally: 15.00
+build AABB time: 12402.00
+collision detection box time: 0.00
+Box check collision pair: 19
+Model collision pair by Box: 12
+Box init time(construct Box(35 count) + aabbtree(20 count): 7099.86
+Box directly cd time: 1.00
+Box hit rate : 0.6316
+collision detection boundingsphere time: 0.00
+Sphere check collision pair: 30
+Model collision pair by Sphere: 12
+Sphere init time(construct Sphere(35 count) + aabbtree(28 count): 9936.60
+Sphere directly cd time: 0.00
+Sphere hit rate : 0.4000
+collision detection kDop time: 0.00
+kDop check collision pair: 16
+Model collision pair by kDOP: 12
+kDOP init time(construct kdop(35 count) + aabbtree(18 count): 6474.17
+kDOP cd time: 0.00
+kDOP hit rate : 0.7500
+init kCBP GJK time: 1.00 
+collision detection kDop time: 1.00
+kCBP check collision pair: 13
+Model collision pair by kCBP: 12
+kCBP init time(construct kcbp(35 count) + aabbtree(18 count): 6600.17
+kCBP cd time: 1.00
+kCBP hit rate : 0.9231
+init convexhull GJK time: 11.00 
+collision detection kDop time: 3.00
+Convexhull check collision pair: 13
+Model collision pair by Convexhull: 12
+Convexhull init time(construct convexhull(35 count) + aabbtree(18 count): 7706.17
+Convexhull cd time: 3.00
+Convexhull hit rate : 0.9231
+collision detection box time: 0.00
+box collision size: 19
+kDop check collision pair(AfterBox): 16
+Between kDop check time(AfterBox): 0.00 
+Model collision pair by kDOP(AfterBox): 12
+kDOP init time(AfterBox)(construct kdop(20 count) + aabbtree(18 count): 6433.03
+kDOP cd time(AfterBox): 0.00
+kDOP hit rate(AfterBox) : 0.7500
+init kCBP GJK time(AfterBox): 0.00 
+kCBP check collision pair(AfterBox): 13
+Between kCBP check time(AfterBox): 0.00 
+Model collision pair by kCBP(AfterBox): 12
+kCBP init time(AfterBox)(construct kcbp(20 count) + aabbtree(18 count): 6505.03
+kCBP cd time(AfterBox): 0.00
+kCBP hit rate(AfterBox): 0.9231
+init convexhull GJK time(AfterBox): 1.00 
+Convexhull check collision pair(AfterBox): 13
+Between Convexhull check time(AfterBox): 0.00 
+Model collision pair by Convexhull(AfterBox): 12
+Convexhull init time(AfterBox)(construct convexhull(20 count) + aabbtree(18 count): 7137.03
+Convexhull cd time(AfterBox): 0.00
+Convexhull hit rate(AfterBox): 0.9231
+models/alice.obj 	points number: 224291
+K = 16
+ModelNum = 25
+kCBP for models time (25 times) totally: 398.00
+Polytopes: 16
+convexhull for models time (25 times) totally: 2175.00
+reading 24 model configs(plus fixed one,total = 25)
+kDOP for models time (25 models) totally: 177.00
+boundingbox for models time (25 times) totally: 23.00
+boundingSphere for models time (25 times) totally: 27.00
+build AABB time: 10903.00
+collision detection box time: 0.00
+Box check collision pair: 4
+Model collision pair by Box: 3
+Box init time(construct Box(25 count) + aabbtree(8 count): 3511.96
+Box directly cd time: 3.00
+Box hit rate : 0.7500
+collision detection boundingsphere time: 0.00
+Sphere check collision pair: 14
+Model collision pair by Sphere: 3
+Sphere init time(construct Sphere(25 count) + aabbtree(15 count): 6568.80
+Sphere directly cd time: 3.00
+Sphere hit rate : 0.2143
+collision detection kDop time: 0.00
+kDop check collision pair: 4
+Model collision pair by kDOP: 3
+kDOP init time(construct kdop(25 count) + aabbtree(6 count): 2793.72
+kDOP cd time: 3.00
+kDOP hit rate : 0.7500
+init kCBP GJK time: 0.00 
+collision detection kDop time: 0.00
+kCBP check collision pair: 3
+Model collision pair by kCBP: 3
+kCBP init time(construct kcbp(25 count) + aabbtree(6 count): 3014.72
+kCBP cd time: 3.00
+kCBP hit rate : 1.0000
+init convexhull GJK time: 4.00 
+collision detection kDop time: 2.00
+Convexhull check collision pair: 3
+Model collision pair by Convexhull: 3
+Convexhull init time(construct convexhull(25 count) + aabbtree(6 count): 4791.72
+Convexhull cd time: 5.00
+Convexhull hit rate : 1.0000
+collision detection box time: 0.00
+box collision size: 4
+kDop check collision pair(AfterBox): 3
+Between kDop check time(AfterBox): 0.00 
+Model collision pair by kDOP(AfterBox): 3
+kDOP init time(AfterBox)(construct kdop(8 count) + aabbtree(6 count): 2673.36
+kDOP cd time(AfterBox): 3.00
+kDOP hit rate(AfterBox) : 1.0000
+init kCBP GJK time(AfterBox): 0.00 
+kCBP check collision pair(AfterBox): 3
+Between kCBP check time(AfterBox): 0.00 
+Model collision pair by kCBP(AfterBox): 3
+kCBP init time(AfterBox)(construct kcbp(8 count) + aabbtree(6 count): 2744.08
+kCBP cd time(AfterBox): 3.00
+kCBP hit rate(AfterBox): 1.0000
+init convexhull GJK time(AfterBox): 0.00 
+Convexhull check collision pair(AfterBox): 3
+Between Convexhull check time(AfterBox): 0.00 
+Model collision pair by Convexhull(AfterBox): 3
+Convexhull init time(AfterBox)(construct convexhull(8 count) + aabbtree(6 count): 3312.72
+Convexhull cd time(AfterBox): 2.00
+Convexhull hit rate(AfterBox): 1.0000

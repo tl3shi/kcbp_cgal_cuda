@@ -156,6 +156,7 @@
     <ClInclude Include="AABB.hpp" />
     <ClInclude Include="ACH3D.hpp" />
     <ClInclude Include="BoundingBox.hpp" />
+    <ClInclude Include="BoundingSphere.hpp" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="ccd\ccd.h" />
     <ClInclude Include="ccd\compiler.h" />

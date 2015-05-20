@@ -4,6 +4,7 @@
 using namespace std;
 #include <GL/glut.h>
 #include "BoundingBox.hpp"
+#include "BoundingSphere.hpp"
 #include "AABB.hpp"
 
 class UIHelper
@@ -302,6 +303,14 @@ class UIHelper
         glVertex3d(max.x, min.y, min.z);
         glVertex3d(max.x, max.y, min.z);
         glEnd();
+    }
+
+    static void drawBoundingSphere(const BoundingShpere &sphere)
+    {
+        glTranslated(sphere.Center.x, sphere.Center.y, sphere.Center.z);
+        GLUquadricObj *qobj = gluNewQuadric();
+        gluSphere(qobj, sphere.Radius, 16, 16);
+        glTranslated(-sphere.Center.x, -sphere.Center.y, -sphere.Center.z);
     }
 
     static void drawTrainges(vector<CP_Vector3D> & points, RealValueType scala = 1.0)

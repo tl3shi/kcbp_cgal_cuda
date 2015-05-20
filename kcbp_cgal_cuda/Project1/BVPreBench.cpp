@@ -17,6 +17,7 @@
 #include "SSEProjection.hpp"
 #include "Matrix.h"
 #include "BoundingBox.hpp"
+#include "BoundingSphere.hpp"
 #include "AABB.hpp"
 #include "CollsionQuery.hpp"
 #include "SolidCollisionQuery.hpp"
@@ -76,6 +77,7 @@ vector<CP_Vector3D> NonMeshConvexHullPoints;
 vector<int> MeshConvexHullIndex;
 
 vector<BoundingBox> ModelBoundingBoxes;
+vector<BoundingShpere> ModelBoundingSpheres;
 
 BoundingBox SingleModelBoundingBox;
 
@@ -440,34 +442,6 @@ void genModels(int modelnum, string config)
             break;
         }
     }
-
-    ModelBoundingBoxes.resize(MeshpolyhedraData.size());
-    clock_t c_time = clock();
-    for(int i = 0; i < ModelBoundingBoxes.size(); i++)
-    {
-        BoundingBox box = BoundingBox::GetNull();
-        vector<CP_Vector3D> &model_points = MeshPointsData[i];
-        for(int j = 0; j < model_points.size();j++)
-        {
-            CP_Vector3D &p = model_points[j];
-            if(box.Min.x > p.x)
-                box.Min.x = p.x;
-            if(box.Min.y > p.y)
-                box.Min.y = p.y;
-            if(box.Min.z > p.z)
-                box.Min.z = p.z;
-            if(box.Max.x < p.x)
-                box.Max.x = p.x;
-            if(box.Max.y < p.y)
-                box.Max.y = p.y;
-            if(box.Max.z < p.z)
-                box.Max.z = p.z;
-        }
-        ModelBoundingBoxes[i] = box;
-    }
-    c_time = clock() - c_time;
-    printf("build boundingbox time : %.2f\n", c_time*1.0);
-    
     collision_index.resize(modelnum);
 }
 
@@ -627,6 +601,9 @@ void  display(void)
             glColor3f(0, 0, 0);
             for(int i = 0; i < MeshBoundingBoxList.size(); i++)
                 glCallList(MeshBoundingBoxList[i]);
+
+            for(int i = 0; i < ModelBoundingSpheres.size(); i++)
+                UIHelper::drawBoundingSphere(ModelBoundingSpheres[i]);
             glColor4fv(oldColor);
         } 
         /*
@@ -854,43 +831,206 @@ int uniqueCount(vector<std::pair<int,int> > &pairs)
     return s.size();
 }
 
-void staticEvaluate(float single_kcbp_time, float single_convexhull_time, float single_kdop_time)
+//only BV  then Model(AABB)
+void staticEvaluate(float single_kcbp_time, float single_convexhull_time, float single_kdop_time, float single_bbox, float single_sphere)
 {
-    //boundingbox 
-    vector<std::pair<int, int> > boxPairs;
+    vector<std::pair<int, int>> bvPairs;
+    vector<std::pair<int, int>> modelPairs;
+
+    clock_t time_start = clock();
+    vector<AABBTree*> aabbtrees(modelnum, NULL);
+    for(int i = 0; i < modelnum; i++)
+        aabbtrees[i] = constructAABBTree(MeshPointsData[i], trianges_index);
+    float time_during = clock() - time_start;
+    printf("build AABB time: %.2f\n", time_during);
+    float single_AABB_time = time_during / modelnum;
+
+    #pragma region BoundingBox
+    {
+        bvPairs.clear();
+        modelPairs.clear();
+        //boundingbox 
+        time_start = clock();
+        BoundingBox::CollsionDetection(ModelBoundingBoxes, bvPairs);
+        float bv_detection_time = clock() - time_start;
+        printf("collision detection box time: %.2f\n", bv_detection_time * 1.0);
+
+        time_start = clock();
+        for(auto it = bvPairs.begin(); it != bvPairs.end(); it++)
+        {
+            bool t = AABBTree::TraverseDetective(aabbtrees[it->first]->Root, aabbtrees[it->second]->Root);
+            if(t)
+                modelPairs.push_back(*it);
+        }
+        float cd_time = clock() - time_start;
+        int bvCheckCount = uniqueCount(bvPairs);
+        float bvInitTime =  single_bbox * modelnum +  single_AABB_time * bvCheckCount;
+        printf("Box check collision pair: %d\n", bvPairs.size());
+        printf("Model collision pair by Box: %d\n", modelPairs.size());
+        printf("Box init time(construct Box(%d count) + aabbtree(%d count): %.2f\n", modelnum, bvCheckCount, bvInitTime);
+        printf("Box directly cd time: %.2f\n", cd_time);
+        float bvHitRate = modelPairs.size() * 1.0 / bvPairs.size();
+        printf("Box hit rate : %.4f\n", bvHitRate);
+    }
+    #pragma endregion
+ 
+    #pragma region BoundingSphere
+    {
+        bvPairs.clear();
+        modelPairs.clear();
+        time_start = clock();
+        BoundingShpere::CollsionDetection(ModelBoundingSpheres, bvPairs);
+        clock_t cd_sphere_time = clock() - time_start;
+        printf("collision detection boundingsphere time: %.2f\n", cd_sphere_time * 1.0);
+        time_start = clock();
+        for(auto it = bvPairs.begin(); it != bvPairs.end(); it++)
+        {
+            bool t = AABBTree::TraverseDetective(aabbtrees[it->first]->Root, aabbtrees[it->second]->Root);
+            if(t)
+                modelPairs.push_back(*it);
+        }
+        float cd_time = clock() - time_start;
+        int bvCheckCount = uniqueCount(bvPairs);
+        float sphereInitTime =  single_sphere * modelnum +  single_AABB_time * bvCheckCount;
+        printf("Sphere check collision pair: %d\n", bvPairs.size());
+        printf("Model collision pair by Sphere: %d\n", modelPairs.size());
+        printf("Sphere init time(construct Sphere(%d count) + aabbtree(%d count): %.2f\n", modelnum, bvCheckCount, sphereInitTime);
+        printf("Sphere directly cd time: %.2f\n", cd_time);
+        float bvHitRate = modelPairs.size() * 1.0 / bvPairs.size();
+        printf("Sphere hit rate : %.4f\n", bvHitRate);
+    }
+    #pragma endregion
+
+    #pragma region kDop
+    {
+        bvPairs.clear();
+        modelPairs.clear();
+        time_start = clock();
+        kDOPNode::CollsionDetection(kDops, bvPairs);
+        clock_t cd_kdop_time = clock() - time_start;
+        printf("collision detection kDop time: %.2f\n", cd_kdop_time * 1.0);
+        
+        time_start = clock();
+        for(auto it = bvPairs.begin(); it != bvPairs.end(); it++)
+        {
+            bool t = AABBTree::TraverseDetective(aabbtrees[it->first]->Root, aabbtrees[it->second]->Root);
+            if(t)
+                modelPairs.push_back(*it);
+        }
+        float cd_time = clock() - time_start;
+        int bvCheckCount = uniqueCount(bvPairs);
+        float kdopInitTime = single_kdop_time * modelnum + single_AABB_time * bvCheckCount;
+        printf("kDop check collision pair: %d\n", bvPairs.size());
+        printf("Model collision pair by kDOP: %d\n", modelPairs.size());
+        printf("kDOP init time(construct kdop(%d count) + aabbtree(%d count): %.2f\n", modelnum, bvCheckCount, kdopInitTime);
+        printf("kDOP cd time: %.2f\n", cd_time);
+        float bvHitRate = modelPairs.size() * 1.0 / bvPairs.size();
+        printf("kDOP hit rate : %.4f\n", bvHitRate);
+    }
+    #pragma endregion
+
+    vector<std::pair<int, int> > allPairs;
+    for(int i = 0; i < modelnum-1; i++)
+        for(int j = i+1; j < modelnum; j++)
+            allPairs.push_back(std::make_pair(i, j));
+    #pragma region kCBP
+    {
+        bvPairs.clear();
+        modelPairs.clear();
+        time_start = clock();
+        vector<LibCCDQueryStatic*> gjks;
+        for(auto it = allPairs.begin(); it != allPairs.end(); it++)
+        {
+            LibCCDQueryStatic * gjkStatic = new LibCCDQueryStatic(NonMeshPolyhedraData[it->first], NonMeshPolyhedraData[it->second]); 
+            gjks.push_back(gjkStatic);
+        }
+        printf("init kCBP GJK time: %.2f \n", (clock()-time_start)*1.0);
+
+        time_start = clock();
+        for(int i = 0; i < gjks.size(); i++)
+        {
+            if(gjks[i]->detection())
+                bvPairs.push_back(*(allPairs.begin()+i));
+        }
+        float cd_kcbp_time = clock() - time_start;
+        printf("collision detection kDop time: %.2f\n", cd_kcbp_time * 1.0);
+
+        for(auto it = bvPairs.begin(); it != bvPairs.end(); it++)
+        {
+            bool t = AABBTree::TraverseDetective(aabbtrees[it->first]->Root, aabbtrees[it->second]->Root);
+            if(t)
+                modelPairs.push_back(*it);
+        }
+        float cd_time = clock() - time_start;
+        int bvCheckCount = uniqueCount(bvPairs);
+        float kCBPInitTime = single_kcbp_time * modelnum + single_AABB_time * bvCheckCount;
+        
+        printf("kCBP check collision pair: %d\n", bvPairs.size());
+        printf("Model collision pair by kCBP: %d\n", modelPairs.size());
+        printf("kCBP init time(construct kcbp(%d count) + aabbtree(%d count): %.2f\n", modelnum, bvCheckCount, kCBPInitTime);
+        printf("kCBP cd time: %.2f\n", cd_time);
+        float bvHitRate = modelPairs.size() * 1.0 / bvPairs.size();
+        printf("kCBP hit rate : %.4f\n", bvHitRate);
+        for(int i = 0; i < gjks.size(); i++)
+            delete gjks[i];
+    }
+    #pragma endregion
+
+   
+    #pragma region ConvexHull
+    {
+        bvPairs.clear();
+        modelPairs.clear();
+        time_start = clock();
+        vector<LibCCDQueryStatic*> gjks;
+        for(auto it = allPairs.begin(); it != allPairs.end(); it++)
+        {
+            LibCCDQueryStatic * gjkStatic = new LibCCDQueryStatic(NonMeshConvexHullData[it->first], NonMeshConvexHullData[it->second]); 
+            gjks.push_back(gjkStatic);
+        }
+        printf("init convexhull GJK time: %.2f \n", (clock()-time_start)*1.0);
+
+        time_start = clock();
+        for(int i = 0; i < gjks.size(); i++)
+        {
+            if(gjks[i]->detection())
+                bvPairs.push_back(*(allPairs.begin()+i));
+        }
+        float cd_convexhull_time = clock() - time_start;
+        printf("collision detection kDop time: %.2f\n", cd_convexhull_time * 1.0);
+
+        for(auto it = bvPairs.begin(); it != bvPairs.end(); it++)
+        {
+            bool t = AABBTree::TraverseDetective(aabbtrees[it->first]->Root, aabbtrees[it->second]->Root);
+            if(t)
+                modelPairs.push_back(*it);
+        }
+        float cd_time = clock() - time_start;
+        int bvCheckCount = uniqueCount(bvPairs);
+        float convexhullInitTime = single_convexhull_time * modelnum + single_AABB_time * bvCheckCount;
+        printf("Convexhull check collision pair: %d\n", bvPairs.size());
+        printf("Model collision pair by Convexhull: %d\n", modelPairs.size());
+        printf("Convexhull init time(construct convexhull(%d count) + aabbtree(%d count): %.2f\n", modelnum, bvCheckCount, convexhullInitTime);
+        printf("Convexhull cd time: %.2f\n", cd_time);
+        float bvHitRate = modelPairs.size() * 1.0 / bvPairs.size();
+        printf("Convexhull hit rate : %.4f\n", bvHitRate);
+        for(int i = 0; i < gjks.size(); i++)
+            delete gjks[i];
+    }
+    #pragma endregion
+
+    vector<std::pair<int, int>> boxPairs;
     clock_t c_time = clock();
     BoundingBox::CollsionDetection(ModelBoundingBoxes, boxPairs);
     c_time = clock() - c_time;
     printf("collision detection box time: %.2f\n", c_time * 1.0);
     printf("box collision size: %d\n", boxPairs.size());
-    vector<bool> needMoreCheck(modelnum, false);
-    for(auto it = boxPairs.begin(); it != boxPairs.end(); it++)
-        needMoreCheck[it->first] = needMoreCheck[it->second] = true;
-
-    int model_num = MeshpolyhedraData.size();
-    clock_t time_start = clock();
-    vector<AABBTree*> aabbtrees(model_num, NULL);
-    int aabbneed = 0;
-    for(int i = 0; i < model_num; i++)
-    {
-        if(needMoreCheck[i])
-        {
-            aabbtrees[i] = constructAABBTree(MeshPointsData[i], trianges_index);
-            aabbneed++;
-        }
-    }
-    float time_during = clock() - time_start;
-    printf("build AABB time : %.2f\n", time_during);
-    printf("build AABB count: %d\n", aabbneed);
-    float single_AABB_time = time_during / aabbneed;
-
     int bvCheckCount = uniqueCount(boxPairs);
-
-    vector<std::pair<int, int>> bvPairs;
-    vector<std::pair<int, int>> modelPairs;
     
-    //kdop evaluate
+    #pragma region kDopAfterBoxFitler
     {
+        bvPairs.clear();
+        modelPairs.clear();
         time_start = clock();
         for(auto it = boxPairs.begin(); it != boxPairs.end(); it++)
         {
@@ -908,19 +1048,20 @@ void staticEvaluate(float single_kcbp_time, float single_convexhull_time, float 
         float cd_time = clock() - time_start;
         int modelCheckCount = uniqueCount(bvPairs);
         float kdopInitTime = single_kdop_time * bvCheckCount + single_AABB_time * modelCheckCount;
-        printf("kDop check collision pair: %d\n", bvPairs.size());
-        printf("Between kDop check time: %.2f \n", bvCheckTime);
-        printf("Model collision pair by kDOP: %d\n", modelPairs.size());
-        printf("kDOP init time(construct kdop(%d count) + aabbtree(%d count): %.2f\n", bvCheckCount, modelCheckCount, kdopInitTime);
-        printf("kDOP cd time: %.2f\n", cd_time);
+        printf("kDop check collision pair(AfterBox): %d\n", bvPairs.size());
+        printf("Between kDop check time(AfterBox): %.2f \n", bvCheckTime);
+        printf("Model collision pair by kDOP(AfterBox): %d\n", modelPairs.size());
+        printf("kDOP init time(AfterBox)(construct kdop(%d count) + aabbtree(%d count): %.2f\n", bvCheckCount, modelCheckCount, kdopInitTime);
+        printf("kDOP cd time(AfterBox): %.2f\n", cd_time);
         float bvHitRate = modelPairs.size() * 1.0 / bvPairs.size();
-        printf("kDOP hit rate : %.4f\n", bvHitRate);
+        printf("kDOP hit rate(AfterBox) : %.4f\n", bvHitRate);
     }
-    bvPairs.clear();
-    modelPairs.clear();
+    #pragma endregion
 
-    //kcbp evaluate
+    #pragma region kCBPAfterBoxFitler
     {
+        bvPairs.clear();
+        modelPairs.clear();
         time_start = clock();
         vector<LibCCDQueryStatic*> gjks;
         for(auto it = boxPairs.begin(); it != boxPairs.end(); it++)
@@ -928,7 +1069,7 @@ void staticEvaluate(float single_kcbp_time, float single_convexhull_time, float 
             LibCCDQueryStatic * gjkStatic = new LibCCDQueryStatic(NonMeshPolyhedraData[it->first], NonMeshPolyhedraData[it->second]); 
             gjks.push_back(gjkStatic);
         }
-        printf("init kCBP GJK time: %.2f \n", (clock()-time_start)*1.0);
+        printf("init kCBP GJK time(AfterBox): %.2f \n", (clock()-time_start)*1.0);
 
         time_start = clock();
         for(int i = 0; i < gjks.size(); i++)
@@ -946,23 +1087,23 @@ void staticEvaluate(float single_kcbp_time, float single_convexhull_time, float 
         float cd_time = clock() - time_start;
         int modelCheckCount = uniqueCount(bvPairs);
         float kCBPInitTime = single_kcbp_time * bvCheckCount + single_AABB_time * modelCheckCount;
-        
-        printf("kCBP check collision pair: %d\n", bvPairs.size());
-        printf("Between kCBP check time: %.2f \n", bvCheckTime);
-        printf("Model collision pair by kCBP: %d\n", modelPairs.size());
-        printf("kCBP init time(construct kcbp(%d count) + aabbtree(%d count): %.2f\n", bvCheckCount, modelCheckCount, kCBPInitTime);
-        printf("kCBP cd time: %.2f\n", cd_time);
+
+        printf("kCBP check collision pair(AfterBox): %d\n", bvPairs.size());
+        printf("Between kCBP check time(AfterBox): %.2f \n", bvCheckTime);
+        printf("Model collision pair by kCBP(AfterBox): %d\n", modelPairs.size());
+        printf("kCBP init time(AfterBox)(construct kcbp(%d count) + aabbtree(%d count): %.2f\n", bvCheckCount, modelCheckCount, kCBPInitTime);
+        printf("kCBP cd time(AfterBox): %.2f\n", cd_time);
         float bvHitRate = modelPairs.size() * 1.0 / bvPairs.size();
-        printf("kCBP hit rate : %.4f\n", bvHitRate);
+        printf("kCBP hit rate(AfterBox): %.4f\n", bvHitRate);
         for(int i = 0; i < gjks.size(); i++)
             delete gjks[i];
     }
+    #pragma endregion
 
-    bvPairs.clear();
-    modelPairs.clear();
-
-    //convex hull precheck evaluate
+    #pragma region ConvexHullAfterBoxFitler
     {
+        bvPairs.clear();
+        modelPairs.clear();
         time_start = clock();
         vector<LibCCDQueryStatic*> gjks;
         for(auto it = boxPairs.begin(); it != boxPairs.end(); it++)
@@ -970,7 +1111,7 @@ void staticEvaluate(float single_kcbp_time, float single_convexhull_time, float 
             LibCCDQueryStatic * gjkStatic = new LibCCDQueryStatic(NonMeshConvexHullData[it->first], NonMeshConvexHullData[it->second]); 
             gjks.push_back(gjkStatic);
         }
-        printf("init convexhull GJK time: %.2f \n", (clock()-time_start)*1.0);
+        printf("init convexhull GJK time(AfterBox): %.2f \n", (clock()-time_start)*1.0);
 
         time_start = clock();
         mat4 indenty = CMatrix::Identity;
@@ -990,16 +1131,17 @@ void staticEvaluate(float single_kcbp_time, float single_convexhull_time, float 
         int modelCheckCount = uniqueCount(bvPairs);
         float convexhullInitTime = single_convexhull_time * bvCheckCount + single_AABB_time * modelCheckCount;
 
-        printf("Convexhull check collision pair: %d\n", bvPairs.size());
-        printf("Between Convexhull check time: %.2f \n", bvCheckTime);
-        printf("Model collision pair by Convexhull: %d\n", modelPairs.size());
-        printf("Convexhull init time(construct convexhull(%d count) + aabbtree(%d count): %.2f\n", bvCheckCount, modelCheckCount, convexhullInitTime);
-        printf("Convexhull cd time: %.2f\n", cd_time);
+        printf("Convexhull check collision pair(AfterBox): %d\n", bvPairs.size());
+        printf("Between Convexhull check time(AfterBox): %.2f \n", bvCheckTime);
+        printf("Model collision pair by Convexhull(AfterBox): %d\n", modelPairs.size());
+        printf("Convexhull init time(AfterBox)(construct convexhull(%d count) + aabbtree(%d count): %.2f\n", bvCheckCount, modelCheckCount, convexhullInitTime);
+        printf("Convexhull cd time(AfterBox): %.2f\n", cd_time);
         float bvHitRate = modelPairs.size() * 1.0 / bvPairs.size();
-        printf("Convexhull hit rate : %.4f\n", bvHitRate);
+        printf("Convexhull hit rate(AfterBox): %.4f\n", bvHitRate);
         for(int i = 0; i < gjks.size(); i++)
             delete gjks[i];
     }
+    #pragma endregion
 
     for(auto it = modelPairs.begin(); it != modelPairs.end(); it++)
         collision_index[it->first] = collision_index[it->second] = true;
@@ -1021,7 +1163,8 @@ int main(int argc, char** argv)
     bool loaded = FileManager::readObjPointsAndFacetsFast(points3d, trianges_index, objfilename, SingleModelBoundingBox.Min, SingleModelBoundingBox.Max);
     scalebunny(points3d, SingleModelBoundingBox.Min, SingleModelBoundingBox.Max); //Attention
     if(! loaded) {cout << "load failed:" << objfilename << endl;return 0;}
-    cout << objfilename << " \tpoints number: " << points3d.size() <<endl;
+    cout << "objfile:" << objfilename << " \npoints number: " << points3d.size() <<endl;
+    cout << "triangle number: " << trianges_index.size()/3 <<endl;
 
     string readconfig = "config/04-03-30-rand.config";//"12-19-10-31-50-rand.config";
   
@@ -1050,9 +1193,10 @@ int main(int argc, char** argv)
             print_pairs = true;
     }
  
-    clock_t kcbp_time, kdop_time, convexhull_time;
+    clock_t kcbp_time, kdop_time, convexhull_time, bbox_time, bounding_sphere_time;
 
     clock_t s, e;
+    #pragma region kCBP
     vector<vector<Polygon3D*>> tmpPolyhedra;
     s = clock();
     for (int i = 0; i < benchtest; i++)
@@ -1075,7 +1219,9 @@ int main(int argc, char** argv)
 
     KDop3D::getResultByDualMappingMesh(planes, MeshPolyhedronPoints);//mapping get points/ then call convexhull get kcbp mesh
     printf("Polytopes: %d\n", polyhedra.size());
+    #pragma endregion
 
+    #pragma region Convexhull
     //ConvexHull 
     CGALConvexHull::getConvexHullFacets(points3d, MeshConvexHullPoints);
     CGALConvexHull::getConvexHullVertices(points3d, NonMeshConvexHullPoints);
@@ -1088,29 +1234,11 @@ int main(int argc, char** argv)
     e = clock();
     convexhull_time = e - s;
     printf("convexhull for models time (%d times) totally: %.2f\n", benchtest, (e - s) * 1.0f);
+    #pragma endregion
     
-    
-    /*//kDOP 
-    vector<CP_Vector3D> kdopNormals = KCBP::getCollDetNormals(k);
-    tmpPolyhedra.clear();
-    s = clock();
-    for(int i = 0; i < benchtest; i++)
-    {
-        vector<Plane3D> kdopPlanes;
-        kdopPlanes = SSEProjection::projectsse(points3d, kdopNormals);
-        vector<Polygon3D*> tmp;
-        KDop3D::getResultByDualMapping(kdopPlanes, tmp);//mapping get points / then sort points ccw construct kcbp
-        tmpPolyhedra.push_back(tmp);
-    }
-    e = clock();
-    printf("kDOP for models time (%d times) totally: %.2f\n", benchtest, (e - s) * 1.0f);
-    kdopPolyhedra = tmpPolyhedra[0];
-    for(int i = 1; i < tmpPolyhedra.size(); i++)
-        for(int j = 0; j < tmpPolyhedra[i].size(); j++)
-            delete tmpPolyhedra[i][j];
-    */
     genModels(modelnum, readconfig);
 
+    #pragma region kDop
     s = clock();
     vector<CP_Vector3D> kdopNormals = KCBP::getCollDetNormals(k);
     for(int i = 0; i < MeshPointsData.size(); i++)
@@ -1121,8 +1249,51 @@ int main(int argc, char** argv)
     e = clock();
     kdop_time = e - s;
     printf("kDOP for models time (%d models) totally: %.2f\n", MeshPointsData.size(), (e - s) * 1.0f);
+    #pragma endregion
 
-    staticEvaluate(kcbp_time * 1.0 / benchtest, convexhull_time * 1.0 / benchtest, kdop_time * 1.0 / benchtest);
+    #pragma region BBox
+    ModelBoundingBoxes.resize(MeshpolyhedraData.size());
+    s = clock();
+    for(int i = 0; i < ModelBoundingBoxes.size(); i++)
+    {
+        BoundingBox box = BoundingBox::GetNull();
+        vector<CP_Vector3D> &model_points = MeshPointsData[i];
+        for(int j = 0; j < model_points.size();j++)
+        {
+            CP_Vector3D &p = model_points[j];
+            if(box.Min.x > p.x)
+                box.Min.x = p.x;
+            if(box.Min.y > p.y)
+                box.Min.y = p.y;
+            if(box.Min.z > p.z)
+                box.Min.z = p.z;
+            if(box.Max.x < p.x)
+                box.Max.x = p.x;
+            if(box.Max.y < p.y)
+                box.Max.y = p.y;
+            if(box.Max.z < p.z)
+                box.Max.z = p.z;
+        }
+        ModelBoundingBoxes[i] = box;
+    }
+    bbox_time = clock() - s;
+    printf("boundingbox for models time (%d times) totally: %.2f\n", MeshPointsData.size(), bbox_time*1.0);
+    #pragma endregion
+
+    #pragma region BoundingSphere
+    ModelBoundingSpheres.resize(MeshpolyhedraData.size());
+    s = clock();
+    for(int i = 0; i < ModelBoundingSpheres.size(); i++)
+    {
+        vector<CP_Vector3D> &model_points = MeshPointsData[i];
+        BoundingShpere sphere = BoundingShpere::GetBoundingSphere(model_points);
+        ModelBoundingSpheres[i] = sphere;
+    }
+    bounding_sphere_time = clock() - s;
+    printf("boundingSphere for models time (%d times) totally: %.2f\n", MeshPointsData.size(), bounding_sphere_time*1.0);
+    #pragma endregion
+
+    staticEvaluate(kcbp_time * 1.0 / benchtest, convexhull_time * 1.0 / benchtest, kdop_time * 1.0 / benchtest, bbox_time * 1.0/ benchtest, bounding_sphere_time * 1.0 / benchtest);
 
 #ifdef TEMPDEBUG
     NO_DISPLAY = false;
