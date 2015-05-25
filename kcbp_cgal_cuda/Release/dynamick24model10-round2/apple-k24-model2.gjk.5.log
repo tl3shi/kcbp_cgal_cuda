@@ -1,0 +1,216 @@
+models/apple.obj 	points number: 8118
+K = 24
+ModelNum = 10
+Moving steps : 10
+ach banchtest (10 times) totally: 9.00
+cluster time (10 times) totally: 1.00
+normalsize = 24
+Projection time banchtest(10 times) CPU(SSE) totaly:3
+duality mapping
+duality mapping time (10 times) totally: 1.00
+Polytopes: 24
+reading 9 model configs(plus fixed one,total = 10)
+build boundingbox time : 0.00
+init time to build AABBTrees for model and GJK for kcbp (9 pairs): 206.00
+reading dynamic config transforms : 10
+Collision detection cost time: 3.00
+Collisions of kcbp pairs: 2
+Collisions of model pairs: 2
+models/apple.obj 	points number: 8118
+K = 24
+ModelNum = 10
+Moving steps : 50
+ach banchtest (10 times) totally: 9.00
+cluster time (10 times) totally: 1.00
+normalsize = 24
+Projection time banchtest(10 times) CPU(SSE) totaly:3
+duality mapping
+duality mapping time (10 times) totally: 1.00
+Polytopes: 24
+reading 9 model configs(plus fixed one,total = 10)
+build boundingbox time : 0.00
+init time to build AABBTrees for model and GJK for kcbp (9 pairs): 208.00
+reading dynamic config transforms : 50
+Collision detection cost time: 6.00
+Collisions of kcbp pairs: 12
+Collisions of model pairs: 10
+models/apple.obj 	points number: 8118
+K = 24
+ModelNum = 10
+Moving steps : 100
+ach banchtest (10 times) totally: 22.00
+cluster time (10 times) totally: 1.00
+normalsize = 24
+Projection time banchtest(10 times) CPU(SSE) totaly:6
+duality mapping
+duality mapping time (10 times) totally: 1.00
+Polytopes: 24
+reading 9 model configs(plus fixed one,total = 10)
+build boundingbox time : 1.00
+init time to build AABBTrees for model and GJK for kcbp (9 pairs): 207.00
+reading dynamic config transforms : 100
+Collision detection cost time: 11.00
+Collisions of kcbp pairs: 22
+Collisions of model pairs: 20
+models/apple.obj 	points number: 8118
+K = 24
+ModelNum = 10
+Moving steps : 200
+ach banchtest (10 times) totally: 9.00
+cluster time (10 times) totally: 1.00
+normalsize = 24
+Projection time banchtest(10 times) CPU(SSE) totaly:3
+duality mapping
+duality mapping time (10 times) totally: 1.00
+Polytopes: 24
+reading 9 model configs(plus fixed one,total = 10)
+build boundingbox time : 0.00
+init time to build AABBTrees for model and GJK for kcbp (9 pairs): 243.00
+reading dynamic config transforms : 200
+Collision detection cost time: 23.00
+Collisions of kcbp pairs: 44
+Collisions of model pairs: 42
+models/apple.obj 	points number: 8118
+K = 24
+ModelNum = 10
+Moving steps : 300
+ach banchtest (10 times) totally: 14.00
+cluster time (10 times) totally: 1.00
+normalsize = 24
+Projection time banchtest(10 times) CPU(SSE) totaly:4
+duality mapping
+duality mapping time (10 times) totally: 2.00
+Polytopes: 24
+reading 9 model configs(plus fixed one,total = 10)
+build boundingbox time : 1.00
+init time to build AABBTrees for model and GJK for kcbp (9 pairs): 208.00
+reading dynamic config transforms : 300
+Collision detection cost time: 36.00
+Collisions of kcbp pairs: 66
+Collisions of model pairs: 61
+models/apple.obj 	points number: 8118
+K = 24
+ModelNum = 10
+Moving steps : 400
+ach banchtest (10 times) totally: 10.00
+cluster time (10 times) totally: 1.00
+normalsize = 24
+Projection time banchtest(10 times) CPU(SSE) totaly:3
+duality mapping
+duality mapping time (10 times) totally: 2.00
+Polytopes: 24
+reading 9 model configs(plus fixed one,total = 10)
+build boundingbox time : 0.00
+init time to build AABBTrees for model and GJK for kcbp (9 pairs): 211.00
+reading dynamic config transforms : 400
+Collision detection cost time: 47.00
+Collisions of kcbp pairs: 86
+Collisions of model pairs: 79
+models/apple.obj 	points number: 8118
+K = 24
+ModelNum = 10
+Moving steps : 500
+ach banchtest (10 times) totally: 9.00
+cluster time (10 times) totally: 1.00
+normalsize = 24
+Projection time banchtest(10 times) CPU(SSE) totaly:3
+duality mapping
+duality mapping time (10 times) totally: 2.00
+Polytopes: 24
+reading 9 model configs(plus fixed one,total = 10)
+build boundingbox time : 0.00
+init time to build AABBTrees for model and GJK for kcbp (9 pairs): 206.00
+reading dynamic config transforms : 500
+Collision detection cost time: 71.00
+Collisions of kcbp pairs: 108
+Collisions of model pairs: 99
+models/apple.obj 	points number: 8118
+K = 24
+ModelNum = 10
+Moving steps : 600
+ach banchtest (10 times) totally: 22.00
+cluster time (10 times) totally: 1.00
+normalsize = 24
+Projection time banchtest(10 times) CPU(SSE) totaly:4
+duality mapping
+duality mapping time (10 times) totally: 2.00
+Polytopes: 24
+reading 9 model configs(plus fixed one,total = 10)
+build boundingbox time : 0.00
+init time to build AABBTrees for model and GJK for kcbp (9 pairs): 209.00
+reading dynamic config transforms : 600
+Collision detection cost time: 85.00
+Collisions of kcbp pairs: 132
+Collisions of model pairs: 121
+models/apple.obj 	points number: 8118
+K = 24
+ModelNum = 10
+Moving steps : 700
+ach banchtest (10 times) totally: 16.00
+cluster time (10 times) totally: 2.00
+normalsize = 24
+Projection time banchtest(10 times) CPU(SSE) totaly:7
+duality mapping
+duality mapping time (10 times) totally: 3.00
+Polytopes: 24
+reading 9 model configs(plus fixed one,total = 10)
+build boundingbox time : 0.00
+init time to build AABBTrees for model and GJK for kcbp (9 pairs): 209.00
+reading dynamic config transforms : 700
+Collision detection cost time: 104.00
+Collisions of kcbp pairs: 163
+Collisions of model pairs: 149
+models/apple.obj 	points number: 8118
+K = 24
+ModelNum = 10
+Moving steps : 800
+ach banchtest (10 times) totally: 22.00
+cluster time (10 times) totally: 1.00
+normalsize = 24
+Projection time banchtest(10 times) CPU(SSE) totaly:5
+duality mapping
+duality mapping time (10 times) totally: 1.00
+Polytopes: 24
+reading 9 model configs(plus fixed one,total = 10)
+build boundingbox time : 1.00
+init time to build AABBTrees for model and GJK for kcbp (9 pairs): 205.00
+reading dynamic config transforms : 800
+Collision detection cost time: 119.00
+Collisions of kcbp pairs: 186
+Collisions of model pairs: 169
+models/apple.obj 	points number: 8118
+K = 24
+ModelNum = 10
+Moving steps : 900
+ach banchtest (10 times) totally: 10.00
+cluster time (10 times) totally: 0.00
+normalsize = 24
+Projection time banchtest(10 times) CPU(SSE) totaly:3
+duality mapping
+duality mapping time (10 times) totally: 2.00
+Polytopes: 24
+reading 9 model configs(plus fixed one,total = 10)
+build boundingbox time : 0.00
+init time to build AABBTrees for model and GJK for kcbp (9 pairs): 209.00
+reading dynamic config transforms : 900
+Collision detection cost time: 138.00
+Collisions of kcbp pairs: 213
+Collisions of model pairs: 192
+models/apple.obj 	points number: 8118
+K = 24
+ModelNum = 10
+Moving steps : 1000
+ach banchtest (10 times) totally: 16.00
+cluster time (10 times) totally: 1.00
+normalsize = 24
+Projection time banchtest(10 times) CPU(SSE) totaly:3
+duality mapping
+duality mapping time (10 times) totally: 1.00
+Polytopes: 24
+reading 9 model configs(plus fixed one,total = 10)
+build boundingbox time : 0.00
+init time to build AABBTrees for model and GJK for kcbp (9 pairs): 209.00
+reading dynamic config transforms : 1000
+Collision detection cost time: 162.00
+Collisions of kcbp pairs: 228
+Collisions of model pairs: 204

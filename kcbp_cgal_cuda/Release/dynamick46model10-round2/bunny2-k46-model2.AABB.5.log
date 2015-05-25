@@ -1,0 +1,216 @@
+models/bunny2.obj 	points number: 2503
+K = 46
+ModelNum = 10
+Moving steps : 10
+ach banchtest (10 times) totally: 6.00
+cluster time (10 times) totally: 1.00
+normalsize = 46
+Projection time banchtest(10 times) CPU(SSE) totaly:2
+duality mapping
+duality mapping time (10 times) totally: 2.00
+Polytopes: 46
+reading 9 model configs(plus fixed one,total = 10)
+build boundingbox time : 0.00
+init time to build AABBTrees for model and kcbp (9 paris): 106.00
+reading dynamic config transforms : 10
+Collision detection cost time: 4.00
+Collisions of kcbp pairs: 4
+Collisions of model pairs: 2
+models/bunny2.obj 	points number: 2503
+K = 46
+ModelNum = 10
+Moving steps : 50
+ach banchtest (10 times) totally: 6.00
+cluster time (10 times) totally: 1.00
+normalsize = 46
+Projection time banchtest(10 times) CPU(SSE) totaly:2
+duality mapping
+duality mapping time (10 times) totally: 3.00
+Polytopes: 46
+reading 9 model configs(plus fixed one,total = 10)
+build boundingbox time : 0.00
+init time to build AABBTrees for model and kcbp (9 paris): 104.00
+reading dynamic config transforms : 50
+Collision detection cost time: 14.00
+Collisions of kcbp pairs: 14
+Collisions of model pairs: 11
+models/bunny2.obj 	points number: 2503
+K = 46
+ModelNum = 10
+Moving steps : 100
+ach banchtest (10 times) totally: 12.00
+cluster time (10 times) totally: 2.00
+normalsize = 46
+Projection time banchtest(10 times) CPU(SSE) totaly:2
+duality mapping
+duality mapping time (10 times) totally: 3.00
+Polytopes: 46
+reading 9 model configs(plus fixed one,total = 10)
+build boundingbox time : 0.00
+init time to build AABBTrees for model and kcbp (9 paris): 105.00
+reading dynamic config transforms : 100
+Collision detection cost time: 27.00
+Collisions of kcbp pairs: 23
+Collisions of model pairs: 20
+models/bunny2.obj 	points number: 2503
+K = 46
+ModelNum = 10
+Moving steps : 200
+ach banchtest (10 times) totally: 6.00
+cluster time (10 times) totally: 1.00
+normalsize = 46
+Projection time banchtest(10 times) CPU(SSE) totaly:2
+duality mapping
+duality mapping time (10 times) totally: 3.00
+Polytopes: 46
+reading 9 model configs(plus fixed one,total = 10)
+build boundingbox time : 0.00
+init time to build AABBTrees for model and kcbp (9 paris): 121.00
+reading dynamic config transforms : 200
+Collision detection cost time: 47.00
+Collisions of kcbp pairs: 50
+Collisions of model pairs: 43
+models/bunny2.obj 	points number: 2503
+K = 46
+ModelNum = 10
+Moving steps : 300
+ach banchtest (10 times) totally: 5.00
+cluster time (10 times) totally: 2.00
+normalsize = 46
+Projection time banchtest(10 times) CPU(SSE) totaly:1
+duality mapping
+duality mapping time (10 times) totally: 3.00
+Polytopes: 46
+reading 9 model configs(plus fixed one,total = 10)
+build boundingbox time : 0.00
+init time to build AABBTrees for model and kcbp (9 paris): 103.00
+reading dynamic config transforms : 300
+Collision detection cost time: 69.00
+Collisions of kcbp pairs: 71
+Collisions of model pairs: 62
+models/bunny2.obj 	points number: 2503
+K = 46
+ModelNum = 10
+Moving steps : 400
+ach banchtest (10 times) totally: 11.00
+cluster time (10 times) totally: 2.00
+normalsize = 46
+Projection time banchtest(10 times) CPU(SSE) totaly:4
+duality mapping
+duality mapping time (10 times) totally: 5.00
+Polytopes: 46
+reading 9 model configs(plus fixed one,total = 10)
+build boundingbox time : 1.00
+init time to build AABBTrees for model and kcbp (9 paris): 115.00
+reading dynamic config transforms : 400
+Collision detection cost time: 91.00
+Collisions of kcbp pairs: 95
+Collisions of model pairs: 82
+models/bunny2.obj 	points number: 2503
+K = 46
+ModelNum = 10
+Moving steps : 500
+ach banchtest (10 times) totally: 13.00
+cluster time (10 times) totally: 3.00
+normalsize = 46
+Projection time banchtest(10 times) CPU(SSE) totaly:4
+duality mapping
+duality mapping time (10 times) totally: 3.00
+Polytopes: 46
+reading 9 model configs(plus fixed one,total = 10)
+build boundingbox time : 0.00
+init time to build AABBTrees for model and kcbp (9 paris): 110.00
+reading dynamic config transforms : 500
+Collision detection cost time: 123.00
+Collisions of kcbp pairs: 120
+Collisions of model pairs: 102
+models/bunny2.obj 	points number: 2503
+K = 46
+ModelNum = 10
+Moving steps : 600
+ach banchtest (10 times) totally: 13.00
+cluster time (10 times) totally: 3.00
+normalsize = 46
+Projection time banchtest(10 times) CPU(SSE) totaly:2
+duality mapping
+duality mapping time (10 times) totally: 4.00
+Polytopes: 46
+reading 9 model configs(plus fixed one,total = 10)
+build boundingbox time : 0.00
+init time to build AABBTrees for model and kcbp (9 paris): 105.00
+reading dynamic config transforms : 600
+Collision detection cost time: 151.00
+Collisions of kcbp pairs: 145
+Collisions of model pairs: 122
+models/bunny2.obj 	points number: 2503
+K = 46
+ModelNum = 10
+Moving steps : 700
+ach banchtest (10 times) totally: 6.00
+cluster time (10 times) totally: 1.00
+normalsize = 46
+Projection time banchtest(10 times) CPU(SSE) totaly:2
+duality mapping
+duality mapping time (10 times) totally: 3.00
+Polytopes: 46
+reading 9 model configs(plus fixed one,total = 10)
+build boundingbox time : 1.00
+init time to build AABBTrees for model and kcbp (9 paris): 106.00
+reading dynamic config transforms : 700
+Collision detection cost time: 171.00
+Collisions of kcbp pairs: 174
+Collisions of model pairs: 147
+models/bunny2.obj 	points number: 2503
+K = 46
+ModelNum = 10
+Moving steps : 800
+ach banchtest (10 times) totally: 13.00
+cluster time (10 times) totally: 1.00
+normalsize = 46
+Projection time banchtest(10 times) CPU(SSE) totaly:3
+duality mapping
+duality mapping time (10 times) totally: 3.00
+Polytopes: 46
+reading 9 model configs(plus fixed one,total = 10)
+build boundingbox time : 0.00
+init time to build AABBTrees for model and kcbp (9 paris): 106.00
+reading dynamic config transforms : 800
+Collision detection cost time: 203.00
+Collisions of kcbp pairs: 202
+Collisions of model pairs: 170
+models/bunny2.obj 	points number: 2503
+K = 46
+ModelNum = 10
+Moving steps : 900
+ach banchtest (10 times) totally: 6.00
+cluster time (10 times) totally: 1.00
+normalsize = 46
+Projection time banchtest(10 times) CPU(SSE) totaly:2
+duality mapping
+duality mapping time (10 times) totally: 3.00
+Polytopes: 46
+reading 9 model configs(plus fixed one,total = 10)
+build boundingbox time : 0.00
+init time to build AABBTrees for model and kcbp (9 paris): 103.00
+reading dynamic config transforms : 900
+Collision detection cost time: 231.00
+Collisions of kcbp pairs: 228
+Collisions of model pairs: 191
+models/bunny2.obj 	points number: 2503
+K = 46
+ModelNum = 10
+Moving steps : 1000
+ach banchtest (10 times) totally: 12.00
+cluster time (10 times) totally: 3.00
+normalsize = 46
+Projection time banchtest(10 times) CPU(SSE) totaly:2
+duality mapping
+duality mapping time (10 times) totally: 3.00
+Polytopes: 46
+reading 9 model configs(plus fixed one,total = 10)
+build boundingbox time : 0.00
+init time to build AABBTrees for model and kcbp (9 paris): 107.00
+reading dynamic config transforms : 1000
+Collision detection cost time: 276.00
+Collisions of kcbp pairs: 244
+Collisions of model pairs: 202

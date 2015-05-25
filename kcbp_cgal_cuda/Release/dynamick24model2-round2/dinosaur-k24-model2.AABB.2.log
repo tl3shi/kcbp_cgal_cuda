@@ -1,0 +1,216 @@
+models/dinosaur.obj 	points number: 40277
+K = 24
+ModelNum = 2
+Moving steps : 10
+ach banchtest (2 times) totally: 4.00
+cluster time (2 times) totally: 0.00
+normalsize = 24
+Projection time banchtest(2 times) CPU(SSE) totaly:3
+duality mapping
+duality mapping time (2 times) totally: 1.00
+Polytopes: 24
+reading 1 model configs(plus fixed one,total = 2)
+build boundingbox time : 1.00
+init time to build AABBTrees for model and kcbp (1 paris): 251.00
+reading dynamic config transforms : 10
+Collision detection cost time: 0.00
+Collisions of kcbp pairs: 0
+Collisions of model pairs: 0
+models/dinosaur.obj 	points number: 40277
+K = 24
+ModelNum = 2
+Moving steps : 50
+ach banchtest (2 times) totally: 3.00
+cluster time (2 times) totally: 0.00
+normalsize = 24
+Projection time banchtest(2 times) CPU(SSE) totaly:3
+duality mapping
+duality mapping time (2 times) totally: 0.00
+Polytopes: 24
+reading 1 model configs(plus fixed one,total = 2)
+build boundingbox time : 0.00
+init time to build AABBTrees for model and kcbp (1 paris): 261.00
+reading dynamic config transforms : 50
+Collision detection cost time: 0.00
+Collisions of kcbp pairs: 0
+Collisions of model pairs: 0
+models/dinosaur.obj 	points number: 40277
+K = 24
+ModelNum = 2
+Moving steps : 100
+ach banchtest (2 times) totally: 4.00
+cluster time (2 times) totally: 0.00
+normalsize = 24
+Projection time banchtest(2 times) CPU(SSE) totaly:4
+duality mapping
+duality mapping time (2 times) totally: 0.00
+Polytopes: 24
+reading 1 model configs(plus fixed one,total = 2)
+build boundingbox time : 0.00
+init time to build AABBTrees for model and kcbp (1 paris): 251.00
+reading dynamic config transforms : 100
+Collision detection cost time: 1.00
+Collisions of kcbp pairs: 0
+Collisions of model pairs: 0
+models/dinosaur.obj 	points number: 40277
+K = 24
+ModelNum = 2
+Moving steps : 200
+ach banchtest (2 times) totally: 5.00
+cluster time (2 times) totally: 0.00
+normalsize = 24
+Projection time banchtest(2 times) CPU(SSE) totaly:4
+duality mapping
+duality mapping time (2 times) totally: 1.00
+Polytopes: 24
+reading 1 model configs(plus fixed one,total = 2)
+build boundingbox time : 0.00
+init time to build AABBTrees for model and kcbp (1 paris): 254.00
+reading dynamic config transforms : 200
+Collision detection cost time: 2.00
+Collisions of kcbp pairs: 2
+Collisions of model pairs: 0
+models/dinosaur.obj 	points number: 40277
+K = 24
+ModelNum = 2
+Moving steps : 300
+ach banchtest (2 times) totally: 9.00
+cluster time (2 times) totally: 0.00
+normalsize = 24
+Projection time banchtest(2 times) CPU(SSE) totaly:8
+duality mapping
+duality mapping time (2 times) totally: 1.00
+Polytopes: 24
+reading 1 model configs(plus fixed one,total = 2)
+build boundingbox time : 0.00
+init time to build AABBTrees for model and kcbp (1 paris): 253.00
+reading dynamic config transforms : 300
+Collision detection cost time: 3.00
+Collisions of kcbp pairs: 3
+Collisions of model pairs: 1
+models/dinosaur.obj 	points number: 40277
+K = 24
+ModelNum = 2
+Moving steps : 400
+ach banchtest (2 times) totally: 4.00
+cluster time (2 times) totally: 0.00
+normalsize = 24
+Projection time banchtest(2 times) CPU(SSE) totaly:3
+duality mapping
+duality mapping time (2 times) totally: 0.00
+Polytopes: 24
+reading 1 model configs(plus fixed one,total = 2)
+build boundingbox time : 0.00
+init time to build AABBTrees for model and kcbp (1 paris): 251.00
+reading dynamic config transforms : 400
+Collision detection cost time: 4.00
+Collisions of kcbp pairs: 3
+Collisions of model pairs: 1
+models/dinosaur.obj 	points number: 40277
+K = 24
+ModelNum = 2
+Moving steps : 500
+ach banchtest (2 times) totally: 4.00
+cluster time (2 times) totally: 0.00
+normalsize = 24
+Projection time banchtest(2 times) CPU(SSE) totaly:3
+duality mapping
+duality mapping time (2 times) totally: 0.00
+Polytopes: 24
+reading 1 model configs(plus fixed one,total = 2)
+build boundingbox time : 0.00
+init time to build AABBTrees for model and kcbp (1 paris): 254.00
+reading dynamic config transforms : 500
+Collision detection cost time: 5.00
+Collisions of kcbp pairs: 4
+Collisions of model pairs: 2
+models/dinosaur.obj 	points number: 40277
+K = 24
+ModelNum = 2
+Moving steps : 600
+ach banchtest (2 times) totally: 4.00
+cluster time (2 times) totally: 0.00
+normalsize = 24
+Projection time banchtest(2 times) CPU(SSE) totaly:3
+duality mapping
+duality mapping time (2 times) totally: 1.00
+Polytopes: 24
+reading 1 model configs(plus fixed one,total = 2)
+build boundingbox time : 0.00
+init time to build AABBTrees for model and kcbp (1 paris): 251.00
+reading dynamic config transforms : 600
+Collision detection cost time: 6.00
+Collisions of kcbp pairs: 5
+Collisions of model pairs: 3
+models/dinosaur.obj 	points number: 40277
+K = 24
+ModelNum = 2
+Moving steps : 700
+ach banchtest (2 times) totally: 4.00
+cluster time (2 times) totally: 0.00
+normalsize = 24
+Projection time banchtest(2 times) CPU(SSE) totaly:4
+duality mapping
+duality mapping time (2 times) totally: 0.00
+Polytopes: 24
+reading 1 model configs(plus fixed one,total = 2)
+build boundingbox time : 0.00
+init time to build AABBTrees for model and kcbp (1 paris): 250.00
+reading dynamic config transforms : 700
+Collision detection cost time: 8.00
+Collisions of kcbp pairs: 5
+Collisions of model pairs: 3
+models/dinosaur.obj 	points number: 40277
+K = 24
+ModelNum = 2
+Moving steps : 800
+ach banchtest (2 times) totally: 5.00
+cluster time (2 times) totally: 0.00
+normalsize = 24
+Projection time banchtest(2 times) CPU(SSE) totaly:4
+duality mapping
+duality mapping time (2 times) totally: 0.00
+Polytopes: 24
+reading 1 model configs(plus fixed one,total = 2)
+build boundingbox time : 0.00
+init time to build AABBTrees for model and kcbp (1 paris): 257.00
+reading dynamic config transforms : 800
+Collision detection cost time: 8.00
+Collisions of kcbp pairs: 5
+Collisions of model pairs: 3
+models/dinosaur.obj 	points number: 40277
+K = 24
+ModelNum = 2
+Moving steps : 900
+ach banchtest (2 times) totally: 5.00
+cluster time (2 times) totally: 0.00
+normalsize = 24
+Projection time banchtest(2 times) CPU(SSE) totaly:3
+duality mapping
+duality mapping time (2 times) totally: 0.00
+Polytopes: 24
+reading 1 model configs(plus fixed one,total = 2)
+build boundingbox time : 0.00
+init time to build AABBTrees for model and kcbp (1 paris): 252.00
+reading dynamic config transforms : 900
+Collision detection cost time: 11.00
+Collisions of kcbp pairs: 7
+Collisions of model pairs: 5
+models/dinosaur.obj 	points number: 40277
+K = 24
+ModelNum = 2
+Moving steps : 1000
+ach banchtest (2 times) totally: 4.00
+cluster time (2 times) totally: 0.00
+normalsize = 24
+Projection time banchtest(2 times) CPU(SSE) totaly:4
+duality mapping
+duality mapping time (2 times) totally: 0.00
+Polytopes: 24
+reading 1 model configs(plus fixed one,total = 2)
+build boundingbox time : 0.00
+init time to build AABBTrees for model and kcbp (1 paris): 252.00
+reading dynamic config transforms : 1000
+Collision detection cost time: 12.00
+Collisions of kcbp pairs: 7
+Collisions of model pairs: 5

@@ -1,0 +1,72 @@
+reading 9 model configs(plus fixed one,total = 10)
+reading dynamic config transforms : 10
+DopTree:init: Dop::NumOri = 24
+build time for kDOP (9 pairs): 39504.00
+Moving steps : 10, cost time: 1.00
+Collisions of model pairs: 0
+reading 9 model configs(plus fixed one,total = 10)
+reading dynamic config transforms : 50
+DopTree:init: Dop::NumOri = 24
+build time for kDOP (9 pairs): 39578.00
+Moving steps : 50, cost time: 5.00
+Collisions of model pairs: 1
+reading 9 model configs(plus fixed one,total = 10)
+reading dynamic config transforms : 100
+DopTree:init: Dop::NumOri = 24
+build time for kDOP (9 pairs): 39644.00
+Moving steps : 100, cost time: 12.00
+Collisions of model pairs: 3
+reading 9 model configs(plus fixed one,total = 10)
+reading dynamic config transforms : 200
+DopTree:init: Dop::NumOri = 24
+build time for kDOP (9 pairs): 39513.00
+Moving steps : 200, cost time: 24.00
+Collisions of model pairs: 14
+reading 9 model configs(plus fixed one,total = 10)
+reading dynamic config transforms : 300
+DopTree:init: Dop::NumOri = 24
+build time for kDOP (9 pairs): 39498.00
+Moving steps : 300, cost time: 36.00
+Collisions of model pairs: 20
+reading 9 model configs(plus fixed one,total = 10)
+reading dynamic config transforms : 400
+DopTree:init: Dop::NumOri = 24
+build time for kDOP (9 pairs): 39600.00
+Moving steps : 400, cost time: 49.00
+Collisions of model pairs: 27
+reading 9 model configs(plus fixed one,total = 10)
+reading dynamic config transforms : 500
+DopTree:init: Dop::NumOri = 24
+build time for kDOP (9 pairs): 39491.00
+Moving steps : 500, cost time: 60.00
+Collisions of model pairs: 33
+reading 9 model configs(plus fixed one,total = 10)
+reading dynamic config transforms : 600
+DopTree:init: Dop::NumOri = 24
+build time for kDOP (9 pairs): 40260.00
+Moving steps : 600, cost time: 88.00
+Collisions of model pairs: 41
+reading 9 model configs(plus fixed one,total = 10)
+reading dynamic config transforms : 700
+DopTree:init: Dop::NumOri = 24
+build time for kDOP (9 pairs): 40017.00
+Moving steps : 700, cost time: 85.00
+Collisions of model pairs: 48
+reading 9 model configs(plus fixed one,total = 10)
+reading dynamic config transforms : 800
+DopTree:init: Dop::NumOri = 24
+build time for kDOP (9 pairs): 39568.00
+Moving steps : 800, cost time: 98.00
+Collisions of model pairs: 55
+reading 9 model configs(plus fixed one,total = 10)
+reading dynamic config transforms : 900
+DopTree:init: Dop::NumOri = 24
+build time for kDOP (9 pairs): 39497.00
+Moving steps : 900, cost time: 112.00
+Collisions of model pairs: 62
+reading 9 model configs(plus fixed one,total = 10)
+reading dynamic config transforms : 1000
+DopTree:init: Dop::NumOri = 24
+build time for kDOP (9 pairs): 39450.00
+Moving steps : 1000, cost time: 120.00
+Collisions of model pairs: 64

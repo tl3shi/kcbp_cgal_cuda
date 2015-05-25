@@ -73,7 +73,7 @@
     <LibraryPath>D:\CGAL-4.1\build\lib;D:\CGAL-4.1\auxiliary\gmp\lib;C:\Boost\lib;$(LibraryPath)</LibraryPath>
     <SourcePath>D:\CGAL-4.1\src;$(SourcePath)</SourcePath>
     <LibraryWPath>$(WindowsSDK_MetadataPath)</LibraryWPath>
-    <TargetName>BVPreBench</TargetName>
+    <TargetName>BVPreBenchDynamic</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ExecutablePath>$(ExecutablePath)</ExecutablePath>
@@ -85,7 +85,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <IncludePath>D:\CGAL-4.1\include;D:\CGAL-4.1\auxiliary\gmp\include;C:\Boost\include\boost-1_53;D:\CGAL-4.1\build\include;$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSDK_IncludePath);</IncludePath>
     <LibraryPath>D:\CGAL-4.1\build\lib;D:\CGAL-4.1\auxiliary\gmp\lib;C:\Boost\lib;$(VCInstallDir)lib;$(VCInstallDir)atlmfc\lib;$(WindowsSDK_LibraryPath_x86);</LibraryPath>
-    <TargetName>BVPreBench</TargetName>
+    <TargetName>BVPreBenchDynamic</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <IncludePath>D:\CGAL-4.1\include;D:\CGAL-4.1\auxiliary\gmp\include;C:\Boost\include\boost-1_53;D:\CGAL-4.1\build\include;$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSDK_IncludePath);</IncludePath>
@@ -190,7 +190,7 @@
     </CudaCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="BVPreBench.cpp" />
+    <ClCompile Include="BVPreBenchDynamic.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="CP_PointVector.cpp" />
     <ClCompile Include="gl2ps.c" />

@@ -1,0 +1,216 @@
+models/happy_buddha.obj 	points number: 24810
+K = 24
+ModelNum = 10
+Moving steps : 10
+ach banchtest (10 times) totally: 14.00
+cluster time (10 times) totally: 0.00
+normalsize = 24
+Projection time banchtest(10 times) CPU(SSE) totaly:10
+duality mapping
+duality mapping time (10 times) totally: 2.00
+Polytopes: 24
+reading 9 model configs(plus fixed one,total = 10)
+build boundingbox time : 1.00
+init time to build AABBTrees for model and kcbp (9 paris): 1360.00
+reading dynamic config transforms : 10
+Collision detection cost time: 2.00
+Collisions of kcbp pairs: 0
+Collisions of model pairs: 0
+models/happy_buddha.obj 	points number: 24810
+K = 24
+ModelNum = 10
+Moving steps : 50
+ach banchtest (10 times) totally: 13.00
+cluster time (10 times) totally: 1.00
+normalsize = 24
+Projection time banchtest(10 times) CPU(SSE) totaly:10
+duality mapping
+duality mapping time (10 times) totally: 1.00
+Polytopes: 24
+reading 9 model configs(plus fixed one,total = 10)
+build boundingbox time : 0.00
+init time to build AABBTrees for model and kcbp (9 paris): 1400.00
+reading dynamic config transforms : 50
+Collision detection cost time: 7.00
+Collisions of kcbp pairs: 3
+Collisions of model pairs: 2
+models/happy_buddha.obj 	points number: 24810
+K = 24
+ModelNum = 10
+Moving steps : 100
+ach banchtest (10 times) totally: 13.00
+cluster time (10 times) totally: 0.00
+normalsize = 24
+Projection time banchtest(10 times) CPU(SSE) totaly:11
+duality mapping
+duality mapping time (10 times) totally: 1.00
+Polytopes: 24
+reading 9 model configs(plus fixed one,total = 10)
+build boundingbox time : 1.00
+init time to build AABBTrees for model and kcbp (9 paris): 1341.00
+reading dynamic config transforms : 100
+Collision detection cost time: 11.00
+Collisions of kcbp pairs: 6
+Collisions of model pairs: 4
+models/happy_buddha.obj 	points number: 24810
+K = 24
+ModelNum = 10
+Moving steps : 200
+ach banchtest (10 times) totally: 13.00
+cluster time (10 times) totally: 0.00
+normalsize = 24
+Projection time banchtest(10 times) CPU(SSE) totaly:10
+duality mapping
+duality mapping time (10 times) totally: 2.00
+Polytopes: 24
+reading 9 model configs(plus fixed one,total = 10)
+build boundingbox time : 1.00
+init time to build AABBTrees for model and kcbp (9 paris): 1343.00
+reading dynamic config transforms : 200
+Collision detection cost time: 26.00
+Collisions of kcbp pairs: 15
+Collisions of model pairs: 13
+models/happy_buddha.obj 	points number: 24810
+K = 24
+ModelNum = 10
+Moving steps : 300
+ach banchtest (10 times) totally: 13.00
+cluster time (10 times) totally: 1.00
+normalsize = 24
+Projection time banchtest(10 times) CPU(SSE) totaly:10
+duality mapping
+duality mapping time (10 times) totally: 1.00
+Polytopes: 24
+reading 9 model configs(plus fixed one,total = 10)
+build boundingbox time : 1.00
+init time to build AABBTrees for model and kcbp (9 paris): 1378.00
+reading dynamic config transforms : 300
+Collision detection cost time: 36.00
+Collisions of kcbp pairs: 23
+Collisions of model pairs: 20
+models/happy_buddha.obj 	points number: 24810
+K = 24
+ModelNum = 10
+Moving steps : 400
+ach banchtest (10 times) totally: 13.00
+cluster time (10 times) totally: 1.00
+normalsize = 24
+Projection time banchtest(10 times) CPU(SSE) totaly:10
+duality mapping
+duality mapping time (10 times) totally: 1.00
+Polytopes: 24
+reading 9 model configs(plus fixed one,total = 10)
+build boundingbox time : 1.00
+init time to build AABBTrees for model and kcbp (9 paris): 1350.00
+reading dynamic config transforms : 400
+Collision detection cost time: 49.00
+Collisions of kcbp pairs: 31
+Collisions of model pairs: 26
+models/happy_buddha.obj 	points number: 24810
+K = 24
+ModelNum = 10
+Moving steps : 500
+ach banchtest (10 times) totally: 13.00
+cluster time (10 times) totally: 1.00
+normalsize = 24
+Projection time banchtest(10 times) CPU(SSE) totaly:10
+duality mapping
+duality mapping time (10 times) totally: 1.00
+Polytopes: 24
+reading 9 model configs(plus fixed one,total = 10)
+build boundingbox time : 1.00
+init time to build AABBTrees for model and kcbp (9 paris): 1357.00
+reading dynamic config transforms : 500
+Collision detection cost time: 67.00
+Collisions of kcbp pairs: 44
+Collisions of model pairs: 36
+models/happy_buddha.obj 	points number: 24810
+K = 24
+ModelNum = 10
+Moving steps : 600
+ach banchtest (10 times) totally: 14.00
+cluster time (10 times) totally: 1.00
+normalsize = 24
+Projection time banchtest(10 times) CPU(SSE) totaly:11
+duality mapping
+duality mapping time (10 times) totally: 1.00
+Polytopes: 24
+reading 9 model configs(plus fixed one,total = 10)
+build boundingbox time : 0.00
+init time to build AABBTrees for model and kcbp (9 paris): 1339.00
+reading dynamic config transforms : 600
+Collision detection cost time: 82.00
+Collisions of kcbp pairs: 57
+Collisions of model pairs: 48
+models/happy_buddha.obj 	points number: 24810
+K = 24
+ModelNum = 10
+Moving steps : 700
+ach banchtest (10 times) totally: 13.00
+cluster time (10 times) totally: 0.00
+normalsize = 24
+Projection time banchtest(10 times) CPU(SSE) totaly:10
+duality mapping
+duality mapping time (10 times) totally: 1.00
+Polytopes: 24
+reading 9 model configs(plus fixed one,total = 10)
+build boundingbox time : 1.00
+init time to build AABBTrees for model and kcbp (9 paris): 1357.00
+reading dynamic config transforms : 700
+Collision detection cost time: 94.00
+Collisions of kcbp pairs: 66
+Collisions of model pairs: 53
+models/happy_buddha.obj 	points number: 24810
+K = 24
+ModelNum = 10
+Moving steps : 800
+ach banchtest (10 times) totally: 13.00
+cluster time (10 times) totally: 1.00
+normalsize = 24
+Projection time banchtest(10 times) CPU(SSE) totaly:10
+duality mapping
+duality mapping time (10 times) totally: 1.00
+Polytopes: 24
+reading 9 model configs(plus fixed one,total = 10)
+build boundingbox time : 0.00
+init time to build AABBTrees for model and kcbp (9 paris): 1361.00
+reading dynamic config transforms : 800
+Collision detection cost time: 112.00
+Collisions of kcbp pairs: 78
+Collisions of model pairs: 62
+models/happy_buddha.obj 	points number: 24810
+K = 24
+ModelNum = 10
+Moving steps : 900
+ach banchtest (10 times) totally: 13.00
+cluster time (10 times) totally: 1.00
+normalsize = 24
+Projection time banchtest(10 times) CPU(SSE) totaly:10
+duality mapping
+duality mapping time (10 times) totally: 1.00
+Polytopes: 24
+reading 9 model configs(plus fixed one,total = 10)
+build boundingbox time : 0.00
+init time to build AABBTrees for model and kcbp (9 paris): 1374.00
+reading dynamic config transforms : 900
+Collision detection cost time: 123.00
+Collisions of kcbp pairs: 91
+Collisions of model pairs: 70
+models/happy_buddha.obj 	points number: 24810
+K = 24
+ModelNum = 10
+Moving steps : 1000
+ach banchtest (10 times) totally: 13.00
+cluster time (10 times) totally: 1.00
+normalsize = 24
+Projection time banchtest(10 times) CPU(SSE) totaly:10
+duality mapping
+duality mapping time (10 times) totally: 2.00
+Polytopes: 24
+reading 9 model configs(plus fixed one,total = 10)
+build boundingbox time : 1.00
+init time to build AABBTrees for model and kcbp (9 paris): 1363.00
+reading dynamic config transforms : 1000
+Collision detection cost time: 132.00
+Collisions of kcbp pairs: 94
+Collisions of model pairs: 72

@@ -1,24 +1,18 @@
-
-
-#alice-k24-model2.patch.AABB.1.log.result.simple
-#alice-k24-model2.patch.gjk.2.log.result.simple
-
-#for model in ['bunny2', 'apple', 'budda', 'dinosaur', 'alice']:
-if True:
-    model = 'hand'
+subdir = 'dynamick46model10-round2/'
+for model in ['dinosaur']:#, 'apple', 'hand', 'happy_buddha']:
     colResultGJK = []
     colResultAABB = []
     header = []
     for i in range(1, 6):
-        gjkfilename = model + '-k24-model2.patch.gjk.' + str(i) + '.log.result.simple.csv'
-        aabbfilename = model + '-k24-model2.patch.AABB.' + str(i) + '.log.result.simple.csv'
+        gjkfilename = subdir + model + '-k46-model10.gjk.' + str(i) + '.log.result.simple.csv'
+        aabbfilename = subdir + model + '-k46-model10.AABB.' + str(i) + '.log.result.simple.csv'
         gjklines = open(gjkfilename, 'r').readlines()
         aabblines = open(aabbfilename, 'r').readlines()
         linesLen = len(aabblines)
         if len(header) == 0:
             header = [x.strip() for x in aabblines[0].split(',')]
         if len(gjklines) != len(aabblines):
-            print 'Error, when parse model: ' + model
+            print 'Error, when parse model: ' + subdir + model
             exit()
         for lno in range(1, linesLen):
             if i == 1: 
@@ -32,7 +26,7 @@ if True:
         colResultGJK[i] = [float(x)/5.0 for x in colResultGJK[i]]
         colResultAABB[i] = [float(x)/5.0 for x in colResultAABB[i]]
 
-    resultfilename = model + '-k24-model2.patch.log.stat.csv'
+    resultfilename = subdir + model + '-k46-model10.log.stat.csv'
     resultfile = open(resultfilename, 'w')
     resultfile.write(','.join(header))
     resultfile.write(',,')

@@ -1,0 +1,161 @@
+objfile:models/bunny2.obj 
+points number: 2503
+triangle number: 4968
+K = 24
+ModelNum = 10
+Moving steps : 1000
+kCBP for models time (10 times) totally: 10.00
+Polytopes: 24
+convexhull for models time (10 times) totally: 36.00
+reading 9 model configs(plus fixed one,total = 10)
+build boundingbox time : 0.00
+reading dynamic config transforms : 1000
+kDOP for models time (10 models) totally(threePlaneIntersection): 7.00
+kDOP for models time (10 models) totally(simulation): 4.00
+build AABB time: 101.00
+Collision detection cost time: 81.00
+Collisions of bv pairs: 262
+Collisions of model pairs: 238
+CD time(Convexhull_GJK): 79.60
+Convexhull_GJK hitRate: 0.9084
+CD time(KCBP_GJK): 94.60
+KCBP_GJK hitRate: 0.7907
+CD time(KDOP_Approximate): 109.00
+KDOP_Approximate hitRate: 0.6330
+CD time(KDOP_GJK): 98.20
+KDOP_GJK hitRate: 0.7021
+objfile:models/apple.obj 
+points number: 8118
+triangle number: 9380
+K = 24
+ModelNum = 10
+Moving steps : 1000
+kCBP for models time (10 times) totally: 31.00
+Polytopes: 24
+convexhull for models time (10 times) totally: 47.00
+reading 9 model configs(plus fixed one,total = 10)
+build boundingbox time : 0.00
+reading dynamic config transforms : 1000
+kDOP for models time (10 models) totally(threePlaneIntersection): 13.00
+kDOP for models time (10 models) totally(simulation): 9.00
+build AABB time: 206.00
+Collision detection cost time: 193.00
+Collisions of bv pairs: 242
+Collisions of model pairs: 232
+CD time(Convexhull_GJK): 194.80
+Convexhull_GJK hitRate: 0.9587
+CD time(KCBP_GJK): 219.40
+KCBP_GJK hitRate: 0.9084
+CD time(KDOP_Approximate): 253.40
+KDOP_Approximate hitRate: 0.7883
+CD time(KDOP_GJK): 236.20
+KDOP_GJK hitRate: 0.8427
+objfile:models/happy_buddha.obj 
+points number: 24810
+triangle number: 50000
+K = 24
+ModelNum = 10
+Moving steps : 1000
+kCBP for models time (10 times) totally: 26.00
+Polytopes: 24
+convexhull for models time (10 times) totally: 122.00
+reading 9 model configs(plus fixed one,total = 10)
+build boundingbox time : 0.00
+reading dynamic config transforms : 1000
+kDOP for models time (10 models) totally(threePlaneIntersection): 27.00
+kDOP for models time (10 models) totally(simulation): 25.00
+build AABB time: 1336.00
+Collision detection cost time: 95.00
+Collisions of bv pairs: 102
+Collisions of model pairs: 92
+CD time(Convexhull_GJK): 94.00
+Convexhull_GJK hitRate: 0.9020
+CD time(KCBP_GJK): 106.80
+KCBP_GJK hitRate: 0.7731
+CD time(KDOP_Approximate): 118.20
+KDOP_Approximate hitRate: 0.5412
+CD time(KDOP_GJK): 111.80
+KDOP_GJK hitRate: 0.5860
+objfile:models/dinosaur.obj 
+points number: 40277
+triangle number: 80554
+K = 24
+ModelNum = 10
+Moving steps : 1000
+kCBP for models time (10 times) totally: 37.00
+Polytopes: 24
+convexhull for models time (10 times) totally: 204.00
+reading 9 model configs(plus fixed one,total = 10)
+build boundingbox time : 1.00
+reading dynamic config transforms : 1000
+kDOP for models time (10 models) totally(threePlaneIntersection): 41.00
+kDOP for models time (10 models) totally(simulation): 40.00
+build AABB time: 2246.00
+Collision detection cost time: 40.00
+Collisions of bv pairs: 39
+Collisions of model pairs: 15
+CD time(Convexhull_GJK): 40.20
+Convexhull_GJK hitRate: 0.3846
+CD time(KCBP_GJK): 41.00
+KCBP_GJK hitRate: 0.3261
+CD time(KDOP_Approximate): 44.80
+KDOP_Approximate hitRate: 0.1807
+CD time(KDOP_GJK): 42.00
+KDOP_GJK hitRate: 0.2000
+objfile:models/hand.obj 
+points number: 64349
+triangle number: 128314
+K = 24
+ModelNum = 10
+Moving steps : 1000
+kCBP for models time (10 times) totally: 57.00
+Polytopes: 24
+convexhull for models time (10 times) totally: 410.00
+reading 9 model configs(plus fixed one,total = 10)
+build boundingbox time : 1.00
+reading dynamic config transforms : 1000
+kDOP for models time (10 models) totally(threePlaneIntersection): 63.00
+kDOP for models time (10 models) totally(simulation): 63.00
+build AABB time: 4437.00
+Collision detection cost time: 67.00
+Collisions of bv pairs: 84
+Collisions of model pairs: 71
+CD time(Convexhull_GJK): 66.60
+Convexhull_GJK hitRate: 0.8452
+CD time(KCBP_GJK): 67.00
+KCBP_GJK hitRate: 0.6698
+CD time(KDOP_Approximate): 72.00
+KDOP_Approximate hitRate: 0.5108
+CD time(KDOP_GJK): 67.20
+KDOP_GJK hitRate: 0.5462
+objfile:models/dragon.obj 
+points number: 87257
+triangle number: 174281
+K = 24
+ModelNum = 10
+Moving steps : 1000
+kCBP for models time (10 times) totally: 76.00
+Polytopes: 24
+convexhull for models time (10 times) totally: 378.00
+reading 9 model configs(plus fixed one,total = 10)
+build boundingbox time : 3.00
+reading dynamic config transforms : 1000
+kDOP for models time (10 models) totally(threePlaneIntersection): 84.00
+kDOP for models time (10 models) totally(simulation): 84.00
+build AABB time: 6510.00
+Collision detection cost time: 53.00
+Collisions of bv pairs: 153
+Collisions of model pairs: 128
+CD time(Convexhull_GJK): 52.80
+Convexhull_GJK hitRate: 0.8366
+CD time(KCBP_GJK): 51.20
+KCBP_GJK hitRate: 0.7442
+CD time(KDOP_Approximate): 57.20
+KDOP_Approximate hitRate: 0.5845
+CD time(KDOP_GJK): 52.20
+KDOP_GJK hitRate: 0.6184
+objfile:models/alice.obj 
+points number: 224291
+triangle number: 264046
+K = 24
+ModelNum = 10
